@@ -1,0 +1,55 @@
+/* 容器 */
+
+.container {
+    position: relative;
+    width: 700px;
+    height: 156px;
+}
+
+/* 背景图片 */
+
+.background {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* 背景图片 */
+
+.background_image {
+    width: 100%;
+    height: 100%;
+}
+
+/* 文本内容 */
+
+.content_text {
+    position: absolute;
+    left: 71px;
+    top: 56px;
+    font-size: 36px;
+    color: #8995a5;
+}
+
+/* 数据内容 */
+
+.content_time {
+    position: absolute;
+    left: 345px;
+    top: 36px;
+    font-size: 39.31px;
+    color: #e78600;
+}
+
+/* 数据单位 */
+
+.content_unit {
+    position: absolute;
+    left: 545px;
+    top: 36px;
+    font-size: 25.54px;
+    color: #e78600;
+}
