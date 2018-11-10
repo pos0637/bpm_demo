@@ -20,6 +20,7 @@ export default class Iframe extends BaseComponent {
                 scrolling="no"
                 frameBorder="0"
                 style={{ width: '100%', height: '100%' }}
+                background="none"
             />
         );
     }

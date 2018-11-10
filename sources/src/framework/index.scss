@@ -5,3 +5,146 @@
     justify-content: center;
     align-items: center;
 }
+
+/* 背景图片 */
+
+.background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+}
+
+/* 标题栏容器 */
+
+.topbar {
+    position: relative;
+    height: 298px;
+}
+
+/* 标题栏内容容器 */
+
+.topbar_content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 298px;
+    border: 0;
+}
+
+.topbar_content_box {
+    width: 100%;
+    height: 298px;
+}
+
+.topbar_content_box1 {
+    width: 5.18%;
+}
+
+.topbar_content_box_logo {
+    width: 15.73%;
+    position: relative;
+}
+
+.topbar_content_box_logo_content {
+    position: absolute;
+    top: 87px;
+}
+
+.topbar_content_box2 {
+    width: 36.04%;
+}
+
+.topbar_content_box_app_name {
+    width: 27.91%;
+    position: relative;
+}
+
+.topbar_content_box_app_name_content {
+    position: absolute;
+    width: 100%;
+    top: 100px;
+}
+
+.topbar_content_box3 {
+    width: 72.91%;
+}
+
+.topbar_content_box_location {
+    width: 9.01%;
+    position: relative;
+}
+
+.topbar_content_box_location_content {
+    position: absolute;
+    top: 120px;
+}
+
+/* 标题栏背景容器 */
+
+.topbar_background {
+    width: 100%;
+    height: 298px;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* 标题栏背景图片 */
+
+.topbar_background_image {
+    width: 100%;
+    height: 298px;
+}
+
+/* 内容容器 */
+
+.content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 296px;
+    bottom: 86px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.content_box {
+    width: 3442px;
+    height: 1716px;
+}
+
+/* 底栏容器 */
+
+.footer {
+    position: absolute;
+    width: 100%;
+    height: 86px;
+    bottom: 0;
+}
+
+/* 底栏背景容器 */
+
+.footer_background {
+    width: 100%;
+    height: 86px;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* 底栏背景图片 */
+
+.footer_background_image {
+    width: 100%;
+    height: 86px;
+}
