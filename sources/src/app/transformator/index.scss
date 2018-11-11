@@ -1,0 +1,334 @@
+/* 顶部偏移 */
+
+$offsetTop: 298px;
+/* 容器 */
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* 背景图片 */
+
+.background_image {
+    width: 100%;
+    height: 100%;
+}
+
+.background1 {
+    overflow: hidden;
+    position: absolute;
+    left: 200px;
+    top: 500px - $offsetTop;
+    width: 640px;
+    height: 998px;
+}
+
+.content_logo1 {
+    overflow: hidden;
+    position: absolute;
+    left: 151px;
+    top: 731px - $offsetTop;
+    width: 749px;
+    height: 742px;
+}
+
+.content_title1 {
+    position: absolute;
+    left: 348px;
+    top: 600px - $offsetTop;
+    font-size: 120px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(137, 149, 165);
+}
+
+.background2 {
+    overflow: hidden;
+    position: absolute;
+    left: 3003px;
+    top: 500px - $offsetTop;
+    width: 640px;
+    height: 998px;
+}
+
+.content_logo2 {
+    overflow: hidden;
+    position: absolute;
+    left: 2941px;
+    top: 731px - $offsetTop;
+    width: 749px;
+    height: 742px;
+}
+
+.content_title2 {
+    position: absolute;
+    left: 3129px;
+    top: 600px - $offsetTop;
+    font-size: 120px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(137, 149, 165);
+}
+
+.background3 {
+    overflow: hidden;
+    position: absolute;
+    left: 903px;
+    top: 1548px - $offsetTop;
+    width: 753px;
+    height: 280px;
+}
+
+.content_information1 {
+    overflow: hidden;
+    position: absolute;
+    left: 1026px;
+    top: 1598px - $offsetTop;
+    width: 113px;
+    height: 187px;
+}
+
+.content_information2 {
+    overflow: hidden;
+    position: absolute;
+    left: 1232px;
+    top: 1602px - $offsetTop;
+    width: 117px;
+    height: 183px;
+}
+
+.content_information3 {
+    overflow: hidden;
+    position: absolute;
+    left: 1428px;
+    top: 1597px - $offsetTop;
+    width: 105px;
+    height: 188px;
+}
+
+.background4 {
+    overflow: hidden;
+    position: absolute;
+    left: 1703px;
+    top: 1548px - $offsetTop;
+    width: 1237px;
+    height: 280px;
+}
+
+.content_title3 {
+    position: absolute;
+    left: 1807px;
+    top: 1669px - $offsetTop;
+    font-size: 36px;
+    color: rgb(137, 149, 165);
+}
+
+.content_title4 {
+    position: absolute;
+    left: 2369px;
+    top: 1674px - $offsetTop;
+    font-size: 36px;
+    color: rgb(137, 149, 165);
+}
+
+.content_switch1 {
+    overflow: hidden;
+    position: absolute;
+    left: 2022px;
+    top: 1680px - $offsetTop;
+    width: 184px;
+    height: 35px;
+}
+
+.content_switch2 {
+    overflow: hidden;
+    position: absolute;
+    left: 2591px;
+    top: 1680px - $offsetTop;
+    width: 184px;
+    height: 35px;
+}
+
+.background5 {
+    overflow: hidden;
+    position: absolute;
+    left: 900px;
+    top: 500px - $offsetTop;
+    width: 756px;
+    height: 998px;
+}
+
+.content_title5 {
+    position: absolute;
+    left: 979px;
+    top: 668px - $offsetTop;
+    font-size: 45px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(137, 149, 165);
+}
+
+.content_value5 {
+    position: absolute;
+    left: 1057px;
+    top: 1030px - $offsetTop;
+    font-size: 45px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(137, 149, 165);
+}
+
+.content_fan1 {
+    overflow: hidden;
+    position: absolute;
+    left: 987px;
+    top: 1203px - $offsetTop;
+    width: 224px;
+    height: 97px;
+}
+
+.content_title6 {
+    position: absolute;
+    left: 1306px;
+    top: 668px - $offsetTop;
+    font-size: 45px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(137, 149, 165);
+}
+
+.content_value6 {
+    position: absolute;
+    left: 1373px;
+    top: 1030px - $offsetTop;
+    font-size: 45px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(137, 149, 165);
+}
+
+.content_fan2 {
+    overflow: hidden;
+    position: absolute;
+    left: 1325px;
+    top: 1203px - $offsetTop;
+    width: 224px;
+    height: 97px;
+}
+
+.background6 {
+    overflow: hidden;
+    position: absolute;
+    left: 1703px;
+    top: 500px - $offsetTop;
+    width: 1240px;
+    height: 998px;
+}
+
+.content_title7 {
+    position: absolute;
+    left: 1897px;
+    top: 668px - $offsetTop;
+    font-size: 45px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(137, 149, 165);
+}
+
+.content_title8 {
+    position: absolute;
+    left: 2471px;
+    top: 668px - $offsetTop;
+    font-size: 45px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(137, 149, 165);
+}
+
+.content_title9 {
+    position: absolute;
+    left: 1784px;
+    top: 828px - $offsetTop;
+    font-size: 36px;
+    color: rgb(137, 149, 165);
+}
+
+.content_title10 {
+    position: absolute;
+    left: 2069px;
+    top: 828px - $offsetTop;
+    font-size: 36px;
+    color: rgb(137, 149, 165);
+}
+
+.content_title11 {
+    position: absolute;
+    left: 2347px;
+    top: 828px - $offsetTop;
+    font-size: 36px;
+    color: rgb(137, 149, 165);
+}
+
+.content_title12 {
+    position: absolute;
+    left: 2637px;
+    top: 828px - $offsetTop;
+    font-size: 36px;
+    color: rgb(137, 149, 165);
+}
+
+.content_title13 {
+    position: absolute;
+    left: 1794px;
+    top: 1149px - $offsetTop;
+    font-size: 36px;
+    color: rgb(137, 149, 165);
+}
+
+.content_title14 {
+    position: absolute;
+    left: 2357px;
+    top: 1149px - $offsetTop;
+    font-size: 36px;
+    color: rgb(137, 149, 165);
+}
+
+.content_tip1 {
+    overflow: hidden;
+    position: absolute;
+    left: 2096px;
+    top: 1141px - $offsetTop;
+    width: 180px;
+    height: 80px;
+}
+
+.content_power1 {
+    position: absolute;
+    left: 2106px;
+    top: 1141px - $offsetTop;
+    font-size: 45px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+}
+
+.content_tip2 {
+    overflow: hidden;
+    position: absolute;
+    left: 2653px;
+    top: 1141px - $offsetTop;
+    width: 180px;
+    height: 80px;
+}
+
+.content_power2 {
+    position: absolute;
+    left: 2663px;
+    top: 1141px - $offsetTop;
+    font-size: 45px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+}
