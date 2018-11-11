@@ -17,13 +17,13 @@ import LoginForm from './loginForm';
 import style from "./index.scss";
 
 /**
- * 视图
+ * 概览视图
  *
  * @export
- * @class View
+ * @class Overview
  * @extends {BaseComponent}
  */
-export default class View extends BaseComponent {
+export default class Overview extends BaseComponent {
     static contextTypes = {
         router: PropTypes.object // 路由
     }
@@ -85,7 +85,7 @@ export default class View extends BaseComponent {
     /**
      * 登录按钮点击事件处理函数
      *
-     * @memberof View
+     * @memberof Overview
      */
     _onLoginButtonClick() {
         this.setState({ showLoginForm: true });
@@ -94,10 +94,10 @@ export default class View extends BaseComponent {
     /**
      * 登录事件处理函数
      *
-     * @memberof View
+     * @memberof Overview
      */
     _onLogin() {
         this.setState({ showLoginForm: false });
-        this.context.router.history.replace('/main');
+        this.context.router.history.push('/main');
     }
 }

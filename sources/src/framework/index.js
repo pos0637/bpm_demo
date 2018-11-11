@@ -12,10 +12,6 @@ import style from "./index.scss";
  * @extends {BaseComponent}
  */
 export default class Framework extends BaseComponent {
-    static propTypes = {
-        url: PropTypes.string.isRequired // 内容地址
-    }
-
     render() {
         return (
             <div>
@@ -66,7 +62,7 @@ export default class Framework extends BaseComponent {
                 </div>
                 <div className={style.content}>
                     <div className={style.content_box}>
-                        <Iframe url={this.props.url} />
+                        {this.props.children}
                     </div>
                 </div>
                 <div className={style.footer}>
