@@ -1,0 +1,111 @@
+/* 容器 */
+
+.container {
+    position: relative;
+    width: 1652px;
+    height: 306px;
+}
+
+/* 背景图片 */
+
+.background {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* 背景图片 */
+
+.background_image {
+    width: 100%;
+    height: 100%;
+}
+
+/* 标题1 */
+
+.content_title1 {
+    position: absolute;
+    left: 82px;
+    top: 32px;
+    font-size: 48px;
+    color: rgb(0, 160, 233);
+}
+
+/* 标志1 */
+
+.content_flag1 {
+    overflow: hidden;
+    position: absolute;
+    left: 52px;
+    top: 32px;
+    width: 37px;
+    height: 39px;
+}
+
+/* 状态1 */
+
+.content_state1 {
+    overflow: hidden;
+    position: absolute;
+    left: 102px;
+    top: 118px;
+    width: 231px;
+    height: 108px;
+}
+
+/* 图标1 */
+
+.content_logo1 {
+    overflow: hidden;
+    position: absolute;
+    left: 402px;
+    top: 118px;
+    width: 212px;
+    height: 215px;
+}
+
+/* 标题2 */
+
+.content_title2 {
+    position: absolute;
+    left: 920px;
+    top: 32px;
+    font-size: 48px;
+    color: rgb(0, 160, 233);
+}
+
+/* 标志2 */
+
+.content_flag2 {
+    overflow: hidden;
+    position: absolute;
+    left: 890px;
+    top: 31px;
+    width: 37px;
+    height: 39px;
+}
+
+/* 状态2 */
+
+.content_state2 {
+    overflow: hidden;
+    position: absolute;
+    left: 964px;
+    top: 108px;
+    width: 231px;
+    height: 108px;
+}
+
+/* 图标2 */
+
+.content_logo2 {
+    overflow: hidden;
+    position: absolute;
+    left: 1264px;
+    top: 108px;
+    width: 212px;
+    height: 202px;
+}

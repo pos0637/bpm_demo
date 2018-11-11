@@ -4,10 +4,11 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Application from '~/components/application';
 import Framework from '~/framework';
 import Overview from '~/app/overview';
+import MainView from '~/app/main';
 
 const locales = { 'zh-CN': require('~/app/locales/zh-CN.json') };
 const overview = () => <Application currentLocale='zh-CN' locales={locales}><Framework><Overview /></Framework></Application>;
-const main = () => <Application currentLocale='zh-CN' locales={locales}><Framework><div>123</div></Framework></Application>;
+const main = () => <Application currentLocale='zh-CN' locales={locales}><Framework><MainView /></Framework></Application>;
 
 render((
     <BrowserRouter>

@@ -1,0 +1,47 @@
+/* 容器 */
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* 背景图片容器 */
+
+.background {
+    width: 2245px;
+    height: 1650px;
+    overflow: hidden;
+    position: absolute;
+    left: 587px;
+    top: 229px;
+}
+
+/* 背景图片 */
+
+.background_image {
+    width: 2245px;
+    height: 1650px;
+}
+
+/* 电网信息概览 */
+
+.powerGridInformation {
+    overflow: hidden;
+    position: absolute;
+    left: 200px;
+    top: 51px;
+    width: 1000px;
+    height: 1551px;
+}
+
+/* 系统状态 */
+
+.systemState {
+    overflow: hidden;
+    position: absolute;
+    left: 1250px;
+    top: 95px;
+    width: 1652px;
+    height: 306px;
+}
