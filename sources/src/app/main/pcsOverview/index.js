@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import BaseComponent from '~/components/baseComponent';
+import Progress from '~/app/components/lineProgress';
 import style from "./index.scss";
 
 /**
@@ -103,11 +104,17 @@ export default class PcsOverview extends BaseComponent {
                 <div className={style.content_charging}>
                     {this.props.charging}kWh
                 </div>
+                <div className={style.content_charging_progress}>
+                    <Progress width={500} value={this.props.charging / 100} color="#FFC208" />
+                </div>
                 <div className={style.content_discharging_title}>
                     今日放电总量
                 </div>
                 <div className={style.content_discharging}>
                     {this.props.discharging}kWh
+                </div>
+                <div className={style.content_discharging_progress}>
+                    <Progress width={500} value={this.props.discharging / 100} color="#1BC85D" />
                 </div>
             </div>
         );

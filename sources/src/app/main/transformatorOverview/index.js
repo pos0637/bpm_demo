@@ -12,6 +12,10 @@ import style from "./index.scss";
  * @extends {BaseComponent}
  */
 export default class TransformatorOverview extends BaseComponent {
+    static contextTypes = {
+        router: PropTypes.object // 路由
+    }
+
     static propTypes = {
         transformator1Temperature: PropTypes.number,
         transformator2Temperature: PropTypes.number,
@@ -65,6 +69,7 @@ export default class TransformatorOverview extends BaseComponent {
 
         return (
             <div className={style.contrainer}>
+                <div className={style.viewButton} onClick={() => this.context.router.history.replace('/transformator')} />
                 <div className={style.background}>
                     <img className={style.background_image1} src={require("./images/background.png")} alt="" />
                 </div>
@@ -129,7 +134,7 @@ export default class TransformatorOverview extends BaseComponent {
                     <img className={style.background_image} src={require("./images/tooltip.png")} alt="" />
                 </div>
                 <span className={style.content_power}>
-                    {this.props.line2Power}kW
+                    {this.props.power}kW
                 </span>
                 <span className={style.content_link1_title}>
                     I段开关

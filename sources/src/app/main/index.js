@@ -16,10 +16,6 @@ import style from "./index.scss";
  * @extends {BaseComponent}
  */
 export default class MainView extends BaseComponent {
-    static contextTypes = {
-        router: PropTypes.object // 路由
-    }
-
     state = {
         showLoginForm: false // 显示登录窗口
     }
@@ -41,6 +37,9 @@ export default class MainView extends BaseComponent {
                 </div>
                 <div className={style.bmsOverview}>
                     <BmsOverview />
+                </div>
+                <div className={style.pcs_logo}>
+                    <img src={require("./images/gra_pcs.png")} alt="" />
                 </div>
             </div>
         );

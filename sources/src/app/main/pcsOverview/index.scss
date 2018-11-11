@@ -234,6 +234,13 @@
     color: rgb(137, 149, 165);
 }
 
+.content_charging_progress {
+    position: absolute;
+    left: 884px;
+    top: 145px;
+    width: 500px;
+}
+
 .content_discharging_title {
     position: absolute;
     left: 884px;
@@ -250,4 +257,11 @@
     font-family: 'Microsoft Yahei';
     font-weight: bold;
     color: rgb(137, 149, 165);
+}
+
+.content_discharging_progress {
+    position: absolute;
+    left: 884px;
+    top: 300px;
+    width: 500px;
 }
