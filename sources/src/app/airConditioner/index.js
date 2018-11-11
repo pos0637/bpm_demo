@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { getRandom } from '~/misc/random';
 import BaseComponent from '~/components/baseComponent';
 import style from "./index.scss";
 
@@ -11,14 +11,7 @@ import style from "./index.scss";
  * @extends {BaseComponent}
  */
 export default class AirConditionerView extends BaseComponent {
-    static propTypes = {
-        information1: PropTypes.number,
-        information2: PropTypes.number,
-        temperature1: PropTypes.number,
-        temperature2: PropTypes.number
-    }
-
-    static defaultProps = {
+    state = {
         information1: 0,
         information2: 0,
         temperature1: 40,
@@ -28,6 +21,12 @@ export default class AirConditionerView extends BaseComponent {
     componentDidMount() {
         super.componentDidMount();
         this.timer = setInterval(() => {
+            this.setState({
+                information1: getRandom(0, 2),
+                information2: getRandom(0, 2),
+                temperature1: getRandom(0, 40),
+                temperature2: getRandom(0, 40),
+            });
         }, 2000);
     }
 
@@ -40,12 +39,12 @@ export default class AirConditionerView extends BaseComponent {
         let information11;
         let information12;
         let information13;
-        if (this.props.information1 === 1) {
+        if (this.state.information1 === 1) {
             information11 = <img className={style.background_image} src={require("./images/normal2.png")} alt="" />;
             information12 = <img className={style.background_image} src={require("./images/alarm1.png")} alt="" />;
             information13 = <img className={style.background_image} src={require("./images/fault2.png")} alt="" />;
         }
-        else if (this.props.information1 === 2) {
+        else if (this.state.information1 === 2) {
             information11 = <img className={style.background_image} src={require("./images/normal2.png")} alt="" />;
             information12 = <img className={style.background_image} src={require("./images/alarm2.png")} alt="" />;
             information13 = <img className={style.background_image} src={require("./images/fault1.png")} alt="" />;
@@ -58,7 +57,7 @@ export default class AirConditionerView extends BaseComponent {
 
         let information21;
         let information22;
-        if (this.props.information2 === 1) {
+        if (this.state.information2 === 1) {
             information21 = <img className={style.background_image} src={require("./images/normal2.png")} alt="" />;
             information22 = <img className={style.background_image} src={require("./images/alarm1.png")} alt="" />;
         }
@@ -85,13 +84,13 @@ export default class AirConditionerView extends BaseComponent {
                     电气室温度
                 </span>
                 <div className={style.content_value2}>
-                    {this.props.temperature1}
+                    {this.state.temperature1}
                 </div>
                 <span className={style.content_title3}>
                     电池室温度
                 </span>
                 <div className={style.content_value3}>
-                    {this.props.temperature2}
+                    {this.state.temperature2}
                 </div>
                 <div className={style.background3}>
                     <img className={style.background_image} src={require("./images/background4.png")} alt="" />

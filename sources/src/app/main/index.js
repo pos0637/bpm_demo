@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import BaseComponent from '~/components/baseComponent';
-import { getRandomValue, getRandom } from '~/misc/random';
+import { getRandom } from '~/misc/random';
 import PowerGridInformation from './powerGridInformation';
 import SystemState from './systemState';
 import TransformatorOverview from './transformatorOverview';

@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { getRandom } from '~/misc/random';
 import BaseComponent from '~/components/baseComponent';
 import LineChart from '~/app/components/lineChart';
 import style from "./index.scss";
@@ -12,25 +12,7 @@ import style from "./index.scss";
  * @extends {BaseComponent}
  */
 export default class LoadView extends BaseComponent {
-    static propTypes = {
-        state: PropTypes.number, // 运行状态
-        chargingElectricity: PropTypes.number,
-        dischargingElectricity: PropTypes.number,
-        voltage1: PropTypes.number,
-        voltage2: PropTypes.number,
-        voltage3: PropTypes.number,
-        current1: PropTypes.number,
-        current2: PropTypes.number,
-        current3: PropTypes.number,
-        value1: PropTypes.number,
-        value2: PropTypes.number,
-        power1: PropTypes.number,
-        power1Data: PropTypes.array,
-        power2: PropTypes.number,
-        power2Data: PropTypes.array
-    }
-
-    static defaultProps = {
+    state = {
         state: 0, // 待机
         chargingElectricity: 36000,
         dischargingElectricity: 24006,
@@ -51,6 +33,23 @@ export default class LoadView extends BaseComponent {
     componentDidMount() {
         super.componentDidMount();
         this.timer = setInterval(() => {
+            this.setState({
+                state: getRandom(0, 1),
+                chargingElectricity: getRandom(0, 3900),
+                dischargingElectricity: getRandom(0, 2400),
+                voltage1: getRandom(180, 220),
+                voltage2: getRandom(180, 220),
+                voltage3: getRandom(180, 220),
+                current1: getRandom(180, 220),
+                current2: getRandom(180, 220),
+                current3: getRandom(180, 220),
+                value1: 0.9,
+                value2: 0.9,
+                power1: getRandom(180, 220),
+                power1Data: [],
+                power2: getRandom(180, 220),
+                power2Data: []
+            });
         }, 2000);
     }
 
@@ -61,9 +60,9 @@ export default class LoadView extends BaseComponent {
 
     render() {
         let state1;
-        if (this.props.state === 1)
+        if (this.state.state === 1)
             state1 = <img className={style.background_image} src={require("./images/charging.png")} alt="" />;
-        else if (this.props.state === 2)
+        else if (this.state.state === 2)
             state1 = <img className={style.background_image} src={require("./images/discharging.png")} alt="" />;
         else
             state1 = <img className={style.background_image} src={require("./images/standby.png")} alt="" />;
@@ -95,7 +94,7 @@ export default class LoadView extends BaseComponent {
                     总充电电量
                 </span>
                 <span className={style.content_value3}>
-                    {this.props.chargingElectricity}
+                    {this.state.chargingElectricity}
                 </span>
                 <span className={style.content_value3_unit}>
                     kWh
@@ -107,7 +106,7 @@ export default class LoadView extends BaseComponent {
                     总放电电量
                 </span>
                 <span className={style.content_value4}>
-                    {this.props.dischargingElectricity}
+                    {this.state.dischargingElectricity}
                 </span>
                 <span className={style.content_value4_unit}>
                     kWh
@@ -122,13 +121,13 @@ export default class LoadView extends BaseComponent {
                     电网电压
                 </span>
                 <span className={style.content_value5_voltage}>
-                    {this.props.voltage1}V
+                    {this.state.voltage1}V
                 </span>
                 <span className={style.content_value5_title2}>
                     电网电流
                 </span>
                 <span className={style.content_value5_current}>
-                    {this.props.current1}A
+                    {this.state.current1}A
                 </span>
                 <span className={style.content_value6_title}>
                     B相电网
@@ -137,13 +136,13 @@ export default class LoadView extends BaseComponent {
                     电网电压
                 </span>
                 <span className={style.content_value6_voltage}>
-                    {this.props.voltage2}V
+                    {this.state.voltage2}V
                 </span>
                 <span className={style.content_value6_title2}>
                     电网电流
                 </span>
                 <span className={style.content_value6_current}>
-                    {this.props.current2}A
+                    {this.state.current2}A
                 </span>
                 <span className={style.content_value7_title}>
                     C相电网
@@ -152,13 +151,13 @@ export default class LoadView extends BaseComponent {
                     电网电压
                 </span>
                 <span className={style.content_value7_voltage}>
-                    {this.props.voltage3}V
+                    {this.state.voltage3}V
                 </span>
                 <span className={style.content_value7_title2}>
                     电网电流
                 </span>
                 <span className={style.content_value7_current}>
-                    {this.props.current3}A
+                    {this.state.current3}A
                 </span>
                 <div className={style.background6}>
                     <img className={style.background_image} src={require("./images/background5.png")} alt="" />
@@ -167,13 +166,13 @@ export default class LoadView extends BaseComponent {
                     I段母线功率因数
                 </span>
                 <span className={style.content_value8}>
-                    {this.props.value1}
+                    {this.state.value1}
                 </span>
                 <span className={style.content_value9_title}>
                     II段母线功率因数
                 </span>
                 <span className={style.content_value9}>
-                    {this.props.value2}
+                    {this.state.value2}
                 </span>
                 <div className={style.background7}>
                     <img className={style.background_image} src={require("./images/background6.png")} alt="" />
@@ -182,10 +181,10 @@ export default class LoadView extends BaseComponent {
                     I段负载实时功率
                 </span>
                 <span className={style.content_value10}>
-                    {this.props.power1}W
+                    {this.state.power1}W
                 </span>
                 <div className={style.content_power1Data}>
-                    <LineChart min={this.props.power1 - 50} max={this.props.power1 + 50} color="rgba(68,175,244,0.8)" />
+                    <LineChart min={this.state.power1 - 50} max={this.state.power1 + 50} color="rgba(68,175,244,0.8)" />
                 </div>
                 <div className={style.background8}>
                     <img className={style.background_image} src={require("./images/background6.png")} alt="" />
@@ -194,10 +193,10 @@ export default class LoadView extends BaseComponent {
                     II段负载实时功率
                 </span>
                 <span className={style.content_value11}>
-                    {this.props.power2}W
+                    {this.state.power2}W
                 </span>
                 <div className={style.content_power2Data}>
-                    <LineChart min={this.props.power2 - 50} max={this.props.power2 + 50} color="rgba(68,175,244,0.8)" />
+                    <LineChart min={this.state.power2 - 50} max={this.state.power2 + 50} color="rgba(68,175,244,0.8)" />
                 </div>
             </div>
         );

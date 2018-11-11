@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { getRandom } from '~/misc/random';
 import BaseComponent from '~/components/baseComponent';
 import LineChart from '~/app/components/lineChart';
 import style from "./index.scss";
@@ -12,26 +12,7 @@ import style from "./index.scss";
  * @extends {BaseComponent}
  */
 export default class PcsView extends BaseComponent {
-    static propTypes = {
-        information1: PropTypes.number,
-        information2: PropTypes.number,
-        state1: PropTypes.number, // 运行状态
-        state2: PropTypes.number, // 运行状态
-        chargingElectricity1: PropTypes.number,
-        chargingElectricity2: PropTypes.number,
-        dischargingElectricity1: PropTypes.number,
-        dischargingElectricity2: PropTypes.number,
-        chargingPower1: PropTypes.number,
-        chargingPower1Data: PropTypes.array,
-        chargingPower2: PropTypes.number,
-        chargingPower2Data: PropTypes.array,
-        dischargingPower1: PropTypes.number,
-        dischargingPower1Data: PropTypes.array,
-        dischargingPower2: PropTypes.number,
-        dischargingPower2Data: PropTypes.array
-    }
-
-    static defaultProps = {
+    state = {
         information1: 0,
         information2: 0,
         state1: 0, // 运行状态
@@ -53,6 +34,24 @@ export default class PcsView extends BaseComponent {
     componentDidMount() {
         super.componentDidMount();
         this.timer = setInterval(() => {
+            this.setState({
+                information1: getRandom(0, 2),
+                information2: getRandom(0, 2),
+                state1: getRandom(0, 1),
+                state2: getRandom(0, 1),
+                chargingElectricity1: getRandom(0, 3600),
+                chargingElectricity2: getRandom(0, 3600),
+                dischargingElectricity1: getRandom(0, 3600),
+                dischargingElectricity2: getRandom(0, 3600),
+                chargingPower1: getRandom(180, 300),
+                chargingPower1Data: [],
+                chargingPower2: getRandom(180, 300),
+                chargingPower2Data: [],
+                dischargingPower1: getRandom(180, 300),
+                dischargingPower1Data: [],
+                dischargingPower2: getRandom(180, 300),
+                dischargingPower2Data: []
+            });
         }, 2000);
     }
 
@@ -65,12 +64,12 @@ export default class PcsView extends BaseComponent {
         let information11;
         let information12;
         let information13;
-        if (this.props.information1 === 1) {
+        if (this.state.information1 === 1) {
             information11 = <img className={style.background_image} src={require("./images/normal2.png")} alt="" />;
             information12 = <img className={style.background_image} src={require("./images/alarm1.png")} alt="" />;
             information13 = <img className={style.background_image} src={require("./images/fault2.png")} alt="" />;
         }
-        else if (this.props.information1 === 2) {
+        else if (this.state.information1 === 2) {
             information11 = <img className={style.background_image} src={require("./images/normal2.png")} alt="" />;
             information12 = <img className={style.background_image} src={require("./images/alarm2.png")} alt="" />;
             information13 = <img className={style.background_image} src={require("./images/fault1.png")} alt="" />;
@@ -84,12 +83,12 @@ export default class PcsView extends BaseComponent {
         let information21;
         let information22;
         let information23;
-        if (this.props.information2 === 1) {
+        if (this.state.information2 === 1) {
             information21 = <img className={style.background_image} src={require("./images/normal2.png")} alt="" />;
             information22 = <img className={style.background_image} src={require("./images/alarm1.png")} alt="" />;
             information23 = <img className={style.background_image} src={require("./images/fault2.png")} alt="" />;
         }
-        else if (this.props.information2 === 2) {
+        else if (this.state.information2 === 2) {
             information21 = <img className={style.background_image} src={require("./images/normal2.png")} alt="" />;
             information22 = <img className={style.background_image} src={require("./images/alarm2.png")} alt="" />;
             information23 = <img className={style.background_image} src={require("./images/fault1.png")} alt="" />;
@@ -101,17 +100,17 @@ export default class PcsView extends BaseComponent {
         }
 
         let state1;
-        if (this.props.state1 === 1)
+        if (this.state.state1 === 1)
             state1 = <img className={style.background_image} src={require("./images/charging.png")} alt="" />;
-        else if (this.props.state === 2)
+        else if (this.state.state === 2)
             state1 = <img className={style.background_image} src={require("./images/discharging.png")} alt="" />;
         else
             state1 = <img className={style.background_image} src={require("./images/standby.png")} alt="" />;
 
         let state2;
-        if (this.props.state2 === 1)
+        if (this.state.state2 === 1)
             state2 = <img className={style.background_image} src={require("./images/charging.png")} alt="" />;
-        else if (this.props.state === 2)
+        else if (this.state.state === 2)
             state2 = <img className={style.background_image} src={require("./images/discharging.png")} alt="" />;
         else
             state2 = <img className={style.background_image} src={require("./images/standby.png")} alt="" />;
@@ -161,7 +160,7 @@ export default class PcsView extends BaseComponent {
                     总充电电量
                 </span>
                 <span className={style.content_value5}>
-                    {this.props.chargingElectricity1}
+                    {this.state.chargingElectricity1}
                 </span>
                 <span className={style.content_value5_unit}>
                     kWh
@@ -173,7 +172,7 @@ export default class PcsView extends BaseComponent {
                     总放电电量
                 </span>
                 <span className={style.content_value6}>
-                    {this.props.dischargingElectricity1}
+                    {this.state.dischargingElectricity1}
                 </span>
                 <span className={style.content_value6_unit}>
                     kWh
@@ -185,7 +184,7 @@ export default class PcsView extends BaseComponent {
                     总充电电量
                 </span>
                 <span className={style.content_value7}>
-                    {this.props.chargingElectricity2}
+                    {this.state.chargingElectricity2}
                 </span>
                 <span className={style.content_value7_unit}>
                     kWh
@@ -197,7 +196,7 @@ export default class PcsView extends BaseComponent {
                     总放电电量
                 </span>
                 <span className={style.content_value8}>
-                    {this.props.dischargingElectricity2}
+                    {this.state.dischargingElectricity2}
                 </span>
                 <span className={style.content_value8_unit}>
                     kWh
@@ -209,10 +208,10 @@ export default class PcsView extends BaseComponent {
                     充电实时功率
                 </span>
                 <span className={style.content_value9}>
-                    {this.props.chargingPower1}W
+                    {this.state.chargingPower1}W
                 </span>
                 <div className={style.content_power1Data}>
-                    <LineChart min={this.props.chargingPower1 - 50} max={this.props.chargingPower1 + 50} color="rgba(68,175,244,0.8)" />
+                    <LineChart min={this.state.chargingPower1 - 50} max={this.state.chargingPower1 + 50} color="rgba(68,175,244,0.8)" />
                 </div>
                 <div className={style.background10}>
                     <img className={style.background_image} src={require("./images/background3.png")} alt="" />
@@ -221,10 +220,10 @@ export default class PcsView extends BaseComponent {
                     放电实时功率
                 </span>
                 <span className={style.content_value10}>
-                    {this.props.dischargingPower1}W
+                    {this.state.dischargingPower1}W
                 </span>
                 <div className={style.content_power2Data}>
-                    <LineChart min={this.props.dischargingPower1 - 50} max={this.props.dischargingPower1 + 50} color="rgba(68,175,244,0.8)" />
+                    <LineChart min={this.state.dischargingPower1 - 50} max={this.state.dischargingPower1 + 50} color="rgba(68,175,244,0.8)" />
                 </div>
                 <div className={style.background11}>
                     <img className={style.background_image} src={require("./images/background3.png")} alt="" />
@@ -233,10 +232,10 @@ export default class PcsView extends BaseComponent {
                     充电实时功率
                 </span>
                 <span className={style.content_value11}>
-                    {this.props.chargingPower2}W
+                    {this.state.chargingPower2}W
                 </span>
                 <div className={style.content_power3Data}>
-                    <LineChart min={this.props.chargingPower2 - 50} max={this.props.chargingPower2 + 50} color="rgba(68,175,244,0.8)" />
+                    <LineChart min={this.state.chargingPower2 - 50} max={this.state.chargingPower2 + 50} color="rgba(68,175,244,0.8)" />
                 </div>
                 <div className={style.background12}>
                     <img className={style.background_image} src={require("./images/background3.png")} alt="" />
@@ -245,10 +244,10 @@ export default class PcsView extends BaseComponent {
                     放电实时功率
                 </span>
                 <span className={style.content_value12}>
-                    {this.props.dischargingPower2}W
+                    {this.state.dischargingPower2}W
                 </span>
                 <div className={style.content_power4Data}>
-                    <LineChart min={this.props.dischargingPower2 - 50} max={this.props.dischargingPower2 + 50} color="rgba(68,175,244,0.8)" />
+                    <LineChart min={this.state.dischargingPower2 - 50} max={this.state.dischargingPower2 + 50} color="rgba(68,175,244,0.8)" />
                 </div>
                 <div className={style.background13}>
                     <img className={style.background_image} src={require("./images/background4.png")} alt="" />
