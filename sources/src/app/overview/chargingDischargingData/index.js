@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import BaseComponent from '~/components/baseComponent';
+import LineChart from '~/app/components/lineChart';
 import style from "./index.scss";
 
 /**
@@ -30,6 +31,9 @@ export default class ChargingDischargingData extends BaseComponent {
                 </span>
                 <div className={style.content_value}>
                     {this.props.value}%
+                </div>
+                <div className={style.content_chart}>
+                    <LineChart min={50} max={100} color="rgba(68,175,244,0.8)" />
                 </div>
             </div>
         );

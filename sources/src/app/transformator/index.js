@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import BaseComponent from '~/components/baseComponent';
 import Progress from '~/app/components/progress';
+import LineChart from '~/app/components/lineChart';
 import style from "./index.scss";
 
 /**
@@ -216,12 +217,18 @@ export default class TransformatorView extends BaseComponent {
                 <span className={style.content_power1}>
                     {this.props.power1}kW
                 </span>
+                <div className={style.content_power1Data}>
+                    <LineChart min={this.props.power1 - 50} max={this.props.power1 + 50} color="rgba(251,207,72,0.8)" />
+                </div>
                 <div className={style.content_tip2}>
                     <img className={style.background_image} src={require("./images/tooltip.png")} alt="" />
                 </div>
                 <span className={style.content_power2}>
                     {this.props.power2}kW
                 </span>
+                <div className={style.content_power2Data}>
+                    <LineChart min={this.props.power2 - 50} max={this.props.power2 + 50} color="rgba(251,207,72,0.8)" />
+                </div>
             </div>
         );
     }

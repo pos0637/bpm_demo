@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import BaseComponent from '~/components/baseComponent';
+import LineChart from '~/app/components/lineChart';
 import style from "./index.scss";
 
 /**
@@ -210,6 +211,9 @@ export default class PcsView extends BaseComponent {
                 <span className={style.content_value9}>
                     {this.props.chargingPower1}W
                 </span>
+                <div className={style.content_power1Data}>
+                    <LineChart min={this.props.chargingPower1 - 50} max={this.props.chargingPower1 + 50} color="rgba(68,175,244,0.8)" />
+                </div>
                 <div className={style.background10}>
                     <img className={style.background_image} src={require("./images/background3.png")} alt="" />
                 </div>
@@ -219,6 +223,9 @@ export default class PcsView extends BaseComponent {
                 <span className={style.content_value10}>
                     {this.props.dischargingPower1}W
                 </span>
+                <div className={style.content_power2Data}>
+                    <LineChart min={this.props.dischargingPower1 - 50} max={this.props.dischargingPower1 + 50} color="rgba(68,175,244,0.8)" />
+                </div>
                 <div className={style.background11}>
                     <img className={style.background_image} src={require("./images/background3.png")} alt="" />
                 </div>
@@ -228,6 +235,9 @@ export default class PcsView extends BaseComponent {
                 <span className={style.content_value11}>
                     {this.props.chargingPower2}W
                 </span>
+                <div className={style.content_power3Data}>
+                    <LineChart min={this.props.chargingPower2 - 50} max={this.props.chargingPower2 + 50} color="rgba(68,175,244,0.8)" />
+                </div>
                 <div className={style.background12}>
                     <img className={style.background_image} src={require("./images/background3.png")} alt="" />
                 </div>
@@ -237,6 +247,9 @@ export default class PcsView extends BaseComponent {
                 <span className={style.content_value12}>
                     {this.props.dischargingPower2}W
                 </span>
+                <div className={style.content_power4Data}>
+                    <LineChart min={this.props.dischargingPower2 - 50} max={this.props.dischargingPower2 + 50} color="rgba(68,175,244,0.8)" />
+                </div>
                 <div className={style.background13}>
                     <img className={style.background_image} src={require("./images/background4.png")} alt="" />
                 </div>

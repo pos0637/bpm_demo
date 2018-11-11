@@ -370,6 +370,15 @@ $offsetTop: 298px;
     color: rgb(68, 175, 244);
 }
 
+.content_power1Data {
+    overflow: hidden;
+    position: absolute;
+    left: 1794px;
+    top: 1453px - $offsetTop;
+    width: 600px;
+    height: 230px;
+}
+
 .background8 {
     overflow: hidden;
     position: absolute;
@@ -396,4 +405,13 @@ $offsetTop: 298px;
     font-family: 'Microsoft Yahei';
     font-weight: bold;
     color: rgb(68, 175, 244);
+}
+
+.content_power2Data {
+    overflow: hidden;
+    position: absolute;
+    left: 2984px;
+    top: 1453px - $offsetTop;
+    width: 600px;
+    height: 230px;
 }

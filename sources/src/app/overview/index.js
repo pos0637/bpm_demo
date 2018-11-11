@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import BaseComponent from '~/components/baseComponent';
+import { getRandomValue, getRandom } from '~/misc/random';
 import RunningInformation from './runningInformation';
 import RunningState from './runningState';
 import RunningTime from './runningTime';
@@ -34,13 +35,13 @@ export default class Overview extends BaseComponent {
         runningState: 0,
         runningTime: 0,
         securitySystemState: 0,
-        chargingPower: this._getRandom(50, 100),
-        dischargingPower: this._getRandom(50, 100),
-        usingPower: this._getRandom(50, 100),
-        electricityBills: this._getRandom(50, 100),
-        chargingDischargingData: this._getRandom(50, 100),
-        firstStagePower: this._getRandom(50, 300),
-        secondStagePower: this._getRandom(50, 300)
+        chargingPower: getRandom(50, 100),
+        dischargingPower: getRandom(50, 100),
+        usingPower: getRandom(50, 100),
+        electricityBills: getRandom(50, 100),
+        chargingDischargingData: getRandom(50, 100),
+        firstStagePower: getRandom(50, 300),
+        secondStagePower: getRandom(50, 300)
     }
 
     runningInformation = [0, 1]
@@ -55,17 +56,17 @@ export default class Overview extends BaseComponent {
         super.componentDidMount();
         this.timer = setInterval(() => {
             const data = {
-                runningInformation: this._getRandomValue(this.runningInformation),
-                runningState: this._getRandomValue(this.runningState),
-                runningTime: this._getRandomValue(this.runningTime),
-                securitySystemState: this._getRandomValue(this.securitySystemState),
-                chargingPower: this._getRandom(50, 100),
-                dischargingPower: this._getRandom(50, 100),
-                usingPower: this._getRandom(50, 100),
-                electricityBills: this._getRandom(50, 100),
-                chargingDischargingData: this._getRandom(50, 100),
-                firstStagePower: this._getRandom(50, 300),
-                secondStagePower: this._getRandom(50, 300)
+                runningInformation: getRandomValue(this.runningInformation),
+                runningState: getRandomValue(this.runningState),
+                runningTime: getRandomValue(this.runningTime),
+                securitySystemState: getRandomValue(this.securitySystemState),
+                chargingPower: getRandom(50, 100),
+                dischargingPower: getRandom(50, 100),
+                usingPower: getRandom(50, 100),
+                electricityBills: getRandom(50, 100),
+                chargingDischargingData: getRandom(50, 100),
+                firstStagePower: getRandom(50, 300),
+                secondStagePower: getRandom(50, 300)
             };
 
             this.setState(data);
@@ -144,28 +145,5 @@ export default class Overview extends BaseComponent {
     _onLogin() {
         this.setState({ showLoginForm: false });
         this.context.router.history.replace('/main');
-    }
-
-    /**
-     * 从数组中获取随机值
-     *
-     * @param {*} arr
-     * @returns
-     * @memberof Overview
-     */
-    _getRandomValue(arr) {
-        return arr[Math.floor(Math.random() * (arr.length + 1))];
-    }
-
-    /**
-     * 获取随机值
-     *
-     * @param {*} min
-     * @param {*} max
-     * @returns
-     * @memberof Overview
-     */
-    _getRandom(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 }

@@ -296,6 +296,15 @@ $offsetTop: 298px;
     color: rgb(68, 175, 244);
 }
 
+.content_power1Data {
+    overflow: hidden;
+    position: absolute;
+    left: 1320px;
+    top: 1245px - $offsetTop;
+    width: 500px;
+    height: 180px;
+}
+
 .background10 {
     overflow: hidden;
     position: absolute;
@@ -322,6 +331,15 @@ $offsetTop: 298px;
     font-family: 'Microsoft Yahei';
     font-weight: bold;
     color: rgb(68, 175, 244);
+}
+
+.content_power2Data {
+    overflow: hidden;
+    position: absolute;
+    left: 1320px;
+    top: 1573px - $offsetTop;
+    width: 500px;
+    height: 180px;
 }
 
 .background11 {
@@ -352,6 +370,15 @@ $offsetTop: 298px;
     color: rgb(68, 175, 244);
 }
 
+.content_power3Data {
+    overflow: hidden;
+    position: absolute;
+    left: 2400px;
+    top: 1245px - $offsetTop;
+    width: 500px;
+    height: 180px;
+}
+
 .background12 {
     overflow: hidden;
     position: absolute;
@@ -378,6 +405,15 @@ $offsetTop: 298px;
     font-family: 'Microsoft Yahei';
     font-weight: bold;
     color: rgb(68, 175, 244);
+}
+
+.content_power4Data {
+    overflow: hidden;
+    position: absolute;
+    left: 2400px;
+    top: 1573px - $offsetTop;
+    width: 500px;
+    height: 180px;
 }
 
 .background13 {

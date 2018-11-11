@@ -56,3 +56,14 @@
     color: rgb(68, 175, 224);
     font-family: 'Microsoft Yahei';
 }
+
+/* 图表 */
+
+.content_chart {
+    overflow: hidden;
+    position: absolute;
+    left: 320px;
+    top: 90px;
+    width: 660px;
+    height: 230px;
+}

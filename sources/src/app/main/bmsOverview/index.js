@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import BaseComponent from '~/components/baseComponent';
 import Progress from '~/app/components/progress';
+import LineChart from '~/app/components/lineChart';
 import style from "./index.scss";
 
 /**
@@ -15,13 +16,15 @@ export default class BmsOverview extends BaseComponent {
     static propTypes = {
         data1: PropTypes.number,
         data2: PropTypes.number,
-        data3: PropTypes.number
+        data3: PropTypes.number,
+        power: PropTypes.number
     }
 
     static defaultProps = {
         data1: 87,
         data2: 48,
-        data3: 65
+        data3: 65,
+        power: 50
     }
 
     render() {
@@ -39,6 +42,9 @@ export default class BmsOverview extends BaseComponent {
                 <span className={style.content_title1}>
                     BMS信息概览
                 </span>
+                <div className={style.content_powerData}>
+                    <LineChart min={this.props.power - 50} max={this.props.power + 50} color="rgba(68,175,244,0.8)" />
+                </div>
                 <div className={style.content_flag2}>
                     <img className={style.background_image} src={require("./images/flag.png")} alt="" />
                 </div>

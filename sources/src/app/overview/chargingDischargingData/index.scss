@@ -45,3 +45,14 @@
     font-family: 'Microsoft Yahei';
     font-weight: bold;
 }
+
+/* 图表 */
+
+.content_chart {
+    overflow: hidden;
+    position: absolute;
+    left: 320px;
+    top: 90px;
+    width: 660px;
+    height: 230px;
+}

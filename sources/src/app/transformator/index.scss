@@ -346,6 +346,14 @@ $offsetTop: 298px;
     color: rgb(255, 255, 255);
 }
 
+.content_power1Data {
+    position: absolute;
+    left: 1764px;
+    top: 1233px - $offsetTop;
+    width: 560px;
+    height: 230px;
+}
+
 .content_tip2 {
     overflow: hidden;
     position: absolute;
@@ -363,4 +371,12 @@ $offsetTop: 298px;
     font-family: 'Microsoft Yahei';
     font-weight: bold;
     color: rgb(255, 255, 255);
+}
+
+.content_power2Data {
+    position: absolute;
+    left: 2355px;
+    top: 1233px - $offsetTop;
+    width: 560px;
+    height: 230px;
 }

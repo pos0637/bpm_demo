@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import BaseComponent from '~/components/baseComponent';
+import LineChart from '~/app/components/lineChart';
 import style from "./index.scss";
 
 /**
@@ -183,6 +184,9 @@ export default class LoadView extends BaseComponent {
                 <span className={style.content_value10}>
                     {this.props.power1}W
                 </span>
+                <div className={style.content_power1Data}>
+                    <LineChart min={this.props.power1 - 50} max={this.props.power1 + 50} color="rgba(68,175,244,0.8)" />
+                </div>
                 <div className={style.background8}>
                     <img className={style.background_image} src={require("./images/background6.png")} alt="" />
                 </div>
@@ -192,6 +196,9 @@ export default class LoadView extends BaseComponent {
                 <span className={style.content_value11}>
                     {this.props.power2}W
                 </span>
+                <div className={style.content_power2Data}>
+                    <LineChart min={this.props.power2 - 50} max={this.props.power2 + 50} color="rgba(68,175,244,0.8)" />
+                </div>
             </div>
         );
     }
