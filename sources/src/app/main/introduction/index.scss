@@ -2,8 +2,8 @@
 
 .container {
     position: relative;
-    width: 700px;
-    height: 156px;
+    width: 438px;
+    height: 1239px;
 }
 
 /* 背景图片 */
@@ -26,30 +26,30 @@
 
 /* 文本内容 */
 
-.content_text {
+.content_text1 {
     position: absolute;
-    left: 71px;
-    top: 56px;
-    font-size: 36px;
-    color: rgb(137, 149, 165);
+    left: 50px;
+    top: 137px;
+    font-size: 42px;
+    color: #ffffff;
 }
 
-/* 数据内容 */
+/* 文本内容 */
 
-.content_time {
+.content_text2 {
     position: absolute;
-    left: 345px;
-    top: 36px;
-    font-size: 39.31px;
-    color: rgb(231, 134, 0);
+    left: 50px;
+    top: 187px;
+    font-size: 42px;
+    color: #ffffff;
 }
 
-/* 数据单位 */
+/* 文本内容 */
 
-.content_unit {
+.content_text3 {
     position: absolute;
-    left: 545px;
-    top: 36px;
-    font-size: 25.54px;
-    color: rgb(231, 134, 0);
+    left: 50px;
+    top: 318px;
+    font-size: 24px;
+    color: #ffffff;
 }

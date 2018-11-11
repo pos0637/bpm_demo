@@ -2,8 +2,8 @@
 
 .container {
     position: relative;
-    width: 700px;
-    height: 156px;
+    width: 550px;
+    height: 260px;
 }
 
 /* 背景图片 */
@@ -28,16 +28,30 @@
 
 .content_text {
     position: absolute;
-    left: 71px;
-    top: 56px;
+    left: 55px;
+    top: 46px;
     font-size: 36px;
     color: rgb(137, 149, 165);
 }
 
-/* 图片内容 */
+/* 数据内容 */
 
-.content_image {
+.content_value {
     position: absolute;
-    left: 345px;
-    top: 30px;
+    left: 55px;
+    top: 118px;
+    font-size: 16.8px;
+    color: rgb(91, 233, 102);
+    font-family: 'Microsoft Yahei';
+}
+
+/* 数据单位 */
+
+.content_unit {
+    position: absolute;
+    left: 418px;
+    top: 49px;
+    font-size: 15.98px;
+    color: rgb(91, 233, 102);
+    font-family: 'Microsoft Yahei';
 }

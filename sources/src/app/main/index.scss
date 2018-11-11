@@ -6,6 +6,24 @@
     height: 100%;
 }
 
+/* 背景图片 */
+
+.background {
+    width: 2245px;
+    height: 1650px;
+    overflow: hidden;
+    position: absolute;
+    left: 587px;
+    top: 229px;
+}
+
+/* 背景图片 */
+
+.background_image {
+    width: 2245px;
+    height: 1650px;
+}
+
 /* 电站运行信息 */
 
 .running_information {
@@ -48,4 +66,59 @@
     top: 0;
     width: 700px;
     height: 156px;
+}
+
+/* 系统介绍 */
+
+.introduction {
+    overflow: hidden;
+    position: absolute;
+    left: 1px;
+    top: 216px;
+    width: 438px;
+    height: 1239px;
+}
+
+/* 总充电电量 */
+
+.chargingPower {
+    overflow: hidden;
+    position: absolute;
+    left: 501px;
+    top: 216px;
+    width: 550px;
+    height: 260px;
+}
+
+/* 总放电电量 */
+
+.dischargingPower {
+    overflow: hidden;
+    position: absolute;
+    left: 501px;
+    top: 542px;
+    width: 550px;
+    height: 260px;
+}
+
+/* 总放电电量 */
+
+.usingPower {
+    overflow: hidden;
+    position: absolute;
+    left: 501px;
+    top: 869px;
+    width: 550px;
+    height: 260px;
+}
+
+/* 总放电电量 */
+
+.electricityBills {
+    overflow: hidden;
+    position: absolute;
+    left: 501px;
+    top: 1195px;
+    width: 550px;
+    height: 260px;
 }

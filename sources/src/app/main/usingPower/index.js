@@ -4,15 +4,15 @@ import BaseComponent from '~/components/baseComponent';
 import style from "./index.scss";
 
 /**
- * 无故障运行时间组件
+ * 系统站用电量组件
  *
  * @export
- * @class RunningTime
+ * @class UsingPower
  * @extends {BaseComponent}
  */
-export default class RunningTime extends BaseComponent {
+export default class UsingPower extends BaseComponent {
     static propTypes = {
-        time: PropTypes.number // 运行时间
+        value: PropTypes.number // 值
     }
 
     static defaultProps = {
@@ -26,13 +26,13 @@ export default class RunningTime extends BaseComponent {
                     <img className={style.background_image} src={require("./images/background.png")} alt="" />
                 </div>
                 <span className={style.content_text}>
-                    无故障运行
+                    系统站用电量
                 </span>
-                <div className={style.content_time}>
-                    {this.props.time}
+                <div className={style.content_value}>
+                    {this.props.value}
                 </div>
                 <span className={style.content_unit}>
-                    天
+                    kWh
                 </span>
             </div>
         );
