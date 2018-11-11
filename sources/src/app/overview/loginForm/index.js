@@ -28,11 +28,17 @@ export default class LoginForm extends BaseComponent {
                 <div className={style.username_icon}>
                     <img src={require("./images/icon_username.png")} alt="" />
                 </div>
+                <div className={style.username_input_box}>
+                    <input type="text" name="username" className={style.username_input} />
+                </div>
                 <div className={style.username_line}>
                     <img src={require("./images/line.png")} alt="" />
                 </div>
                 <div className={style.password_icon}>
                     <img src={require("./images/icon_password.png")} alt="" />
+                </div>
+                <div className={style.password_input_box}>
+                    <input type="password" name="password" className={style.password_input} />
                 </div>
                 <div className={style.password_line}>
                     <img src={require("./images/line.png")} alt="" />

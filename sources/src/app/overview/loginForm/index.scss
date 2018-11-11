@@ -34,6 +34,24 @@
     height: 38px;
 }
 
+/* 用户名输入框 */
+
+.username_input_box {
+    position: absolute;
+    left: 464px;
+    top: 364px;
+    width: 724px;
+    height: 38px;
+}
+
+/* 用户名输入框 */
+
+.username_input {
+    font-size: 54px;
+    background-color: transparent;
+    border: 0;
+}
+
 /* 用户名下划线 */
 
 .username_line {
@@ -52,6 +70,24 @@
     top: 549px;
     width: 28px;
     height: 34px;
+}
+
+/* 密码输入框 */
+
+.password_input_box {
+    position: absolute;
+    left: 464px;
+    top: 529px;
+    width: 724px;
+    height: 38px;
+}
+
+/* 密码输入框 */
+
+.password_input {
+    font-size: 54px;
+    background-color: transparent;
+    border: 0;
 }
 
 /* 密码下划线 */

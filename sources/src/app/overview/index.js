@@ -29,7 +29,52 @@ export default class Overview extends BaseComponent {
     }
 
     state = {
-        showLoginForm: false // 显示登录窗口
+        showLoginForm: false, // 显示登录窗口
+        runningInformation: 0,
+        runningState: 0,
+        runningTime: 0,
+        securitySystemState: 0,
+        chargingPower: this._getRandom(50, 100),
+        dischargingPower: this._getRandom(50, 100),
+        usingPower: this._getRandom(50, 100),
+        electricityBills: this._getRandom(50, 100),
+        chargingDischargingData: this._getRandom(50, 100),
+        firstStagePower: this._getRandom(50, 300),
+        secondStagePower: this._getRandom(50, 300)
+    }
+
+    runningInformation = [0, 1]
+
+    runningState = [0, 1, 2]
+
+    runningTime = [10, 11, 12, 13, 14, 15, 16, 17]
+
+    securitySystemState = [0, 1]
+
+    componentDidMount() {
+        super.componentDidMount();
+        this.timer = setInterval(() => {
+            const data = {
+                runningInformation: this._getRandomValue(this.runningInformation),
+                runningState: this._getRandomValue(this.runningState),
+                runningTime: this._getRandomValue(this.runningTime),
+                securitySystemState: this._getRandomValue(this.securitySystemState),
+                chargingPower: this._getRandom(50, 100),
+                dischargingPower: this._getRandom(50, 100),
+                usingPower: this._getRandom(50, 100),
+                electricityBills: this._getRandom(50, 100),
+                chargingDischargingData: this._getRandom(50, 100),
+                firstStagePower: this._getRandom(50, 300),
+                secondStagePower: this._getRandom(50, 300)
+            };
+
+            this.setState(data);
+        }, 2000);
+    }
+
+    componentWillUnmount() {
+        this.timer && clearTimeout(this.timer);
+        super.componentWillUnmount();
     }
 
     render() {
@@ -43,40 +88,40 @@ export default class Overview extends BaseComponent {
                 </div>
                 {this.state.showLoginForm ? <div className={style.login_form}><LoginForm onLogin={() => this._onLogin()} /></div> : <div />}
                 <div className={style.running_information}>
-                    <RunningInformation information={1} />
+                    <RunningInformation information={this.state.runningInformation} />
                 </div>
                 <div className={style.running_state}>
-                    <RunningState state={1} />
+                    <RunningState state={this.state.runningState} />
                 </div>
                 <div className={style.running_time}>
-                    <RunningTime time={1} />
+                    <RunningTime time={this.state.runningTime} />
                 </div>
                 <div className={style.security_system_state}>
-                    <SecuritySystemState state={0} />
+                    <SecuritySystemState state={this.state.securitySystemState} />
                 </div>
                 <div className={style.introduction}>
                     <Introduction />
                 </div>
                 <div className={style.chargingPower}>
-                    <ChargingPower value={123} />
+                    <ChargingPower value={this.state.chargingPower} />
                 </div>
                 <div className={style.dischargingPower}>
-                    <DischargingPower value={123} />
+                    <DischargingPower value={this.state.dischargingPower} />
                 </div>
                 <div className={style.usingPower}>
-                    <UsingPower value={123} />
+                    <UsingPower value={this.state.usingPower} />
                 </div>
                 <div className={style.electricityBills}>
-                    <ElectricityBills value={123} />
+                    <ElectricityBills value={this.state.electricityBills} />
                 </div>
                 <div className={style.chargingDischargingData}>
-                    <ChargingDischargingData value={65} />
+                    <ChargingDischargingData value={this.state.chargingDischargingData} />
                 </div>
                 <div className={style.firstStagePower}>
-                    <FirstStagePower value={300} />
+                    <FirstStagePower value={this.state.firstStagePower} />
                 </div>
                 <div className={style.secondStagePower}>
-                    <SecondStagePower value={300} />
+                    <SecondStagePower value={this.state.secondStagePower} />
                 </div>
             </div>
         );
@@ -99,5 +144,28 @@ export default class Overview extends BaseComponent {
     _onLogin() {
         this.setState({ showLoginForm: false });
         this.context.router.history.push('/main');
+    }
+
+    /**
+     * 从数组中获取随机值
+     *
+     * @param {*} arr
+     * @returns
+     * @memberof Overview
+     */
+    _getRandomValue(arr) {
+        return arr[Math.floor(Math.random() * (arr.length + 1))];
+    }
+
+    /**
+     * 获取随机值
+     *
+     * @param {*} min
+     * @param {*} max
+     * @returns
+     * @memberof Overview
+     */
+    _getRandom(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 }
