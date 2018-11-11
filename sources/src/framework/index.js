@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import BaseComponent from '~/components/baseComponent';
 import Iframe from '~/components/iframe';
 import style from "./index.scss";
@@ -11,6 +12,10 @@ import style from "./index.scss";
  * @extends {BaseComponent}
  */
 export default class Framework extends BaseComponent {
+    static propTypes = {
+        url: PropTypes.string.isRequired // 内容地址
+    }
+
     render() {
         return (
             <div>
@@ -61,7 +66,7 @@ export default class Framework extends BaseComponent {
                 </div>
                 <div className={style.content}>
                     <div className={style.content_box}>
-                        <Iframe url="./app_main.html" />
+                        <Iframe url={this.props.url} />
                     </div>
                 </div>
                 <div className={style.footer}>

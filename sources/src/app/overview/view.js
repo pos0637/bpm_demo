@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import BaseComponent from '~/components/baseComponent';
 import RunningInformation from './runningInformation';
 import RunningState from './runningState';
@@ -23,6 +24,10 @@ import style from "./index.scss";
  * @extends {BaseComponent}
  */
 export default class View extends BaseComponent {
+    static contextTypes = {
+        router: PropTypes.object // 路由
+    }
+
     state = {
         showLoginForm: false // 显示登录窗口
     }
@@ -93,6 +98,6 @@ export default class View extends BaseComponent {
      */
     _onLogin() {
         this.setState({ showLoginForm: false });
-        // 跳转界面
+        this.context.router.history.replace('/main');
     }
 }
