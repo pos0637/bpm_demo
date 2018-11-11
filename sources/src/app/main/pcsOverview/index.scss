@@ -1,0 +1,241 @@
+/* 容器 */
+
+.container {
+    position: relative;
+    width: 1652px;
+    height: 350px;
+}
+
+/* 背景图片 */
+
+.background {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* 背景图片 */
+
+.background_image {
+    width: 100%;
+    height: 100%;
+}
+
+/* 标题 */
+
+.content_title {
+    position: absolute;
+    left: 122px;
+    top: 31px;
+    font-size: 48px;
+    color: rgb(0, 160, 233);
+}
+
+/* 标志 */
+
+.content_flag {
+    overflow: hidden;
+    position: absolute;
+    left: 77px;
+    top: 51px;
+    width: 37px;
+    height: 39px;
+}
+
+/* 状态 */
+
+.content_state {
+    overflow: hidden;
+    position: absolute;
+    left: 70px;
+    top: 162px;
+    width: 176px;
+    height: 130px;
+}
+
+.content_power_title {
+    position: absolute;
+    left: 282px;
+    top: 122px;
+    font-size: 32px;
+    color: rgb(137, 149, 165);
+}
+
+.content_power_container {
+    overflow: hidden;
+    position: absolute;
+    left: 288px;
+    top: 182px;
+    width: 116px;
+    height: 118px;
+}
+
+.content_power {
+    position: absolute;
+    left: 320px;
+    top: 212px;
+    font-size: 36px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+}
+
+.content_power_unit {
+    position: absolute;
+    left: 332px;
+    top: 252px;
+    font-size: 18px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+}
+
+.content_voltage_title {
+    position: absolute;
+    left: 425px;
+    top: 122px;
+    font-size: 32px;
+    color: rgb(137, 149, 165);
+}
+
+.content_voltage_container {
+    overflow: hidden;
+    position: absolute;
+    left: 425px;
+    top: 182px;
+    width: 116px;
+    height: 118px;
+}
+
+.content_voltage {
+    position: absolute;
+    left: 457px;
+    top: 212px;
+    font-size: 36px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+}
+
+.content_voltage_unit {
+    position: absolute;
+    left: 477px;
+    top: 252px;
+    font-size: 18px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+}
+
+.content_current_title {
+    position: absolute;
+    left: 564px;
+    top: 122px;
+    font-size: 32px;
+    color: rgb(137, 149, 165);
+}
+
+.content_current_container {
+    overflow: hidden;
+    position: absolute;
+    left: 564px;
+    top: 182px;
+    width: 116px;
+    height: 118px;
+}
+
+.content_current {
+    position: absolute;
+    left: 596px;
+    top: 212px;
+    font-size: 36px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+}
+
+.content_current_unit {
+    position: absolute;
+    left: 616px;
+    top: 252px;
+    font-size: 18px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+}
+
+.content_voltage2_title {
+    position: absolute;
+    left: 707px;
+    top: 122px;
+    font-size: 32px;
+    color: rgb(137, 149, 165);
+}
+
+.content_voltage2_container {
+    overflow: hidden;
+    position: absolute;
+    left: 707px;
+    top: 182px;
+    width: 116px;
+    height: 118px;
+}
+
+.content_voltage2 {
+    position: absolute;
+    left: 739px;
+    top: 212px;
+    font-size: 36px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+}
+
+.content_voltage2_unit {
+    position: absolute;
+    left: 759px;
+    top: 252px;
+    font-size: 18px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+}
+
+.content_charging_title {
+    position: absolute;
+    left: 884px;
+    top: 25px;
+    font-size: 36px;
+    color: rgb(137, 149, 165);
+}
+
+.content_charging {
+    position: absolute;
+    left: 884px;
+    top: 65px;
+    font-size: 56px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(137, 149, 165);
+}
+
+.content_discharging_title {
+    position: absolute;
+    left: 884px;
+    top: 184px;
+    font-size: 36px;
+    color: rgb(137, 149, 165);
+}
+
+.content_discharging {
+    position: absolute;
+    left: 884px;
+    top: 224px;
+    font-size: 56px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(137, 149, 165);
+}

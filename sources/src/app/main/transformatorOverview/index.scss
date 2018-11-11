@@ -1,0 +1,301 @@
+/* 容器 */
+
+.container {
+    position: relative;
+    width: 1651px;
+    height: 792px;
+}
+
+/* 背景图片 */
+
+.background {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 42px;
+}
+
+/* 背景图片 */
+
+.background_image1 {
+    width: auto;
+    height: auto;
+}
+
+/* 背景图片 */
+
+.background_image {
+    width: 100%;
+    height: 100%;
+}
+
+/* 标题1 */
+
+.content_title1 {
+    position: absolute;
+    left: 102px;
+    top: 74px;
+    font-size: 48px;
+    color: rgb(0, 160, 233);
+}
+
+/* 标志1 */
+
+.content_flag1 {
+    overflow: hidden;
+    position: absolute;
+    left: 52px;
+    top: 94px;
+    width: 37px;
+    height: 39px;
+}
+
+/* 图标1 */
+
+.content_logo1 {
+    overflow: hidden;
+    position: absolute;
+    left: 405px;
+    top: 12px;
+    width: 297px;
+    height: 294px;
+}
+
+.content_transformator1_title {
+    position: absolute;
+    left: 50px;
+    top: 351px;
+    font-size: 45px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(137, 149, 165);
+}
+
+.content_transformator1_line {
+    overflow: hidden;
+    position: absolute;
+    left: 63px;
+    top: 410px;
+    width: 585px;
+    height: 1px;
+}
+
+.content_transformator1_temperature_title {
+    position: absolute;
+    left: 149px;
+    top: 459px;
+    font-size: 36px;
+    color: rgb(137, 149, 165);
+}
+
+.content_transformator1_temperature {
+    position: absolute;
+    left: 132px;
+    top: 597px;
+    font-size: 45px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(137, 149, 165);
+}
+
+.content_transformator1_fan {
+    overflow: hidden;
+    position: absolute;
+    left: 72px;
+    top: 655px;
+    width: 224px;
+    height: 97px;
+}
+
+.content_transformator2_title {
+    position: absolute;
+    left: 335px;
+    top: 351px;
+    font-size: 45px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(137, 149, 165);
+}
+
+.content_transformator2_line {
+    overflow: hidden;
+    position: absolute;
+    left: 357px;
+    top: 410px;
+    width: 585px;
+    height: 1px;
+}
+
+.content_transformator2_temperature_title {
+    position: absolute;
+    left: 447px;
+    top: 459px;
+    font-size: 36px;
+    color: rgb(137, 149, 165);
+}
+
+.content_transformator2_temperature {
+    position: absolute;
+    left: 438px;
+    top: 597px;
+    font-size: 45px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(137, 149, 165);
+}
+
+.content_transformator2_fan {
+    overflow: hidden;
+    position: absolute;
+    left: 364px;
+    top: 655px;
+    width: 224px;
+    height: 97px;
+}
+
+/* 标题2 */
+
+.content_title2 {
+    position: absolute;
+    left: 772px;
+    top: 74px;
+    font-size: 48px;
+    color: rgb(0, 160, 233);
+}
+
+/* 标志2 */
+
+.content_flag2 {
+    overflow: hidden;
+    position: absolute;
+    left: 712px;
+    top: 94px;
+    width: 37px;
+    height: 39px;
+}
+
+/* 图标2 */
+
+.content_logo2 {
+    overflow: hidden;
+    position: absolute;
+    left: 1259px;
+    top: 0px;
+    width: 297px;
+    height: 294px;
+}
+
+.content_charging_title {
+    position: absolute;
+    left: 727px;
+    top: 265px;
+    font-size: 36px;
+    color: rgb(137, 149, 165);
+}
+
+.content_charging {
+    position: absolute;
+    left: 759px;
+    top: 399px;
+    font-size: 45px;
+    font-family: 'Microsoft Yahei';
+    color: rgb(137, 149, 165);
+}
+
+.content_charging_unit {
+    position: absolute;
+    left: 789px;
+    top: 450px;
+    font-size: 18px;
+    font-family: 'Microsoft Yahei';
+    color: rgb(137, 149, 165);
+}
+
+.content_discharging_title {
+    position: absolute;
+    left: 1009px;
+    top: 265px;
+    font-size: 36px;
+    color: rgb(137, 149, 165);
+}
+
+.content_discharging {
+    position: absolute;
+    left: 1054px;
+    top: 399px;
+    font-size: 45px;
+    font-family: 'Microsoft Yahei';
+    color: rgb(137, 149, 165);
+}
+
+.content_discharging_unit {
+    position: absolute;
+    left: 1084px;
+    top: 450px;
+    font-size: 18px;
+    font-family: 'Microsoft Yahei';
+    color: rgb(137, 149, 165);
+}
+
+.content_power_title {
+    position: absolute;
+    left: 723px;
+    top: 565px;
+    font-size: 36px;
+    color: rgb(137, 149, 165);
+}
+
+.content_power_tip {
+    overflow: hidden;
+    position: absolute;
+    left: 1016px;
+    top: 557px;
+    width: 180px;
+    height: 80px;
+}
+
+.content_power {
+    position: absolute;
+    left: 1026px;
+    top: 557px;
+    font-size: 45px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+}
+
+.content_link1_title {
+    position: absolute;
+    left: 1317px;
+    top: 359px;
+    font-size: 36px;
+    color: rgb(137, 149, 165);
+}
+
+.content_link1 {
+    overflow: hidden;
+    position: absolute;
+    left: 1319px;
+    top: 427px;
+    width: 184px;
+    height: 35px;
+}
+
+.content_link2_title {
+    position: absolute;
+    left: 1317px;
+    top: 526px;
+    font-size: 36px;
+    color: rgb(137, 149, 165);
+}
+
+.content_link2 {
+    overflow: hidden;
+    position: absolute;
+    left: 1319px;
+    top: 594px;
+    width: 184px;
+    height: 35px;
+}

@@ -45,3 +45,36 @@
     width: 1652px;
     height: 306px;
 }
+
+/* 变压器信息概览 */
+
+.transformatorOverview {
+    overflow: hidden;
+    position: absolute;
+    left: 1251px;
+    top: 441px;
+    width: 1651px;
+    height: 792px;
+}
+
+/* PCS信息概览 */
+
+.pcsOverview {
+    overflow: hidden;
+    position: absolute;
+    left: 1250px;
+    top: 1252px;
+    width: 1652px;
+    height: 350px;
+}
+
+/* BMS信息概览 */
+
+.bmsOverview {
+    overflow: hidden;
+    position: absolute;
+    left: 2950px;
+    top: 95px;
+    width: 690px;
+    height: 1507px;
+}

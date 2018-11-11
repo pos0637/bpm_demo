@@ -2,8 +2,8 @@
 
 .container {
     position: relative;
-    width: 1652px;
-    height: 306px;
+    width: 690px;
+    height: 1507px;
 }
 
 /* 背景图片 */
@@ -28,8 +28,8 @@
 
 .content_title1 {
     position: absolute;
-    left: 122px;
-    top: 12px;
+    left: 120px;
+    top: 19px;
     font-size: 48px;
     color: rgb(0, 160, 233);
 }
@@ -39,21 +39,10 @@
 .content_flag1 {
     overflow: hidden;
     position: absolute;
-    left: 52px;
-    top: 32px;
+    left: 70px;
+    top: 39px;
     width: 37px;
     height: 39px;
-}
-
-/* 状态1 */
-
-.content_state1 {
-    overflow: hidden;
-    position: absolute;
-    left: 102px;
-    top: 118px;
-    width: 231px;
-    height: 108px;
 }
 
 /* 图标1 */
@@ -61,18 +50,18 @@
 .content_logo1 {
     overflow: hidden;
     position: absolute;
-    left: 442px;
-    top: 58px;
-    width: 212px;
-    height: 215px;
+    left: 377px;
+    top: 36px;
+    width: 297px;
+    height: 189px;
 }
 
 /* 标题2 */
 
 .content_title2 {
     position: absolute;
-    left: 960px;
-    top: 12px;
+    left: 120px;
+    top: 587px;
     font-size: 48px;
     color: rgb(0, 160, 233);
 }
@@ -82,21 +71,10 @@
 .content_flag2 {
     overflow: hidden;
     position: absolute;
-    left: 890px;
-    top: 31px;
+    left: 60px;
+    top: 607px;
     width: 37px;
     height: 39px;
-}
-
-/* 状态2 */
-
-.content_state2 {
-    overflow: hidden;
-    position: absolute;
-    left: 964px;
-    top: 108px;
-    width: 231px;
-    height: 108px;
 }
 
 /* 图标2 */
@@ -104,8 +82,32 @@
 .content_logo2 {
     overflow: hidden;
     position: absolute;
-    left: 1284px;
-    top: 58px;
-    width: 212px;
-    height: 202px;
+    left: 373px;
+    top: 675px;
+    width: 296px;
+    height: 204px;
+}
+
+.content_data1_title {
+    position: absolute;
+    left: 180px;
+    top: 759px;
+    font-size: 36px;
+    color: rgb(137, 149, 165);
+}
+
+.content_data2_title {
+    position: absolute;
+    left: 169px;
+    top: 1067px;
+    font-size: 36px;
+    color: rgb(137, 149, 165);
+}
+
+.content_data3_title {
+    position: absolute;
+    left: 429px;
+    top: 1067px;
+    font-size: 36px;
+    color: rgb(137, 149, 165);
 }

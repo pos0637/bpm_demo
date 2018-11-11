@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import BaseComponent from '~/components/baseComponent';
 import PowerGridInformation from './powerGridInformation';
 import SystemState from './systemState';
+import TransformatorOverview from './transformatorOverview';
+import PcsOverview from './pcsOverview';
+import BmsOverview from './bmsOverview';
 import style from "./index.scss";
 
 /**
@@ -29,6 +32,15 @@ export default class MainView extends BaseComponent {
                 </div>
                 <div className={style.systemState}>
                     <SystemState />
+                </div>
+                <div className={style.transformatorOverview}>
+                    <TransformatorOverview />
+                </div>
+                <div className={style.pcsOverview}>
+                    <PcsOverview />
+                </div>
+                <div className={style.bmsOverview}>
+                    <BmsOverview />
                 </div>
             </div>
         );

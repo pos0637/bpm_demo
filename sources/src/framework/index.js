@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import BaseComponent from '~/components/baseComponent';
-import Iframe from '~/components/iframe';
 import style from "./index.scss";
 
 /**
@@ -12,6 +11,18 @@ import style from "./index.scss";
  * @extends {BaseComponent}
  */
 export default class Framework extends BaseComponent {
+    static contextTypes = {
+        router: PropTypes.object // 路由
+    }
+
+    static propTypes = {
+        logout: PropTypes.bool // 是否允许注销
+    }
+
+    static defaultProps = {
+        logout: false
+    }
+
     render() {
         return (
             <div>
@@ -59,6 +70,19 @@ export default class Framework extends BaseComponent {
                             </tbody>
                         </table>
                     </div>
+                    <div className={style.topbar_content}>
+                        <table className={style.topbar_content_box}>
+                            <tbody>
+                                <tr>
+                                    <td className={style.topbar_content_box4} />
+                                    <td className={style.topbar_content_box_logout}>
+                                        {this.props.logout ? <input type="button" className={style.topbar_content_box_logout_content} onClick={() => this._onLogoutButtonClick()} /> : <div />}
+                                    </td>
+                                    <td />
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div className={style.content}>
                     <div className={style.content_box}>
@@ -72,5 +96,14 @@ export default class Framework extends BaseComponent {
                 </div>
             </div>
         );
+    }
+
+    /**
+     * 注销按钮点击事件
+     *
+     * @memberof Framework
+     */
+    _onLogoutButtonClick() {
+        this.context.router.history.push('/');
     }
 }

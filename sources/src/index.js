@@ -8,12 +8,12 @@ import MainView from '~/app/main';
 
 const locales = { 'zh-CN': require('~/app/locales/zh-CN.json') };
 const overview = () => <Application currentLocale='zh-CN' locales={locales}><Framework><Overview /></Framework></Application>;
-const main = () => <Application currentLocale='zh-CN' locales={locales}><Framework><MainView /></Framework></Application>;
+const main = () => <Application currentLocale='zh-CN' locales={locales}><Framework logout><MainView /></Framework></Application>;
 
 render((
     <BrowserRouter>
         <Switch>
-            <Route path='/' exact component={overview} />
+            <Route path='/' exact component={main} />
             <Route path='/main' exact component={main} />
             <Route path='*' component={overview} />
         </Switch>
