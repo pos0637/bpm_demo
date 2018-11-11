@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import BaseComponent from '~/components/baseComponent';
+import Progress from '~/app/components/progress';
 import style from "./index.scss";
 
 /**
@@ -15,6 +16,10 @@ export default class TransformatorView extends BaseComponent {
         information1: PropTypes.number,
         temperature1: PropTypes.number,
         temperature2: PropTypes.number,
+        chargingElectricity1: PropTypes.number,
+        chargingElectricity2: PropTypes.number,
+        dischargingElectricity1: PropTypes.number,
+        dischargingElectricity2: PropTypes.number,
         switch1: PropTypes.number,
         switch2: PropTypes.number,
         fan1: PropTypes.number,
@@ -29,6 +34,10 @@ export default class TransformatorView extends BaseComponent {
         information1: 0,
         temperature1: 40,
         temperature2: 40,
+        chargingElectricity1: 360,
+        chargingElectricity2: 360,
+        dischargingElectricity1: 246,
+        dischargingElectricity2: 246,
         switch1: 0,
         switch2: 0,
         fan1: 0,
@@ -174,15 +183,27 @@ export default class TransformatorView extends BaseComponent {
                 <span className={style.content_title9}>
                     总充电电量
                 </span>
+                <div className={style.content_progress1}>
+                    <Progress width={180} value={this.props.chargingElectricity1 / 10} color="#1BC85D" text1={this.props.chargingElectricity1} text2="kWh" />
+                </div>
                 <span className={style.content_title10}>
                     总放电电量
                 </span>
+                <div className={style.content_progress2}>
+                    <Progress width={180} value={this.props.dischargingElectricity1 / 10} color="#F86E05" text1={this.props.dischargingElectricity1} text2="kWh" />
+                </div>
                 <span className={style.content_title11}>
                     总充电电量
                 </span>
+                <div className={style.content_progress3}>
+                    <Progress width={180} value={this.props.chargingElectricity2 / 10} color="#1BC85D" text1={this.props.chargingElectricity2} text2="kWh" />
+                </div>
                 <span className={style.content_title12}>
                     总放电电量
                 </span>
+                <div className={style.content_progress4}>
+                    <Progress width={180} value={this.props.dischargingElectricity2 / 10} color="#F86E05" text1={this.props.dischargingElectricity2} text2="kWh" />
+                </div>
                 <span className={style.content_title13}>
                     充放电实时功率
                 </span>

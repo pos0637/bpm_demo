@@ -96,6 +96,19 @@
     color: rgb(137, 149, 165);
 }
 
+.content_progress1 {
+    position: absolute;
+    left: 150px;
+    top: 819px;
+    width: 180px;
+    height: 180px;
+}
+
+.content_progress1_icon {
+    width: 63px;
+    height: 103px;    
+}
+
 .content_data2_title {
     position: absolute;
     left: 169px;
@@ -104,10 +117,32 @@
     color: rgb(137, 149, 165);
 }
 
+.content_progress2 {
+    position: absolute;
+    left: 149px;
+    top: 1137px;
+    width: 180px;
+    height: 180px;
+}
+
 .content_data3_title {
     position: absolute;
     left: 429px;
     top: 1067px;
     font-size: 36px;
     color: rgb(137, 149, 165);
+}
+
+.content_progress3 {
+    position: absolute;
+    left: 420px;
+    top: 1137px;
+    width: 180px;
+    height: 180px;
+}
+
+.content_progress3_icon {
+    margin-top: 20px;
+    width: 68px;
+    height: 76px;    
 }

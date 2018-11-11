@@ -21,7 +21,7 @@ const transformator = () => <Application currentLocale='zh-CN' locales={locales}
 render((
     <BrowserRouter>
         <Switch>
-            <Route path='/' exact component={transformator} />
+            <Route path='/' exact component={main} />
             <Route path='/overview' exact component={overview} />
             <Route path='/main' exact component={main} />
             <Route path='/load' exact component={load} />

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import BaseComponent from '~/components/baseComponent';
+import Progress from '~/app/components/progress';
 import style from "./index.scss";
 
 /**
@@ -29,8 +30,8 @@ export default class TransformatorOverview extends BaseComponent {
         transformator2Temperature: 50,
         transformator1Fan: 0,
         transformator2Fan: 0,
-        chargingElectricity: 2100,
-        dischargingElectricity: 2100,
+        chargingElectricity: 360,
+        dischargingElectricity: 240,
         power: 910,
         powerData: [],
         link1: 0,
@@ -112,21 +113,15 @@ export default class TransformatorOverview extends BaseComponent {
                 <span className={style.content_charging_title}>
                     总充电电量
                 </span>
-                <span className={style.content_charging}>
-                    {this.props.chargingElectricity}
-                </span>
-                <span className={style.content_charging_unit}>
-                    kWh
-                </span>
+                <div className={style.content_progress1}>
+                    <Progress width={180} value={this.props.chargingElectricity / 10} color="#1BC85D" text1={this.props.chargingElectricity} text2="kWh" />
+                </div>
                 <span className={style.content_discharging_title}>
                     总放电电量
                 </span>
-                <span className={style.content_discharging}>
-                    {this.props.dischargingElectricity}
-                </span>
-                <span className={style.content_discharging_unit}>
-                    kWh
-                </span>
+                <div className={style.content_progress2}>
+                    <Progress width={180} value={this.props.dischargingElectricity / 10} color="#F86E05" text1={this.props.dischargingElectricity} text2="kWh" />
+                </div>
                 <span className={style.content_power_title}>
                     充放电实时功率
                 </span>

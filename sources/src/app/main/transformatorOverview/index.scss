@@ -195,22 +195,12 @@
     color: rgb(137, 149, 165);
 }
 
-.content_charging {
+.content_progress1 {
     position: absolute;
-    left: 759px;
-    top: 399px;
-    font-size: 45px;
-    font-family: 'Microsoft Yahei';
-    color: rgb(137, 149, 165);
-}
-
-.content_charging_unit {
-    position: absolute;
-    left: 789px;
-    top: 450px;
-    font-size: 18px;
-    font-family: 'Microsoft Yahei';
-    color: rgb(137, 149, 165);
+    left: 737px;
+    top: 339px;
+    width: 180px;
+    height: 180px;
 }
 
 .content_discharging_title {
@@ -221,22 +211,12 @@
     color: rgb(137, 149, 165);
 }
 
-.content_discharging {
+.content_progress2 {
     position: absolute;
-    left: 1054px;
-    top: 399px;
-    font-size: 45px;
-    font-family: 'Microsoft Yahei';
-    color: rgb(137, 149, 165);
-}
-
-.content_discharging_unit {
-    position: absolute;
-    left: 1084px;
-    top: 450px;
-    font-size: 18px;
-    font-family: 'Microsoft Yahei';
-    color: rgb(137, 149, 165);
+    left: 1009px;
+    top: 339px;
+    width: 180px;
+    height: 180px;
 }
 
 .content_power_title {
