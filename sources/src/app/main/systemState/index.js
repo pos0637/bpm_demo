@@ -11,6 +11,10 @@ import style from "./index.scss";
  * @extends {BaseComponent}
  */
 export default class SystemState extends BaseComponent {
+    static contextTypes = {
+        router: PropTypes.object // 路由
+    }
+
     static propTypes = {
         securitySystemState: PropTypes.number, // 消防系统状态
         airConditionerState: PropTypes.number // 空调运行状态
@@ -36,6 +40,7 @@ export default class SystemState extends BaseComponent {
 
         return (
             <div className={style.contrainer}>
+                <div className={style.viewButton} onClick={() => this.context.router.history.replace('/airConditioner')} />
                 <div className={style.background}>
                     <img className={style.background_image} src={require("./images/background.png")} alt="" />
                 </div>

@@ -16,11 +16,13 @@ export default class Framework extends BaseComponent {
     }
 
     static propTypes = {
-        logout: PropTypes.bool // 是否允许注销
+        logout: PropTypes.bool, // 是否允许注销
+        back: PropTypes.bool // 是否允许返回
     }
 
     static defaultProps = {
-        logout: false
+        logout: false,
+        back: false
     }
 
     render() {
@@ -70,13 +72,26 @@ export default class Framework extends BaseComponent {
                             </tbody>
                         </table>
                     </div>
-                    <div className={style.topbar_content}>
+                    <div className={style.topbar_content} style={{ display: this.props.logout ? 'block' : 'none' }}>
                         <table className={style.topbar_content_box}>
                             <tbody>
                                 <tr>
                                     <td className={style.topbar_content_box4} />
                                     <td className={style.topbar_content_box_logout}>
                                         {this.props.logout ? <input type="button" className={style.topbar_content_box_logout_content} onClick={() => this._onLogoutButtonClick()} /> : <div />}
+                                    </td>
+                                    <td />
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className={style.topbar_content} style={{ display: this.props.back ? 'block' : 'none' }}>
+                        <table className={style.topbar_content_box}>
+                            <tbody>
+                                <tr>
+                                    <td className={style.topbar_content_box4} />
+                                    <td className={style.topbar_content_box_logout}>
+                                        {this.props.back ? <input type="button" className={style.topbar_content_box_back_content} onClick={() => this._onBackButtonClick()} /> : <div />}
                                     </td>
                                     <td />
                                 </tr>
@@ -105,5 +120,14 @@ export default class Framework extends BaseComponent {
      */
     _onLogoutButtonClick() {
         this.context.router.history.replace('/');
+    }
+
+    /**
+     * 返回按钮点击事件
+     *
+     * @memberof Framework
+     */
+    _onBackButtonClick() {
+        this.context.router.history.replace('/main');
     }
 }

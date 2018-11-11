@@ -11,6 +11,10 @@ import style from "./index.scss";
  * @extends {BaseComponent}
  */
 export default class PowerGridInformation extends BaseComponent {
+    static contextTypes = {
+        router: PropTypes.object // 路由
+    }
+
     static propTypes = {
         line1Voltage: PropTypes.number, // 线路1电压
         line1Electricity: PropTypes.number, // 线路1总电量
@@ -40,6 +44,7 @@ export default class PowerGridInformation extends BaseComponent {
     render() {
         return (
             <div className={style.contrainer}>
+                <div className={style.viewButton} onClick={() => this.context.router.history.replace('/load')} />
                 <div className={style.background}>
                     <img className={style.background_image1} src={require("./images/background.png")} alt="" />
                 </div>

@@ -6,6 +6,18 @@
     height: 306px;
 }
 
+/* 按钮 */
+
+.viewButton {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1652px;
+    height: 306px;
+    background-color: transparent;
+    z-index: 999;
+}
+
 /* 背景图片 */
 
 .background {

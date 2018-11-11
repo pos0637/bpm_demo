@@ -11,6 +11,10 @@ import style from "./index.scss";
  * @extends {BaseComponent}
  */
 export default class PcsOverview extends BaseComponent {
+    static contextTypes = {
+        router: PropTypes.object // 路由
+    }
+
     static propTypes = {
         power: PropTypes.number,
         voltage: PropTypes.number,
@@ -32,6 +36,7 @@ export default class PcsOverview extends BaseComponent {
     render() {
         return (
             <div className={style.contrainer}>
+                <div className={style.viewButton} onClick={() => this.context.router.history.replace('/pcs')} />
                 <div className={style.background}>
                     <img className={style.background_image} src={require("./images/background.png")} alt="" />
                 </div>

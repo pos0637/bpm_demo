@@ -104,6 +104,16 @@
     background-image: url('./images/logout.png');
 }
 
+.topbar_content_box_back_content {
+    position: absolute;
+    top: 100px;
+    width: 470px;
+    height: 100px;
+    border: 0;
+    background-color: transparent;
+    background-image: url('./images/back.png');
+}
+
 /* 标题栏背景容器 */
 
 .topbar_background {
