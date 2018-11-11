@@ -13,6 +13,10 @@ import style from "./index.scss";
  * @extends {BaseComponent}
  */
 export default class BmsOverview extends BaseComponent {
+    static contextTypes = {
+        router: PropTypes.object // 路由
+    }
+
     static propTypes = {
         data1: PropTypes.number,
         data2: PropTypes.number,
@@ -30,6 +34,7 @@ export default class BmsOverview extends BaseComponent {
     render() {
         return (
             <div className={style.contrainer}>
+                <div className={style.viewButton} onClick={() => this.context.router.history.replace('/bms')} />
                 <div className={style.background}>
                     <img className={style.background_image} src={require("./images/background.png")} alt="" />
                 </div>

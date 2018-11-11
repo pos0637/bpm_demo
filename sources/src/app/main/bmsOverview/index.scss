@@ -6,6 +6,18 @@
     height: 1507px;
 }
 
+/* 按钮 */
+
+.viewButton {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 690px;
+    height: 1507px;
+    background-color: transparent;
+    z-index: 999;
+}
+
 /* 背景图片 */
 
 .background {
@@ -115,7 +127,7 @@
 
 .content_progress1_icon {
     width: 63px;
-    height: 103px;    
+    height: 103px;
 }
 
 .content_data2_title {
@@ -153,5 +165,5 @@
 .content_progress3_icon {
     margin-top: 20px;
     width: 68px;
-    height: 76px;    
+    height: 76px;
 }

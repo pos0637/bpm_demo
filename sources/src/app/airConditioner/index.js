@@ -1,6 +1,7 @@
 import React from 'react';
 import { getRandom } from '~/misc/random';
 import BaseComponent from '~/components/baseComponent';
+import Progress from '~/app/components/progress';
 import style from "./index.scss";
 
 /**
@@ -25,7 +26,7 @@ export default class AirConditionerView extends BaseComponent {
                 information1: getRandom(0, 2),
                 information2: getRandom(0, 2),
                 temperature1: getRandom(0, 40),
-                temperature2: getRandom(0, 40),
+                temperature2: getRandom(0, 40)
             });
         }, 2000);
     }
@@ -83,14 +84,14 @@ export default class AirConditionerView extends BaseComponent {
                 <span className={style.content_title2}>
                     电气室温度
                 </span>
-                <div className={style.content_value2}>
-                    {this.state.temperature1}
+                <div className={style.content_progress1}>
+                    <Progress width={180} value={this.state.temperature1} color="#F86E05" text1={this.state.temperature1} />
                 </div>
                 <span className={style.content_title3}>
                     电池室温度
                 </span>
-                <div className={style.content_value3}>
-                    {this.state.temperature2}
+                <div className={style.content_progress2}>
+                    <Progress width={180} value={this.state.temperature2} color="#F86E05" text1={this.state.temperature2} />
                 </div>
                 <div className={style.background3}>
                     <img className={style.background_image} src={require("./images/background4.png")} alt="" />

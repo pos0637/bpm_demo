@@ -159,12 +159,12 @@ export default class TransformatorView extends BaseComponent {
                 <span className={style.content_title6}>
                     2#变压器
                 </span>
-                <span className={style.content_value5}>
-                    {this.state.temperature1}
-                </span>
-                <span className={style.content_value6}>
-                    {this.state.temperature2}
-                </span>
+                <div className={style.content_progress5}>
+                    <Progress width={180} value={this.state.temperature1 / 10} color="#1BC85D" text1={this.state.temperature1} />
+                </div>
+                <div className={style.content_progress6}>
+                    <Progress width={180} value={this.state.temperature2 / 10} color="#1BC85D" text1={this.state.temperature2} />
+                </div>
                 <div className={style.content_fan1}>
                     {fan1}
                 </div>

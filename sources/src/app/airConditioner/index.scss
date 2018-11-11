@@ -71,22 +71,20 @@ $offsetTop: 298px;
     color: rgb(137, 149, 165);
 }
 
-.content_value2 {
+.content_progress1 {
     position: absolute;
-    left: 1841px;
-    top: 825px - $offsetTop;
-    font-size: 45px;
-    font-family: 'Microsoft Yahei';
-    color: rgb(193, 0, 0);
+    left: 1801px;
+    top: 375px;
+    width: 180px;
+    height: 180px;
 }
 
-.content_value3 {
+.content_progress2 {
     position: absolute;
-    left: 2283px;
-    top: 825px - $offsetTop;
-    font-size: 45px;
-    font-family: 'Microsoft Yahei';
-    color: rgb(193, 0, 0);
+    left: 2233px;
+    top: 375px;
+    width: 180px;
+    height: 180px;
 }
 
 .background3 {

@@ -88,9 +88,9 @@ export default class TransformatorOverview extends BaseComponent {
                 <span className={style.content_transformator1_temperature_title}>
                     温度
                 </span>
-                <span className={style.content_transformator1_temperature}>
-                    {this.props.transformator1Temperature}
-                </span>
+                <div className={style.content_progress3}>
+                    <Progress width={120} value={this.props.transformator1Temperature} color="#F86E05" text1={this.props.transformator1Temperature} />
+                </div>
                 <div className={style.content_transformator1_fan}>
                     {fan1}
                 </div>
@@ -100,9 +100,9 @@ export default class TransformatorOverview extends BaseComponent {
                 <span className={style.content_transformator2_temperature_title}>
                     温度
                 </span>
-                <span className={style.content_transformator2_temperature}>
-                    {this.props.transformator2Temperature}
-                </span>
+                <div className={style.content_progress4}>
+                    <Progress width={120} value={this.props.transformator2Temperature} color="#F86E05" text1={this.props.transformator2Temperature} />
+                </div>
                 <div className={style.content_transformator2_fan}>
                     {fan2}
                 </div>
