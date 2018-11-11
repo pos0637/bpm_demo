@@ -143,7 +143,7 @@ export default class Overview extends BaseComponent {
      */
     _onLogin() {
         this.setState({ showLoginForm: false });
-        this.context.router.history.push('/main');
+        this.context.router.history.replace('/main');
     }
 
     /**

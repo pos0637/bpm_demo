@@ -1,0 +1,399 @@
+/* 顶部偏移 */
+
+$offsetTop: 298px;
+/* 容器 */
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* 背景图片 */
+
+.background_image {
+    width: 100%;
+    height: 100%;
+}
+
+.background1 {
+    overflow: hidden;
+    position: absolute;
+    left: 200px;
+    top: 500px - $offsetTop;
+    width: 1000px;
+    height: 1240px;
+}
+
+.content_logo1 {
+    overflow: hidden;
+    position: absolute;
+    left: 89px;
+    top: 750px - $offsetTop;
+    width: 1201px;
+    height: 1005px;
+}
+
+.content_title1 {
+    position: absolute;
+    left: 318px;
+    top: 579px - $offsetTop;
+    font-size: 80px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(137, 149, 165);
+}
+
+.background2 {
+    overflow: hidden;
+    position: absolute;
+    left: 1350px;
+    top: 500px - $offsetTop;
+    width: 700px;
+    height: 156px;
+}
+
+.content_title2 {
+    position: absolute;
+    left: 1385px;
+    top: 550px - $offsetTop;
+    font-size: 36px;
+    color: rgb(137, 149, 165);
+}
+
+.content_state1 {
+    overflow: hidden;
+    position: absolute;
+    left: 1687px;
+    top: 532px - $offsetTop;
+    width: 297px;
+    height: 87px;
+}
+
+.background3 {
+    overflow: hidden;
+    position: absolute;
+    left: 1350px;
+    top: 701px - $offsetTop;
+    width: 700px;
+    height: 287px;
+}
+
+.content_title3 {
+    position: absolute;
+    left: 1380px;
+    top: 751px - $offsetTop;
+    font-size: 36px;
+    color: rgb(137, 149, 165);
+}
+
+.content_value3 {
+    position: absolute;
+    left: 1377px;
+    top: 827px - $offsetTop;
+    font-size: 100px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(91, 223, 102);
+}
+
+.content_value3_unit {
+    position: absolute;
+    left: 1875px;
+    top: 761px - $offsetTop;
+    font-size: 32px;
+    font-family: 'Microsoft Yahei';
+    color: rgb(91, 223, 102);
+}
+
+.background4 {
+    overflow: hidden;
+    position: absolute;
+    left: 1350px;
+    top: 1033px - $offsetTop;
+    width: 700px;
+    height: 287px;
+}
+
+.content_title4 {
+    position: absolute;
+    left: 1380px;
+    top: 1077px - $offsetTop;
+    font-size: 36px;
+    color: rgb(137, 149, 165);
+}
+
+.content_value4 {
+    position: absolute;
+    left: 1381px;
+    top: 1152px - $offsetTop;
+    font-size: 100px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(231, 134, 0);
+}
+
+.content_value4_unit {
+    position: absolute;
+    left: 1878px;
+    top: 1086px - $offsetTop;
+    font-size: 32px;
+    font-family: 'Microsoft Yahei';
+    color: rgb(231, 134, 0);
+}
+
+.background5 {
+    overflow: hidden;
+    position: absolute;
+    left: 2103px;
+    top: 500px - $offsetTop;
+    width: 1053px;
+    height: 820px;
+}
+
+.content_value5_title {
+    position: absolute;
+    left: 2225px;
+    top: 566px - $offsetTop;
+    font-size: 56px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(137, 149, 165);
+}
+
+.content_value5_title1 {
+    position: absolute;
+    left: 2231px;
+    top: 756px - $offsetTop;
+    font-size: 36px;
+    font-family: 'Microsoft Yahei';
+    color: rgb(137, 149, 165);
+}
+
+.content_value5_voltage {
+    position: absolute;
+    left: 2237px;
+    top: 830px - $offsetTop;
+    font-size: 100px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(15, 70, 145);
+}
+
+.content_value5_title2 {
+    position: absolute;
+    left: 2231px;
+    top: 1070px - $offsetTop;
+    font-size: 36px;
+    font-family: 'Microsoft Yahei';
+    color: rgb(137, 149, 165);
+}
+
+.content_value5_current {
+    position: absolute;
+    left: 2233px;
+    top: 1144px - $offsetTop;
+    font-size: 100px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(236, 172, 0);
+}
+
+.content_value6_title {
+    position: absolute;
+    left: 2521px;
+    top: 566px - $offsetTop;
+    font-size: 56px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(137, 149, 165);
+}
+
+.content_value6_title1 {
+    position: absolute;
+    left: 2525px;
+    top: 756px - $offsetTop;
+    font-size: 36px;
+    font-family: 'Microsoft Yahei';
+    color: rgb(137, 149, 165);
+}
+
+.content_value6_voltage {
+    position: absolute;
+    left: 2531px;
+    top: 830px - $offsetTop;
+    font-size: 100px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(15, 70, 145);
+}
+
+.content_value6_title2 {
+    position: absolute;
+    left: 2525px;
+    top: 1070px - $offsetTop;
+    font-size: 36px;
+    font-family: 'Microsoft Yahei';
+    color: rgb(137, 149, 165);
+}
+
+.content_value6_current {
+    position: absolute;
+    left: 2527px;
+    top: 1144px - $offsetTop;
+    font-size: 100px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(236, 172, 0);
+}
+
+.content_value7_title {
+    position: absolute;
+    left: 2796px;
+    top: 566px - $offsetTop;
+    font-size: 56px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(137, 149, 165);
+}
+
+.content_value7_title1 {
+    position: absolute;
+    left: 2805px;
+    top: 756px - $offsetTop;
+    font-size: 36px;
+    font-family: 'Microsoft Yahei';
+    color: rgb(137, 149, 165);
+}
+
+.content_value7_voltage {
+    position: absolute;
+    left: 2811px;
+    top: 830px - $offsetTop;
+    font-size: 100px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(15, 70, 145);
+}
+
+.content_value7_title2 {
+    position: absolute;
+    left: 2805px;
+    top: 1070px - $offsetTop;
+    font-size: 36px;
+    font-family: 'Microsoft Yahei';
+    color: rgb(137, 149, 165);
+}
+
+.content_value7_current {
+    position: absolute;
+    left: 2807px;
+    top: 1144px - $offsetTop;
+    font-size: 100px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(236, 172, 0);
+}
+
+.background6 {
+    overflow: hidden;
+    position: absolute;
+    left: 3223px;
+    top: 500px - $offsetTop;
+    width: 417px;
+    height: 820px;
+}
+
+.content_value8_title {
+    position: absolute;
+    left: 3296px;
+    top: 615px - $offsetTop;
+    font-size: 36px;
+    font-family: 'Microsoft Yahei';
+    color: rgb(137, 149, 165);
+}
+
+.content_value8 {
+    position: absolute;
+    left: 3305px;
+    top: 699px - $offsetTop;
+    font-size: 140px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(15, 70, 145);
+}
+
+.content_value9_title {
+    position: absolute;
+    left: 3286px;
+    top: 945px - $offsetTop;
+    font-size: 36px;
+    font-family: 'Microsoft Yahei';
+    color: rgb(137, 149, 165);
+}
+
+.content_value9 {
+    position: absolute;
+    left: 3305px;
+    top: 1029px - $offsetTop;
+    font-size: 140px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(15, 70, 145);
+}
+
+.background7 {
+    overflow: hidden;
+    position: absolute;
+    left: 1353px;
+    top: 1370px - $offsetTop;
+    width: 1110px;
+    height: 370px;
+}
+
+.content_value10_title {
+    position: absolute;
+    left: 1394px;
+    top: 1424px - $offsetTop;
+    font-size: 36px;
+    font-family: 'Microsoft Yahei';
+    color: rgb(137, 149, 165);
+}
+
+.content_value10 {
+    position: absolute;
+    left: 1394px;
+    top: 1539px - $offsetTop;
+    font-size: 100px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(68, 175, 244);
+}
+
+.background8 {
+    overflow: hidden;
+    position: absolute;
+    left: 2530px;
+    top: 1370px - $offsetTop;
+    width: 1110px;
+    height: 370px;
+}
+
+.content_value11_title {
+    position: absolute;
+    left: 2584px;
+    top: 1424px - $offsetTop;
+    font-size: 36px;
+    font-family: 'Microsoft Yahei';
+    color: rgb(137, 149, 165);
+}
+
+.content_value11 {
+    position: absolute;
+    left: 2584px;
+    top: 1539px - $offsetTop;
+    font-size: 100px;
+    font-family: 'Microsoft Yahei';
+    font-weight: bold;
+    color: rgb(68, 175, 244);
+}

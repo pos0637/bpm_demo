@@ -104,6 +104,6 @@ export default class Framework extends BaseComponent {
      * @memberof Framework
      */
     _onLogoutButtonClick() {
-        this.context.router.history.push('/');
+        this.context.router.history.replace('/');
     }
 }

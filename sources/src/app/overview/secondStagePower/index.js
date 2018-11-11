@@ -4,7 +4,7 @@ import BaseComponent from '~/components/baseComponent';
 import style from "./index.scss";
 
 /**
- * II段实施功率组件
+ * II段实时功率组件
  *
  * @export
  * @class SecondStagePower
@@ -26,7 +26,7 @@ export default class SecondStagePower extends BaseComponent {
                     <img className={style.background_image} src={require("./images/background.png")} alt="" />
                 </div>
                 <span className={style.content_text}>
-                    II段实施功率
+                    II段实时功率
                 </span>
                 <div className={style.content_value}>
                     {this.props.value}
