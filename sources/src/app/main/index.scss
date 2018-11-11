@@ -6,7 +6,7 @@
     height: 100%;
 }
 
-/* 背景图片 */
+/* 背景图片容器 */
 
 .background {
     width: 2245px;
@@ -121,4 +121,69 @@
     top: 1195px;
     width: 550px;
     height: 260px;
+}
+
+/* 充放电曲线 */
+
+.chargingDischargingData {
+    overflow: hidden;
+    position: absolute;
+    left: 2401px;
+    top: 216px;
+    width: 1040px;
+    height: 370px;
+}
+
+/* I段实施功率组件 */
+
+.firstStagePower {
+    overflow: hidden;
+    position: absolute;
+    left: 2401px;
+    top: 650px;
+    width: 1040px;
+    height: 370px;
+}
+
+/* II段实施功率组件 */
+
+.secondStagePower {
+    overflow: hidden;
+    position: absolute;
+    left: 2401px;
+    top: 1085px;
+    width: 1040px;
+    height: 370px;
+}
+
+/* 登录按钮容器 */
+
+.login_button {
+    width: 900px;
+    height: 160px;
+    overflow: hidden;
+    position: absolute;
+    left: 1271px;
+    top: 1496px;
+}
+
+/* 登录按钮图片 */
+
+.login_button_image {
+    width: 900px;
+    height: 160px;
+    border: 0;
+    background-color: transparent;
+    background-image: url('./images/login_button_normal.png');
+}
+
+/* 登录窗口容器 */
+
+.login_form {
+    width: 1496px;
+    height: 1736px;
+    overflow: hidden;
+    position: absolute;
+    left: 986px;
+    top: 60px;
 }

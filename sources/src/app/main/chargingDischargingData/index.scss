@@ -2,8 +2,8 @@
 
 .container {
     position: relative;
-    width: 550px;
-    height: 260px;
+    width: 1040px;
+    height: 370px;
 }
 
 /* 背景图片 */
@@ -28,8 +28,8 @@
 
 .content_text {
     position: absolute;
-    left: 55px;
-    top: 46px;
+    left: 57px;
+    top: 40px;
     font-size: 36px;
     color: rgb(137, 149, 165);
 }
@@ -38,20 +38,10 @@
 
 .content_value {
     position: absolute;
-    left: 55px;
-    top: 118px;
+    left: 57px;
+    top: 160px;
     font-size: 100px;
-    color: rgb(232, 197, 104);
+    color: rgb(68, 175, 244);
     font-family: 'Microsoft Yahei';
     font-weight: bold;
-}
-
-/* 数据单位 */
-
-.content_unit {
-    position: absolute;
-    left: 418px;
-    top: 49px;
-    font-size: 40px;
-    color: rgb(232, 197, 104);
 }

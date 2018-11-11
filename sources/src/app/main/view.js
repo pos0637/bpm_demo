@@ -9,6 +9,10 @@ import ChargingPower from './chargingPower';
 import DischargingPower from './dischargingPower';
 import UsingPower from './usingPower';
 import ElectricityBills from './electricityBills';
+import ChargingDischargingData from './chargingDischargingData';
+import FirstStagePower from './firstStagePower';
+import SecondStagePower from './secondStagePower';
+import LoginForm from './loginForm';
 import style from "./index.scss";
 
 /**
@@ -19,12 +23,20 @@ import style from "./index.scss";
  * @extends {BaseComponent}
  */
 export default class View extends BaseComponent {
+    state = {
+        showLoginForm: false // 显示登录窗口
+    }
+
     render() {
         return (
             <div className={style.container}>
                 <div className={style.background}>
                     <img className={style.background_image} src={require("./images/background.png")} alt="" />
                 </div>
+                <div className={style.login_button}>
+                    <input type="button" className={style.login_button_image} onClick={() => this._onLoginButtonClick()} />
+                </div>
+                {this.state.showLoginForm ? <div className={style.login_form}><LoginForm onLogin={() => this._onLogin()} /></div> : <div />}
                 <div className={style.running_information}>
                     <RunningInformation information={1} />
                 </div>
@@ -52,7 +64,35 @@ export default class View extends BaseComponent {
                 <div className={style.electricityBills}>
                     <ElectricityBills value={123} />
                 </div>
+                <div className={style.chargingDischargingData}>
+                    <ChargingDischargingData value={65} />
+                </div>
+                <div className={style.firstStagePower}>
+                    <FirstStagePower value={300} />
+                </div>
+                <div className={style.secondStagePower}>
+                    <SecondStagePower value={300} />
+                </div>
             </div>
         );
+    }
+
+    /**
+     * 登录按钮点击事件处理函数
+     *
+     * @memberof View
+     */
+    _onLoginButtonClick() {
+        this.setState({ showLoginForm: true });
+    }
+
+    /**
+     * 登录事件处理函数
+     *
+     * @memberof View
+     */
+    _onLogin() {
+        this.setState({ showLoginForm: false });
+        // 跳转界面
     }
 }
