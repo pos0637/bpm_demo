@@ -1,3 +1,6 @@
+/* 顶部偏移 */
+
+$offsetTop: 298px;
 /* 容器 */
 
 .container {
@@ -79,6 +82,8 @@
     height: 1507px;
 }
 
+/* PCS图标 */
+
 .pcs_logo {
     overflow: hidden;
     position: absolute;
@@ -86,4 +91,48 @@
     top: 1142px;
     width: 585px;
     height: 384px;
+}
+
+/* 箭头1 */
+
+.arrow1 {
+    overflow: hidden;
+    position: absolute;
+    left: 679px;
+    top: 1287px - $offsetTop;
+    width: 54px;
+    height: 128px;
+}
+
+/* 箭头2 */
+
+.arrow2 {
+    overflow: hidden;
+    position: absolute;
+    left: 1130px;
+    top: 1388px - $offsetTop;
+    width: 188px;
+    height: 54px;
+}
+
+/* 箭头3 */
+
+.arrow3 {
+    overflow: hidden;
+    position: absolute;
+    left: 1884px;
+    top: 1433px - $offsetTop;
+    width: 54px;
+    height: 188px;
+}
+
+/* 箭头4 */
+
+.arrow4 {
+    overflow: hidden;
+    position: absolute;
+    left: 2831px;
+    top: 1673px - $offsetTop;
+    width: 188px;
+    height: 54px;
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import BaseComponent from '~/components/baseComponent';
+import LineChart from '~/app/components/lineChart';
 import style from "./index.scss";
 
 /**
@@ -81,6 +82,9 @@ export default class PowerGridInformation extends BaseComponent {
                 <span className={style.content_line1_power}>
                     {this.props.line1Power}kW
                 </span>
+                <div className={style.content_power1Data}>
+                    <LineChart min={this.props.line1Power - 50} max={this.props.line1Power + 50} color="rgba(68,175,244,0.8)" />
+                </div>
                 <span className={style.content_line2_title}>
                     II号母线
                 </span>
@@ -105,6 +109,9 @@ export default class PowerGridInformation extends BaseComponent {
                 <span className={style.content_line2_power}>
                     {this.props.line2Power}kW
                 </span>
+                <div className={style.content_power2Data}>
+                    <LineChart min={this.props.line2Power - 50} max={this.props.line2Power + 50} color="rgba(68,175,244,0.8)" />
+                </div>
                 <div className={style.content_flag2}>
                     <img className={style.background_image} src={require("./images/flag.png")} alt="" />
                 </div>
@@ -123,6 +130,9 @@ export default class PowerGridInformation extends BaseComponent {
                 <span className={style.content_load_power}>
                     {this.props.loadPower}kW
                 </span>
+                <div className={style.content_power3Data}>
+                    <LineChart min={this.props.loadPower - 50} max={this.props.loadPower + 50} color="rgba(251,207,72,0.8)" />
+                </div>
             </div>
         );
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { MemoryRouter, Switch, Route } from 'react-router-dom'
 import Application from '~/components/application';
 import Framework from '~/framework';
 import Overview from '~/app/overview';
@@ -21,7 +21,7 @@ const transformator = () => <Application currentLocale='zh-CN' locales={locales}
 const bms = () => <Application currentLocale='zh-CN' locales={locales}><Framework back><BmsView /></Framework></Application>;
 
 render((
-    <BrowserRouter>
+    <MemoryRouter>
         <Switch>
             <Route path='/' exact component={overview} />
             <Route path='/overview' exact component={overview} />
@@ -33,5 +33,5 @@ render((
             <Route path='/bms' exact component={bms} />
             <Route path='*' component={overview} />
         </Switch>
-    </BrowserRouter>
+    </MemoryRouter>
 ), document.getElementById('root'));

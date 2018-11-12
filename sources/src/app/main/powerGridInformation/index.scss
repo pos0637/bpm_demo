@@ -157,6 +157,15 @@
     color: rgb(255, 255, 255);
 }
 
+.content_power1Data {
+    overflow: hidden;
+    position: absolute;
+    left: 77px;
+    top: 805px;
+    width: 350px;
+    height: 140px;
+}
+
 .content_line2_title {
     position: absolute;
     left: 546px;
@@ -239,6 +248,15 @@
     color: rgb(255, 255, 255);
 }
 
+.content_power2Data {
+    overflow: hidden;
+    position: absolute;
+    left: 551px;
+    top: 805px;
+    width: 350px;
+    height: 140px;
+}
+
 /* 标题2 */
 
 .content_title2 {
@@ -296,4 +314,13 @@
     font-family: 'Microsoft Yahei';
     font-weight: bold;
     color: rgb(255, 255, 255);
+}
+
+.content_power3Data {
+    overflow: hidden;
+    position: absolute;
+    left: 85px;
+    top: 1406px;
+    width: 550px;
+    height: 130px;
 }

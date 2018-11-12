@@ -4,7 +4,7 @@ import BaseComponent from '~/components/baseComponent';
 import style from "./index.scss";
 
 /**
- * 总用电费用组件
+ * 总节电费用组件
  *
  * @export
  * @class ElectricityBills
@@ -26,7 +26,7 @@ export default class ElectricityBills extends BaseComponent {
                     <img className={style.background_image} src={require("./images/background.png")} alt="" />
                 </div>
                 <span className={style.content_text}>
-                    总用电费用
+                    总节电费用
                 </span>
                 <div className={style.content_value}>
                     {this.props.value}

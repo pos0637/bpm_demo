@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import BaseComponent from '~/components/baseComponent';
 import Progress from '~/app/components/progress';
+import LineChart from '~/app/components/lineChart';
 import style from "./index.scss";
 
 /**
@@ -136,6 +137,9 @@ export default class TransformatorOverview extends BaseComponent {
                 <span className={style.content_power}>
                     {this.props.power}kW
                 </span>
+                <div className={style.content_powerData}>
+                    <LineChart min={this.props.power - 50} max={this.props.power + 50} color="rgba(68,175,244,0.8)" />
+                </div>
                 <span className={style.content_link1_title}>
                     I段开关
                 </span>

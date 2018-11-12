@@ -156,6 +156,18 @@ export default class MainView extends BaseComponent {
                 <div className={style.pcs_logo}>
                     <img src={require("./images/gra_pcs.png")} alt="" />
                 </div>
+                <div className={style.arrow1}>
+                    <img src={require("./images/arrow3.png")} alt="" />
+                </div>
+                <div className={style.arrow2}>
+                    <img src={require("./images/arrow1.png")} alt="" />
+                </div>
+                <div className={style.arrow3}>
+                    <img src={require("./images/arrow2.png")} alt="" />
+                </div>
+                <div className={style.arrow4}>
+                    <img src={require("./images/arrow1.png")} alt="" />
+                </div>
             </div>
         );
     }
