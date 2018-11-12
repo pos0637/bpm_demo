@@ -45,9 +45,9 @@ export default class MainView extends BaseComponent {
         link1: getRandom(0, 220),
         link2: getRandom(0, 220),
 
-        data1: getRandom(0, 220),
-        data2: getRandom(0, 220),
-        data3: getRandom(0, 220),
+        data1: getRandom(0, 100),
+        data2: getRandom(0, 100),
+        data3: getRandom(0, 100),
         power: getRandom(0, 220),
 
         securitySystemState: getRandom(0, 1),
@@ -83,9 +83,9 @@ export default class MainView extends BaseComponent {
                 link1: getRandom(0, 1),
                 link2: getRandom(0, 1),
 
-                data1: getRandom(0, 220),
-                data2: getRandom(0, 220),
-                data3: getRandom(0, 220),
+                data1: getRandom(0, 100),
+                data2: getRandom(0, 100),
+                data3: getRandom(0, 100),
                 power: getRandom(0, 220),
 
                 securitySystemState: getRandom(0, 1),

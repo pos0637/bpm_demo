@@ -90,7 +90,7 @@ export default class TransformatorOverview extends BaseComponent {
                     温度
                 </span>
                 <div className={style.content_progress3}>
-                    <Progress width={120} value={this.props.transformator1Temperature} color="#F86E05" text1={this.props.transformator1Temperature} />
+                    <Progress width={120} value={this.props.transformator1Temperature} color="#F86E05" text1={this.props.transformator1Temperature} text1Top={22} />
                 </div>
                 <div className={style.content_transformator1_fan}>
                     {fan1}
@@ -102,7 +102,7 @@ export default class TransformatorOverview extends BaseComponent {
                     温度
                 </span>
                 <div className={style.content_progress4}>
-                    <Progress width={120} value={this.props.transformator2Temperature} color="#F86E05" text1={this.props.transformator2Temperature} />
+                    <Progress width={120} value={this.props.transformator2Temperature} color="#F86E05" text1={this.props.transformator2Temperature} text1Top={22} />
                 </div>
                 <div className={style.content_transformator2_fan}>
                     {fan2}

@@ -17,7 +17,9 @@ export default class Progress extends BaseComponent {
         value: PropTypes.number,
         color: PropTypes.string,
         text1: PropTypes.any,
+        text1Top: PropTypes.number,
         text2: PropTypes.any,
+        text2Top: PropTypes.number,
         onRenderContent: PropTypes.func
     }
 
@@ -26,7 +28,9 @@ export default class Progress extends BaseComponent {
         value: 0,
         color: '#D3D3D3',
         text1: null,
+        text1Top: 50,
         text2: null,
+        text2Top: 100,
         onRenderContent: null
     }
 
@@ -45,10 +49,10 @@ export default class Progress extends BaseComponent {
                         width={this.props.width}
                     />
                 </div>
-                <div className={style.text1_box}>
+                <div className={style.text1_box} style={{ top: this.props.text1Top }}>
                     <span className={style.text1}>{this.props.text1}</span>
                 </div>
-                <div className={style.text2_box}>
+                <div className={style.text2_box} style={{ top: this.props.text2Top }}>
                     <span className={style.text2}>{this.props.text2}</span>
                 </div>
                 <div className={style.user_content}>
