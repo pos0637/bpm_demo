@@ -2,6 +2,7 @@ const path = require('path');
 const glob = require('glob');
 const Webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const outputPath = './dist/';
@@ -62,6 +63,10 @@ module.exports = {
         ]
     },
     plugins: [
+        new CopyWebpackPlugin([{
+            from: path.resolve(__dirname, './public/fonts'),
+            to: path.resolve(__dirname, `${outputPath}/fonts`)
+        }]),
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: path.resolve(__dirname, './public/index.html'),
