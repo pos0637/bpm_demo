@@ -1,11 +1,8 @@
-'use strict';
-
 const electron = require('electron');
-const { app, BrowserWindow, Menu, ipcMain, ipcRenderer } = electron;
 
+const { app, BrowserWindow } = electron;
 
-let isDevelopment = false;
-
+const isDevelopment = false;
 if (isDevelopment) {
     require('electron-reload')(__dirname, {
         ignored: /node_modules|[\/\\]\./
@@ -13,7 +10,7 @@ if (isDevelopment) {
 }
 
 
-var mainWnd = null;
+let mainWnd = null;
 
 function createMainWnd() {
     mainWnd = new BrowserWindow({
@@ -27,13 +24,12 @@ function createMainWnd() {
         mainWnd.webContents.openDevTools();
     }
 
-    mainWnd.loadURL(`file://${__dirname}/index.html`);
+    mainWnd.loadURL(`file://${__dirname}/dist/index.html`);
 
     mainWnd.on('closed', () => {
         mainWnd = null;
     });
 }
-
 
 app.on('ready', createMainWnd);
 

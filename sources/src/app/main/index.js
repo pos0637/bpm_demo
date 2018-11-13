@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import BaseComponent from '~/components/baseComponent';
 import { getRandom } from '~/misc/random';
 import PowerGridInformation from './powerGridInformation';
