@@ -46,39 +46,39 @@ export default class TransformatorOverview extends BaseComponent {
     render() {
         let fan1;
         if (this.props.transformator1Fan === 1)
-            fan1 = <img className={style.background_image} src={require("./images/close.png")} alt="" />;
+            fan1 = <img src={require("./images/close.png")} alt="" />;
         else
-            fan1 = <img className={style.background_image} src={require("./images/open.png")} alt="" />;
+            fan1 = <img src={require("./images/open.png")} alt="" />;
 
         let fan2;
         if (this.props.transformator2Fan === 1)
-            fan2 = <img className={style.background_image} src={require("./images/close.png")} alt="" />;
+            fan2 = <img src={require("./images/close.png")} alt="" />;
         else
-            fan2 = <img className={style.background_image} src={require("./images/open.png")} alt="" />;
+            fan2 = <img src={require("./images/open.png")} alt="" />;
 
         let link1;
         if (this.props.link1 === 1)
-            link1 = <img className={style.background_image} src={require("./images/detach.png")} alt="" />;
+            link1 = <img src={require("./images/detach.png")} alt="" />;
         else
-            link1 = <img className={style.background_image} src={require("./images/attach.png")} alt="" />;
+            link1 = <img src={require("./images/attach.png")} alt="" />;
 
         let link2;
         if (this.props.link2 === 1)
-            link2 = <img className={style.background_image} src={require("./images/detach.png")} alt="" />;
+            link2 = <img src={require("./images/detach.png")} alt="" />;
         else
-            link2 = <img className={style.background_image} src={require("./images/attach.png")} alt="" />;
+            link2 = <img src={require("./images/attach.png")} alt="" />;
 
         return (
             <div className={style.contrainer}>
                 <div className={style.viewButton} onClick={() => this.context.router.history.replace('/transformator')} />
                 <div className={style.background}>
-                    <img className={style.background_image1} src={require("./images/background.png")} alt="" />
+                    <img src={require("./images/background.png")} alt="" />
                 </div>
                 <div className={style.content_flag1}>
-                    <img className={style.background_image} src={require("./images/flag.png")} alt="" />
+                    <img src={require("./images/flag.png")} alt="" />
                 </div>
                 <div className={style.content_logo1}>
-                    <img className={style.background_image} src={require("./images/gra_bianya.png")} alt="" />
+                    <img src={require("./images/gra_bianya.png")} alt="" />
                 </div>
                 <span className={style.content_title1}>
                     变压器信息概览
@@ -108,10 +108,10 @@ export default class TransformatorOverview extends BaseComponent {
                     {fan2}
                 </div>
                 <div className={style.content_flag2}>
-                    <img className={style.background_image} src={require("./images/flag.png")} alt="" />
+                    <img src={require("./images/flag.png")} alt="" />
                 </div>
                 <div className={style.content_logo2}>
-                    <img className={style.background_image} src={require("./images/gra_bingwang.png")} alt="" />
+                    <img src={require("./images/gra_bingwang.png")} alt="" />
                 </div>
                 <span className={style.content_title2}>
                     并网柜信息概览
@@ -132,7 +132,7 @@ export default class TransformatorOverview extends BaseComponent {
                     充放电实时功率
                 </span>
                 <div className={style.content_power_tip}>
-                    <img className={style.background_image} src={require("./images/tooltip.png")} alt="" />
+                    <img src={require("./images/tooltip.png")} alt="" />
                 </div>
                 <span className={style.content_power}>
                     {this.props.power}kW

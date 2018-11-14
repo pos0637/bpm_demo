@@ -39,22 +39,22 @@ export default class PcsOverview extends BaseComponent {
             <div className={style.contrainer}>
                 <div className={style.viewButton} onClick={() => this.context.router.history.replace('/pcs')} />
                 <div className={style.background}>
-                    <img className={style.background_image} src={require("./images/background.png")} alt="" />
+                    <img src={require("./images/background.png")} alt="" />
                 </div>
                 <div className={style.content_flag}>
-                    <img className={style.background_image} src={require("./images/flag.png")} alt="" />
+                    <img src={require("./images/flag.png")} alt="" />
                 </div>
                 <span className={style.content_title}>
                     PCS信息概览
                 </span>
                 <div className={style.content_state}>
-                    <img className={style.background_image} src={require("./images/charging.png")} alt="" />
+                    <img src={require("./images/charging.png")} alt="" />
                 </div>
                 <div className={style.content_power_title}>
                     有功功率
                 </div>
                 <div className={style.content_power_container}>
-                    <img className={style.background_image} src={require("./images/container.png")} alt="" />
+                    <img src={require("./images/container.png")} alt="" />
                 </div>
                 <span className={style.content_power}>
                     {this.props.power}
@@ -66,7 +66,7 @@ export default class PcsOverview extends BaseComponent {
                     直流电压
                 </div>
                 <div className={style.content_voltage_container}>
-                    <img className={style.background_image} src={require("./images/container.png")} alt="" />
+                    <img src={require("./images/container.png")} alt="" />
                 </div>
                 <span className={style.content_voltage}>
                     {this.props.voltage}
@@ -78,7 +78,7 @@ export default class PcsOverview extends BaseComponent {
                     直流电流
                 </div>
                 <div className={style.content_current_container}>
-                    <img className={style.background_image} src={require("./images/container.png")} alt="" />
+                    <img src={require("./images/container.png")} alt="" />
                 </div>
                 <span className={style.content_current}>
                     {this.props.current}
@@ -90,7 +90,7 @@ export default class PcsOverview extends BaseComponent {
                     交流电压
                 </div>
                 <div className={style.content_voltage2_container}>
-                    <img className={style.background_image} src={require("./images/container.png")} alt="" />
+                    <img src={require("./images/container.png")} alt="" />
                 </div>
                 <span className={style.content_voltage2}>
                     {this.props.voltage2}

@@ -62,16 +62,16 @@ export default class BmsView extends BaseComponent {
         return (
             <div className={style.container}>
                 <div className={style.background1}>
-                    <img className={style.background_image} src={require("./images/background1.png")} alt="" />
+                    <img src={require("./images/background1.png")} alt="" />
                 </div>
                 <div className={style.content_logo}>
-                    <img className={style.background_image} src={require("./images/gra_bms.png")} alt="" />
+                    <img src={require("./images/gra_bms.png")} alt="" />
                 </div>
                 <span className={style.content_title}>
                     BMS&amp;电池
                 </span>
                 <div className={style.background2}>
-                    <img className={style.background_image} src={require("./images/background2.png")} alt="" />
+                    <img src={require("./images/background2.png")} alt="" />
                 </div>
                 <span className={style.content_title2}>
                     1#
@@ -164,7 +164,7 @@ export default class BmsView extends BaseComponent {
                     </table>
                 </div>
                 <div className={style.background3}>
-                    <img className={style.background_image} src={require("./images/background2.png")} alt="" />
+                    <img src={require("./images/background2.png")} alt="" />
                 </div>
                 <span className={style.content_title4}>
                     1#
@@ -299,7 +299,7 @@ export default class BmsView extends BaseComponent {
                     电池温度&nbsp;&nbsp;{this.state.temperature2}
                 </span>
                 <div className={style.background4}>
-                    <img className={style.background_image} src={require("./images/background3.png")} alt="" />
+                    <img src={require("./images/background3.png")} alt="" />
                 </div>
                 <span className={style.content_data1_title}>
                     热失控

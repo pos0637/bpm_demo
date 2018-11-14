@@ -61,25 +61,25 @@ export default class LoadView extends BaseComponent {
     render() {
         let state1;
         if (this.state.state === 1)
-            state1 = <img className={style.background_image} src={require("./images/charging.png")} alt="" />;
+            state1 = <img src={require("./images/charging.png")} alt="" />;
         else if (this.state.state === 2)
-            state1 = <img className={style.background_image} src={require("./images/discharging.png")} alt="" />;
+            state1 = <img src={require("./images/discharging.png")} alt="" />;
         else
-            state1 = <img className={style.background_image} src={require("./images/standby.png")} alt="" />;
+            state1 = <img src={require("./images/standby.png")} alt="" />;
 
         return (
             <div className={style.container}>
                 <div className={style.background1}>
-                    <img className={style.background_image} src={require("./images/background1.png")} alt="" />
+                    <img src={require("./images/background1.png")} alt="" />
                 </div>
                 <div className={style.content_logo1}>
-                    <img className={style.background_image} src={require("./images/gra_dianwang.png")} alt="" />
+                    <img src={require("./images/gra_dianwang.png")} alt="" />
                 </div>
                 <span className={style.content_title1}>
                     电网&amp;负载
                 </span>
                 <div className={style.background2}>
-                    <img className={style.background_image} src={require("./images/background2.png")} alt="" />
+                    <img src={require("./images/background2.png")} alt="" />
                 </div>
                 <span className={style.content_title2}>
                     电站运行状态
@@ -88,7 +88,7 @@ export default class LoadView extends BaseComponent {
                     {state1}
                 </div>
                 <div className={style.background3}>
-                    <img className={style.background_image} src={require("./images/background3.png")} alt="" />
+                    <img src={require("./images/background3.png")} alt="" />
                 </div>
                 <span className={style.content_title3}>
                     总充电电量
@@ -100,7 +100,7 @@ export default class LoadView extends BaseComponent {
                     kWh
                 </span>
                 <div className={style.background4}>
-                    <img className={style.background_image} src={require("./images/background3.png")} alt="" />
+                    <img src={require("./images/background3.png")} alt="" />
                 </div>
                 <span className={style.content_title4}>
                     总放电电量
@@ -112,7 +112,7 @@ export default class LoadView extends BaseComponent {
                     kWh
                 </span>
                 <div className={style.background5}>
-                    <img className={style.background_image} src={require("./images/background4.png")} alt="" />
+                    <img src={require("./images/background4.png")} alt="" />
                 </div>
                 <span className={style.content_value5_title}>
                     A相电网
@@ -160,7 +160,7 @@ export default class LoadView extends BaseComponent {
                     {this.state.current3}A
                 </span>
                 <div className={style.background6}>
-                    <img className={style.background_image} src={require("./images/background5.png")} alt="" />
+                    <img src={require("./images/background5.png")} alt="" />
                 </div>
                 <span className={style.content_value8_title}>
                     I段母线功率因数
@@ -175,7 +175,7 @@ export default class LoadView extends BaseComponent {
                     {this.state.value2}
                 </span>
                 <div className={style.background7}>
-                    <img className={style.background_image} src={require("./images/background6.png")} alt="" />
+                    <img src={require("./images/background6.png")} alt="" />
                 </div>
                 <span className={style.content_value10_title}>
                     I段负载实时功率
@@ -187,7 +187,7 @@ export default class LoadView extends BaseComponent {
                     <LineChart min={this.state.power1 - 50} max={this.state.power1 + 50} color="rgba(68,175,244,0.8)" />
                 </div>
                 <div className={style.background8}>
-                    <img className={style.background_image} src={require("./images/background6.png")} alt="" />
+                    <img src={require("./images/background6.png")} alt="" />
                 </div>
                 <span className={style.content_value11_title}>
                     II段负载实时功率

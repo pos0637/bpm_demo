@@ -41,45 +41,45 @@ export default class AirConditionerView extends BaseComponent {
         let information12;
         let information13;
         if (this.state.information1 === 1) {
-            information11 = <img className={style.background_image} src={require("./images/normal2.png")} alt="" />;
-            information12 = <img className={style.background_image} src={require("./images/alarm1.png")} alt="" />;
-            information13 = <img className={style.background_image} src={require("./images/fault2.png")} alt="" />;
+            information11 = <img src={require("./images/normal2.png")} alt="" />;
+            information12 = <img src={require("./images/alarm1.png")} alt="" />;
+            information13 = <img src={require("./images/fault2.png")} alt="" />;
         }
         else if (this.state.information1 === 2) {
-            information11 = <img className={style.background_image} src={require("./images/normal2.png")} alt="" />;
-            information12 = <img className={style.background_image} src={require("./images/alarm2.png")} alt="" />;
-            information13 = <img className={style.background_image} src={require("./images/fault1.png")} alt="" />;
+            information11 = <img src={require("./images/normal2.png")} alt="" />;
+            information12 = <img src={require("./images/alarm2.png")} alt="" />;
+            information13 = <img src={require("./images/fault1.png")} alt="" />;
         }
         else {
-            information11 = <img className={style.background_image} src={require("./images/normal1.png")} alt="" />;
-            information12 = <img className={style.background_image} src={require("./images/alarm2.png")} alt="" />;
-            information13 = <img className={style.background_image} src={require("./images/fault2.png")} alt="" />;
+            information11 = <img src={require("./images/normal1.png")} alt="" />;
+            information12 = <img src={require("./images/alarm2.png")} alt="" />;
+            information13 = <img src={require("./images/fault2.png")} alt="" />;
         }
 
         let information21;
         let information22;
         if (this.state.information2 === 1) {
-            information21 = <img className={style.background_image} src={require("./images/normal2.png")} alt="" />;
-            information22 = <img className={style.background_image} src={require("./images/alarm1.png")} alt="" />;
+            information21 = <img src={require("./images/normal2.png")} alt="" />;
+            information22 = <img src={require("./images/alarm1.png")} alt="" />;
         }
         else {
-            information21 = <img className={style.background_image} src={require("./images/normal1.png")} alt="" />;
-            information22 = <img className={style.background_image} src={require("./images/alarm2.png")} alt="" />;
+            information21 = <img src={require("./images/normal1.png")} alt="" />;
+            information22 = <img src={require("./images/alarm2.png")} alt="" />;
         }
 
         return (
             <div className={style.container}>
                 <div className={style.background1}>
-                    <img className={style.background_image} src={require("./images/background1.png")} alt="" />
+                    <img src={require("./images/background1.png")} alt="" />
                 </div>
                 <div className={style.content_logo}>
-                    <img className={style.background_image} src={require("./images/gra_kongtiao.png")} alt="" />
+                    <img src={require("./images/gra_kongtiao.png")} alt="" />
                 </div>
                 <span className={style.content_title}>
                     空调&amp;灭火器
                 </span>
                 <div className={style.background2}>
-                    <img className={style.background_image} src={require("./images/background3.png")} alt="" />
+                    <img src={require("./images/background4.png")} alt="" />
                 </div>
                 <span className={style.content_title2}>
                     电气室温度
@@ -94,7 +94,7 @@ export default class AirConditionerView extends BaseComponent {
                     <Progress width={180} value={this.state.temperature2} color="#F86E05" text1={this.state.temperature2} />
                 </div>
                 <div className={style.background3}>
-                    <img className={style.background_image} src={require("./images/background4.png")} alt="" />
+                    <img src={require("./images/background3.png")} alt="" />
                 </div>
                 <span className={style.content_title4}>
                     气体灭火器状态
@@ -109,7 +109,7 @@ export default class AirConditionerView extends BaseComponent {
                     {information13}
                 </div>
                 <div className={style.background4}>
-                    <img className={style.background_image} src={require("./images/background2.png")} alt="" />
+                    <img src={require("./images/background2.png")} alt="" />
                 </div>
                 <span className={style.content_title5}>
                     氢气探测器状态

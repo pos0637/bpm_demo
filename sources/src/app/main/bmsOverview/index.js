@@ -36,13 +36,13 @@ export default class BmsOverview extends BaseComponent {
             <div className={style.contrainer}>
                 <div className={style.viewButton} onClick={() => this.context.router.history.replace('/bms')} />
                 <div className={style.background}>
-                    <img className={style.background_image} src={require("./images/background.png")} alt="" />
+                    <img src={require("./images/background.png")} alt="" />
                 </div>
                 <div className={style.content_flag1}>
-                    <img className={style.background_image} src={require("./images/flag.png")} alt="" />
+                    <img src={require("./images/flag.png")} alt="" />
                 </div>
                 <div className={style.content_logo1}>
-                    <img className={style.background_image} src={require("./images/gra_bms.png")} alt="" />
+                    <img src={require("./images/gra_bms.png")} alt="" />
                 </div>
                 <span className={style.content_title1}>
                     BMS信息概览
@@ -51,10 +51,10 @@ export default class BmsOverview extends BaseComponent {
                     <LineChart min={this.props.power - 50} max={this.props.power + 50} color="rgba(68,175,244,0.8)" />
                 </div>
                 <div className={style.content_flag2}>
-                    <img className={style.background_image} src={require("./images/flag.png")} alt="" />
+                    <img src={require("./images/flag.png")} alt="" />
                 </div>
                 <div className={style.content_logo2}>
-                    <img className={style.background_image} src={require("./images/gra_dianchi.png")} alt="" />
+                    <img src={require("./images/gra_dianchi.png")} alt="" />
                 </div>
                 <span className={style.content_title2}>
                     电池组信息概览

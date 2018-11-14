@@ -47,16 +47,16 @@ export default class PowerGridInformation extends BaseComponent {
             <div className={style.contrainer}>
                 <div className={style.viewButton} onClick={() => this.context.router.history.replace('/load')} />
                 <div className={style.background}>
-                    <img className={style.background_image1} src={require("./images/background.png")} alt="" />
+                    <img src={require("./images/background.png")} alt="" />
                 </div>
                 <div className={style.content_flag1}>
-                    <img className={style.background_image} src={require("./images/flag.png")} alt="" />
+                    <img src={require("./images/flag.png")} alt="" />
                 </div>
                 <span className={style.content_title1}>
                     电网信息概览
                 </span>
                 <div className={style.content_logo1}>
-                    <img className={style.background_image} src={require("./images/logo1.png")} alt="" />
+                    <img src={require("./images/logo1.png")} alt="" />
                 </div>
                 <span className={style.content_line1_title}>
                     I号母线
@@ -77,7 +77,7 @@ export default class PowerGridInformation extends BaseComponent {
                     实时功率
                 </span>
                 <div className={style.content_line1_power_tip}>
-                    <img className={style.background_image} src={require("./images/tooltip.png")} alt="" />
+                    <img src={require("./images/tooltip.png")} alt="" />
                 </div>
                 <span className={style.content_line1_power}>
                     {this.props.line1Power}kW
@@ -104,7 +104,7 @@ export default class PowerGridInformation extends BaseComponent {
                     实时功率
                 </span>
                 <div className={style.content_line2_power_tip}>
-                    <img className={style.background_image} src={require("./images/tooltip.png")} alt="" />
+                    <img src={require("./images/tooltip.png")} alt="" />
                 </div>
                 <span className={style.content_line2_power}>
                     {this.props.line2Power}kW
@@ -113,19 +113,19 @@ export default class PowerGridInformation extends BaseComponent {
                     <LineChart min={this.props.line2Power - 50} max={this.props.line2Power + 50} color="rgba(68,175,244,0.8)" />
                 </div>
                 <div className={style.content_flag2}>
-                    <img className={style.background_image} src={require("./images/flag.png")} alt="" />
+                    <img src={require("./images/flag.png")} alt="" />
                 </div>
                 <span className={style.content_title2}>
                     负载信息概览
                 </span>
                 <div className={style.content_logo2}>
-                    <img className={style.background_image} src={require("./images/logo2.png")} alt="" />
+                    <img src={require("./images/logo2.png")} alt="" />
                 </div>
                 <span className={style.content_load_power_title}>
                     负载实时功率
                 </span>
                 <div className={style.content_load_power_tip}>
-                    <img className={style.background_image} src={require("./images/tooltip.png")} alt="" />
+                    <img src={require("./images/tooltip.png")} alt="" />
                 </div>
                 <span className={style.content_load_power}>
                     {this.props.loadPower}kW

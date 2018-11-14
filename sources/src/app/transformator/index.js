@@ -64,67 +64,67 @@ export default class TransformatorView extends BaseComponent {
         let information2;
         let information3;
         if (this.state.information1 === 1) {
-            information1 = <img className={style.background_image} src={require("./images/normal2.png")} alt="" />;
-            information2 = <img className={style.background_image} src={require("./images/alarm1.png")} alt="" />;
-            information3 = <img className={style.background_image} src={require("./images/fault2.png")} alt="" />;
+            information1 = <img src={require("./images/normal2.png")} alt="" />;
+            information2 = <img src={require("./images/alarm1.png")} alt="" />;
+            information3 = <img src={require("./images/fault2.png")} alt="" />;
         }
         else if (this.state.information1 === 2) {
-            information1 = <img className={style.background_image} src={require("./images/normal2.png")} alt="" />;
-            information2 = <img className={style.background_image} src={require("./images/alarm2.png")} alt="" />;
-            information3 = <img className={style.background_image} src={require("./images/fault1.png")} alt="" />;
+            information1 = <img src={require("./images/normal2.png")} alt="" />;
+            information2 = <img src={require("./images/alarm2.png")} alt="" />;
+            information3 = <img src={require("./images/fault1.png")} alt="" />;
         }
         else {
-            information1 = <img className={style.background_image} src={require("./images/normal1.png")} alt="" />;
-            information2 = <img className={style.background_image} src={require("./images/alarm2.png")} alt="" />;
-            information3 = <img className={style.background_image} src={require("./images/fault2.png")} alt="" />;
+            information1 = <img src={require("./images/normal1.png")} alt="" />;
+            information2 = <img src={require("./images/alarm2.png")} alt="" />;
+            information3 = <img src={require("./images/fault2.png")} alt="" />;
         }
 
         let switch1;
         if (this.state.switch1 === 1)
-            switch1 = <img className={style.background_image} src={require("./images/detach.png")} alt="" />;
+            switch1 = <img src={require("./images/detach.png")} alt="" />;
         else
-            switch1 = <img className={style.background_image} src={require("./images/attach.png")} alt="" />;
+            switch1 = <img src={require("./images/attach.png")} alt="" />;
 
         let switch2;
         if (this.state.switch2 === 1)
-            switch2 = <img className={style.background_image} src={require("./images/detach.png")} alt="" />;
+            switch2 = <img src={require("./images/detach.png")} alt="" />;
         else
-            switch2 = <img className={style.background_image} src={require("./images/attach.png")} alt="" />;
+            switch2 = <img src={require("./images/attach.png")} alt="" />;
 
         let fan1;
         if (this.state.fan1 === 1)
-            fan1 = <img className={style.background_image} src={require("./images/close.png")} alt="" />;
+            fan1 = <img src={require("./images/close.png")} alt="" />;
         else
-            fan1 = <img className={style.background_image} src={require("./images/open.png")} alt="" />;
+            fan1 = <img src={require("./images/open.png")} alt="" />;
 
         let fan2;
         if (this.state.fan2 === 1)
-            fan2 = <img className={style.background_image} src={require("./images/close.png")} alt="" />;
+            fan2 = <img src={require("./images/close.png")} alt="" />;
         else
-            fan2 = <img className={style.background_image} src={require("./images/open.png")} alt="" />;
+            fan2 = <img src={require("./images/open.png")} alt="" />;
 
         return (
             <div className={style.container}>
                 <div className={style.background1}>
-                    <img className={style.background_image} src={require("./images/background1.png")} alt="" />
+                    <img src={require("./images/background1.png")} alt="" />
                 </div>
                 <div className={style.content_logo1}>
-                    <img className={style.background_image} src={require("./images/gra_bianyaqi.png")} alt="" />
+                    <img src={require("./images/gra_bianyaqi.png")} alt="" />
                 </div>
                 <span className={style.content_title1}>
                     变压器
                 </span>
                 <div className={style.background2}>
-                    <img className={style.background_image} src={require("./images/background1.png")} alt="" />
+                    <img src={require("./images/background1.png")} alt="" />
                 </div>
                 <div className={style.content_logo2}>
-                    <img className={style.background_image} src={require("./images/gra_bingwang.png")} alt="" />
+                    <img src={require("./images/gra_bingwang.png")} alt="" />
                 </div>
                 <span className={style.content_title2}>
                     并网柜
                 </span>
                 <div className={style.background3}>
-                    <img className={style.background_image} src={require("./images/background3.png")} alt="" />
+                    <img src={require("./images/background3.png")} alt="" />
                 </div>
                 <div className={style.content_information1}>
                     {information1}
@@ -136,7 +136,7 @@ export default class TransformatorView extends BaseComponent {
                     {information3}
                 </div>
                 <div className={style.background4}>
-                    <img className={style.background_image} src={require("./images/background4.png")} alt="" />
+                    <img src={require("./images/background4.png")} alt="" />
                 </div>
                 <span className={style.content_title3}>
                     I段开关
@@ -151,7 +151,7 @@ export default class TransformatorView extends BaseComponent {
                     {switch2}
                 </div>
                 <div className={style.background5}>
-                    <img className={style.background_image} src={require("./images/background2.png")} alt="" />
+                    <img src={require("./images/background2.png")} alt="" />
                 </div>
                 <span className={style.content_title5}>
                     1#变压器
@@ -172,7 +172,7 @@ export default class TransformatorView extends BaseComponent {
                     {fan2}
                 </div>
                 <div className={style.background6}>
-                    <img className={style.background_image} src={require("./images/background5.png")} alt="" />
+                    <img src={require("./images/background5.png")} alt="" />
                 </div>
                 <span className={style.content_title7}>
                     1#并网柜
@@ -211,7 +211,7 @@ export default class TransformatorView extends BaseComponent {
                     充放电实时功率
                 </span>
                 <div className={style.content_tip1}>
-                    <img className={style.background_image} src={require("./images/tooltip.png")} alt="" />
+                    <img src={require("./images/tooltip.png")} alt="" />
                 </div>
                 <span className={style.content_power1}>
                     {this.state.power1}kW
@@ -220,7 +220,7 @@ export default class TransformatorView extends BaseComponent {
                     <LineChart min={this.state.power1 - 50} max={this.state.power1 + 50} color="rgba(251,207,72,0.8)" />
                 </div>
                 <div className={style.content_tip2}>
-                    <img className={style.background_image} src={require("./images/tooltip.png")} alt="" />
+                    <img src={require("./images/tooltip.png")} alt="" />
                 </div>
                 <span className={style.content_power2}>
                     {this.state.power2}kW

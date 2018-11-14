@@ -28,24 +28,24 @@ export default class SystemState extends BaseComponent {
     render() {
         let state1;
         if (this.props.securitySystemState === 1)
-            state1 = <img className={style.background_image} src={require("./images/security_system_alarm.png")} alt="" />;
+            state1 = <img src={require("./images/security_system_alarm.png")} alt="" />;
         else
-            state1 = <img className={style.background_image} src={require("./images/security_system_normal.png")} alt="" />;
+            state1 = <img src={require("./images/security_system_normal.png")} alt="" />;
 
         let state2;
         if (this.props.airConditionerState === 1)
-            state2 = <img className={style.background_image} src={require("./images/air_conditioner_alarm.png")} alt="" />;
+            state2 = <img src={require("./images/air_conditioner_alarm.png")} alt="" />;
         else
-            state2 = <img className={style.background_image} src={require("./images/air_conditioner_normal.png")} alt="" />;
+            state2 = <img src={require("./images/air_conditioner_normal.png")} alt="" />;
 
         return (
             <div className={style.contrainer}>
                 <div className={style.viewButton} onClick={() => this.context.router.history.replace('/airConditioner')} />
                 <div className={style.background}>
-                    <img className={style.background_image} src={require("./images/background.png")} alt="" />
+                    <img src={require("./images/background.png")} alt="" />
                 </div>
                 <div className={style.content_flag1}>
-                    <img className={style.background_image} src={require("./images/flag.png")} alt="" />
+                    <img src={require("./images/flag.png")} alt="" />
                 </div>
                 <span className={style.content_title1}>
                     消防系统状态
@@ -54,10 +54,10 @@ export default class SystemState extends BaseComponent {
                     {state1}
                 </div>
                 <div className={style.content_logo1}>
-                    <img className={style.background_image} src={require("./images/security_system.png")} alt="" />
+                    <img src={require("./images/security_system.png")} alt="" />
                 </div>
                 <div className={style.content_flag2}>
-                    <img className={style.background_image} src={require("./images/flag.png")} alt="" />
+                    <img src={require("./images/flag.png")} alt="" />
                 </div>
                 <span className={style.content_title2}>
                     空调运行状态
@@ -66,7 +66,7 @@ export default class SystemState extends BaseComponent {
                     {state2}
                 </div>
                 <div className={style.content_logo2}>
-                    <img className={style.background_image} src={require("./images/air_conditioner.png")} alt="" />
+                    <img src={require("./images/air_conditioner.png")} alt="" />
                 </div>
             </div>
         );
