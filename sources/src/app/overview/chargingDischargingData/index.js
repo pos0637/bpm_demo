@@ -24,7 +24,7 @@ export default class ChargingDischargingData extends BaseComponent {
         return (
             <div className={style.contrainer}>
                 <div className={style.background}>
-                    <img className={style.background_image} src={require("./images/background.png")} alt="" />
+                    <img src={require("./images/background.png")} alt="" />
                 </div>
                 <span className={style.content_text}>
                     充放电曲线

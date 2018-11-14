@@ -22,14 +22,14 @@ export default class SecuritySystemState extends BaseComponent {
     render() {
         let image;
         if (this.props.state === 1)
-            image = <img className={style.background_image} src={require("./images/alarm.png")} alt="" />;
+            image = <img src={require("./images/alarm.png")} alt="" />;
         else
-            image = <img className={style.background_image} src={require("./images/normal.png")} alt="" />;
+            image = <img src={require("./images/normal.png")} alt="" />;
 
         return (
             <div className={style.contrainer}>
                 <div className={style.background}>
-                    <img className={style.background_image} src={require("./images/background.png")} alt="" />
+                    <img src={require("./images/background.png")} alt="" />
                 </div>
                 <span className={style.content_text}>
                     安防系统状态

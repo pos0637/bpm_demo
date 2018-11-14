@@ -22,16 +22,16 @@ export default class RunningState extends BaseComponent {
     render() {
         let image;
         if (this.props.state === 1)
-            image = <img className={style.background_image} src={require("./images/charging.png")} alt="" />;
+            image = <img src={require("./images/charging.png")} alt="" />;
         else if (this.props.state === 2)
-            image = <img className={style.background_image} src={require("./images/discharging.png")} alt="" />;
+            image = <img src={require("./images/discharging.png")} alt="" />;
         else
-            image = <img className={style.background_image} src={require("./images/standby.png")} alt="" />;
+            image = <img src={require("./images/standby.png")} alt="" />;
 
         return (
             <div className={style.contrainer}>
                 <div className={style.background}>
-                    <img className={style.background_image} src={require("./images/background.png")} alt="" />
+                    <img src={require("./images/background.png")} alt="" />
                 </div>
                 <span className={style.content_text}>
                     电站运行状态
