@@ -17,7 +17,9 @@ export default class LineChart extends BaseComponent {
         height: PropTypes.number,
         min: PropTypes.number,
         max: PropTypes.number,
-        color: PropTypes.string
+        color: PropTypes.string,
+        xLabels: PropTypes.array,
+        data: PropTypes.array
     }
 
     static defaultProps = {
@@ -25,27 +27,19 @@ export default class LineChart extends BaseComponent {
         height: 100,
         min: 0,
         max: 1,
-        color: 'rgba(251,207,72,0.8)'
+        color: 'rgba(251,207,72,0.8)',
+        xLabels: ['0:00', '3:00', '6:00', '9:00', '12:00', '15:00', '18:00', '21:00', '23:00'],
+        data: null
     }
 
     state = {
-        xlabels: ['0:00', '3:00', '6:00', '9:00', '12:00', '15:00', '18:00', '21:00', '23:00'],
-        datasets: [{
-            fillColor: this.props.color,
-            strokeColor: this.props.color,
-            data: [getRandom(this.props.min, this.props.max), getRandom(this.props.min, this.props.max), getRandom(this.props.min, this.props.max), getRandom(this.props.min, this.props.max), getRandom(this.props.min, this.props.max), getRandom(this.props.min, this.props.max), getRandom(this.props.min, this.props.max), getRandom(this.props.min, this.props.max), getRandom(this.props.min, this.props.max)],
-            backgroundColor: [this.props.color]
-        }]
+        data: this.props.data,
+        xLabels: this.props.xLabels
     }
 
     chartOptions = {
         animation: false,
         responsive: true,
-        pointDot: false,
-        scaleShowLabels: false,
-        scaleShowHorizontalLines: false,
-        scaleShowVerticalLines: false,
-        scaleGridLineColor: 'rgba(255,255,255,.05)',
         bezierCurve: true,
         bezierCurveTension: 0.4,
         maintainAspectRatio: false,
@@ -55,47 +49,66 @@ export default class LineChart extends BaseComponent {
         },
         title: {
             display: false
+        },
+        elements: {
+            point: {
+                radius: 0 // 线条上点
+            },
+            line: {
+                borderWidth: 0 // 线条边框宽度
+            }
+        },
+        scales: {
+            xAxes: [{
+                gridLines: {
+                    display: true,
+                    color: 'rgba(255, 255, 255, 0.2)'
+                },
+                ticks: {
+                    fontColor: this.props.color
+                }
+            }],
+            yAxes: [{
+                gridLines: {
+                    display: true,
+                    color: 'rgba(255, 255, 255, 0.2)'
+                },
+                ticks: {
+                    fontColor: this.props.color
+                }
+            }]
         }
     }
 
     componentDidMount() {
         super.componentDidMount();
-        // TODO: delete it
-        this.timer = setInterval(() => {
-            this.setData();
-        }, 2000);
-    }
-
-    componentWillUnmount() {
-        // TODO: delete it
-        this.timer && clearTimeout(this.timer);
-        super.componentWillUnmount();
+        this.shouldComponentUpdate = () => true;
     }
 
     render() {
+        let { data } = this.state;
+        if (!data || (data.length === 0)) {
+            data = [];
+            this.state.xLabels.forEach(() =>
+                data.push(getRandom(this.props.min, this.props.max))
+            );
+        }
+
+        const datasets = [{
+            fillColor: this.props.color,
+            strokeColor: this.props.color,
+            borderColor: this.props.color,
+            data: data,
+            backgroundColor: [this.props.color]
+        }];
+
         return (
             <Line
-                data={{ labels: this.state.xlabels, datasets: this.state.datasets }}
+                data={{ labels: this.state.xLabels, datasets: datasets }}
                 options={this.chartOptions}
                 width={this.props.width}
                 height={this.props.height}
             />
         );
-    }
-
-    /**
-     * 设置数据
-     *
-     * @memberof LineChart
-     */
-    setData() {
-        this.setState({
-            datasets: [{
-                fillColor: this.props.color,
-                strokeColor: this.props.color,
-                data: [getRandom(this.props.min, this.props.max), getRandom(this.props.min, this.props.max), getRandom(this.props.min, this.props.max), getRandom(this.props.min, this.props.max), getRandom(this.props.min, this.props.max), getRandom(this.props.min, this.props.max), getRandom(this.props.min, this.props.max), getRandom(this.props.min, this.props.max), getRandom(this.props.min, this.props.max)],
-                backgroundColor: [this.props.color]
-            }]
-        });
     }
 }
