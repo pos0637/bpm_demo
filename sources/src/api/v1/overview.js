@@ -1,4 +1,4 @@
-import Request from '~/components/request';
+import { request } from '~/components/request';
 
 /**
  * 获取概览数据
@@ -9,5 +9,5 @@ import Request from '~/components/request';
  * @returns
  */
 export default function getOverviewData(succ, err) {
-    return Request.get('/api/v1/overview').then(response => succ && succ(response.data)).catch((error) => err && err(error));
+    return request('/api/v1/overview', 'get', null, succ, err);
 }

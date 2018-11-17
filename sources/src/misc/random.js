@@ -18,3 +18,13 @@ export function getRandomValue(arr) {
 export function getRandom(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+/**
+ * 获取随机键值
+ *
+ * @export
+ * @returns 随机键值
+ */
+export function getRandomKey() {
+    return new Date().getTime();
+}

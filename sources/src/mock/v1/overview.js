@@ -12,9 +12,11 @@ function getRandomValue(arr) {
     return arr[Math.floor(Math.random() * (arr.length + 1))];
 }
 
-Mock.onGet('/api/v1/overview').reply(200, {
-    code: 200,
-    data: {
-        runningInformation: getRandomValue(runningInformation)
-    }
-});
+Mock.onGet(/api\/v1\/overview[?.*]?/).reply(() =>
+    [200, {
+        code: 200,
+        data: {
+            runningInformation: getRandomValue(runningInformation)
+        }
+    }]
+);

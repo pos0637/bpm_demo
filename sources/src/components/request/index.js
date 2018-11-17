@@ -1,8 +1,10 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
+import { getRandomKey } from '~/misc/random';
 
 const Request = axios.create({
     baseURL: 'localhost:8080',
+    headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-cache', 'Pragma': 'no-cache', 'Expires': 0 }
 });
 
 const Mock = new MockAdapter(Request, {
@@ -41,8 +43,10 @@ export function request(url, method, parameters, resolve, reject) {
         reject && reject(message);
     }
 
+    const params = parameters || { random: getRandomKey() };
+
     if (method.toLowerCase() === 'get') {
-        Request.get(url, { params: parameters }).then(response => {
+        Request.get(url, { params: params }).then(response => {
             const { data, message } = getResponseData(response);
             if (!data) {
                 onError(message);
@@ -53,7 +57,7 @@ export function request(url, method, parameters, resolve, reject) {
             onError();
         });
     } else if (method.toLowerCase() === 'post') {
-        Request.post(url, parameters).then(response => {
+        Request.post(url, params).then(response => {
             const { data, message } = getResponseData(response);
             if (!data) {
                 onError(message);
@@ -64,7 +68,7 @@ export function request(url, method, parameters, resolve, reject) {
             onError();
         });
     } else if (method.toLowerCase() === 'put') {
-        Request.put(url, parameters).then(response => {
+        Request.put(url, params).then(response => {
             const { data, message } = getResponseData(response);
             if (!data) {
                 onError(message);
@@ -75,7 +79,7 @@ export function request(url, method, parameters, resolve, reject) {
             onError();
         });
     } else if (method.toLowerCase() === 'delete') {
-        Request.delete(url, parameters).then(response => {
+        Request.delete(url, params).then(response => {
             const { data, message } = getResponseData(response);
             if (!data) {
                 onError(message);
