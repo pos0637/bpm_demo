@@ -1,0 +1,22 @@
+server:
+  port: 8080
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain,application/javascript,text/css,image/webp,image/apng,image/png,image/jpeg
+    min-response-size: 2048
+
+spring:
+  devtools:
+    restart:
+      enabled: true
+
+logging:
+  path: ./logs
+  config: classpath:logback-config.xml
+  level:
+    root: info
+
+bms:
+  modbus:
+    host: 127.0.0.1
+    port: 502
