@@ -10,6 +10,7 @@ import com.serotonin.modbus4j.msg.ModbusResponse;
 import com.serotonin.modbus4j.msg.ReadHoldingRegistersRequest;
 import com.serotonin.modbus4j.sero.util.queue.ByteQueue;
 import lombok.Getter;
+import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
@@ -103,11 +104,13 @@ public class EmsDaemon implements Runnable, InitializingBean, DisposableBean {
 
     private int readInteger(int address, int offset) throws Exception {
         byte[] array = readData(address, offset, 2).popAll();
+        ArrayUtils.reverse(array);
         return ByteBuffer.wrap(array).order(ByteOrder.LITTLE_ENDIAN).getInt();
     }
 
     private float readFloat(int address, int offset) throws Exception {
         byte[] array = readData(address, offset, 2).popAll();
+        ArrayUtils.reverse(array);
         return ByteBuffer.wrap(array).order(ByteOrder.LITTLE_ENDIAN).getFloat();
     }
 
@@ -118,8 +121,9 @@ public class EmsDaemon implements Runnable, InitializingBean, DisposableBean {
 
         ModbusRequest request = new ReadHoldingRegistersRequest(address, offset, length);
         ModbusResponse response = master.send(request);
-        ByteQueue byteQueue = new ByteQueue(length);
+        ByteQueue byteQueue = new ByteQueue(3 + length);
         response.write(byteQueue);
+        byteQueue.pop(3);
 
         return byteQueue;
     }
