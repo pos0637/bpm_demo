@@ -80,88 +80,10 @@ export default class BmsView extends BaseComponent {
                     2#
                 </span>
                 <div className={style.content_grid1}>
-                    <table className={style.grid}>
-                        <tbody>
-                            <tr>
-                                <td className={style.grid_cell}>001</td>
-                                <td className={style.grid_cell}>002</td>
-                                <td className={style.grid_cell}>003</td>
-                                <td className={style.grid_cell}>004</td>
-                                <td className={style.grid_cell}>005</td>
-                                <td className={style.grid_cell}>006</td>
-                                <td className={style.grid_cell}>007</td>
-                                <td className={style.grid_cell}>008</td>
-                                <td className={style.grid_cell}>009</td>
-                                <td className={style.grid_cell}>010</td>
-                            </tr>
-                            <tr>
-                                <td className={style.grid_cell}>001</td>
-                                <td className={style.grid_cell}>002</td>
-                                <td className={style.grid_cell}>003</td>
-                                <td className={style.grid_cell}>004</td>
-                                <td className={style.grid_cell}>005</td>
-                                <td className={style.grid_cell}>006</td>
-                                <td className={style.grid_cell}>007</td>
-                                <td className={style.grid_cell}>008</td>
-                                <td className={style.grid_cell}>009</td>
-                                <td className={style.grid_cell}>010</td>
-                            </tr>
-                            <tr>
-                                <td className={style.grid_cell}>001</td>
-                                <td className={style.grid_cell}>002</td>
-                                <td className={style.grid_cell}>003</td>
-                                <td className={style.grid_cell}>004</td>
-                                <td className={style.grid_cell}>005</td>
-                                <td className={style.grid_cell}>006</td>
-                                <td className={style.grid_cell}>007</td>
-                                <td className={style.grid_cell}>008</td>
-                                <td className={style.grid_cell}>009</td>
-                                <td className={style.grid_cell}>010</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <table className={style.grid}><tbody>{this.generateTableBody(0)}</tbody></table>
                 </div>
                 <div className={style.content_grid2}>
-                    <table className={style.grid}>
-                        <tbody>
-                            <tr>
-                                <td className={style.grid_cell}>001</td>
-                                <td className={style.grid_cell}>002</td>
-                                <td className={style.grid_cell}>003</td>
-                                <td className={style.grid_cell}>004</td>
-                                <td className={style.grid_cell}>005</td>
-                                <td className={style.grid_cell}>006</td>
-                                <td className={style.grid_cell}>007</td>
-                                <td className={style.grid_cell}>008</td>
-                                <td className={style.grid_cell}>009</td>
-                                <td className={style.grid_cell}>010</td>
-                            </tr>
-                            <tr>
-                                <td className={style.grid_cell}>001</td>
-                                <td className={style.grid_cell}>002</td>
-                                <td className={style.grid_cell}>003</td>
-                                <td className={style.grid_cell}>004</td>
-                                <td className={style.grid_cell}>005</td>
-                                <td className={style.grid_cell}>006</td>
-                                <td className={style.grid_cell}>007</td>
-                                <td className={style.grid_cell}>008</td>
-                                <td className={style.grid_cell}>009</td>
-                                <td className={style.grid_cell}>010</td>
-                            </tr>
-                            <tr>
-                                <td className={style.grid_cell}>001</td>
-                                <td className={style.grid_cell}>002</td>
-                                <td className={style.grid_cell}>003</td>
-                                <td className={style.grid_cell}>004</td>
-                                <td className={style.grid_cell}>005</td>
-                                <td className={style.grid_cell}>006</td>
-                                <td className={style.grid_cell}>007</td>
-                                <td className={style.grid_cell}>008</td>
-                                <td className={style.grid_cell}>009</td>
-                                <td className={style.grid_cell}>010</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <table className={style.grid}><tbody>{this.generateTableBody(1)}</tbody></table>
                 </div>
                 <div className={style.background3}>
                     <img src={require("./images/background2.png")} alt="" />
@@ -173,88 +95,10 @@ export default class BmsView extends BaseComponent {
                     2#
                 </span>
                 <div className={style.content_grid3}>
-                    <table className={style.grid}>
-                        <tbody>
-                            <tr>
-                                <td className={style.grid_cell}>001</td>
-                                <td className={style.grid_cell}>002</td>
-                                <td className={style.grid_cell}>003</td>
-                                <td className={style.grid_cell}>004</td>
-                                <td className={style.grid_cell}>005</td>
-                                <td className={style.grid_cell}>006</td>
-                                <td className={style.grid_cell}>007</td>
-                                <td className={style.grid_cell}>008</td>
-                                <td className={style.grid_cell}>009</td>
-                                <td className={style.grid_cell}>010</td>
-                            </tr>
-                            <tr>
-                                <td className={style.grid_cell}>001</td>
-                                <td className={style.grid_cell}>002</td>
-                                <td className={style.grid_cell}>003</td>
-                                <td className={style.grid_cell}>004</td>
-                                <td className={style.grid_cell}>005</td>
-                                <td className={style.grid_cell}>006</td>
-                                <td className={style.grid_cell}>007</td>
-                                <td className={style.grid_cell}>008</td>
-                                <td className={style.grid_cell}>009</td>
-                                <td className={style.grid_cell}>010</td>
-                            </tr>
-                            <tr>
-                                <td className={style.grid_cell}>001</td>
-                                <td className={style.grid_cell}>002</td>
-                                <td className={style.grid_cell}>003</td>
-                                <td className={style.grid_cell}>004</td>
-                                <td className={style.grid_cell}>005</td>
-                                <td className={style.grid_cell}>006</td>
-                                <td className={style.grid_cell}>007</td>
-                                <td className={style.grid_cell}>008</td>
-                                <td className={style.grid_cell}>009</td>
-                                <td className={style.grid_cell}>010</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <table className={style.grid}><tbody>{this.generateTableBody(2)}</tbody></table>
                 </div>
                 <div className={style.content_grid4}>
-                    <table className={style.grid}>
-                        <tbody>
-                            <tr>
-                                <td className={style.grid_cell}>001</td>
-                                <td className={style.grid_cell}>002</td>
-                                <td className={style.grid_cell}>003</td>
-                                <td className={style.grid_cell}>004</td>
-                                <td className={style.grid_cell}>005</td>
-                                <td className={style.grid_cell}>006</td>
-                                <td className={style.grid_cell}>007</td>
-                                <td className={style.grid_cell}>008</td>
-                                <td className={style.grid_cell}>009</td>
-                                <td className={style.grid_cell}>010</td>
-                            </tr>
-                            <tr>
-                                <td className={style.grid_cell}>001</td>
-                                <td className={style.grid_cell}>002</td>
-                                <td className={style.grid_cell}>003</td>
-                                <td className={style.grid_cell}>004</td>
-                                <td className={style.grid_cell}>005</td>
-                                <td className={style.grid_cell}>006</td>
-                                <td className={style.grid_cell}>007</td>
-                                <td className={style.grid_cell}>008</td>
-                                <td className={style.grid_cell}>009</td>
-                                <td className={style.grid_cell}>010</td>
-                            </tr>
-                            <tr>
-                                <td className={style.grid_cell}>001</td>
-                                <td className={style.grid_cell}>002</td>
-                                <td className={style.grid_cell}>003</td>
-                                <td className={style.grid_cell}>004</td>
-                                <td className={style.grid_cell}>005</td>
-                                <td className={style.grid_cell}>006</td>
-                                <td className={style.grid_cell}>007</td>
-                                <td className={style.grid_cell}>008</td>
-                                <td className={style.grid_cell}>009</td>
-                                <td className={style.grid_cell}>010</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <table className={style.grid}><tbody>{this.generateTableBody(3)}</tbody></table>
                 </div>
                 <span className={style.content_title6}>
                     SOC&nbsp;&nbsp;{this.state.soc1}%
@@ -321,5 +165,26 @@ export default class BmsView extends BaseComponent {
                 </div>
             </div>
         );
+    }
+
+    /**
+     * 生成表格内容
+     * 
+     * @param {*} tableKey 表格索引
+     */
+    generateTableBody(tableKey) {
+        let i = 1;
+        let key = 0;
+        const tbody = [];
+
+        for (let y = 0; y < 16; y += 1) {
+            const tr = [];
+            for (let x = 0; x < 20; x += 1, i += 1, key += 1) {
+                tr.push(<td className={style.grid_cell} key={`cell_${tableKey}_${key}`}><div className={style.cell}>{i}</div></td>);
+            }
+            tbody.push(<tr key={`row_${tableKey}_${key}`}>{tr}</tr>);
+        }
+
+        return tbody;
     }
 }
