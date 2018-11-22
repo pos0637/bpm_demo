@@ -3,13 +3,11 @@ import MockAdapter from 'axios-mock-adapter';
 import { getRandomKey } from '~/misc/random';
 
 const Request = axios.create({
-    baseURL: 'localhost:8080',
+    baseURL: 'http://localhost:8080',
     headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-cache', 'Pragma': 'no-cache', 'Expires': 0 }
 });
 
-const Mock = new MockAdapter(Request, {
-    delayResponse: 100
-});
+const Mock = null; // new MockAdapter(Request, { delayResponse: 100 });
 
 /**
  * 获取请求响应数据
@@ -53,7 +51,8 @@ export function request(url, method, parameters, resolve, reject) {
             } else {
                 resolve && resolve(data);
             }
-        }).catch(() => {
+        }).catch((error) => {
+            console.error(error);
             onError();
         });
     } else if (method.toLowerCase() === 'post') {
@@ -64,7 +63,8 @@ export function request(url, method, parameters, resolve, reject) {
             } else {
                 resolve && resolve(data);
             }
-        }).catch(() => {
+        }).catch((error) => {
+            console.error(error);
             onError();
         });
     } else if (method.toLowerCase() === 'put') {
@@ -75,7 +75,8 @@ export function request(url, method, parameters, resolve, reject) {
             } else {
                 resolve && resolve(data);
             }
-        }).catch(() => {
+        }).catch((error) => {
+            console.error(error);
             onError();
         });
     } else if (method.toLowerCase() === 'delete') {
@@ -86,7 +87,8 @@ export function request(url, method, parameters, resolve, reject) {
             } else {
                 resolve && resolve(data);
             }
-        }).catch(() => {
+        }).catch((error) => {            
+            console.error(error);
             onError();
         });
     } else {

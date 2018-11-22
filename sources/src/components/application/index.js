@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
 import { Spin } from 'antd';
-import '~/mock';
+// import '~/mock';
 
 /**
  * 应用

@@ -12,7 +12,7 @@ function getRandomValue(arr) {
     return arr[Math.floor(Math.random() * (arr.length + 1))];
 }
 
-Mock.onGet(/api\/v1\/overview[?.*]?/).reply(() =>
+Mock.onGet(/api\/v1\/board\/overview[?.*]?/).reply(() =>
     [200, {
         code: 200,
         data: {

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import BaseComponent from '~/components/baseComponent';
 import { getRandomValue, getRandom } from '~/misc/random';
+import { getOverviewData } from '~/api/v1/board';
 import RunningInformation from './runningInformation';
 import RunningState from './runningState';
 import RunningTime from './runningTime';
@@ -69,7 +70,14 @@ export default class Overview extends BaseComponent {
                 secondStagePower: getRandom(50, 300)
             };
 
-            this.setState(data);
+            getOverviewData((overview) => {
+                data.chargingPower = overview.chargingElectricity;
+                data.dischargingPower = overview.dischargingElectricity;
+                data.usingPower = overview.usingElectricity;
+                this.setState(data);
+            }, () => {
+                this.setState(data);
+            });
         }, 2000);
     }
 

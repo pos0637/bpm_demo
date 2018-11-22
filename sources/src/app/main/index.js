@@ -1,6 +1,7 @@
 import React from 'react';
 import BaseComponent from '~/components/baseComponent';
 import { getRandom } from '~/misc/random';
+import { getMainData } from '~/api/v1/board';
 import PowerGridInformation from './powerGridInformation';
 import SystemState from './systemState';
 import TransformatorOverview from './transformatorOverview';
@@ -27,7 +28,7 @@ export default class MainView extends BaseComponent {
         line2Power: getRandom(0, 220),
         loadPower: getRandom(0, 220),
 
-        // power: PropTypes.number,
+        power1: getRandom(0, 220),
         voltage: getRandom(200, 220),
         current: getRandom(0, 220),
         voltage2: getRandom(0, 220),
@@ -40,7 +41,7 @@ export default class MainView extends BaseComponent {
         transformator2Fan: getRandom(0, 1),
         chargingElectricity: getRandom(0, 220),
         dischargingElectricity: getRandom(0, 220),
-        // power: PropTypes.number,
+        power2: getRandom(0, 220),
         link1: getRandom(0, 220),
         link2: getRandom(0, 220),
 
@@ -65,7 +66,7 @@ export default class MainView extends BaseComponent {
                 line2Power: getRandom(0, 220),
                 loadPower: getRandom(0, 220),
 
-                // power: PropTypes.number,
+                power1: getRandom(0, 220),
                 voltage: getRandom(200, 220),
                 current: getRandom(0, 220),
                 voltage2: getRandom(0, 220),
@@ -78,7 +79,7 @@ export default class MainView extends BaseComponent {
                 transformator2Fan: getRandom(0, 1),
                 chargingElectricity: getRandom(0, 220),
                 dischargingElectricity: getRandom(0, 220),
-                // power: PropTypes.number,
+                power2: getRandom(0, 220),
                 link1: getRandom(0, 1),
                 link2: getRandom(0, 1),
 
@@ -91,7 +92,22 @@ export default class MainView extends BaseComponent {
                 airConditionerState: getRandom(0, 1)
             };
 
-            this.setState(data);
+            getMainData((main) => {
+                data.chargingElectricity = main.gridConnectedCabinetChargingElectricity;
+                data.dischargingElectricity = main.gridConnectedCabinetDischargingElectricity;
+                data.power2 = main.gridConnectedCabinetPower;
+                data.link1 = main.switch1;
+                data.link2 = main.switch2;
+                data.power1 = main.pcsPower;
+                data.voltage = main.pcsVoltage1;
+                data.current = main.pcsCurrent;
+                data.voltage2 = main.pcsVoltage2;
+                data.charging = main.pcsChargingElectricity;
+                data.discharging = main.pcsDischargingElectricity;
+                this.setState(data);
+            }, () => {
+                this.setState(data);
+            });
         }, 2000);
     }
 
@@ -131,12 +147,14 @@ export default class MainView extends BaseComponent {
                         transformator2Fan={this.state.transformator2Fan}
                         chargingElectricity={this.state.chargingElectricity}
                         dischargingElectricity={this.state.dischargingElectricity}
+                        power={this.state.power2}
                         link1={this.state.link1}
                         link2={this.state.link2}
                     />
                 </div>
                 <div className={style.pcsOverview}>
                     <PcsOverview
+                        power={this.state.power1}
                         voltage={this.state.voltage}
                         current={this.state.current}
                         voltage2={this.state.voltage2}
