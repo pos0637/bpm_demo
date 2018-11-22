@@ -1,13 +1,15 @@
 package com.etrita.bms.demo.board.controllers;
 
 import com.etrita.bms.demo.board.daemons.EmsDaemon;
-import com.etrita.bms.demo.board.entities.Overview;
+import com.furongsoft.core.entities.RestResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/v1/board")
 public class BoardController {
     private EmsDaemon emsDaemon;
@@ -23,7 +25,17 @@ public class BoardController {
      * @return 预览视图数据
      */
     @GetMapping("/overview")
-    public Overview overview() {
-        return this.emsDaemon.getOverview();
+    public RestResponse overview() {
+        return new RestResponse(200, null, this.emsDaemon.getOverview());
+    }
+
+    /**
+     * 获取主视图数据
+     *
+     * @return 主视图数据
+     */
+    @GetMapping("/main")
+    public RestResponse main() {
+        return new RestResponse(200, null, this.emsDaemon.getMain());
     }
 }

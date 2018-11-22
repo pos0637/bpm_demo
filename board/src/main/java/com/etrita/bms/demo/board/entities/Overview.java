@@ -1,5 +1,6 @@
 package com.etrita.bms.demo.board.entities;
 
+import com.etrita.bms.demo.board.communications.IDataReader;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -50,4 +51,16 @@ public class Overview {
      * 总节电费用
      */
     private int bill;
+
+    /**
+     * 读取ModbusTcp数据
+     *
+     * @param reader 数据读取器
+     * @throws Exception
+     */
+    public void readModbusTcpData(IDataReader reader) throws Exception {
+        setChargingElectricity(reader.readInteger(1, 3, 1));
+        setDischargingElectricity(reader.readInteger(1, 3, 3));
+        setUsingElectricity(reader.readInteger(1, 3, 5));
+    }
 }
