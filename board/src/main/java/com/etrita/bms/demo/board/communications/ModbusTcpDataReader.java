@@ -1,5 +1,6 @@
 package com.etrita.bms.demo.board.communications;
 
+import com.furongsoft.core.misc.Tracker;
 import com.serotonin.modbus4j.ModbusFactory;
 import com.serotonin.modbus4j.ModbusMaster;
 import com.serotonin.modbus4j.ip.IpParameters;
@@ -8,6 +9,7 @@ import com.serotonin.modbus4j.msg.ModbusResponse;
 import com.serotonin.modbus4j.msg.ReadDiscreteInputsRequest;
 import com.serotonin.modbus4j.msg.ReadHoldingRegistersRequest;
 import com.serotonin.modbus4j.sero.util.queue.ByteQueue;
+import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.annotation.Value;
@@ -52,22 +54,28 @@ public class ModbusTcpDataReader implements IDataReader, DisposableBean {
 
     @Override
     public byte readByte(int salveId, int functionCode, int start) throws Exception {
-        byte[] array = readData(salveId, functionCode, start, 1).peekAll();
-        return array[0];
+        byte[] data = readData(salveId, functionCode, start, 1).peekAll();
+        Tracker.info(String.format("%d, %d, %d: %s", salveId, functionCode, start, Hex.encodeHexString(data)));
+
+        return data[0];
     }
 
     @Override
     public int readInteger(int salveId, int functionCode, int start) throws Exception {
-        byte[] array = readData(salveId, functionCode, start, 2).popAll();
-        ArrayUtils.reverse(array);
-        return ByteBuffer.wrap(array).order(ByteOrder.LITTLE_ENDIAN).getInt();
+        byte[] data = readData(salveId, functionCode, start, 2).popAll();
+        ArrayUtils.reverse(data);
+        Tracker.info(String.format("%d, %d, %d: %s", salveId, functionCode, start, Hex.encodeHexString(data)));
+
+        return ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN).getInt();
     }
 
     @Override
     public float readFloat(int salveId, int functionCode, int start) throws Exception {
-        byte[] array = readData(salveId, functionCode, start, 2).popAll();
-        ArrayUtils.reverse(array);
-        return ByteBuffer.wrap(array).order(ByteOrder.LITTLE_ENDIAN).getFloat();
+        byte[] data = readData(salveId, functionCode, start, 2).popAll();
+        ArrayUtils.reverse(data);
+        Tracker.info(String.format("%d, %d, %d: %s", salveId, functionCode, start, Hex.encodeHexString(data)));
+
+        return ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN).getFloat();
     }
 
     @Override

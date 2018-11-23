@@ -7,6 +7,7 @@ import com.furongsoft.core.misc.Tracker;
 import lombok.Getter;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
@@ -17,6 +18,15 @@ import org.springframework.stereotype.Component;
 @Component
 @Getter
 public class EmsDaemon implements Runnable, InitializingBean {
+    /**
+     * 更新时间间隔
+     */
+    @Value("${bms.update.interval}")
+    private int interval;
+
+    /**
+     * 数据读取器
+     */
     private IDataReader dataReader;
 
     /**
@@ -46,7 +56,7 @@ public class EmsDaemon implements Runnable, InitializingBean {
             try {
                 overview.readModbusTcpData(dataReader);
                 main.readModbusTcpData(dataReader);
-                Thread.sleep(30000);
+                Thread.sleep(interval);
             } catch (Exception e) {
                 try {
                     dataReader.reset();

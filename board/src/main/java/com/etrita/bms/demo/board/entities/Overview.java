@@ -35,22 +35,22 @@ public class Overview {
     /**
      * 总充电电量
      */
-    private int chargingElectricity;
+    private float chargingElectricity;
 
     /**
      * 总放电电量
      */
-    private int dischargingElectricity;
+    private float dischargingElectricity;
 
     /**
      * 系统站用电量
      */
-    private int usingElectricity;
+    private float usingElectricity;
 
     /**
      * 总节电费用
      */
-    private int bill;
+    private float bill;
 
     /**
      * 读取ModbusTcp数据
@@ -59,8 +59,8 @@ public class Overview {
      * @throws Exception
      */
     public void readModbusTcpData(IDataReader reader) throws Exception {
-        setChargingElectricity(reader.readInteger(1, 3, 1));
-        setDischargingElectricity(reader.readInteger(1, 3, 3));
-        setUsingElectricity(reader.readInteger(1, 3, 5));
+        setChargingElectricity(reader.readFloat(1, 3, 1));
+        setDischargingElectricity(reader.readFloat(1, 3, 3));
+        setUsingElectricity(reader.readFloat(1, 3, 5));
     }
 }

@@ -15,42 +15,42 @@ public class Main {
     /**
      * I号母线电压
      */
-    private int voltage1;
+    private float voltage1;
 
     /**
      * I号母线总电量
      */
-    private int electricity1;
+    private float electricity1;
 
     /**
      * I号母线实时功率
      */
-    private int power1;
+    private float power1;
 
     /**
      * II号母线电压
      */
-    private int voltage2;
+    private float voltage2;
 
     /**
      * II号母线总电量
      */
-    private int electricity2;
+    private float electricity2;
 
     /**
      * II号母线实时功率
      */
-    private int power2;
+    private float power2;
 
     /**
      * 负载实时功率
      */
-    private int power;
+    private float power;
 
     /**
      * 1号变压器温度
      */
-    private int temperature1;
+    private float temperature1;
 
     /**
      * 1号变压器风扇状态
@@ -60,7 +60,7 @@ public class Main {
     /**
      * 2号变压器温度
      */
-    private int temperature2;
+    private float temperature2;
 
     /**
      * 2号变压器风扇状态
@@ -70,17 +70,17 @@ public class Main {
     /**
      * 并网柜总充电电量
      */
-    private int gridConnectedCabinetChargingElectricity;
+    private float gridConnectedCabinetChargingElectricity;
 
     /**
      * 并网柜总放电电量
      */
-    private int gridConnectedCabinetDischargingElectricity;
+    private float gridConnectedCabinetDischargingElectricity;
 
     /**
      * 并网柜充放电实时功率
      */
-    private int gridConnectedCabinetPower;
+    private float gridConnectedCabinetPower;
 
     /**
      * 并网柜I段开关
@@ -95,32 +95,32 @@ public class Main {
     /**
      * PCS有功功率
      */
-    private int pcsPower;
+    private float pcsPower;
 
     /**
      * PCS直流电压
      */
-    private int pcsVoltage1;
+    private float pcsVoltage1;
 
     /**
      * PCS直流电流
      */
-    private int pcsCurrent;
+    private float pcsCurrent;
 
     /**
      * PCS交流电压
      */
-    private int pcsVoltage2;
+    private float pcsVoltage2;
 
     /**
      * PCS今日充电总量
      */
-    private int pcsChargingElectricity;
+    private float pcsChargingElectricity;
 
     /**
      * PCS今日放电总量
      */
-    private int pcsDischargingElectricity;
+    private float pcsDischargingElectricity;
 
     /**
      * 读取ModbusTcp数据
@@ -129,16 +129,16 @@ public class Main {
      * @throws Exception
      */
     public void readModbusTcpData(IDataReader reader) throws Exception {
-        setGridConnectedCabinetChargingElectricity(reader.readInteger(1, 3, 1));
-        setGridConnectedCabinetDischargingElectricity(reader.readInteger(1, 3, 3));
-        setGridConnectedCabinetPower(reader.readInteger(1, 3, 29));
+        setGridConnectedCabinetChargingElectricity(reader.readFloat(1, 3, 1));
+        setGridConnectedCabinetDischargingElectricity(reader.readFloat(1, 3, 3));
+        setGridConnectedCabinetPower(reader.readFloat(1, 3, 29));
         setSwitch1(reader.readByte(1, 2, 1));
         setSwitch2(reader.readByte(1, 2, 2));
-        setPcsPower(reader.readInteger(1, 3, 51) + reader.readInteger(1, 3, 79));
-        setPcsVoltage1(reader.readInteger(1, 3, 53) + reader.readInteger(1, 3, 81));
-        setPcsCurrent(reader.readInteger(1, 3, 55) + reader.readInteger(1, 3, 83));
-        setPcsVoltage1(reader.readInteger(1, 3, 57) + reader.readInteger(1, 3, 85));
-        setPcsChargingElectricity(reader.readInteger(1, 3, 59) + reader.readInteger(1, 3, 87));
-        setPcsDischargingElectricity(reader.readInteger(1, 3, 61) + reader.readInteger(1, 3, 89));
+        setPcsPower(reader.readFloat(1, 3, 51) + reader.readInteger(1, 3, 79));
+        setPcsVoltage1(reader.readFloat(1, 3, 53) + reader.readInteger(1, 3, 81));
+        setPcsCurrent(reader.readFloat(1, 3, 55) + reader.readInteger(1, 3, 83));
+        setPcsVoltage1(reader.readFloat(1, 3, 57) + reader.readInteger(1, 3, 85));
+        setPcsChargingElectricity(reader.readFloat(1, 3, 59) + reader.readInteger(1, 3, 87));
+        setPcsDischargingElectricity(reader.readFloat(1, 3, 61) + reader.readInteger(1, 3, 89));
     }
 }
