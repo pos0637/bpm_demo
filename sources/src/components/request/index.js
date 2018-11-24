@@ -7,7 +7,7 @@ const Request = axios.create({
     headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-cache', 'Pragma': 'no-cache', 'Expires': 0 }
 });
 
-const Mock = null; // new MockAdapter(Request, { delayResponse: 100 });
+const Mock = (process.env.NODE_ENV === 'development') ? new MockAdapter(Request, { delayResponse: 100 }) : null;
 
 /**
  * 获取请求响应数据
@@ -87,7 +87,7 @@ export function request(url, method, parameters, resolve, reject) {
             } else {
                 resolve && resolve(data);
             }
-        }).catch((error) => {            
+        }).catch((error) => {
             console.error(error);
             onError();
         });

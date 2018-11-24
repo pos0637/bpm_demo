@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
 import { Spin } from 'antd';
-// import '~/mock';
+
+// 加载测试模块
+(process.env.NODE_ENV === 'development') && require('~/mock');
 
 /**
  * 应用
