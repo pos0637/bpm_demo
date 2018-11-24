@@ -38,4 +38,24 @@ public class BoardController {
     public RestResponse main() {
         return new RestResponse(200, null, this.emsDaemon.getMain());
     }
+
+    /**
+     * 获取负载视图数据
+     *
+     * @return 负载视图数据
+     */
+    @GetMapping("/load")
+    public RestResponse load() {
+        return new RestResponse(200, null, this.emsDaemon.getLoad());
+    }
+
+    /**
+     * 获取变压器视图数据
+     *
+     * @return 变压器视图数据
+     */
+    @GetMapping("/transformer")
+    public RestResponse transformer() {
+        return new RestResponse(200, null, this.emsDaemon.getTransformer());
+    }
 }
