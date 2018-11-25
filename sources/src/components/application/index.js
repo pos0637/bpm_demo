@@ -19,7 +19,7 @@ export default class Application extends React.Component {
     }
 
     static defaultProps = {
-        currentLocale: 'zh-CN.framework',
+        currentLocale: 'ZH-CN.framework',
         locales: {}
     }
 
@@ -42,7 +42,7 @@ export default class Application extends React.Component {
 
     componentDidMount() {
         const locales = {
-            'zh-CN.framework': require('~/locales/zh-CN.json')
+            'ZH-CN.framework': require('~/locales/zh-CN.json')
         };
 
         Object.assign(this.props.locales[this.props.currentLocale] || {}, locales[`${this.props.currentLocale}.framework`]);

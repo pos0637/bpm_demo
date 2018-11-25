@@ -11,19 +11,19 @@ import AirConditionerView from '~/app/airConditioner';
 import TransformatorView from '~/app/transformator';
 import BmsView from '~/app/bms';
 
-const locales = { 'zh-CN': require('~/app/locales/zh-CN.json') };
-const overview = () => <Application currentLocale='zh-CN' locales={locales}><Framework><Overview /></Framework></Application>;
-const main = () => <Application currentLocale='zh-CN' locales={locales}><Framework logout><MainView /></Framework></Application>;
-const load = () => <Application currentLocale='zh-CN' locales={locales}><Framework back><LoadView /></Framework></Application>;
-const pcs = () => <Application currentLocale='zh-CN' locales={locales}><Framework back><PcsView /></Framework></Application>;
-const airConditioner = () => <Application currentLocale='zh-CN' locales={locales}><Framework back><AirConditionerView /></Framework></Application>;
-const transformator = () => <Application currentLocale='zh-CN' locales={locales}><Framework back><TransformatorView /></Framework></Application>;
-const bms = () => <Application currentLocale='zh-CN' locales={locales}><Framework back><BmsView /></Framework></Application>;
+const locales = { 'ZH-CN': require('~/app/locales/zh-CN.json') };
+const overview = () => <Application currentLocale='ZH-CN' locales={locales}><Framework><Overview /></Framework></Application>;
+const main = () => <Application currentLocale='ZH-CN' locales={locales}><Framework logout><MainView /></Framework></Application>;
+const load = () => <Application currentLocale='ZH-CN' locales={locales}><Framework back><LoadView /></Framework></Application>;
+const pcs = () => <Application currentLocale='ZH-CN' locales={locales}><Framework back><PcsView /></Framework></Application>;
+const airConditioner = () => <Application currentLocale='ZH-CN' locales={locales}><Framework back><AirConditionerView /></Framework></Application>;
+const transformator = () => <Application currentLocale='ZH-CN' locales={locales}><Framework back><TransformatorView /></Framework></Application>;
+const bms = () => <Application currentLocale='ZH-CN' locales={locales}><Framework back><BmsView /></Framework></Application>;
 
 render((
     <MemoryRouter>
         <Switch>
-            <Route path='/' exact component={overview} />
+            <Route path='/' exact component={main} />
             <Route path='/overview' exact component={overview} />
             <Route path='/main' exact component={main} />
             <Route path='/load' exact component={load} />

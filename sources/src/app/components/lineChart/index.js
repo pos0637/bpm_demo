@@ -28,13 +28,8 @@ export default class LineChart extends BaseComponent {
         min: 0,
         max: 1,
         color: 'rgba(251,207,72,0.8)',
-        xLabels: ['0:00', '3:00', '6:00', '9:00', '12:00', '15:00', '18:00', '21:00', '23:00'],
+        xLabels: null,
         data: null
-    }
-
-    state = {
-        data: this.props.data,
-        xLabels: this.props.xLabels
     }
 
     chartOptions = {
@@ -80,16 +75,15 @@ export default class LineChart extends BaseComponent {
         }
     }
 
-    componentDidMount() {
-        super.componentDidMount();
-        this.shouldComponentUpdate = () => true;
-    }
-
     render() {
-        let { data } = this.state;
+        let { xLabels, data } = this.props;
+        if (!xLabels || (xLabels.length === 0)) {
+            xLabels = ['0:00', '3:00', '6:00', '9:00', '12:00', '15:00', '18:00', '21:00', '23:00'];
+        }
+
         if (!data || (data.length === 0)) {
             data = [];
-            this.state.xLabels.forEach(() =>
+            xLabels.forEach(() =>
                 data.push(getRandom(this.props.min, this.props.max))
             );
         }
@@ -104,7 +98,7 @@ export default class LineChart extends BaseComponent {
 
         return (
             <Line
-                data={{ labels: this.state.xLabels, datasets: datasets }}
+                data={{ labels: xLabels, datasets: datasets }}
                 options={this.chartOptions}
                 width={this.props.width}
                 height={this.props.height}

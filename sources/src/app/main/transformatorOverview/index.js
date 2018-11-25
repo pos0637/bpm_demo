@@ -25,7 +25,7 @@ export default class TransformatorOverview extends BaseComponent {
         chargingElectricity: PropTypes.number,
         dischargingElectricity: PropTypes.number,
         power: PropTypes.number,
-        powerData: PropTypes.array,
+        powerData: PropTypes.object,
         link1: PropTypes.number,
         link2: PropTypes.number
     }
@@ -38,7 +38,7 @@ export default class TransformatorOverview extends BaseComponent {
         chargingElectricity: 360,
         dischargingElectricity: 240,
         power: 910,
-        powerData: [],
+        powerData: {},
         link1: 0,
         link2: 0
     }
@@ -138,7 +138,7 @@ export default class TransformatorOverview extends BaseComponent {
                     {this.props.power}kW
                 </span>
                 <div className={style.content_powerData}>
-                    <LineChart min={this.props.power - 50} max={this.props.power + 50} color="rgba(68,175,244,0.8)" />
+                    <LineChart xLabels={this.props.powerData.xLabels} data={this.props.powerData.data} color="rgba(68,175,244,0.8)" />
                 </div>
                 <span className={style.content_link1_title}>
                     I段开关

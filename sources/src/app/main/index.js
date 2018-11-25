@@ -96,6 +96,7 @@ export default class MainView extends BaseComponent {
                 data.chargingElectricity = main.gridConnectedCabinetChargingElectricity;
                 data.dischargingElectricity = main.gridConnectedCabinetDischargingElectricity;
                 data.power2 = main.gridConnectedCabinetPower;
+                data.powerData = main.gridConnectedCabinetPowerData;
                 data.link1 = main.switch1;
                 data.link2 = main.switch2;
                 data.power1 = main.pcsPower;
@@ -148,6 +149,7 @@ export default class MainView extends BaseComponent {
                         chargingElectricity={this.state.chargingElectricity}
                         dischargingElectricity={this.state.dischargingElectricity}
                         power={this.state.power2}
+                        powerData={this.state.powerData}
                         link1={this.state.link1}
                         link2={this.state.link2}
                     />
