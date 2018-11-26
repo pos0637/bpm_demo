@@ -1,11 +1,13 @@
 const path = require('path');
 const glob = require('glob');
+const Webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 const outputPath = './dist/';
+const dllPath = `${outputPath}dll/`;
 const files = glob.sync('./src/**/entry.js');
 const entries = {};
 const plugins = [];
@@ -73,7 +75,14 @@ module.exports = {
             template: path.resolve(__dirname, './public/index.html'),
             chunks: ['index', 'vendor1', 'vendor2']
         }),
-        new CleanWebpackPlugin([outputPath]),
+        new CleanWebpackPlugin([
+            path.resolve(__dirname, `${outputPath}*.html`),
+            path.resolve(__dirname, `${outputPath}js`)
+        ]),
+        new Webpack.DllReferencePlugin({
+            context: path.resolve(__dirname, dllPath),
+            manifest: require(path.resolve(__dirname, `${dllPath}manifest.json`))
+        }),
         new UglifyJSPlugin()
     ].concat(plugins),
     devServer: {

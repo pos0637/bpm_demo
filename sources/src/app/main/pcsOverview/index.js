@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { toFixed } from '~/misc/number';
 import BaseComponent from '~/components/baseComponent';
 import Progress from '~/app/components/lineProgress';
 import style from "./index.scss";
@@ -57,7 +58,7 @@ export default class PcsOverview extends BaseComponent {
                     <img src={require("./images/container.png")} alt="" />
                 </div>
                 <span className={style.content_power}>
-                    {this.props.power}
+                    {toFixed(this.props.power, 1)}
                 </span>
                 <span className={style.content_power_unit}>
                     kW
@@ -69,7 +70,7 @@ export default class PcsOverview extends BaseComponent {
                     <img src={require("./images/container.png")} alt="" />
                 </div>
                 <span className={style.content_voltage}>
-                    {this.props.voltage}
+                    {toFixed(this.props.voltage, 1)}
                 </span>
                 <span className={style.content_voltage_unit}>
                     V
@@ -81,7 +82,7 @@ export default class PcsOverview extends BaseComponent {
                     <img src={require("./images/container.png")} alt="" />
                 </div>
                 <span className={style.content_current}>
-                    {this.props.current}
+                    {toFixed(this.props.current, 1)}
                 </span>
                 <span className={style.content_current_unit}>
                     A
@@ -93,7 +94,7 @@ export default class PcsOverview extends BaseComponent {
                     <img src={require("./images/container.png")} alt="" />
                 </div>
                 <span className={style.content_voltage2}>
-                    {this.props.voltage2}
+                    {toFixed(this.props.voltage2, 1)}
                 </span>
                 <span className={style.content_voltage2_unit}>
                     V
@@ -102,7 +103,7 @@ export default class PcsOverview extends BaseComponent {
                     今日充电总量
                 </div>
                 <div className={style.content_charging}>
-                    {this.props.charging}kWh
+                    {toFixed(this.props.charging, 1)}kWh
                 </div>
                 <div className={style.content_charging_progress}>
                     <Progress width={500} value={this.props.charging / 100} color="#FFC208" />
@@ -111,7 +112,7 @@ export default class PcsOverview extends BaseComponent {
                     今日放电总量
                 </div>
                 <div className={style.content_discharging}>
-                    {this.props.discharging}kWh
+                    {toFixed(this.props.discharging, 1)}kWh
                 </div>
                 <div className={style.content_discharging_progress}>
                     <Progress width={500} value={this.props.discharging / 100} color="#1BC85D" />

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { toFixed } from '~/misc/number';
 import BaseComponent from '~/components/baseComponent';
 import style from "./index.scss";
 
@@ -29,7 +30,7 @@ export default class UsingPower extends BaseComponent {
                     系统站用电量
                 </span>
                 <div className={style.content_value}>
-                    {this.props.value}
+                    {toFixed(this.props.value, 1)}
                 </div>
                 <span className={style.content_unit}>
                     kWh

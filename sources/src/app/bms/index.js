@@ -1,5 +1,6 @@
 import React from 'react';
 import { getRandom } from '~/misc/random';
+import { toFixed } from '~/misc/number';
 import { getBmsData } from '~/api/v1/board';
 import BaseComponent from '~/components/baseComponent';
 import Progress from '~/app/components/progress';
@@ -112,19 +113,19 @@ export default class BmsView extends BaseComponent {
                     <table className={style.grid}><tbody>{this.generateTableBody(3)}</tbody></table>
                 </div>
                 <span className={style.content_title6}>
-                    SOC&nbsp;&nbsp;{this.state.soc1}%
+                    SOC&nbsp;&nbsp;{toFixed(this.state.soc1, 1)}%
                 </span>
                 <span className={style.content_title7}>
                     剩余容量&nbsp;&nbsp;{this.state.rest1}kWh
                 </span>
                 <span className={style.content_title8}>
-                    组端电压&nbsp;&nbsp;{this.state.voltage1}v
+                    组端电压&nbsp;&nbsp;{toFixed(this.state.voltage1, 1)}v
                 </span>
                 <span className={style.content_title9}>
                     1#194
                 </span>
                 <span className={style.content_title10}>
-                    电池电压&nbsp;&nbsp;{this.state.voltage2}v
+                    电池电压&nbsp;&nbsp;{toFixed(this.state.voltage2, 1)}v
                 </span>
                 <span className={style.content_title11}>
                     电池内阻&nbsp;&nbsp;{this.state.resistance1}
@@ -133,7 +134,7 @@ export default class BmsView extends BaseComponent {
                     电池温度&nbsp;&nbsp;{this.state.temperature1}
                 </span>
                 <span className={style.content_title13}>
-                    SOC&nbsp;&nbsp;{this.state.soc2}%
+                    SOC&nbsp;&nbsp;{toFixed(this.state.soc2, 1)}%
                 </span>
                 <span className={style.content_title14}>
                     剩余容量&nbsp;&nbsp;{this.state.rest2}kWh

@@ -1,5 +1,6 @@
 import React from 'react';
 import { getRandom } from '~/misc/random';
+import { toFixed } from '~/misc/number';
 import { getLoadData } from '~/api/v1/board';
 import BaseComponent from '~/components/baseComponent';
 import LineChart from '~/app/components/lineChart';
@@ -192,7 +193,7 @@ export default class LoadView extends BaseComponent {
                     I段负载实时功率
                 </span>
                 <span className={style.content_value10}>
-                    {this.state.power1}W
+                    {toFixed(this.state.power1, 1)}W
                 </span>
                 <div className={style.content_power1Data}>
                     <LineChart xLabels={this.state.power1Data.xLabels} data={this.state.power1Data.data} color="rgba(68,175,244,0.8)" />
@@ -204,7 +205,7 @@ export default class LoadView extends BaseComponent {
                     II段负载实时功率
                 </span>
                 <span className={style.content_value11}>
-                    {this.state.power2}W
+                    {toFixed(this.state.power2, 1)}W
                 </span>
                 <div className={style.content_power2Data}>
                     <LineChart xLabels={this.state.power2Data.xLabels} data={this.state.power2Data.data} color="rgba(68,175,244,0.8)" />

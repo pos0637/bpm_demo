@@ -30,7 +30,7 @@ export function getMainData(succ, err) {
  * @param {*} err 错误处理函数
  */
 export function getLoadData(succ, err) {
-    request('/api/v1/board/main', 'get', null, succ, err);
+    request('/api/v1/board/load', 'get', null, succ, err);
 }
 
 /**

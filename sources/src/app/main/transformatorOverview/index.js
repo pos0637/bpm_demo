@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { toFixed } from '~/misc/number';
 import BaseComponent from '~/components/baseComponent';
 import Progress from '~/app/components/progress';
 import LineChart from '~/app/components/lineChart';
@@ -90,7 +91,7 @@ export default class TransformatorOverview extends BaseComponent {
                     温度
                 </span>
                 <div className={style.content_progress3}>
-                    <Progress width={120} value={this.props.transformator1Temperature} color="#F86E05" text1={this.props.transformator1Temperature} text1Top={22} />
+                    <Progress width={120} value={this.props.transformator1Temperature} color="#F86E05" text1={toFixed(this.props.transformator1Temperature, 1)} text1Top={22} />
                 </div>
                 <div className={style.content_transformator1_fan}>
                     {fan1}
@@ -102,7 +103,7 @@ export default class TransformatorOverview extends BaseComponent {
                     温度
                 </span>
                 <div className={style.content_progress4}>
-                    <Progress width={120} value={this.props.transformator2Temperature} color="#F86E05" text1={this.props.transformator2Temperature} text1Top={22} />
+                    <Progress width={120} value={this.props.transformator2Temperature} color="#F86E05" text1={toFixed(this.props.transformator2Temperature, 1)} text1Top={22} />
                 </div>
                 <div className={style.content_transformator2_fan}>
                     {fan2}
@@ -120,13 +121,13 @@ export default class TransformatorOverview extends BaseComponent {
                     总充电电量
                 </span>
                 <div className={style.content_progress1}>
-                    <Progress width={180} value={this.props.chargingElectricity / 10} color="#1BC85D" text1={this.props.chargingElectricity} text2="kWh" />
+                    <Progress width={180} value={this.props.chargingElectricity / 10} color="#1BC85D" text1={toFixed(this.props.chargingElectricity, 1)} text2="kWh" />
                 </div>
                 <span className={style.content_discharging_title}>
                     总放电电量
                 </span>
                 <div className={style.content_progress2}>
-                    <Progress width={180} value={this.props.dischargingElectricity / 10} color="#F86E05" text1={this.props.dischargingElectricity} text2="kWh" />
+                    <Progress width={180} value={this.props.dischargingElectricity / 10} color="#F86E05" text1={toFixed(this.props.dischargingElectricity, 1)} text2="kWh" />
                 </div>
                 <span className={style.content_power_title}>
                     充放电实时功率
@@ -135,7 +136,7 @@ export default class TransformatorOverview extends BaseComponent {
                     <img src={require("./images/tooltip.png")} alt="" />
                 </div>
                 <span className={style.content_power}>
-                    {this.props.power}kW
+                    {toFixed(this.props.power, 1)}kW
                 </span>
                 <div className={style.content_powerData}>
                     <LineChart xLabels={this.props.powerData.xLabels} data={this.props.powerData.data} color="rgba(68,175,244,0.8)" />

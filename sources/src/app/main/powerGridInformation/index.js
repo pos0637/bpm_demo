@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { toFixed } from '~/misc/number';
 import BaseComponent from '~/components/baseComponent';
 import LineChart from '~/app/components/lineChart';
 import style from "./index.scss";
@@ -65,13 +66,13 @@ export default class PowerGridInformation extends BaseComponent {
                     电压
                 </span>
                 <span className={style.content_line1_voltage}>
-                    {this.props.line1Voltage}V
+                    {toFixed(this.props.line1Voltage, 1)}V
                 </span>
                 <span className={style.content_line1_electricity_title}>
                     总电量
                 </span>
                 <span className={style.content_line1_electricity}>
-                    {this.props.line1Power}kWh
+                    {toFixed(this.props.line1Power, 1)}kWh
                 </span>
                 <span className={style.content_line1_power_title}>
                     实时功率
@@ -80,7 +81,7 @@ export default class PowerGridInformation extends BaseComponent {
                     <img src={require("./images/tooltip.png")} alt="" />
                 </div>
                 <span className={style.content_line1_power}>
-                    {this.props.line1Power}kW
+                    {toFixed(this.props.line1Power, 1)}kW
                 </span>
                 <div className={style.content_power1Data}>
                     <LineChart min={this.props.line1Power - 50} max={this.props.line1Power + 50} color="rgba(68,175,244,0.8)" />
@@ -92,13 +93,13 @@ export default class PowerGridInformation extends BaseComponent {
                     电压
                 </span>
                 <span className={style.content_line2_voltage}>
-                    {this.props.line2Voltage}V
+                    {toFixed(this.props.line2Voltage, 1)}V
                 </span>
                 <span className={style.content_line2_electricity_title}>
                     总电量
                 </span>
                 <span className={style.content_line2_electricity}>
-                    {this.props.line2Power}kWh
+                    {toFixed(this.props.line2Power, 1)}kWh
                 </span>
                 <span className={style.content_line2_power_title}>
                     实时功率
@@ -107,7 +108,7 @@ export default class PowerGridInformation extends BaseComponent {
                     <img src={require("./images/tooltip.png")} alt="" />
                 </div>
                 <span className={style.content_line2_power}>
-                    {this.props.line2Power}kW
+                    {toFixed(this.props.line2Power, 1)}kW
                 </span>
                 <div className={style.content_power2Data}>
                     <LineChart min={this.props.line2Power - 50} max={this.props.line2Power + 50} color="rgba(68,175,244,0.8)" />
@@ -128,7 +129,7 @@ export default class PowerGridInformation extends BaseComponent {
                     <img src={require("./images/tooltip.png")} alt="" />
                 </div>
                 <span className={style.content_load_power}>
-                    {this.props.loadPower}kW
+                    {toFixed(this.props.loadPower, 1)}kW
                 </span>
                 <div className={style.content_power3Data}>
                     <LineChart min={this.props.loadPower - 50} max={this.props.loadPower + 50} color="rgba(251,207,72,0.8)" />

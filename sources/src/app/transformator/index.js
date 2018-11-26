@@ -1,5 +1,6 @@
 import React from 'react';
 import { getRandom } from '~/misc/random';
+import { toFixed } from '~/misc/number';
 import { getTransformerData } from '~/api/v1/board';
 import BaseComponent from '~/components/baseComponent';
 import Progress from '~/app/components/progress';
@@ -195,25 +196,25 @@ export default class TransformatorView extends BaseComponent {
                     总充电电量
                 </span>
                 <div className={style.content_progress1}>
-                    <Progress width={180} value={this.state.chargingElectricity1 / 10} color="#1BC85D" text1={this.state.chargingElectricity1} text2="kWh" />
+                    <Progress width={180} value={this.state.chargingElectricity1 / 10} color="#1BC85D" text1={toFixed(this.state.chargingElectricity1, 1)} text2="kWh" />
                 </div>
                 <span className={style.content_title10}>
                     总放电电量
                 </span>
                 <div className={style.content_progress2}>
-                    <Progress width={180} value={this.state.dischargingElectricity1 / 10} color="#F86E05" text1={this.state.dischargingElectricity1} text2="kWh" />
+                    <Progress width={180} value={this.state.dischargingElectricity1 / 10} color="#F86E05" text1={toFixed(this.state.dischargingElectricity1, 1)} text2="kWh" />
                 </div>
                 <span className={style.content_title11}>
                     总充电电量
                 </span>
                 <div className={style.content_progress3}>
-                    <Progress width={180} value={this.state.chargingElectricity2 / 10} color="#1BC85D" text1={this.state.chargingElectricity2} text2="kWh" />
+                    <Progress width={180} value={this.state.chargingElectricity2 / 10} color="#1BC85D" text1={toFixed(this.state.chargingElectricity2, 1)} text2="kWh" />
                 </div>
                 <span className={style.content_title12}>
                     总放电电量
                 </span>
                 <div className={style.content_progress4}>
-                    <Progress width={180} value={this.state.dischargingElectricity2 / 10} color="#F86E05" text1={this.state.dischargingElectricity2} text2="kWh" />
+                    <Progress width={180} value={this.state.dischargingElectricity2 / 10} color="#F86E05" text1={toFixed(this.state.dischargingElectricity2, 1)} text2="kWh" />
                 </div>
                 <span className={style.content_title13}>
                     充放电实时功率
@@ -225,7 +226,7 @@ export default class TransformatorView extends BaseComponent {
                     <img src={require("./images/tooltip.png")} alt="" />
                 </div>
                 <span className={style.content_power1}>
-                    {this.state.power1}kW
+                    {toFixed(this.state.power1, 1)}kW
                 </span>
                 <div className={style.content_power1Data}>
                     <LineChart xLabels={this.state.power1Data.xLabels} data={this.state.power1Data.data} color="rgba(251,207,72,0.8)" />
@@ -234,7 +235,7 @@ export default class TransformatorView extends BaseComponent {
                     <img src={require("./images/tooltip.png")} alt="" />
                 </div>
                 <span className={style.content_power2}>
-                    {this.state.power2}kW
+                    {toFixed(this.state.power2, 1)}kW
                 </span>
                 <div className={style.content_power2Data}>
                     <LineChart min={this.state.power2 - 50} max={this.state.power2 + 50} color="rgba(251,207,72,0.8)" />
