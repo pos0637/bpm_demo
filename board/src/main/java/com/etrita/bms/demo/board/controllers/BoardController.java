@@ -58,4 +58,14 @@ public class BoardController {
     public RestResponse transformer() {
         return new RestResponse(200, null, this.emsDaemon.getTransformer());
     }
+
+    /**
+     * 获取BMS视图数据
+     *
+     * @return BMS视图数据
+     */
+    @GetMapping("/bms")
+    public RestResponse bms() {
+        return new RestResponse(200, null, this.emsDaemon.getBms());
+    }
 }

@@ -1,10 +1,7 @@
 package com.etrita.bms.demo.board.daemons;
 
 import com.etrita.bms.demo.board.communications.IDataReader;
-import com.etrita.bms.demo.board.entities.Load;
-import com.etrita.bms.demo.board.entities.Main;
-import com.etrita.bms.demo.board.entities.Overview;
-import com.etrita.bms.demo.board.entities.Transformer;
+import com.etrita.bms.demo.board.entities.*;
 import com.furongsoft.core.misc.Tracker;
 import lombok.Getter;
 import org.springframework.beans.factory.InitializingBean;
@@ -51,6 +48,11 @@ public class EmsDaemon implements Runnable, InitializingBean {
      */
     private Transformer transformer = new Transformer();
 
+    /**
+     * BMS视图数据
+     */
+    private Bms bms = new Bms();
+
     @Autowired
     public EmsDaemon(IDataReader dataReader) {
         this.dataReader = dataReader;
@@ -70,6 +72,7 @@ public class EmsDaemon implements Runnable, InitializingBean {
                 main.readModbusTcpData(dataReader);
                 load.readModbusTcpData(dataReader);
                 transformer.readModbusTcpData(dataReader);
+                bms.readModbusTcpData(dataReader);
                 Thread.sleep(interval);
             } catch (Exception e) {
                 try {
