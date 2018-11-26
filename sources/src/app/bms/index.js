@@ -1,5 +1,6 @@
 import React from 'react';
 import { getRandom } from '~/misc/random';
+import { getBmsData } from '~/api/v1/board';
 import BaseComponent from '~/components/baseComponent';
 import Progress from '~/app/components/progress';
 import style from "./index.scss";
@@ -33,7 +34,7 @@ export default class BmsView extends BaseComponent {
     componentDidMount() {
         super.componentDidMount();
         this.timer = setInterval(() => {
-            this.setState({
+            const data = {
                 soc1: getRandom(0, 100),
                 soc2: getRandom(0, 100),
                 rest1: getRandom(0, 200),
@@ -49,6 +50,16 @@ export default class BmsView extends BaseComponent {
                 data1: getRandom(80, 100),
                 data2: getRandom(40, 60),
                 data3: getRandom(0, 80)
+            };
+
+            getBmsData((bms) => {
+                data.soc1 = bms.soc1;
+                data.voltage1 = bms.voltage1;
+                data.soc2 = bms.soc2;
+                data.voltage3 = bms.voltage2;
+                this.setState(data);
+            }, () => {
+                this.setState(data);
             });
         }, 2000);
     }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { getRandom } from '~/misc/random';
+import { getLoadData } from '~/api/v1/board';
 import BaseComponent from '~/components/baseComponent';
 import LineChart from '~/app/components/lineChart';
 import style from "./index.scss";
@@ -25,15 +26,15 @@ export default class LoadView extends BaseComponent {
         value1: 0.9,
         value2: 0.9,
         power1: 300,
-        power1Data: [],
+        power1Data: {},
         power2: 300,
-        power2Data: []
+        power2Data: {}
     }
 
     componentDidMount() {
         super.componentDidMount();
         this.timer = setInterval(() => {
-            this.setState({
+            const data = {
                 state: getRandom(0, 1),
                 chargingElectricity: getRandom(0, 3900),
                 dischargingElectricity: getRandom(0, 2400),
@@ -46,9 +47,19 @@ export default class LoadView extends BaseComponent {
                 value1: 0.9,
                 value2: 0.9,
                 power1: getRandom(180, 220),
-                power1Data: [],
+                power1Data: {},
                 power2: getRandom(180, 220),
-                power2Data: []
+                power2Data: {}
+            };
+
+            getLoadData((load) => {
+                data.power1 = load.power1;
+                data.power1Data = load.power1Data;
+                data.power2 = load.power2;
+                data.power2Data = load.power2Data;
+                this.setState(data);
+            }, () => {
+                this.setState(data);
             });
         }, 2000);
     }
@@ -184,7 +195,7 @@ export default class LoadView extends BaseComponent {
                     {this.state.power1}W
                 </span>
                 <div className={style.content_power1Data}>
-                    <LineChart min={this.state.power1 - 50} max={this.state.power1 + 50} color="rgba(68,175,244,0.8)" />
+                    <LineChart xLabels={this.state.power1Data.xLabels} data={this.state.power1Data.data} color="rgba(68,175,244,0.8)" />
                 </div>
                 <div className={style.background8}>
                     <img src={require("./images/background6.png")} alt="" />
@@ -196,7 +207,7 @@ export default class LoadView extends BaseComponent {
                     {this.state.power2}W
                 </span>
                 <div className={style.content_power2Data}>
-                    <LineChart min={this.state.power2 - 50} max={this.state.power2 + 50} color="rgba(68,175,244,0.8)" />
+                    <LineChart xLabels={this.state.power2Data.xLabels} data={this.state.power2Data.data} color="rgba(68,175,244,0.8)" />
                 </div>
             </div>
         );

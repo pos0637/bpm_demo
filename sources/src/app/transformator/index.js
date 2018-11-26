@@ -1,5 +1,6 @@
 import React from 'react';
 import { getRandom } from '~/misc/random';
+import { getTransformerData } from '~/api/v1/board';
 import BaseComponent from '~/components/baseComponent';
 import Progress from '~/app/components/progress';
 import LineChart from '~/app/components/lineChart';
@@ -26,15 +27,15 @@ export default class TransformatorView extends BaseComponent {
         fan1: 0,
         fan2: 0,
         power1: 910,
-        power1Data: [],
+        power1Data: {},
         power2: 910,
-        power2Data: []
+        power2Data: {}
     }
 
     componentDidMount() {
         super.componentDidMount();
         this.timer = setInterval(() => {
-            this.setState({
+            const data = {
                 information1: getRandom(0, 2),
                 temperature1: getRandom(0, 40),
                 temperature2: getRandom(0, 40),
@@ -47,9 +48,19 @@ export default class TransformatorView extends BaseComponent {
                 fan1: getRandom(0, 1),
                 fan2: getRandom(0, 1),
                 power1: getRandom(0, 900),
-                power1Data: [],
+                power1Data: {},
                 power2: getRandom(0, 900),
-                power2Data: []
+                power2Data: {}
+            };
+
+            getTransformerData((transformer) => {
+                data.chargingElectricity1 = transformer.chargingElectricity1;
+                data.dischargingElectricity1 = transformer.dischargingElectricity1;
+                data.power1 = transformer.power1;
+                data.power1Data = transformer.power1Data;
+                this.setState(data);
+            }, () => {
+                this.setState(data);
             });
         }, 2000);
     }
@@ -217,7 +228,7 @@ export default class TransformatorView extends BaseComponent {
                     {this.state.power1}kW
                 </span>
                 <div className={style.content_power1Data}>
-                    <LineChart min={this.state.power1 - 50} max={this.state.power1 + 50} color="rgba(251,207,72,0.8)" />
+                    <LineChart xLabels={this.state.power1Data.xLabels} data={this.state.power1Data.data} color="rgba(251,207,72,0.8)" />
                 </div>
                 <div className={style.content_tip2}>
                     <img src={require("./images/tooltip.png")} alt="" />
