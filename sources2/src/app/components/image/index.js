@@ -18,8 +18,10 @@ export default class Image extends BaseComponent {
     }
 
     render() {
+        const { left, top } = this.getRelativePosition(this.props.left, this.props.top);
+
         return (
-            <div className={style.background} style={{ left: `${this.props.left}px`, top: `${this.props.top}px` }}>
+            <div className={style.background} style={{ left: `${left}px`, top: `${top}px` }}>
                 <img src={this.props.src} alt="" />
             </div>
         );

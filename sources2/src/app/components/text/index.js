@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import BaseComponent from '~/components/baseComponent';
-import style from "./index.scss";
 import { toFixed } from '~/misc/number';
+import style from "./index.scss";
 
 /**
  * 文本
@@ -16,6 +16,7 @@ export default class Text extends BaseComponent {
         value: PropTypes.any.isRequired, // 内容        
         left: PropTypes.number.isRequired, // 横坐标
         top: PropTypes.number.isRequired, // 纵坐标
+        width: PropTypes.number, // 宽度
         font: PropTypes.string, // 字体
         fontSize: PropTypes.number, // 字体大小
         weight: PropTypes.string, // 粗细
@@ -25,7 +26,8 @@ export default class Text extends BaseComponent {
         suffixFontSize: PropTypes.number, // 后缀字体大小
         suffixWeight: PropTypes.string, // 后缀粗细
         suffixColor: PropTypes.any, // 后缀颜色
-        fixed: PropTypes.any // 取值精度
+        fixed: PropTypes.any, // 取值精度
+        align: PropTypes.string // 对齐方式
     }
 
     static defaultProps = {
@@ -34,28 +36,38 @@ export default class Text extends BaseComponent {
         weight: 'normal',
         color: 'rgb(255, 255, 255)',
         suffix: null,
-        suffixFont: 'SourceHanSansSC-Medium',
-        suffixFontSize: 48,
-        suffixWeight: 'normal',
-        suffixColor: 'rgb(255, 255, 255)',
-        fixed: null
+        suffixFont: null,
+        suffixFontSize: 0,
+        suffixWeight: null,
+        suffixColor: null,
+        fixed: null,
+        align: 'left'
     }
 
     render() {
         let { value } = this.props;
+        const { font, fontSize, weight, color } = this.props;
         if (this.props.fixed !== null) {
             value = toFixed(value, this.props.fixed);
         }
 
         let suffixContent = null;
         if (this.props.suffix !== null) {
+            let { suffixFont, suffixFontSize, suffixWeight, suffixColor } = this.props;
+            suffixFont = suffixFont || font;
+            suffixFontSize = suffixFontSize || fontSize;
+            suffixWeight = suffixWeight || weight;
+            suffixColor = suffixColor || color;
+
             suffixContent = (
-                <span style={{ font: this.props.suffixFont, fontSize: `${this.props.suffixFontSize}px`, fontWeight: this.props.suffixWeight, color: this.props.suffixColor }}>{this.props.suffix}</span>
+                <span style={{ fontFamily: suffixFont, fontSize: `${suffixFontSize}px`, fontWeight: suffixWeight, color: suffixColor, lineHeight: 1 }}>{this.props.suffix}</span>
             );
         }
 
+        const { left, top } = this.getRelativePosition(this.props.left, this.props.top);
+
         return (
-            <span className={style.content} style={{ left: `${this.props.left}px`, top: `${this.props.top}px`, font: this.props.font, fontSize: `${this.props.fontSize}px`, fontWeight: this.props.weight, color: this.props.color }}>
+            <span className={style.content} style={{ left: `${left}px`, top: `${top}px`, fontFamily: font, fontSize: `${fontSize}px`, fontWeight: weight, color: color, lineHeight: 1, textAlign: this.props.align, width: `${this.props.width}px` }}>
                 {value}{suffixContent}
             </span>
         );

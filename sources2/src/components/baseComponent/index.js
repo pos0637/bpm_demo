@@ -97,6 +97,23 @@ export default class BaseComponent extends React.Component {
     }
 
     /**
+     * 获取相对位置
+     * 
+     * @param {*} left 横坐标
+     * @param {*} top 纵坐标
+     * @memberof BaseComponent
+     */
+    getRelativePosition(left, top) {
+        const parent = this.getParent();
+        if ((parent === null) || (typeof parent.calcRelativePosition === 'undefined')) {
+            return { left, top };
+        }
+        else {
+            return parent.calcRelativePosition(left, top);
+        }
+    }
+
+    /**
      * 注册子组件
      *
      * @param {*} child 子组件

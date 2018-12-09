@@ -2,11 +2,11 @@ import Line from './Line';
 import Circle from './Circle';
 
 export {
-  Line,
-  Circle,
+    Line,
+    Circle,
 };
 
 export default {
-  Line,
-  Circle,
+    Line,
+    Circle,
 };
