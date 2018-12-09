@@ -13,6 +13,8 @@ import { getRandom } from '~/misc/random';
  */
 export default class LineChart extends BaseComponent {
     static propTypes = {
+        left: PropTypes.number.isRequired, // 横坐标
+        top: PropTypes.number.isRequired, // 纵坐标
         width: PropTypes.number,
         height: PropTypes.number,
         min: PropTypes.number,
@@ -96,13 +98,17 @@ export default class LineChart extends BaseComponent {
             backgroundColor: [this.props.color]
         }];
 
+        const { left, top } = this.getRelativePosition(this.props.left, this.props.top);
+
         return (
-            <Line
-                data={{ labels: xLabels, datasets: datasets }}
-                options={this.chartOptions}
-                width={this.props.width}
-                height={this.props.height}
-            />
+            <div style={{ position: 'absolute', left: `${left}px`, top: `${top}px` }}>
+                <Line
+                    data={{ labels: xLabels, datasets: datasets }}
+                    options={this.chartOptions}
+                    width={this.props.width}
+                    height={this.props.height}
+                />
+            </div>
         );
     }
 }

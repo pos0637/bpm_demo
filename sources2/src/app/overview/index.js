@@ -6,6 +6,7 @@ import Image from '~/app/components/image';
 import Container from '~/app/components/container';
 import Progress from '~/app/components/lineProgress';
 import Switch from '~/app/components/switch';
+import LineChart from '~/app/components/lineChart';
 import { toFixed } from '~/misc/number';
 
 /**
@@ -147,7 +148,9 @@ export default class Overview extends BaseComponent {
                 <Container left={2575} top={1491} background={require("./images/box7.png")}>
                     <Text left={2677} top={1543} value="充放电量曲线" font="SourceHanSansSC-Bold" fontSize={48} />
                     <Text left={2673} top={1665} value="1#系统" font="SourceHanSansSC-Heavy" fontSize={48} />
+                    <LineChart left={2673} top={1746} width={404} height={215} color="rgba(68,175,244,0.8)" />
                     <Text left={3129} top={1665} value="2#系统" font="SourceHanSansSC-Heavy" fontSize={48} />
+                    <LineChart left={3129} top={1746} width={404} height={215} color="rgba(68,175,244,0.8)" />
                 </Container>
             </div>
         );
