@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Circle } from 'rc-progress';
+import { Circle } from '~/app/components/rc-progress';
 import BaseComponent from '~/components/baseComponent';
 import style from "./index.scss";
 
