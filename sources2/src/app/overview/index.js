@@ -55,7 +55,7 @@ export default class Overview extends BaseComponent {
                 <Text left={2232} top={174} value={pad(this.state.无故障运行时间, 4)} font="SourceHanSansSC-Bold" fontSize={96.43} color="rgb(102, 224, 250)" />
                 <Text left={2494} top={194} value="天" font="SourceHanSansSC-Light" fontSize={58.39} />
 
-                <Container left={172} top={304} background={require("./images/box1.png")}>
+                <Container left={172} top={304} background={require("./images/box1.png")} onClick={() => this.context.router.history.replace('/login')}>
                     <Text left={275} top={354} value="清洁能源微网系统" font="SourceHanSansSC-Bold" fontSize={48} />
                     <Image left={350} top={682} src={require("./images/line.png")} />
                     <Image left={298} top={944} src={require("./images/charging_station.png")} />
@@ -105,7 +105,7 @@ export default class Overview extends BaseComponent {
                     {this.state.充电1 !== 0 ? <Image left={372} top={1796} src={require("./images/discharging_arrow.png")} /> : <Image left={372} top={1782} src={require("./images/charging_arrow.png")} />}
                 </Container>
 
-                <Container left={1996} top={1491} background={require("./images/box3.png")}>
+                <Container left={1996} top={1491} background={require("./images/box3.png")} onClick={() => window.login && this.context.router.history.replace('/air')}>
                     <Text left={2091} top={1543} value="安防系统" font="SourceHanSansSC-Bold" fontSize={48} />
                     <Text left={2091} top={1661} value="状态" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Switch left={2094} top={1756} src1={require("./images/security_system_normal0.png")} src2={require("./images/security_system_normal1.png")} value={this.state.安防系统状态 === 0} />
@@ -151,6 +151,11 @@ export default class Overview extends BaseComponent {
                     <Text left={3129} top={1665} value="2#系统" font="SourceHanSansSC-Heavy" fontSize={48} />
                     <LineChart left={3129} top={1746} width={404} height={215} color="rgba(68,175,244,0.8)" />
                 </Container>
+
+                <Container left={228} top={1641} width={306} height={333} onClick={() => window.login && this.context.router.history.replace('/load')} />
+                <Container left={567} top={1641} width={534} height={333} onClick={() => window.login && this.context.router.history.replace('/transformer')} />
+                <Container left={1131} top={1641} width={291} height={333} onClick={() => window.login && this.context.router.history.replace('/pcs')} />
+                <Container left={1431} top={1641} width={500} height={333} onClick={() => window.login && this.context.router.history.replace('/bms')} />
             </Container>
         );
     }

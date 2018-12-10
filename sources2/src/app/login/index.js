@@ -38,6 +38,7 @@ export default class Login extends BaseComponent {
      * @memberof Login
      */
     _onLoginButtonClick() {
+        window.login = true;
         this.context.router.history.replace('/overview');
     }
 }
