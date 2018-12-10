@@ -14,7 +14,12 @@ export default class Image extends BaseComponent {
     static propTypes = {
         src: PropTypes.any.isRequired, // 图片
         left: PropTypes.number.isRequired, // 横坐标
-        top: PropTypes.number.isRequired // 纵坐标
+        top: PropTypes.number.isRequired, // 纵坐标
+        onClick: PropTypes.func // 点击事件处理函数
+    }
+
+    static defaultProps = {
+        onClick: null
     }
 
     render() {
@@ -22,7 +27,7 @@ export default class Image extends BaseComponent {
 
         return (
             <div className={style.background} style={{ left: `${left}px`, top: `${top}px` }}>
-                <img src={this.props.src} alt="" />
+                <img src={this.props.src} alt="" onClick={this.props.onClick} />
             </div>
         );
     }

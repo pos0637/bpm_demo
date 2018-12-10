@@ -13,12 +13,18 @@ import style from "./index.scss";
 export default class Container extends BaseComponent {
     static propTypes = {
         background: PropTypes.any, // 图片
-        left: PropTypes.number.isRequired, // 横坐标
-        top: PropTypes.number.isRequired // 纵坐标
+        left: PropTypes.number, // 横坐标
+        top: PropTypes.number, // 纵坐标
+        width: PropTypes.number, // 宽度
+        height: PropTypes.number // 高度
     }
 
     static defaultProps = {
-        background: null
+        background: null,
+        left: null,
+        top: null,
+        width: null,
+        height: null
     }
 
     render() {
@@ -28,9 +34,10 @@ export default class Container extends BaseComponent {
         }
 
         const { left, top } = this.getRelativePosition(this.props.left, this.props.top);
+        const { width, height } = this.props;
 
         return (
-            <div className={style.container} style={{ left: `${left}px`, top: `${top}px` }}>
+            <div className={style.container} style={{ left: `${left}px`, top: `${top}px`, width: `${width}px`, height: `${height}px` }}>
                 {background}
                 <div className={style.content}>
                     {this.props.children}
@@ -48,6 +55,6 @@ export default class Container extends BaseComponent {
      * @memberof Container
      */
     calcRelativePosition(left, top) {
-        return { left: left - this.props.left, top: top - this.props.top };
+        return { left: left - this.props.left || 0, top: top - this.props.top || 0 };
     }
 }

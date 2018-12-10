@@ -106,7 +106,7 @@ export default class BaseComponent extends React.Component {
     getRelativePosition(left, top) {
         const parent = this.getParent();
         if ((parent === null) || (typeof parent.calcRelativePosition === 'undefined')) {
-            return { left, top };
+            return { left: left, top: top };
         }
         else {
             return parent.calcRelativePosition(left, top);

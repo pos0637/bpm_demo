@@ -51,7 +51,7 @@ export default class Overview extends BaseComponent {
 
     render() {
         return (
-            <div style={{ position: 'absolute', width: '3840px', height: '2160px' }}>
+            <Container width={3840} height={2160}>
                 <Text left={1895} top={194} value="无故障运行&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;天" font="SourceHanSansSC-Light" fontSize={58.39} />
                 <Text left={2232} top={174} value={this.state.无故障运行时间} font="SourceHanSansSC-Bold" fontSize={96.43} color="rgb(102, 224, 250)" />
 
@@ -152,7 +152,7 @@ export default class Overview extends BaseComponent {
                     <Text left={3129} top={1665} value="2#系统" font="SourceHanSansSC-Heavy" fontSize={48} />
                     <LineChart left={3129} top={1746} width={404} height={215} color="rgba(68,175,244,0.8)" />
                 </Container>
-            </div>
+            </Container>
         );
     }
 

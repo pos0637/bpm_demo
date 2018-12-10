@@ -34,8 +34,10 @@ export default class Framework extends BaseComponent {
                 <Image left={3270} top={2026} src={require("./images/logo2.png")} />
                 <Image left={199} top={198} src={require("./images/title.png")} />                
                 <div className={style.content}>
-                    {this.props.children}                    
+                    {this.props.children}            
                 </div>
+                {this.props.logout ? <Image left={3084} top={182} src={require("./images/back.png")} onClick={() => this._onLogoutButtonClick()} /> : null}
+                {this.props.back ? <Image left={3084} top={182} src={require("./images/back.png")} onClick={() => this._onBackButtonClick()} /> : null}
             </div>
         );
     }
@@ -55,6 +57,6 @@ export default class Framework extends BaseComponent {
      * @memberof Framework
      */
     _onBackButtonClick() {
-        this.context.router.history.replace('/main');
+        this.context.router.history.replace('/overview');
     }
 }
