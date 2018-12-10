@@ -52,8 +52,9 @@ export default class Overview extends BaseComponent {
     render() {
         return (
             <Container width={3840} height={2160}>
-                <Text left={1895} top={194} value="无故障运行&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;天" font="SourceHanSansSC-Light" fontSize={58.39} />
+                <Text left={1895} top={194} value="无故障运行" font="SourceHanSansSC-Light" fontSize={58.39} />
                 <Text left={2232} top={174} value={this.state.无故障运行时间} font="SourceHanSansSC-Bold" fontSize={96.43} color="rgb(102, 224, 250)" />
+                <Text left={2494} top={194} value="天" font="SourceHanSansSC-Light" fontSize={58.39} />
 
                 <Container left={172} top={304} background={require("./images/box1.png")}>
                     <Text left={275} top={354} value="清洁能源微网系统" font="SourceHanSansSC-Bold" fontSize={48} />
@@ -106,7 +107,7 @@ export default class Overview extends BaseComponent {
                     <Image left={372} top={1796} src={require("./images/discharging_arrow.png")} />
                 </Container>
 
-                <Container left={2024} top={1491} background={require("./images/box3.png")}>
+                <Container left={1996} top={1491} background={require("./images/box3.png")}>
                     <Text left={2091} top={1543} value="安防系统" font="SourceHanSansSC-Bold" fontSize={48} />
                     <Text left={2091} top={1661} value="状态" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Switch left={2094} top={1756} src1={require("./images/security_system_normal0.png")} src2={require("./images/security_system_normal1.png")} value={this.state.安防系统状态 === 0} />
