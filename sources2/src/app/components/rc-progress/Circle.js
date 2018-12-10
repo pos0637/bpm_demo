@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import enhancer from './enhancer';
 import { propTypes, defaultProps } from './types';
+import { getRandomKey } from '~/misc/random';
 
 class Circle extends Component {
     getPathStyles() {
@@ -52,6 +53,7 @@ class Circle extends Component {
         const { prefixCls, strokeWidth, trailWidth, percent, trailColor, strokeColor, strokeLinecap, style, className, ...restProps } = this.props;
         const { pathString, trailPathStyle, strokePathStyle } = this.getPathStyles();
         const { strokeColorStart, strokeColorEnd } = this.props;
+        const styleId = getRandomKey();
         delete restProps.percent;
         delete restProps.gapDegree;
         delete restProps.gapPosition;
@@ -65,7 +67,7 @@ class Circle extends Component {
                 {...restProps}
             >
                 <defs>
-                    <linearGradient id="linear-gradient" gradientUnits="userSpaceOnUse" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <linearGradient id={`linear-gradient${styleId}`} gradientUnits="userSpaceOnUse" x1="0%" y1="0%" x2="100%" y2="0%">
                         <stop offset="0%" style={{ stopColor: strokeColorStart, stopOpacity: 1 }} />
                         <stop offset="100%" style={{ stopColor: strokeColorEnd, stopOpacity: 1 }} />
                     </linearGradient>
@@ -86,7 +88,7 @@ class Circle extends Component {
                     fillOpacity="0"
                     ref={(path) => { this.path = path; }}
                     style={strokePathStyle}
-                    stroke={strokeColor || "url(#linear-gradient)"}
+                    stroke={strokeColor || `url(#linear-gradient${styleId})`}
                 />
             </svg>
         );

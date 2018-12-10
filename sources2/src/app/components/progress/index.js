@@ -7,10 +7,10 @@ import Container from '~/app/components/container';
  * 进度条组件
  *
  * @export
- * @class Progress
+ * @class CircleProgress
  * @extends {Container}
  */
-export default class Progress extends Container {
+export default class CircleProgress extends Container {
     static propTypes = {
         left: PropTypes.number.isRequired, // 横坐标
         top: PropTypes.number.isRequired, // 纵坐标
@@ -25,7 +25,6 @@ export default class Progress extends Container {
     static defaultProps = {
         width: 0,
         value: 0,
-        color: '#D3D3D3',
         trailColor: '#4A6284'
     }
 

@@ -23,7 +23,7 @@ const bms = () => <Application currentLocale='ZH-CN' locales={locales}><Framewor
 render((
     <MemoryRouter>
         <Switch>
-            <Route path='/' exact component={bms} />
+            <Route path='/' exact component={pcs} />
             <Route path='/overview' exact component={overview} />
             <Route path='/login' exact component={login} />
             <Route path='/load' exact component={load} />

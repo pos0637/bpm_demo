@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import enhancer from './enhancer';
 import { propTypes, defaultProps } from './types';
+import { getRandomKey } from '~/misc/random';
 
 class Line extends Component {
     render() {
@@ -31,6 +32,7 @@ class Line extends Component {
             `M ${strokeLinecap === 'round' ? center : 0},${center}
            L ${strokeLinecap === 'round' ? right : 100},${center}`;
         const viewBoxString = `0 0 100 ${strokeWidth}`;
+        const styleId = getRandomKey();
 
         return (
             <svg
@@ -41,7 +43,7 @@ class Line extends Component {
                 {...restProps}
             >
                 <defs>
-                    <linearGradient id="linear-gradient" gradientUnits="userSpaceOnUse" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <linearGradient id={`linear-gradient${styleId}`} gradientUnits="userSpaceOnUse" x1="0%" y1="0%" x2="100%" y2="0%">
                         <stop offset="0%" style={{ stopColor: strokeColorStart, stopOpacity: 1 }} />
                         <stop offset="100%" style={{ stopColor: strokeColorEnd, stopOpacity: 1 }} />
                     </linearGradient>
@@ -58,7 +60,7 @@ class Line extends Component {
                     className={`${prefixCls}-line-path`}
                     d={pathString}
                     strokeLinecap={strokeLinecap}
-                    stroke={strokeColor || "url(#linear-gradient)"}
+                    stroke={strokeColor || `url(#linear-gradient${styleId})`}
                     strokeWidth={strokeWidth}
                     fillOpacity="0"
                     ref={(path) => { this.path = path; }}

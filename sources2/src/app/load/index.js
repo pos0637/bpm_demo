@@ -5,6 +5,7 @@ import Text from '~/app/components/text';
 import Image from '~/app/components/image';
 import Container from '~/app/components/container';
 import Progress from '~/app/components/lineProgress';
+import CircleProgress from '~/app/components/progress';
 import LineChart from '~/app/components/lineChart';
 import { toFixed } from '~/misc/number';
 
@@ -97,7 +98,11 @@ export default class Load extends BaseComponent {
 
                     <Text left={1547} top={1493} value="当日能耗" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Text left={1854} top={1493} value="当日能耗" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
-                    {/* TODO: add progress */}
+                    <CircleProgress left={1543} top={1618} width={161} value={this.state.当日能耗 / 3000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)">
+                        <Text left={1543} top={1668} width={161} value={toFixed(this.state.当日能耗, 0)} font="SourceHanSansSC-Bold" fontSize={34} align="center" />
+                        <Text left={1543} top={1707} width={161} value="kWh" font="SourceHanSansSC-Bold" fontSize={34} align="center" />
+                    </CircleProgress>
+
                     <Container left={2145} top={1531} background={require("./images/tip.png")}>
                         <Text left={2145} top={1543} width={179} value={`${toFixed(this.state.当月能耗, 0)}`} suffix="kW" font="Microsoft Yahei" weight="bold" fontSize={45} suffixFontSize={30} align="center" />
                     </Container>
@@ -113,8 +118,11 @@ export default class Load extends BaseComponent {
                     <Container left={2761} top={668} background={require("./images/tip.png")}>
                         <Text left={2761} top={680} width={179} value={`${toFixed(this.state.照明用电1, 0)}`} suffix="kW" font="Microsoft Yahei" weight="bold" fontSize={45} suffixFontSize={30} align="center" />
                     </Container>
-                    <Progress left={2761} top={794} width={434} height={22} value={this.state.照明用电1} />
-                    {/* TODO: add progress */}
+                    <Progress left={2761} top={794} width={434} height={22} value={this.state.照明用电1 / 2000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
+                    <CircleProgress left={3361} top={667} width={161} value={this.state.照明耗能1 / 3000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)">
+                        <Text left={3361} top={717} width={161} value={toFixed(this.state.照明耗能1, 0)} font="SourceHanSansSC-Bold" fontSize={34} align="center" />
+                        <Text left={3361} top={756} width={161} value="kWh" font="SourceHanSansSC-Bold" fontSize={34} align="center" />
+                    </CircleProgress>
 
                     <Text left={2651} top={896} value="2#" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Text left={2761} top={896} value="照明用电" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
@@ -122,8 +130,11 @@ export default class Load extends BaseComponent {
                     <Container left={2761} top={971} background={require("./images/tip.png")}>
                         <Text left={2761} top={983} width={179} value={`${toFixed(this.state.照明用电2, 0)}`} suffix="kW" font="Microsoft Yahei" weight="bold" fontSize={45} suffixFontSize={30} align="center" />
                     </Container>
-                    <Progress left={2761} top={1097} width={434} height={22} value={this.state.照明用电2} />
-                    {/* TODO: add progress */}
+                    <Progress left={2761} top={1097} width={434} height={22} value={this.state.照明用电2 / 2000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
+                    <CircleProgress left={3361} top={970} width={161} value={this.state.照明耗能2 / 3000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)">
+                        <Text left={3361} top={1020} width={161} value={toFixed(this.state.照明耗能2, 0)} font="SourceHanSansSC-Bold" fontSize={34} align="center" />
+                        <Text left={3361} top={1059} width={161} value="kWh" font="SourceHanSansSC-Bold" fontSize={34} align="center" />
+                    </CircleProgress>
 
                     <Text left={2651} top={1265} value="1#" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Text left={2761} top={1265} value="泵站用电" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
@@ -131,8 +142,11 @@ export default class Load extends BaseComponent {
                     <Container left={2761} top={1340} background={require("./images/tip.png")}>
                         <Text left={2761} top={1352} width={179} value={`${toFixed(this.state.泵站用电1, 0)}`} suffix="kW" font="Microsoft Yahei" weight="bold" fontSize={45} suffixFontSize={30} align="center" />
                     </Container>
-                    <Progress left={2761} top={1466} width={434} height={22} value={this.state.泵站用电1} />
-                    {/* TODO: add progress */}
+                    <Progress left={2761} top={1466} width={434} height={22} value={this.state.泵站用电1 / 2000 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)" />
+                    <CircleProgress left={3361} top={1339} width={161} value={this.state.泵站耗能1 / 3000 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)">
+                        <Text left={3361} top={1389} width={161} value={toFixed(this.state.泵站耗能1, 0)} font="SourceHanSansSC-Bold" fontSize={34} align="center" />
+                        <Text left={3361} top={1428} width={161} value="kWh" font="SourceHanSansSC-Bold" fontSize={34} align="center" />
+                    </CircleProgress>
 
                     <Text left={2651} top={1570} value="2#" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Text left={2761} top={1570} value="泵站用电" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
@@ -140,8 +154,11 @@ export default class Load extends BaseComponent {
                     <Container left={2761} top={1643} background={require("./images/tip.png")}>
                         <Text left={2761} top={1655} width={179} value={`${toFixed(this.state.泵站用电2, 0)}`} suffix="kW" font="Microsoft Yahei" weight="bold" fontSize={45} suffixFontSize={30} align="center" />
                     </Container>
-                    <Progress left={2761} top={1769} width={434} height={22} value={this.state.泵站用电2} />
-                    {/* TODO: add progress */}
+                    <Progress left={2761} top={1769} width={434} height={22} value={this.state.泵站用电2 / 2000 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)" />
+                    <CircleProgress left={3361} top={1642} width={161} value={this.state.泵站耗能2 / 3000 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)">
+                        <Text left={3361} top={1692} width={161} value={toFixed(this.state.泵站耗能2, 0)} font="SourceHanSansSC-Bold" fontSize={34} align="center" />
+                        <Text left={3361} top={1731} width={161} value="kWh" font="SourceHanSansSC-Bold" fontSize={34} align="center" />
+                    </CircleProgress>
                 </Container>
             </Container>
         );

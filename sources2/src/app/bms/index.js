@@ -4,7 +4,7 @@ import BaseComponent from '~/components/baseComponent';
 import Text from '~/app/components/text';
 import Image from '~/app/components/image';
 import Container from '~/app/components/container';
-import Progress from '~/app/components/progress';
+import CircleProgress from '~/app/components/progress';
 import { toFixed, pad } from '~/misc/number';
 import { getRandom } from '~/misc/random';
 
@@ -52,8 +52,8 @@ export default class Bms extends BaseComponent {
             <Container width={3840} height={2160}>
                 <Container left={173} top={378} background={require("./images/box1.png")}>
                     <Text left={278} top={428} value="BMS&amp;电池" font="SourceHanSansSC-Medium" fontSize={48} />
-                    <Image left={275} top={629} src={require("./images/line.png")} />
-                    <Image left={371} top={1285} src={require("./images/line.png")} />
+                    <Image left={275} top={629} src={require("./images/img1.png")} />
+                    <Image left={371} top={1285} src={require("./images/img2.png")} />
                 </Container>
                 <Container left={1084} top={392} background={require("./images/box2.png")}>
                     <Text left={1170} top={515} value="1#" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
@@ -106,18 +106,18 @@ export default class Bms extends BaseComponent {
                     <Text left={3362} top={976} value="剩余容量" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Text left={3362} top={1405} value="健康状态" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
 
-                    <Progress left={3322} top={614} width={222} value={this.state.热失控} color="#F86E05">
+                    <CircleProgress left={3322} top={614} width={222} value={this.state.热失控} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)">
                         <Image left={3403} top={655} src={require("./images/icon1.png")} />
                         <Text left={3415} top={778} value="高危" font="SourceHanSansSC-Normal" fontSize={24} />
-                    </Progress>
-                    <Progress left={3322} top={1036} width={222} value={this.state.剩余容量} color="#F86E05">
-                        <Text left={3384} top={1113} value={`${this.state.剩余容量}%`} font="SourceHanSansSC-Medium" fontSize={48} />
+                    </CircleProgress>
+                    <CircleProgress left={3322} top={1036} width={222} value={this.state.剩余容量} colorStart="rgb(244, 192, 57)" colorEnd="rgb(246, 140, 61)">
+                        <Text left={3384} top={1113} value={`${toFixed(this.state.剩余容量, 0)}%`} font="SourceHanSansSC-Medium" fontSize={48} />
                         <Text left={3412} top={1191} value="较高" font="SourceHanSansSC-Normal" fontSize={24} />
-                    </Progress>
-                    <Progress left={3322} top={1465} width={222} value={this.state.健康状态} color="#F86E05">
+                    </CircleProgress>
+                    <CircleProgress left={3322} top={1465} width={222} value={this.state.健康状态} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)">
                         <Image left={3401} top={1527} src={require("./images/icon2.png")} />
                         <Text left={3410} top={1625} value="健康" font="SourceHanSansSC-Normal" fontSize={24} />
-                    </Progress>
+                    </CircleProgress>
                 </Container>
             </Container>
         );

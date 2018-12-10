@@ -27,7 +27,6 @@ export default class Progress extends BaseComponent {
         width: 100,
         height: 20,
         value: 0,
-        color: '#D3D3D3',
         trailColor: '#4A6284'
     }
 
