@@ -16,7 +16,8 @@ export default class Container extends BaseComponent {
         left: PropTypes.number, // 横坐标
         top: PropTypes.number, // 纵坐标
         width: PropTypes.number, // 宽度
-        height: PropTypes.number // 高度
+        height: PropTypes.number, // 高度
+        onClick: PropTypes.func // 点击事件处理函数
     }
 
     static defaultProps = {
@@ -24,7 +25,8 @@ export default class Container extends BaseComponent {
         left: null,
         top: null,
         width: null,
-        height: null
+        height: null,
+        onClick: null
     }
 
     render() {
@@ -34,7 +36,7 @@ export default class Container extends BaseComponent {
         }
 
         const { left, top } = this.getRelativePosition(this.props.left, this.props.top);
-        const { width, height } = this.props;
+        const { width, height, onClick } = this.props;
 
         return (
             <div className={style.container} style={{ left: `${left}px`, top: `${top}px`, width: `${width}px`, height: `${height}px` }}>
@@ -42,6 +44,7 @@ export default class Container extends BaseComponent {
                 <div className={style.content}>
                     {this.props.children}
                 </div>
+                {onClick ? <div className={style.content} onClick={onClick} /> : null}
             </div>
         );
     }

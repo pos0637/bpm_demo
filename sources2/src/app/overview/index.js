@@ -80,10 +80,10 @@ export default class Overview extends BaseComponent {
                         <Progress left={1099} top={1299} width={251} height={9} value={this.state.母线2 / 1000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
                     </Container>
                     <Container left={1979} top={532} background={require("./images/small_box2.png")}>
-                        <Text left={2332} top={575} value="负载" font="SourceHanSansSC-Medium" fontSize={46.24} />
-                        <Text left={2177} top={664} value={`总充电量${toFixed(this.state.总充电量, 1)}kWh`} font="SourceHanSansSC-Light" fontSize={27.69} align="right" width={246} />
+                        <Text left={2332} top={575} value="储能" font="SourceHanSansSC-Medium" fontSize={46.24} />
+                        <Text left={2177} top={664} value={`总充电量${toFixed(this.state.总充电量, 1)}kWh`} font="SourceHanSansSC-Light" fontSize={27.69} align="right" width={250} />
                         <Progress left={2173} top={710} width={251} height={9} value={this.state.总充电量 / 2000 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)" />
-                        <Text left={2177} top={740} value={`总放电量${toFixed(this.state.总放电量, 1)}kWh`} font="SourceHanSansSC-Light" fontSize={27.69} align="right" width={246} />
+                        <Text left={2177} top={740} value={`总放电量${toFixed(this.state.总放电量, 1)}kWh`} font="SourceHanSansSC-Light" fontSize={27.69} align="right" width={250} />
                         <Progress left={2173} top={786} width={251} height={9} value={this.state.总放电量 / 2000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
                     </Container>
                 </Container>
@@ -101,8 +101,8 @@ export default class Overview extends BaseComponent {
                     <Image left={293} top={1758} src={require("./images/link.png")} />
                     <Image left={700} top={1645} src={require("./images/ems_icon.png")} />
 
-                    { this.state.充电1 === 0? <Image left={372} top={1782} src={require("./images/charging_arrow.gif")} />: <Image left={372} top={1796} src={require("./images/discharging_arrow.gif")} /> }
-                    { this.state.充电1 !== 0? <Image left={372} top={1796} src={require("./images/discharging_arrow.png")} />: <Image left={372} top={1782} src={require("./images/charging_arrow.png")} /> }                    
+                    {this.state.充电1 === 0 ? <Image left={372} top={1782} src={require("./images/charging_arrow.gif")} /> : <Image left={372} top={1796} src={require("./images/discharging_arrow.gif")} />}
+                    {this.state.充电1 !== 0 ? <Image left={372} top={1796} src={require("./images/discharging_arrow.png")} /> : <Image left={372} top={1782} src={require("./images/charging_arrow.png")} />}
                 </Container>
 
                 <Container left={1996} top={1491} background={require("./images/box3.png")}>

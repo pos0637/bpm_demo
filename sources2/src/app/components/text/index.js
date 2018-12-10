@@ -14,8 +14,9 @@ import style from "./index.scss";
 export default class Text extends BaseComponent {
     static propTypes = {
         value: PropTypes.any.isRequired, // 内容        
-        left: PropTypes.number.isRequired, // 横坐标
-        top: PropTypes.number.isRequired, // 纵坐标
+        left: PropTypes.number, // 横坐标
+        top: PropTypes.number, // 纵坐标
+        bottom: PropTypes.number, // 距底部距离
         width: PropTypes.number, // 宽度
         font: PropTypes.string, // 字体
         fontSize: PropTypes.number, // 字体大小
@@ -31,6 +32,9 @@ export default class Text extends BaseComponent {
     }
 
     static defaultProps = {
+        left: null,
+        top: null,
+        bottom: null,
         font: 'SourceHanSansSC-Medium',
         fontSize: 48,
         weight: 'normal',
@@ -65,9 +69,10 @@ export default class Text extends BaseComponent {
         }
 
         const { left, top } = this.getRelativePosition(this.props.left, this.props.top);
+        const { bottom } = this.props;
 
         return (
-            <span className={style.content} style={{ left: `${left}px`, top: `${top}px`, fontFamily: font, fontSize: `${fontSize}px`, fontWeight: weight, color: color, lineHeight: 1, textAlign: this.props.align, width: `${this.props.width}px` }}>
+            <span className={style.content} style={{ left: `${left}px`, top: `${top}px`, bottom: `${bottom}px`, fontFamily: font, fontSize: `${fontSize}px`, fontWeight: weight, color: color, lineHeight: 1, textAlign: this.props.align, width: `${this.props.width}px` }}>
                 {value}{suffixContent}
             </span>
         );

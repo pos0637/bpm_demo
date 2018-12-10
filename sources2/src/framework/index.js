@@ -31,7 +31,7 @@ export default class Framework extends BaseComponent {
             <div>
                 <img className={style.background} src={require("./images/bg.png")} alt="" />
                 <Image left={199} top={96} src={require("./images/logo.png")} />
-                <Image left={3270} top={2026} src={require("./images/logo2.png")} />
+                <Image left={3270} bottom={134} src={require("./images/logo2.png")} />
                 <Image left={199} top={198} src={require("./images/title.png")} />
                 <div className={style.content}>
                     {this.props.children}
