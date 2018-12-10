@@ -54,11 +54,11 @@ export default class Pcs extends BaseComponent {
             <Container width={3840} height={2160}>
                 <Container left={173} top={378} background={require("./images/box1.png")}>
                     <Text left={279} top={433} value="PCS&nbsp;1" font="SourceHanSansSC-Medium" fontSize={48} />
-                    <Image left={251} top={726} src={require("./images/img1.png")} />
+                    <Image left={251} top={726} src={require("./images/img1.gif")} />
                 </Container>
                 <Container left={3003} top={378} background={require("./images/box1.png")}>
                     <Text left={3085} top={433} value="PCS&nbsp;2" font="SourceHanSansSC-Medium" fontSize={48} />
-                    <Image left={3053} top={726} src={require("./images/img1.png")} />
+                    <Image left={3053} top={726} src={require("./images/img1.gif")} />
                 </Container>
                 <Container left={173} top={1485} background={require("./images/box2.png")}>
                     <Text left={281} top={1535} value="电网数据" font="SourceHanSansSC-Medium" fontSize={48} />

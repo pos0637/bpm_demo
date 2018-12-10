@@ -101,9 +101,8 @@ export default class Overview extends BaseComponent {
                     <Image left={293} top={1758} src={require("./images/link.png")} />
                     <Image left={700} top={1645} src={require("./images/ems_icon.png")} />
 
-                    {/* TODO: animation */}
-                    <Image left={372} top={1782} src={require("./images/charging_arrow.png")} />
-                    <Image left={372} top={1796} src={require("./images/discharging_arrow.png")} />
+                    { this.state.充电1 === 0? <Image left={372} top={1782} src={require("./images/charging_arrow.gif")} />: <Image left={372} top={1796} src={require("./images/discharging_arrow.gif")} /> }
+                    { this.state.充电1 !== 0? <Image left={372} top={1796} src={require("./images/discharging_arrow.png")} />: <Image left={372} top={1782} src={require("./images/charging_arrow.png")} /> }                    
                 </Container>
 
                 <Container left={1996} top={1491} background={require("./images/box3.png")}>
