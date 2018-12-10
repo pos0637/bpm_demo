@@ -12,3 +12,19 @@ export function toFixed(value, num) {
         return value.toFixed(num);
     }
 }
+
+/**
+ * 数值字符串前补0
+ *
+ * @export
+ * @param {*} value 数值
+ * @param {*} num 补0位数
+ */
+export function pad(value, num) {
+    let padding = '';
+    for (let i = 0; i < num; i += 1) {
+        padding += '0';
+    }
+
+    return (padding + value).slice(-num);
+}

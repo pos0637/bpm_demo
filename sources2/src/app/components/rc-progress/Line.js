@@ -16,7 +16,7 @@ class Line extends Component {
             trailWidth,
             ...restProps
         } = this.props;
-
+        const { strokeColorStart, strokeColorEnd } = this.props;
         delete restProps.gapPosition;
 
         const pathStyle = {
@@ -42,8 +42,8 @@ class Line extends Component {
             >
                 <defs>
                     <linearGradient id="linear-gradient" gradientUnits="userSpaceOnUse" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" style={{ stopColor: "#ffff00", stopOpacity: 1 }} />
-                        <stop offset="100%" style={{ stopColor: "#ff0000", stopOpacity: 1 }} />
+                        <stop offset="0%" style={{ stopColor: strokeColorStart, stopOpacity: 1 }} />
+                        <stop offset="100%" style={{ stopColor: strokeColorEnd, stopOpacity: 1 }} />
                     </linearGradient>
                 </defs>
                 <path
@@ -58,7 +58,7 @@ class Line extends Component {
                     className={`${prefixCls}-line-path`}
                     d={pathString}
                     strokeLinecap={strokeLinecap}
-                    stroke="url(#linear-gradient)"
+                    stroke={strokeColor || "url(#linear-gradient)"}
                     strokeWidth={strokeWidth}
                     fillOpacity="0"
                     ref={(path) => { this.path = path; }}

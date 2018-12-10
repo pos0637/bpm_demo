@@ -32,9 +32,9 @@ export default class Framework extends BaseComponent {
                 <img className={style.background} src={require("./images/bg.png")} alt="" />
                 <Image left={199} top={96} src={require("./images/logo.png")} />
                 <Image left={3270} top={2026} src={require("./images/logo2.png")} />
-                <Image left={199} top={198} src={require("./images/title.png")} />                
+                <Image left={199} top={198} src={require("./images/title.png")} />
                 <div className={style.content}>
-                    {this.props.children}            
+                    {this.props.children}
                 </div>
                 {this.props.logout ? <Image left={3084} top={182} src={require("./images/back.png")} onClick={() => this._onLogoutButtonClick()} /> : null}
                 {this.props.back ? <Image left={3084} top={182} src={require("./images/back.png")} onClick={() => this._onBackButtonClick()} /> : null}
