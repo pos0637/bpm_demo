@@ -7,21 +7,27 @@ import Overview from '~/app/overview';
 import Login from '~/app/login';
 import Load from '~/app/load';
 import Pcs from '~/app/pcs';
+import Air from '~/app/air';
+import Transformer from '~/app/transformer';
 
 const locales = { 'ZH-CN': require('~/app/locales/zh-CN.json') };
 const overview = () => <Application currentLocale='ZH-CN' locales={locales}><Framework><Overview /></Framework></Application>;
 const login = () => <Application currentLocale='ZH-CN' locales={locales}><Framework back><Login /></Framework></Application>;
 const load = () => <Application currentLocale='ZH-CN' locales={locales}><Framework back><Load /></Framework></Application>;
 const pcs = () => <Application currentLocale='ZH-CN' locales={locales}><Framework back><Pcs /></Framework></Application>;
+const air = () => <Application currentLocale='ZH-CN' locales={locales}><Framework back><Air /></Framework></Application>;
+const transformer = () => <Application currentLocale='ZH-CN' locales={locales}><Framework back><Transformer /></Framework></Application>;
 
 render((
     <MemoryRouter>
         <Switch>
-            <Route path='/' exact component={pcs} />
+            <Route path='/' exact component={transformer} />
             <Route path='/overview' exact component={overview} />
-            <Route path='/Login' exact component={login} />
-            <Route path='/Load' exact component={load} />
-            <Route path='/Pcs' exact component={pcs} />
+            <Route path='/login' exact component={login} />
+            <Route path='/load' exact component={load} />
+            <Route path='/pcs' exact component={pcs} />
+            <Route path='/air' exact component={air} />
+            <Route path='/transformer' exact component={transformer} />
             <Route path='*' component={overview} />
         </Switch>
     </MemoryRouter>

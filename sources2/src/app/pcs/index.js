@@ -88,47 +88,47 @@ export default class Pcs extends BaseComponent {
 
                 <Container left={916} top={692} background={require("./images/box3.png")}>
                     <Text left={1022} top={742} value="日充电电量" font="SourceHanSansSC-Medium" fontSize={48} />    
-                    <Text left={1700} top={866} value={`${toFixed(this.state.日充电电量1, 0)}`} font="SourceHanSansSC-Medium" fontSize={48} />    
-                    <Text left={1700} top={918} value="kWh" font="SourceHanSansSC-Medium" fontSize={48} />    
+                    <Text left={1700} top={866} value={`${toFixed(this.state.日充电电量1, 0)}`} font="SourceHanSansSC-Heavy" fontSize={45} />    
+                    <Text left={1700} top={918} value="kWh" font="SourceHanSansSC-Heavy" fontSize={45} />    
                     <LineChart left={1026} top={861} width={637} height={115} color="rgba(68,175,244,0.8)" />
                 </Container>
                 <Container left={1933} top={692} background={require("./images/box3.png")}>
                     <Text left={2043} top={742} value="日充电电量" font="SourceHanSansSC-Medium" fontSize={48} />    
-                    <Text left={2717} top={866} value={`${toFixed(this.state.日充电电量2, 0)}`} font="SourceHanSansSC-Medium" fontSize={48} />    
-                    <Text left={2717} top={918} value="kWh" font="SourceHanSansSC-Medium" fontSize={48} />    
+                    <Text left={2717} top={866} value={`${toFixed(this.state.日充电电量2, 0)}`} font="SourceHanSansSC-Heavy" fontSize={45} />    
+                    <Text left={2717} top={918} value="kWh" font="SourceHanSansSC-Heavy" fontSize={45} />    
                     <LineChart left={2043} top={861} width={637} height={115} color="rgba(68,175,244,0.8)" />
                 </Container>
 
                 <Container left={916} top={1004} background={require("./images/box3.png")}>
                     <Text left={1022} top={1054} value="日放电电量" font="SourceHanSansSC-Medium" fontSize={48} />    
-                    <Text left={1700} top={1179} value={`${toFixed(this.state.日放电电量1, 0)}`} font="SourceHanSansSC-Medium" fontSize={48} />    
-                    <Text left={1700} top={1229} value="kWh" font="SourceHanSansSC-Medium" fontSize={48} />    
+                    <Text left={1700} top={1179} value={`${toFixed(this.state.日放电电量1, 0)}`} font="SourceHanSansSC-Heavy" fontSize={45} />    
+                    <Text left={1700} top={1229} value="kWh" font="SourceHanSansSC-Heavy" fontSize={45} />    
                     <LineChart left={1026} top={1173} width={637} height={115} color="rgba(68,175,244,0.8)" />
                 </Container>
                 <Container left={1933} top={1004} background={require("./images/box3.png")}>
                     <Text left={2043} top={1054} value="日放电电量" font="SourceHanSansSC-Medium" fontSize={48} />    
-                    <Text left={2717} top={1179} value={`${toFixed(this.state.日放电电量2, 0)}`} font="SourceHanSansSC-Medium" fontSize={48} />    
-                    <Text left={2717} top={1229} value="kWh" font="SourceHanSansSC-Medium" fontSize={48} />    
+                    <Text left={2717} top={1179} value={`${toFixed(this.state.日放电电量2, 0)}`} font="SourceHanSansSC-Heavy" fontSize={45} />    
+                    <Text left={2717} top={1229} value="kWh" font="SourceHanSansSC-Heavy" fontSize={45} />    
                     <LineChart left={2043} top={1173} width={637} height={115} color="rgba(68,175,244,0.8)" />
                 </Container>
 
                 <Container left={916} top={1316} background={require("./images/box3.png")}>
                     <Text left={1022} top={1369} value="日放电电量" font="SourceHanSansSC-Medium" fontSize={48} />    
-                    <Text left={1700} top={1494} value={`${toFixed(this.state.日放电功率1, 0)}`} font="SourceHanSansSC-Medium" fontSize={48} />    
-                    <Text left={1700} top={1553} value="w" font="SourceHanSansSC-Medium" fontSize={48} />    
+                    <Text left={1700} top={1494} value={`${toFixed(this.state.日放电功率1, 0)}`} font="SourceHanSansSC-Heavy" fontSize={45} />    
+                    <Text left={1700} top={1553} value="w" font="SourceHanSansSC-Heavy" fontSize={45} />    
                     <LineChart left={1026} top={1488} width={637} height={115} color="rgba(68,175,244,0.8)" />
                 </Container>
                 <Container left={1933} top={1316} background={require("./images/box3.png")}>
                     <Text left={2043} top={1369} value="日放电电量" font="SourceHanSansSC-Medium" fontSize={48} />    
-                    <Text left={2717} top={1494} value={`${toFixed(this.state.日放电功率2, 0)}`} font="SourceHanSansSC-Medium" fontSize={48} />    
-                    <Text left={2717} top={1553} value="w" font="SourceHanSansSC-Medium" fontSize={48} />    
+                    <Text left={2717} top={1494} value={`${toFixed(this.state.日放电功率2, 0)}`} font="SourceHanSansSC-Heavy" fontSize={45} />    
+                    <Text left={2717} top={1553} value="w" font="SourceHanSansSC-Heavy" fontSize={45} />    
                     <LineChart left={2043} top={1488} width={637} height={115} color="rgba(68,175,244,0.8)" />
                 </Container>
 
-                <Container left={916} top={1628} background={require("./images/box4.png")}>
-                    <Text left={1024} top={1690} value="直流电压" font="SourceHanSansSC-Medium" fontSize={48} color="rgb(60, 211, 238)" />    
-                    <Text left={1299} top={1690} value="直流电流" font="SourceHanSansSC-Medium" fontSize={48} color="rgb(60, 211, 238)" />    
-                    <Text left={1588} top={1690} value="逆变电流" font="SourceHanSansSC-Medium" fontSize={48} color="rgb(60, 211, 238)" />    
+                <Container left={943} top={1646} background={require("./images/box4.png")}>
+                    <Text left={1024} top={1690} value="直流电压" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />    
+                    <Text left={1299} top={1690} value="直流电流" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />    
+                    <Text left={1588} top={1690} value="逆变电流" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />    
                     <Container left={1024} top={1771} background={require("./images/tip.png")}>    
                         <Text left={1024} top={1783} width={150} value={`${toFixed(this.state.直流电压1, 0)}V`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
                     </Container>
@@ -142,10 +142,10 @@ export default class Pcs extends BaseComponent {
                     <Progress left={1299} top={1850} width={221} height={14} value={this.state.直流电流1} />
                     <Progress left={1588} top={1850} width={221} height={14} value={this.state.逆变电流1} />
                 </Container>
-                <Container left={1933} top={1628} background={require("./images/box4.png")}>
-                    <Text left={2041} top={1690} value="直流电压" font="SourceHanSansSC-Medium" fontSize={48} color="rgb(60, 211, 238)" />    
-                    <Text left={2316} top={1690} value="直流电流" font="SourceHanSansSC-Medium" fontSize={48} color="rgb(60, 211, 238)" />    
-                    <Text left={2605} top={1690} value="逆变电流" font="SourceHanSansSC-Medium" fontSize={48} color="rgb(60, 211, 238)" />    
+                <Container left={1960} top={1646} background={require("./images/box4.png")}>
+                    <Text left={2041} top={1690} value="直流电压" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />    
+                    <Text left={2316} top={1690} value="直流电流" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />    
+                    <Text left={2605} top={1690} value="逆变电流" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />    
                     <Container left={2041} top={1771} background={require("./images/tip.png")}>    
                         <Text left={2041} top={1783} width={150} value={`${toFixed(this.state.直流电压1, 0)}V`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
                     </Container>
