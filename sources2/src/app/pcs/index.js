@@ -10,6 +10,7 @@ import BarChart from '~/app/components/barChart';
 import Dialog from '~/app/components/dialog';
 import { toFixed } from '~/misc/number';
 import { getRandom } from '~/misc/random';
+import style from './index.scss';
 
 /**
  * PCS视图
@@ -89,11 +90,11 @@ export default class Pcs extends BaseComponent {
 
                 <Container left={173} top={378} background={require("./images/box1.png")}>
                     <Text left={279} top={433} value="PCS&nbsp;1" font="SourceHanSansSC-Medium" fontSize={48} />
-                    <Image left={251} top={726} src={require("./images/img1.gif")} />
+                    <Image left={251} top={726} src={require("./images/img1.png")} className={style.move} />
                 </Container>
                 <Container left={3003} top={378} background={require("./images/box1.png")}>
                     <Text left={3085} top={433} value="PCS&nbsp;2" font="SourceHanSansSC-Medium" fontSize={48} />
-                    <Image left={3053} top={726} src={require("./images/img1.gif")} />
+                    <Image left={3053} top={726} src={require("./images/img1.png")} className={style.move} />
                 </Container>
                 <Container left={173} top={1485} background={require("./images/box2.png")}>
                     <Text left={281} top={1535} value="电网数据" font="SourceHanSansSC-Medium" fontSize={48} />

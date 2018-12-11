@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import BaseComponent from '~/components/baseComponent';
-import style from "./index.scss";
 
 /**
  * 输入框
@@ -33,14 +32,14 @@ export default class Input extends BaseComponent {
         fontSize: 42,
         weight: 'normal',
         color: 'rgb(137, 149, 165)'
-    } 
+    }
 
     render() {
         const { left, top } = this.getRelativePosition(this.props.left, this.props.top);
         const { width, height, type, name, value, font, fontSize, weight, color } = this.props;
 
         return (
-            <div className={style.background} style={{ left: `${left}px`, top: `${top}px` }}>
+            <div style={{ position: 'absolute', left: `${left}px`, top: `${top}px` }}>
                 <input type={type} name={name} value={value} style={{ fontFamily: font, fontSize: `${fontSize}px`, fontWeight: weight, color: color, lineHeight: 1, width: `${width}px`, height: `${height}px`, border: 0, backgroundColor: "transparent" }} />
             </div>
         );

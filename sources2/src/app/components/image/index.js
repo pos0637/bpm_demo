@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import BaseComponent from '~/components/baseComponent';
-import style from "./index.scss";
 
 /**
  * 图像
@@ -31,7 +30,7 @@ export default class Image extends BaseComponent {
         const { bottom } = this.props;
 
         return (
-            <div className={style.background} style={{ left: `${left}px`, top: `${top}px`, bottom: `${bottom}px` }}>
+            <div {...this.props} style={{ position: 'absolute', left: `${left}px`, top: `${top}px`, bottom: `${bottom}px` }}>
                 <img src={this.props.src} alt="" onClick={this.props.onClick} />
             </div>
         );

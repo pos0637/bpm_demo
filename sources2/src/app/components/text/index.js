@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import BaseComponent from '~/components/baseComponent';
 import { toFixed } from '~/misc/number';
-import style from "./index.scss";
 
 /**
  * 文本
@@ -72,7 +71,7 @@ export default class Text extends BaseComponent {
         const { bottom } = this.props;
 
         return (
-            <span className={style.content} style={{ left: `${left}px`, top: `${top}px`, bottom: `${bottom}px`, fontFamily: font, fontSize: `${fontSize}px`, fontWeight: weight, color: color, lineHeight: 1, textAlign: this.props.align, width: `${this.props.width}px` }}>
+            <span style={{ position: 'absolute', left: `${left}px`, top: `${top}px`, bottom: `${bottom}px`, fontFamily: font, fontSize: `${fontSize}px`, fontWeight: weight, color: color, lineHeight: 1, textAlign: this.props.align, width: `${this.props.width}px` }}>
                 {value}{suffixContent}
             </span>
         );

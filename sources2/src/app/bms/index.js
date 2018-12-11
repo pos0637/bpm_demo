@@ -7,6 +7,7 @@ import Container from '~/app/components/container';
 import CircleProgress from '~/app/components/progress';
 import { toFixed, pad } from '~/misc/number';
 import { getRandom } from '~/misc/random';
+import style from './index.scss';
 
 /**
  * BMS&电池视图
@@ -78,8 +79,8 @@ export default class Bms extends BaseComponent {
 
                 <Container left={173} top={378} background={require("./images/box1.png")}>
                     <Text left={278} top={428} value="BMS&amp;电池" font="SourceHanSansSC-Medium" fontSize={48} />
-                    <Image left={275} top={629} src={require("./images/img1.png")} />
-                    <Image left={371} top={1285} src={require("./images/img2.png")} />
+                    <Image left={275} top={629} src={require("./images/img1.png")} className={style.move} />
+                    <Image left={371} top={1285} src={require("./images/img2.png")} className={style.move} />
                 </Container>
                 <Container left={1084} top={392} background={require("./images/box2.png")}>
                     <Text left={1170} top={515} value="1#" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />

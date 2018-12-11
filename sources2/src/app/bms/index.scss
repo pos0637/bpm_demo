@@ -1,0 +1,30 @@
+@mixin keyframes($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+    @keyframes #{$animationName} {
+        @content;
+    }
+}
+
+@include keyframes(animationMove) {
+    0%   { 
+        margin-top: 0px;
+    }
+    50% { 
+        margin-top: 20px;
+    }
+    100% { 
+        margin-top: 0px;
+    }
+}
+
+.move {
+    animation: animationMove 1s linear infinite;
+}

@@ -8,6 +8,7 @@ import Switch from '~/app/components/switch';
 import CircleProgress from '~/app/components/progress';
 import { toFixed } from '~/misc/number';
 import { getRandom } from '~/misc/random';
+import style from './index.scss';
 
 /**
  * 空调&灭火器视图
@@ -57,8 +58,8 @@ export default class Air extends BaseComponent {
 
                 <Container left={173} top={378} background={require("./images/box1.png")}>
                     <Text left={278} top={428} value="空调&amp;灭火器" font="SourceHanSansSC-Medium" fontSize={48} />
-                    <Image left={248} top={632} src={require("./images/img1.png")} />
-                    <Image left={663} top={1092} src={require("./images/img2.png")} />
+                    <Image left={248} top={632} src={require("./images/img1.png")} className={style.move} />
+                    <Image left={663} top={1092} src={require("./images/img2.png")} className={style.move} />
                 </Container>
                 <Container left={1323} top={378} background={require("./images/box2.png")}>
                     <Text left={1427} top={428} value="环境温度状态" font="SourceHanSansSC-Medium" fontSize={48} />

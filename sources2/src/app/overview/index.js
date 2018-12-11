@@ -9,6 +9,7 @@ import Switch from '~/app/components/switch';
 import BarChart from '~/app/components/barChart';
 import { toFixed, pad } from '~/misc/number';
 import { getRandom } from '~/misc/random';
+import style from './index.scss';
 
 /**
  * 概览视图
@@ -87,11 +88,11 @@ export default class Overview extends BaseComponent {
                 <Container left={172} top={304} background={require("./images/box1.png")} onClick={() => this.context.router.history.replace('/login')}>
                     <Text left={275} top={354} value="清洁能源微网系统" font="SourceHanSansSC-Bold" fontSize={48} />
                     <Image left={350} top={682} src={require("./images/line.gif")} />
-                    <Image left={298} top={944} src={require("./images/charging_station.png")} />
-                    <Image left={610} top={489} src={require("./images/grid.png")} />
-                    <Image left={1295} top={866} src={require("./images/load.png")} />
-                    <Image left={1710} top={447} src={require("./images/storage.png")} />
-                    <Image left={1963} top={993} src={require("./images/photovoltaic.png")} />
+                    <Image left={298} top={944} src={require("./images/charging_station.png")} className={style.move} />
+                    <Image left={610} top={489} src={require("./images/grid.png")} className={style.move} />
+                    <Image left={1295} top={866} src={require("./images/load.png")} className={style.move} />
+                    <Image left={1710} top={447} src={require("./images/storage.png")} className={style.move} />
+                    <Image left={1963} top={993} src={require("./images/photovoltaic.png")} className={style.move} />
                     <Text left={477} top={1392} value="充电桩" font="SourceHanSansSC-Medium" fontSize={46.24} />
                     <Text left={2117} top={1392} value="光伏发电" font="SourceHanSansSC-Medium" fontSize={46.24} />
                     <Container left={280} top={531} background={require("./images/small_box1.png")}>

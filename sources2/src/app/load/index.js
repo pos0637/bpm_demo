@@ -10,6 +10,7 @@ import BarChart from '~/app/components/barChart';
 import Dialog from '~/app/components/dialog';
 import { toFixed } from '~/misc/number';
 import { getRandom } from '~/misc/random';
+import style from './index.scss';
 
 /**
  * 电网与负载视图
@@ -99,8 +100,8 @@ export default class Load extends BaseComponent {
 
                 <Container left={199} top={393} background={require("./images/box1.png")}>
                     <Text left={280} top={428} value="电网&amp;负载" font="SourceHanSansSC-Medium" fontSize={48} />
-                    <Image left={281} top={625} src={require("./images/img1.png")} />
-                    <Image left={399} top={1237} src={require("./images/img2.png")} />
+                    <Image left={281} top={625} src={require("./images/img1.png")} className={style.move} />
+                    <Image left={399} top={1237} src={require("./images/img2.png")} className={style.move} />
                 </Container>
                 <Container left={1322} top={393} background={require("./images/box1.png")}>
                     <Text left={1430} top={428} value="电网数据" font="SourceHanSansSC-Medium" fontSize={48} />

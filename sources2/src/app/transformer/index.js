@@ -10,6 +10,7 @@ import BarChart from '~/app/components/barChart';
 import Dialog from '~/app/components/dialog';
 import { toFixed } from '~/misc/number';
 import { getRandom } from '~/misc/random';
+import style from './index.scss';
 
 /**
  * 变压器视图
@@ -83,11 +84,11 @@ export default class Transformer extends BaseComponent {
 
                 <Container left={173} top={378} background={require("./images/box1.png")}>
                     <Text left={276} top={427} value="变压器" font="SourceHanSansSC-Medium" fontSize={48} />
-                    <Image left={316} top={890} src={require("./images/img1.png")} />
+                    <Image left={316} top={890} src={require("./images/img1.png")} className={style.move} />
                 </Container>
                 <Container left={2932} top={378} background={require("./images/box1.png")}>
                     <Text left={3036} top={427} value="并网柜" font="SourceHanSansSC-Medium" fontSize={48} />
-                    <Image left={3026} top={846} src={require("./images/img2.png")} />
+                    <Image left={3026} top={846} src={require("./images/img2.png")} className={style.move} />
                 </Container>
                 <Container left={939} top={378} background={require("./images/box2.png")}>
                     <Text left={1041} top={550} value="1#变压器" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
