@@ -23,6 +23,7 @@ export default class Login extends BaseComponent {
                 <Image left={199} top={96} src={require("../../framework/images/logo.png")} />
                 <Image left={3270} top={2026} src={require("../../framework/images/logo2.png")} />
                 <Image left={199} top={198} src={require("../../framework/images/title.png")} />
+                <Image left={3084} top={182} src={require("../../framework/images/back.png")} onClick={() => this.context.router.history.replace('/overview')} />
 
                 <Container left={1128} top={551} background={require("./images/box1.png")}>
                     <Image left={1558} top={707} src={require("./images/icon1.png")} />

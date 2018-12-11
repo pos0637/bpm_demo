@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import BaseComponent from '~/components/baseComponent';
 import style from './index.scss';
-import Image from '~/app/components/image';
 
 /**
  * 主框架
@@ -33,27 +32,7 @@ export default class Framework extends BaseComponent {
                 <div className={style.content}>
                     {this.props.children}
                 </div>
-                {this.props.logout ? <Image left={3084} top={182} src={require("./images/back.png")} onClick={() => this._onLogoutButtonClick()} /> : null}
-                {this.props.back ? <Image left={3084} top={182} src={require("./images/back.png")} onClick={() => this._onBackButtonClick()} /> : null}
             </div>
         );
-    }
-
-    /**
-     * 注销按钮点击事件
-     *
-     * @memberof Framework
-     */
-    _onLogoutButtonClick() {
-        this.context.router.history.replace('/');
-    }
-
-    /**
-     * 返回按钮点击事件
-     *
-     * @memberof Framework
-     */
-    _onBackButtonClick() {
-        this.context.router.history.replace('/overview');
     }
 }
