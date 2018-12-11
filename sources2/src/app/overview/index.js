@@ -85,7 +85,7 @@ export default class Overview extends BaseComponent {
                 <Text left={2232} top={174} value={pad(this.state.无故障运行时间, 4)} font="SourceHanSansSC-Bold" fontSize={96.43} color="rgb(102, 224, 250)" />
                 <Text left={2494} top={194} value="天" font="SourceHanSansSC-Light" fontSize={58.39} />
 
-                <Container left={172} top={304} background={require("./images/box1.png")} onClick={() => this.context.router.history.replace('/login')}>
+                <Container left={199} top={319} background={require("./images/box1.png")} onClick={() => this.context.router.history.replace('/login')}>
                     <Text left={275} top={354} value="清洁能源微网系统" font="SourceHanSansSC-Bold" fontSize={48} />
                     <Image left={350} top={682} src={require("./images/line.gif")} />
                     <Image left={298} top={944} src={require("./images/charging_station.png")} className={style.move} />
@@ -118,7 +118,7 @@ export default class Overview extends BaseComponent {
                     </Container>
                 </Container>
 
-                <Container left={172} top={1491} background={require("./images/box2.png")}>
+                <Container left={199} top={1506} background={require("./images/box2.png")}>
                     <Text left={275} top={1543} value="储能系统" font="SourceHanSansSC-Bold" fontSize={48} />
                     <Image left={233} top={1654} src={require("./images/grid_icon.png")} />
                     <Image left={233} top={1841} src={require("./images/load_icon.png")} />
@@ -134,27 +134,27 @@ export default class Overview extends BaseComponent {
                     {this.state.充电1 === 0 ? <Image left={372} top={1782} src={require("./images/charging_arrow.gif")} /> : <Image left={372} top={1796} src={require("./images/discharging_arrow.gif")} />}
                 </Container>
 
-                <Container left={1996} top={1491} background={require("./images/box3.png")} onClick={() => window.login && this.context.router.history.replace('/air')}>
+                <Container left={2023} top={1506} background={require("./images/box3.png")} onClick={() => window.login && this.context.router.history.replace('/air')}>
                     <Text left={2091} top={1543} value="安防系统" font="SourceHanSansSC-Bold" fontSize={48} />
                     <Text left={2091} top={1661} value="状态" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Switch left={2094} top={1756} src1={require("./images/security_system_normal0.png")} src2={require("./images/security_system_normal1.png")} value={this.state.安防系统状态 === 0} />
                     <Switch left={2338} top={1753} src1={require("./images/security_system_alarm0.png")} src2={require("./images/security_system_alarm1.png")} value={this.state.安防系统状态 !== 0} />
                 </Container>
 
-                <Container left={2575} top={84} background={require("./images/box4.png")}>
+                <Container left={2600} top={99} background={require("./images/box4.png")}>
                     <Text left={2677} top={133} value="电站运行状态" font="SourceHanSansSC-Bold" fontSize={48} />
                     <Switch left={2682} top={251} src1={require("./images/charging0.png")} src2={require("./images/charging1.png")} value={this.state.充电1 === 0} />
                     <Switch left={3187} top={251} src1={require("./images/discharging0.png")} src2={require("./images/discharging1.png")} value={this.state.充电1 !== 0} />
                 </Container>
 
-                <Container left={2575} top={419} background={require("./images/box5.png")}>
+                <Container left={2600} top={429} background={require("./images/box5.png")}>
                     <Text left={2677} top={470} value="电站节能总费用" font="SourceHanSansSC-Bold" fontSize={48} />
                     <Image left={3341} top={536} src={require("./images/money.gif")} />
                     <Text left={2676} top={600} value={`${toFixed(this.state.节能总费用, 0)}`} font="SourceHanSansSC-Heavy" fontSize={146} />
                     <Text left={3190} top={648} value="元" font="SourceHanSansSC-Regular" fontSize={72} color="rgb(60, 211, 238)" />
                 </Container>
 
-                <Container left={2575} top={791} background={require("./images/box6.png")}>
+                <Container left={2600} top={802} background={require("./images/box6.png")}>
                     <Text left={2677} top={840} value="日充/放电量" font="SourceHanSansSC-Bold" fontSize={48} />
                     <Text left={2679} top={1005} value="1#" font="SourceHanSansSC-Medium" fontSize={40} />
                     <Text left={2776} top={995} value="今日充电总量" font="SourceHanSansSC-Heavy" fontSize={48} />
@@ -173,7 +173,7 @@ export default class Overview extends BaseComponent {
                     <Progress left={3240} top={1381} width={251} height={9} value={this.state.今日放电总量2 / 2000 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)" />
                 </Container>
 
-                <Container left={2575} top={1491} background={require("./images/box7.png")}>
+                <Container left={2600} top={1502} background={require("./images/box7.png")}>
                     <Text left={2677} top={1543} value="充放电量曲线" font="SourceHanSansSC-Bold" fontSize={48} />
                     <Text left={2673} top={1665} value="1#系统" font="SourceHanSansSC-Heavy" fontSize={48} />
                     <BarChart left={2673} top={1746} width={404} height={215} color="rgba(68,175,244,0.8)" min={this.state.充放电量曲线1 - 30} max={this.state.充放电量曲线1 + 30} />
