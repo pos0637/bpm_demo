@@ -89,21 +89,21 @@ export default class Bms extends BaseComponent {
                     {this._getCells(2089, 528, 1924)}
 
                     <Text left={2686} top={528} value="SOC" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
-                    <Text left={2686} top={589} value="剩余容量" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
+                    <Text left={2686} top={592} value="剩余容量" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Text left={2686} top={658} value="组端电压" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
-                    <Text left={2872} top={498} value={`${toFixed(this.state.SOC1, 0)}%`} font="SourceHanSansSC-Heavy" fontSize={74} />
-                    <Text left={2872} top={578} value={`${toFixed(this.state.剩余容量1, 0)}kWh`} font="SourceHanSansSC-Heavy" fontSize={74} />
-                    <Text left={2872} top={645} value={`${toFixed(this.state.组端电压1, 0)}V`} font="SourceHanSansSC-Heavy" fontSize={74} />
+                    <Text left={2872} top={528} value={`${toFixed(this.state.SOC1, 0)}%`} font="SourceHanSansSC-Heavy" fontSize={40} />
+                    <Text left={2872} top={592} value={`${toFixed(this.state.剩余容量1, 0)}kWh`} font="SourceHanSansSC-Heavy" fontSize={40} />
+                    <Text left={2872} top={658} value={`${toFixed(this.state.组端电压1, 0)}V`} font="SourceHanSansSC-Heavy" fontSize={40} />
 
                     <Text left={2686} top={761} value="1# 194" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Image left={2686} top={811} src={require("./images/line.png")} />
 
                     <Text left={2686} top={844} value="电池电压" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
-                    <Text left={2686} top={920} value="电池内阻" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
+                    <Text left={2686} top={916} value="电池内阻" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Text left={2686} top={985} value="电池温度" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
-                    <Text left={2872} top={844} value={`${toFixed(this.state.电池电压1, 0)}V`} font="SourceHanSansSC-Heavy" fontSize={74} />
-                    <Text left={2872} top={908} value={`${toFixed(this.state.电池内阻1, 0)}Ω`} font="SourceHanSansSC-Heavy" fontSize={74} />
-                    <Text left={2872} top={971} value={`${toFixed(this.state.电池温度1, 0)}℃`} font="SourceHanSansSC-Heavy" fontSize={74} />
+                    <Text left={2872} top={844} value={`${toFixed(this.state.电池电压1, 0)}V`} font="SourceHanSansSC-Heavy" fontSize={40} />
+                    <Text left={2872} top={916} value={`${toFixed(this.state.电池内阻1, 0)}Ω`} font="SourceHanSansSC-Heavy" fontSize={40} />
+                    <Text left={2872} top={985} value={`${toFixed(this.state.电池温度1, 0)}℃`} font="SourceHanSansSC-Heavy" fontSize={40} />
                 </Container>
                 <Container left={1084} top={1178} background={require("./images/box3.png")}>
                     <Text left={1170} top={1301} value="1#" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
@@ -112,21 +112,21 @@ export default class Bms extends BaseComponent {
                     {this._getCells(2089, 1314, 1924)}
 
                     <Text left={2686} top={1314} value="SOC" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
-                    <Text left={2686} top={1375} value="剩余容量" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
+                    <Text left={2686} top={1379} value="剩余容量" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Text left={2686} top={1444} value="组端电压" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
-                    <Text left={2872} top={1284} value={`${toFixed(this.state.SOC2, 0)}%`} font="SourceHanSansSC-Heavy" fontSize={74} />
-                    <Text left={2872} top={1364} value={`${toFixed(this.state.剩余容量2, 0)}kWh`} font="SourceHanSansSC-Heavy" fontSize={74} />
-                    <Text left={2872} top={1431} value={`${toFixed(this.state.组端电压2, 0)}V`} font="SourceHanSansSC-Heavy" fontSize={74} />
+                    <Text left={2872} top={1314} value={`${toFixed(this.state.SOC2, 0)}%`} font="SourceHanSansSC-Heavy" fontSize={40} />
+                    <Text left={2872} top={1379} value={`${toFixed(this.state.剩余容量2, 0)}kWh`} font="SourceHanSansSC-Heavy" fontSize={40} />
+                    <Text left={2872} top={1444} value={`${toFixed(this.state.组端电压2, 0)}V`} font="SourceHanSansSC-Heavy" fontSize={40} />
 
                     <Text left={2686} top={1547} value="1#  194" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Image left={2686} top={1597} src={require("./images/line.png")} />
 
                     <Text left={2686} top={1630} value="电池电压" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
-                    <Text left={2686} top={1706} value="电池内阻" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
+                    <Text left={2686} top={1700} value="电池内阻" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Text left={2686} top={1771} value="电池温度" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
-                    <Text left={2872} top={1630} value={`${toFixed(this.state.电池电压2, 0)}V`} font="SourceHanSansSC-Heavy" fontSize={74} />
-                    <Text left={2872} top={1694} value={`${toFixed(this.state.电池内阻2, 0)}Ω`} font="SourceHanSansSC-Heavy" fontSize={74} />
-                    <Text left={2872} top={1757} value={`${toFixed(this.state.电池温度2, 0)}℃`} font="SourceHanSansSC-Heavy" fontSize={74} />
+                    <Text left={2872} top={1630} value={`${toFixed(this.state.电池电压2, 0)}V`} font="SourceHanSansSC-Heavy" fontSize={40} />
+                    <Text left={2872} top={1700} value={`${toFixed(this.state.电池内阻2, 0)}Ω`} font="SourceHanSansSC-Heavy" fontSize={40} />
+                    <Text left={2872} top={1771} value={`${toFixed(this.state.电池温度2, 0)}℃`} font="SourceHanSansSC-Heavy" fontSize={40} />
                 </Container>
                 <Container left={3252} top={393} background={require("./images/box4.png")}>
                     <Text left={3376} top={554} value="热失控" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
