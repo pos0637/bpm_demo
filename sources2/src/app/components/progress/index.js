@@ -19,21 +19,23 @@ export default class CircleProgress extends Container {
         color: PropTypes.any, // 颜色
         colorStart: PropTypes.any, // 渐进色
         colorEnd: PropTypes.any, // 渐进色
-        trailColor: PropTypes.any // 背景色
+        trailColor: PropTypes.any, // 背景色
+        onClick: PropTypes.func // 点击事件处理函数
     }
 
     static defaultProps = {
         width: 0,
         value: 0,
-        trailColor: '#4A6284'
+        trailColor: '#4A6284',
+        onClick: null
     }
 
     render() {
         const { left, top } = this.getRelativePosition(this.props.left, this.props.top);
-        const { width, color, colorStart, colorEnd, trailColor } = this.props;
+        const { width, color, colorStart, colorEnd, trailColor, onClick } = this.props;
 
         return (
-            <div style={{ position: 'absolute', left: `${left}px`, top: `${top}px`, width: `${width}px`, height: `${width}px` }}>
+            <div style={{ position: 'absolute', left: `${left}px`, top: `${top}px`, width: `${width}px`, height: `${width}px` }} onClick={onClick}>
                 <Circle
                     strokeWidth="10"
                     strokeColor={color}

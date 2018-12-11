@@ -21,7 +21,8 @@ export default class BarChart extends BaseComponent {
         max: PropTypes.number,
         color: PropTypes.string,
         xLabels: PropTypes.array,
-        data: PropTypes.array
+        data: PropTypes.array,
+        onClick: PropTypes.func // 点击事件处理函数
     }
 
     static defaultProps = {
@@ -31,7 +32,8 @@ export default class BarChart extends BaseComponent {
         max: 1,
         color: 'rgba(251,207,72,0.8)',
         xLabels: null,
-        data: null
+        data: null,
+        onClick: null
     }
 
     chartOptions = {
@@ -99,9 +101,10 @@ export default class BarChart extends BaseComponent {
         }];
 
         const { left, top } = this.getRelativePosition(this.props.left, this.props.top);
+        const { onClick } = this.props;
 
         return (
-            <div style={{ position: 'absolute', left: `${left}px`, top: `${top}px` }}>
+            <div style={{ position: 'absolute', left: `${left}px`, top: `${top}px` }} onClick={onClick}>
                 <Bar
                     data={{ labels: xLabels, datasets: datasets }}
                     options={this.chartOptions}
