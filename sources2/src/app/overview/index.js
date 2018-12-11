@@ -92,7 +92,7 @@ export default class Overview extends BaseComponent {
                     <Image left={610} top={489} src={require("./images/grid.png")} className={style.move} />
                     <Image left={1295} top={866} src={require("./images/load.png")} className={style.move} />
                     <Image left={1710} top={447} src={require("./images/storage.png")} className={style.move} />
-                    <Image left={1963} top={993} src={require("./images/photovoltaic.png")} className={style.move} />
+                    <Image left={1963} top={993} src={require("./images/photovoltaic.png")} />
                     <Text left={477} top={1392} value="充电桩" font="SourceHanSansSC-Medium" fontSize={46.24} />
                     <Text left={2117} top={1392} value="光伏发电" font="SourceHanSansSC-Medium" fontSize={46.24} />
                     <Container left={280} top={531} background={require("./images/small_box1.png")}>

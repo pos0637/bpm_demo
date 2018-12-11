@@ -77,7 +77,7 @@ export default class Bms extends BaseComponent {
                 <Image left={199} top={198} src={require("../../framework/images/title.png")} />
                 <Image left={3084} top={182} src={require("../../framework/images/back.png")} onClick={() => this.context.router.history.replace('/overview')} />
 
-                <Container left={173} top={378} background={require("./images/box1.png")}>
+                <Container left={200} top={393} background={require("./images/box1.png")}>
                     <Text left={278} top={428} value="BMS&amp;电池" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Image left={275} top={629} src={require("./images/img1.png")} className={style.move} />
                     <Image left={371} top={1285} src={require("./images/img2.png")} className={style.move} />
@@ -105,7 +105,7 @@ export default class Bms extends BaseComponent {
                     <Text left={2872} top={908} value={`${toFixed(this.state.电池内阻1, 0)}Ω`} font="SourceHanSansSC-Heavy" fontSize={74} />
                     <Text left={2872} top={971} value={`${toFixed(this.state.电池温度1, 0)}℃`} font="SourceHanSansSC-Heavy" fontSize={74} />
                 </Container>
-                <Container left={1084} top={1178} background={require("./images/box2.png")}>
+                <Container left={1084} top={1178} background={require("./images/box3.png")}>
                     <Text left={1170} top={1301} value="1#" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Text left={1917} top={1301} value="2#" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     {this._getCells(1343, 1314, 1178)}
@@ -128,7 +128,7 @@ export default class Bms extends BaseComponent {
                     <Text left={2872} top={1694} value={`${toFixed(this.state.电池内阻2, 0)}Ω`} font="SourceHanSansSC-Heavy" fontSize={74} />
                     <Text left={2872} top={1757} value={`${toFixed(this.state.电池温度2, 0)}℃`} font="SourceHanSansSC-Heavy" fontSize={74} />
                 </Container>
-                <Container left={3252} top={393} background={require("./images/box3.png")}>
+                <Container left={3252} top={393} background={require("./images/box4.png")}>
                     <Text left={3376} top={554} value="热失控" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Text left={3362} top={976} value="剩余容量" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Text left={3362} top={1405} value="健康状态" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />

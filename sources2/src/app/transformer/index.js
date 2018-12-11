@@ -82,15 +82,15 @@ export default class Transformer extends BaseComponent {
                 <Image left={199} top={198} src={require("../../framework/images/title.png")} />
                 <Image left={3084} top={182} src={require("../../framework/images/back.png")} onClick={() => this.context.router.history.replace('/overview')} />
 
-                <Container left={173} top={378} background={require("./images/box1.png")}>
+                <Container left={199} top={393} background={require("./images/box1.png")}>
                     <Text left={276} top={427} value="变压器" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Image left={316} top={890} src={require("./images/img1.png")} className={style.move} />
                 </Container>
-                <Container left={2932} top={378} background={require("./images/box1.png")}>
+                <Container left={2959} top={393} background={require("./images/box6.png")}>
                     <Text left={3036} top={427} value="并网柜" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Image left={3026} top={846} src={require("./images/img2.png")} className={style.move} />
                 </Container>
-                <Container left={939} top={378} background={require("./images/box2.png")}>
+                <Container left={939} top={393} background={require("./images/box2.png")}>
                     <Text left={1041} top={550} value="1#变压器" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Text left={1342} top={550} value="2#变压器" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Image left={999} top={606} src={require("./images/line1.png")} />
@@ -108,12 +108,12 @@ export default class Transformer extends BaseComponent {
                     <Switch left={1251} top={986} src1={require("./images/fan_on.png")} src2={require("./images/fan_off.png")} value={this.state.风扇1} />
                     <Switch left={1251} top={1154} src1={require("./images/fan_on.png")} src2={require("./images/fan_off.png")} value={this.state.风扇2} />
                 </Container>
-                <Container left={939} top={1459} background={require("./images/box3.png")}>
+                <Container left={939} top={1459} background={require("./images/box5.png")}>
                     <Switch left={1021} top={1593} src1={require("./images/security_system_normal0.png")} src2={require("./images/security_system_normal1.png")} value={this.state.安防系统状态 === 0} />
                     <Switch left={1224} top={1593} src1={require("./images/security_system_alarm0.png")} src2={require("./images/security_system_alarm1.png")} value={this.state.安防系统状态 === 1} />
                     <Switch left={1446} top={1593} src1={require("./images/security_system_fault0.png")} src2={require("./images/security_system_fault1.png")} value={this.state.安防系统状态 === 2} />
                 </Container>
-                <Container left={1680} top={378} background={require("./images/box4.png")}>
+                <Container left={1680} top={393} background={require("./images/box3.png")}>
                     <Text left={1909} top={550} value="1#并网柜" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Text left={2483} top={550} value="2#并网柜" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Image left={1751} top={606} src={require("./images/line2.png")} />
@@ -154,7 +154,7 @@ export default class Transformer extends BaseComponent {
                     <BarChart left={1751} top={1135} width={487} height={130} color="rgba(68,175,244,0.8)" min={this.state.充放电实时功率1 - 30} max={this.state.充放电实时功率1 + 30} onClick={() => this.setState({ showDialog5: true })} />
                     <BarChart left={2335} top={1135} width={487} height={130} color="rgba(68,175,244,0.8)" min={this.state.充放电实时功率2 - 30} max={this.state.充放电实时功率2 + 30} onClick={() => this.setState({ showDialog6: true })} />
                 </Container>
-                <Container left={1680} top={1459} background={require("./images/box5.png")}>
+                <Container left={1680} top={1459} background={require("./images/box4.png")}>
                     <Text left={1790} top={1664} value="I段开关" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(7, 229, 255)" />
                     <Text left={2382} top={1664} value="I段开关" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(7, 229, 255)" />
                     <Switch left={2012} top={1660} src1={require("./images/link_on.png")} src2={require("./images/link_off.png")} value={this.state.合闸1 === 0} />
@@ -180,7 +180,7 @@ export default class Transformer extends BaseComponent {
     _onDialog1() {
         return (
             <Dialog onClick={() => this.setState({ showDialog1: false })}>
-                <Container left={1039} top={694} background={require("./images/box6.png")}>
+                <Container left={1039} top={694} background={require("./images/box7.png")}>
                     <Text left={1791} top={745} value="总充电电量" font="SourceHanSansSC-Bold" fontSize={60} />
 
                     <Container left={2210} top={907} background={require("./images/tip1.png")}>
@@ -201,7 +201,7 @@ export default class Transformer extends BaseComponent {
     _onDialog2() {
         return (
             <Dialog onClick={() => this.setState({ showDialog2: false })}>
-                <Container left={1039} top={694} background={require("./images/box6.png")}>
+                <Container left={1039} top={694} background={require("./images/box7.png")}>
                     <Text left={1791} top={745} value="总放电电量" font="SourceHanSansSC-Bold" fontSize={60} />
 
                     <Container left={2210} top={907} background={require("./images/tip1.png")}>
@@ -222,7 +222,7 @@ export default class Transformer extends BaseComponent {
     _onDialog3() {
         return (
             <Dialog onClick={() => this.setState({ showDialog3: false })}>
-                <Container left={1039} top={694} background={require("./images/box6.png")}>
+                <Container left={1039} top={694} background={require("./images/box7.png")}>
                     <Text left={1791} top={745} value="总充电电量" font="SourceHanSansSC-Bold" fontSize={60} />
 
                     <Container left={2210} top={907} background={require("./images/tip1.png")}>
@@ -243,7 +243,7 @@ export default class Transformer extends BaseComponent {
     _onDialog4() {
         return (
             <Dialog onClick={() => this.setState({ showDialog4: false })}>
-                <Container left={1039} top={694} background={require("./images/box6.png")}>
+                <Container left={1039} top={694} background={require("./images/box7.png")}>
                     <Text left={1791} top={745} value="总放电电量" font="SourceHanSansSC-Bold" fontSize={60} />
 
                     <Container left={2210} top={907} background={require("./images/tip1.png")}>
@@ -264,7 +264,7 @@ export default class Transformer extends BaseComponent {
     _onDialog5() {
         return (
             <Dialog onClick={() => this.setState({ showDialog5: false })}>
-                <Container left={1039} top={694} background={require("./images/box6.png")}>
+                <Container left={1039} top={694} background={require("./images/box7.png")}>
                     <Text left={1791} top={745} value="充放电实时功率" font="SourceHanSansSC-Bold" fontSize={60} />
 
                     <Container left={2210} top={907} background={require("./images/tip1.png")}>
@@ -285,7 +285,7 @@ export default class Transformer extends BaseComponent {
     _onDialog6() {
         return (
             <Dialog onClick={() => this.setState({ showDialog6: false })}>
-                <Container left={1039} top={694} background={require("./images/box6.png")}>
+                <Container left={1039} top={694} background={require("./images/box7.png")}>
                     <Text left={1791} top={745} value="充放电实时功率" font="SourceHanSansSC-Bold" fontSize={60} />
 
                     <Container left={2210} top={907} background={require("./images/tip1.png")}>

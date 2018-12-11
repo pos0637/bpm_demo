@@ -103,7 +103,7 @@ export default class Load extends BaseComponent {
                     <Image left={281} top={625} src={require("./images/img1.png")} className={style.move} />
                     <Image left={399} top={1237} src={require("./images/img2.png")} className={style.move} />
                 </Container>
-                <Container left={1322} top={393} background={require("./images/box1.png")}>
+                <Container left={1349} top={393} background={require("./images/box2.png")}>
                     <Text left={1430} top={428} value="电网数据" font="SourceHanSansSC-Medium" fontSize={48} />
 
                     <Text left={1428} top={596} value="1#" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
@@ -153,7 +153,7 @@ export default class Load extends BaseComponent {
                     </Container>
                 </Container>
 
-                <Container left={2544} top={393} background={require("./images/box1.png")}>
+                <Container left={2571} top={393} background={require("./images/box3.png")}>
                     <Text left={2648} top={428} value="负载" font="SourceHanSansSC-Medium" fontSize={48} />
 
                     <Container left={2544} top={596} width={1121} height={600} onClick={() => this.setState({ showDialog1: true })}>
@@ -226,7 +226,7 @@ export default class Load extends BaseComponent {
     _onDialog1() {
         return (
             <Dialog onClick={() => this.setState({ showDialog1: false })}>
-                <Container left={1039} top={377} background={require("./images/box2.png")}>
+                <Container left={1039} top={377} background={require("./images/box4.png")}>
                     <Text left={1787} top={421} value="照明用电" font="SourceHanSansSC-Bold" fontSize={60} />
 
                     <Text left={2529} top={1054} value="1#" font="SourceHanSansSC-Bold" fontSize={60} />
@@ -254,7 +254,7 @@ export default class Load extends BaseComponent {
     _onDialog2() {
         return (
             <Dialog onClick={() => this.setState({ showDialog2: false })}>
-                <Container left={1039} top={377} background={require("./images/box2.png")}>
+                <Container left={1039} top={377} background={require("./images/box4.png")}>
                     <Text left={1787} top={421} value="泵站用电" font="SourceHanSansSC-Bold" fontSize={60} />
 
                     <Text left={2529} top={1054} value="1#" font="SourceHanSansSC-Bold" fontSize={60} />
@@ -282,7 +282,7 @@ export default class Load extends BaseComponent {
     _onDialog3() {
         return (
             <Dialog onClick={() => this.setState({ showDialog3: false })}>
-                <Container left={1039} top={694} background={require("./images/box3.png")}>
+                <Container left={1039} top={694} background={require("./images/box5.png")}>
                     <Text left={1791} top={745} value="当日能耗" font="SourceHanSansSC-Bold" fontSize={60} />
 
                     <Container left={2210} top={907} background={require("./images/tip2.png")}>
@@ -303,7 +303,7 @@ export default class Load extends BaseComponent {
     _onDialog4() {
         return (
             <Dialog onClick={() => this.setState({ showDialog4: false })}>
-                <Container left={1039} top={694} background={require("./images/box3.png")}>
+                <Container left={1039} top={694} background={require("./images/box5.png")}>
                     <Text left={1791} top={745} value="当月能耗" font="SourceHanSansSC-Bold" fontSize={60} />
 
                     <Container left={2210} top={907} background={require("./images/tip2.png")}>

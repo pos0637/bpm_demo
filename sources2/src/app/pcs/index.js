@@ -88,71 +88,71 @@ export default class Pcs extends BaseComponent {
                 <Image left={199} top={198} src={require("../../framework/images/title.png")} />
                 <Image left={3084} top={182} src={require("../../framework/images/back.png")} onClick={() => this.context.router.history.replace('/overview')} />
 
-                <Container left={173} top={378} background={require("./images/box1.png")}>
+                <Container left={200} top={393} background={require("./images/box1.png")}>
                     <Text left={279} top={433} value="PCS&nbsp;1" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Image left={251} top={726} src={require("./images/img1.png")} className={style.move} />
                 </Container>
-                <Container left={3003} top={378} background={require("./images/box1.png")}>
+                <Container left={3003} top={393} background={require("./images/box1.png")}>
                     <Text left={3085} top={433} value="PCS&nbsp;2" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Image left={3053} top={726} src={require("./images/img1.png")} className={style.move} />
                 </Container>
-                <Container left={173} top={1485} background={require("./images/box2.png")}>
+                <Container left={200} top={1500} background={require("./images/box2.png")}>
                     <Text left={281} top={1535} value="电网数据" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Switch left={281} top={1673} src1={require("./images/grid_state_normal0.png")} src2={require("./images/grid_state_normal1.png")} value={this.state.电网状态1 === 0} />
                     <Switch left={476} top={1674} src1={require("./images/grid_state_alarm0.png")} src2={require("./images/grid_state_alarm1.png")} value={this.state.电网状态1 === 1} />
                     <Switch left={663} top={1675} src1={require("./images/grid_state_fault0.png")} src2={require("./images/grid_state_fault1.png")} value={this.state.电网状态1 === 2} />
                 </Container>
-                <Container left={3006} top={1485} background={require("./images/box2.png")}>
+                <Container left={3006} top={1500} background={require("./images/box2.png")}>
                     <Text left={3097} top={1535} value="电网数据" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Switch left={3086} top={1673} src1={require("./images/grid_state_normal0.png")} src2={require("./images/grid_state_normal1.png")} value={this.state.电网状态2 === 0} />
                     <Switch left={3284} top={1674} src1={require("./images/grid_state_alarm0.png")} src2={require("./images/grid_state_alarm1.png")} value={this.state.电网状态2 === 1} />
                     <Switch left={3479} top={1675} src1={require("./images/grid_state_fault0.png")} src2={require("./images/grid_state_fault1.png")} value={this.state.电网状态2 === 2} />
                 </Container>
 
-                <Container left={916} top={378} background={require("./images/box3.png")}>
+                <Container left={943} top={393} background={require("./images/box3.png")}>
                     <Text left={1022} top={428} value="1#储能电站" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Switch left={1024} top={550} src1={require("./images/charging0.png")} src2={require("./images/charging1.png")} value={this.state.充电1 === 0} />
                     <Switch left={1474} top={550} src1={require("./images/discharging0.png")} src2={require("./images/discharging1.png")} value={this.state.充电1 !== 0} />
                 </Container>
-                <Container left={1933} top={378} background={require("./images/box3.png")}>
+                <Container left={1960} top={393} background={require("./images/box3.png")}>
                     <Text left={2037} top={428} value="2#储能电站" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Switch left={2041} top={550} src1={require("./images/charging0.png")} src2={require("./images/charging1.png")} value={this.state.充电2 === 0} />
                     <Switch left={2491} top={550} src1={require("./images/discharging0.png")} src2={require("./images/discharging1.png")} value={this.state.充电2 !== 0} />
                 </Container>
 
-                <Container left={916} top={692} background={require("./images/box3.png")} onClick={() => this.setState({ showDialog1: true })}>
+                <Container left={943} top={707} background={require("./images/box3.png")} onClick={() => this.setState({ showDialog1: true })}>
                     <Text left={1022} top={742} value="日充电电量" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Text left={1700} top={866} value={`${toFixed(this.state.日充电电量1, 0)}`} font="SourceHanSansSC-Heavy" fontSize={45} />
                     <Text left={1700} top={918} value="kWh" font="SourceHanSansSC-Heavy" fontSize={45} />
                     <BarChart left={1026} top={861} width={637} height={115} color="rgba(68,175,244,0.8)" min={this.state.日充电电量1 - 30} max={this.state.日充电电量1 + 30} />
                 </Container>
-                <Container left={1933} top={692} background={require("./images/box3.png")} onClick={() => this.setState({ showDialog2: true })}>
+                <Container left={1960} top={707} background={require("./images/box3.png")} onClick={() => this.setState({ showDialog2: true })}>
                     <Text left={2043} top={742} value="日充电电量" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Text left={2717} top={866} value={`${toFixed(this.state.日充电电量2, 0)}`} font="SourceHanSansSC-Heavy" fontSize={45} />
                     <Text left={2717} top={918} value="kWh" font="SourceHanSansSC-Heavy" fontSize={45} />
                     <BarChart left={2043} top={861} width={637} height={115} color="rgba(68,175,244,0.8)" min={this.state.日充电电量2 - 30} max={this.state.日充电电量2 + 30} />
                 </Container>
 
-                <Container left={916} top={1004} background={require("./images/box3.png")} onClick={() => this.setState({ showDialog3: true })}>
+                <Container left={943} top={1019} background={require("./images/box3.png")} onClick={() => this.setState({ showDialog3: true })}>
                     <Text left={1022} top={1054} value="日放电电量" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Text left={1700} top={1179} value={`${toFixed(this.state.日放电电量1, 0)}`} font="SourceHanSansSC-Heavy" fontSize={45} />
                     <Text left={1700} top={1229} value="kWh" font="SourceHanSansSC-Heavy" fontSize={45} />
                     <BarChart left={1026} top={1173} width={637} height={115} color="rgba(68,175,244,0.8)" min={this.state.日放电电量1 - 30} max={this.state.日放电电量1 + 30} />
                 </Container>
-                <Container left={1933} top={1004} background={require("./images/box3.png")} onClick={() => this.setState({ showDialog4: true })}>
+                <Container left={1960} top={1019} background={require("./images/box3.png")} onClick={() => this.setState({ showDialog4: true })}>
                     <Text left={2043} top={1054} value="日放电电量" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Text left={2717} top={1179} value={`${toFixed(this.state.日放电电量2, 0)}`} font="SourceHanSansSC-Heavy" fontSize={45} />
                     <Text left={2717} top={1229} value="kWh" font="SourceHanSansSC-Heavy" fontSize={45} />
                     <BarChart left={2043} top={1173} width={637} height={115} color="rgba(68,175,244,0.8)" min={this.state.日放电电量2 - 30} max={this.state.日放电电量2 + 30} />
                 </Container>
 
-                <Container left={916} top={1316} background={require("./images/box3.png")} onClick={() => this.setState({ showDialog5: true })}>
+                <Container left={943} top={1334} background={require("./images/box3.png")} onClick={() => this.setState({ showDialog5: true })}>
                     <Text left={1022} top={1369} value="日放电功率" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Text left={1700} top={1494} value={`${toFixed(this.state.日放电功率1, 0)}`} font="SourceHanSansSC-Heavy" fontSize={45} />
                     <Text left={1700} top={1553} value="w" font="SourceHanSansSC-Heavy" fontSize={45} />
                     <BarChart left={1026} top={1488} width={637} height={115} color="rgba(68,175,244,0.8)" min={this.state.日放电功率1 - 30} max={this.state.日放电功率1 + 30} />
                 </Container>
-                <Container left={1933} top={1316} background={require("./images/box3.png")} onClick={() => this.setState({ showDialog6: true })}>
+                <Container left={1960} top={1334} background={require("./images/box3.png")} onClick={() => this.setState({ showDialog6: true })}>
                     <Text left={2043} top={1369} value="日放电功率" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Text left={2717} top={1494} value={`${toFixed(this.state.日放电功率2, 0)}`} font="SourceHanSansSC-Heavy" fontSize={45} />
                     <Text left={2717} top={1553} value="w" font="SourceHanSansSC-Heavy" fontSize={45} />
