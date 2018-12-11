@@ -5,6 +5,7 @@ import Text from '~/app/components/text';
 import Image from '~/app/components/image';
 import Container from '~/app/components/container';
 import Switch from '~/app/components/switch';
+import CircleProgress from '~/app/components/progress';
 import BarChart from '~/app/components/barChart';
 import { toFixed } from '~/misc/number';
 import { getRandom } from '~/misc/random';
@@ -24,7 +25,13 @@ export default class Transformer extends BaseComponent {
     state = {
         风扇1: true,
         风扇2: true,
+        温度1: 40,
+        温度2: 40,
         安防系统状态: 0,
+        总充电电量1: 2100,
+        总放电电量1: 2100,
+        总充电电量2: 2100,
+        总放电电量2: 2100,
         充放电实时功率1: 910,
         充放电实时功率2: 910,
         合闸1: 0,
@@ -37,7 +44,13 @@ export default class Transformer extends BaseComponent {
             const data = {
                 风扇1: getRandom(0, 1) === 0,
                 风扇2: getRandom(0, 1) === 0,
+                温度1: getRandom(20, 50),
+                温度2: getRandom(20, 50),
                 安防系统状态: getRandom(0, 1),
+                总充电电量1: getRandom(1800, 2500),
+                总放电电量1: getRandom(1800, 2500),
+                总充电电量2: getRandom(1800, 2500),
+                总放电电量2: getRandom(1800, 2500),
                 充放电实时功率1: getRandom(500, 1000),
                 充放电实时功率2: getRandom(500, 1000),
                 合闸1: getRandom(0, 1),
@@ -74,7 +87,14 @@ export default class Transformer extends BaseComponent {
                     <Text left={1342} top={550} value="2#变压器" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Image left={999} top={606} src={require("./images/line1.png")} />
                     <Image left={1300} top={606} src={require("./images/line1.png")} />
-                    {/* TODO: add charts */}
+                    
+                    <CircleProgress left={1040} top={701} width={164} value={this.state.温度1 / 100 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)">
+                        <Text left={1040} top={758} width={164} value={`${toFixed(this.state.温度1, 0)}℃`} font="SourceHanSansSC-Bold" fontSize={39} align="center" />
+                    </CircleProgress>
+                    <CircleProgress left={1341} top={701} width={164} value={this.state.温度2 / 100 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)">
+                        <Text left={1341} top={758} width={164} value={`${toFixed(this.state.温度2, 0)}℃`} font="SourceHanSansSC-Bold" fontSize={39} align="center" />
+                    </CircleProgress>
+
                     <Text left={1052} top={1023} value="风扇" font="SourceHanSansSC-Medium" fontSize={40} color={this.state.风扇1 ? "rgb(60, 211, 238)" : "rgb(137, 149, 165)"} />
                     <Text left={1052} top={1191} value="风扇" font="SourceHanSansSC-Medium" fontSize={40} color={this.state.风扇2 ? "rgb(60, 211, 238)" : "rgb(137, 149, 165)"} />
                     <Switch left={1251} top={986} src1={require("./images/fan_on.png")} src2={require("./images/fan_off.png")} value={this.state.风扇1} />
@@ -95,7 +115,23 @@ export default class Transformer extends BaseComponent {
                     <Text left={2060} top={670} value="总放电电量" font="SourceHanSansSC-Light" fontSize={36} />
                     <Text left={2334} top={670} value="总充电电量" font="SourceHanSansSC-Light" fontSize={36} />
                     <Text left={2644} top={670} value="总放电电量" font="SourceHanSansSC-Light" fontSize={36} />
-                    {/* TODO: add charts */}
+
+                    <CircleProgress left={1746} top={762} width={187} value={this.state.总充电电量1 / 3000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)">
+                        <Text left={1746} top={819} width={187} value={toFixed(this.state.总充电电量1, 0)} font="SourceHanSansSC-Bold" fontSize={39} align="center" />
+                        <Text left={1746} top={860} width={187} value="kWh" font="SourceHanSansSC-Bold" fontSize={39} align="center" />
+                    </CircleProgress>
+                    <CircleProgress left={2053} top={762} width={187} value={this.state.总放电电量1 / 3000 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)">
+                        <Text left={2053} top={819} width={187} value={toFixed(this.state.总放电电量1, 0)} font="SourceHanSansSC-Bold" fontSize={39} align="center" />
+                        <Text left={2053} top={860} width={187} value="kWh" font="SourceHanSansSC-Bold" fontSize={39} align="center" />
+                    </CircleProgress>
+                    <CircleProgress left={2335} top={762} width={187} value={this.state.总充电电量2 / 3000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)">
+                        <Text left={2335} top={819} width={187} value={toFixed(this.state.总充电电量2, 0)} font="SourceHanSansSC-Bold" fontSize={39} align="center" />
+                        <Text left={2335} top={860} width={187} value="kWh" font="SourceHanSansSC-Bold" fontSize={39} align="center" />
+                    </CircleProgress>
+                    <CircleProgress left={2642} top={762} width={187} value={this.state.总放电电量2 / 3000 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)">
+                        <Text left={2642} top={819} width={187} value={toFixed(this.state.总放电电量2, 0)} font="SourceHanSansSC-Bold" fontSize={39} align="center" />
+                        <Text left={2642} top={860} width={187} value="kWh" font="SourceHanSansSC-Bold" fontSize={39} align="center" />
+                    </CircleProgress>
 
                     <Text left={1750} top={1071} value="充放电实时功率" font="SourceHanSansSC-Regular" fontSize={36} />
                     <Text left={2337} top={1071} value="充放电实时功率" font="SourceHanSansSC-Regular" fontSize={36} />

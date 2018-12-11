@@ -102,7 +102,7 @@ export default class Load extends BaseComponent {
                     <Image left={281} top={625} src={require("./images/img1.png")} />
                     <Image left={399} top={1237} src={require("./images/img2.png")} />
                 </Container>
-                <Container left={1322} top={378} background={require("./images/box1.png")}>
+                <Container left={1322} top={393} background={require("./images/box1.png")}>
                     <Text left={1430} top={428} value="电网数据" font="SourceHanSansSC-Medium" fontSize={48} />
 
                     <Text left={1428} top={596} value="1#" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
@@ -152,7 +152,7 @@ export default class Load extends BaseComponent {
                     </Container>
                 </Container>
 
-                <Container left={2544} top={378} background={require("./images/box1.png")}>
+                <Container left={2544} top={393} background={require("./images/box1.png")}>
                     <Text left={2648} top={428} value="负载" font="SourceHanSansSC-Medium" fontSize={48} />
 
                     <Container left={2544} top={596} width={1121} height={600} onClick={() => this.setState({ showDialog1: true })}>

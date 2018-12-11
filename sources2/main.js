@@ -14,8 +14,8 @@ let mainWnd = null;
 
 function createMainWnd() {
     mainWnd = new BrowserWindow({
-        width: 1920,
-        height: 1080,
+        width: 4096,
+        height: 2160,
         fullscreen: true,
         icon: 'public/img/app-icon.png'
     });

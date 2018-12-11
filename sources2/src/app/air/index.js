@@ -5,6 +5,8 @@ import Text from '~/app/components/text';
 import Image from '~/app/components/image';
 import Container from '~/app/components/container';
 import Switch from '~/app/components/switch';
+import CircleProgress from '~/app/components/progress';
+import { toFixed } from '~/misc/number';
 import { getRandom } from '~/misc/random';
 
 /**
@@ -60,7 +62,14 @@ export default class Air extends BaseComponent {
                 </Container>
                 <Container left={1323} top={378} background={require("./images/box2.png")}>
                     <Text left={1427} top={428} value="环境温度状态" font="SourceHanSansSC-Medium" fontSize={48} />
-                    {/* TODO: add charts */}
+
+                    <CircleProgress left={1736} top={602} width={301} value={this.state.电气室温度1 / 100 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)">
+                        <Text left={1736} top={719} width={301} value={`${toFixed(this.state.电气室温度1, 0)}℃`} font="SourceHanSansSC-Bold" fontSize={72} align="center" />
+                    </CircleProgress>
+                    <CircleProgress left={2371} top={602} width={301} value={this.state.电气室温度2 / 100 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)">
+                        <Text left={2371} top={719} width={301} value={`${toFixed(this.state.电气室温度2, 0)}℃`} font="SourceHanSansSC-Bold" fontSize={72} align="center" />
+                    </CircleProgress>
+
                     <Text left={1770} top={960} value="电气室温度" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Text left={2408} top={960} value="电气室温度" font="SourceHanSansSC-Medium" fontSize={48} />
                 </Container>
