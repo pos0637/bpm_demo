@@ -6,9 +6,10 @@ import Image from '~/app/components/image';
 import Container from '~/app/components/container';
 import Progress from '~/app/components/lineProgress';
 import CircleProgress from '~/app/components/progress';
-import LineChart from '~/app/components/lineChart';
+import BarChart from '~/app/components/barChart';
 import Dialog from '~/app/components/dialog';
 import { toFixed } from '~/misc/number';
+import { getRandom } from '~/misc/random';
 
 /**
  * 电网与负载视图
@@ -53,6 +54,34 @@ export default class Load extends BaseComponent {
 
     componentDidMount() {
         super.componentDidMount();
+        this.timer = setInterval(() => {
+            const data = {
+                A相电压1: getRandom(200, 230),
+                B相电压1: getRandom(200, 230),
+                C相电压1: getRandom(200, 230),
+                A相电流1: getRandom(30, 60),
+                B相电流1: getRandom(30, 60),
+                C相电流1: getRandom(30, 60),
+                A相电压2: getRandom(200, 230),
+                B相电压2: getRandom(200, 230),
+                C相电压2: getRandom(200, 230),
+                A相电流2: getRandom(30, 60),
+                B相电流2: getRandom(30, 60),
+                C相电流2: getRandom(30, 60),
+                当日能耗: getRandom(1800, 2500),
+                当月能耗: getRandom(500, 1000),
+                照明用电1: getRandom(500, 1000),
+                照明耗能1: getRandom(1800, 2500),
+                照明用电2: getRandom(500, 1000),
+                照明耗能2: getRandom(1800, 2500),
+                泵站用电1: getRandom(500, 1000),
+                泵站耗能1: getRandom(1800, 2500),
+                泵站用电2: getRandom(500, 1000),
+                泵站耗能2: getRandom(1800, 2500)
+            };
+
+            this.setState(data);
+        }, 2000);
     }
 
     componentWillUnmount() {
@@ -63,6 +92,10 @@ export default class Load extends BaseComponent {
     render() {
         return (
             <Container width={3840} height={2160}>
+                <Image left={199} top={96} src={require("../../framework/images/logo.png")} />
+                <Image left={3270} top={2026} src={require("../../framework/images/logo2.png")} />
+                <Image left={199} top={198} src={require("../../framework/images/title.png")} />
+
                 <Container left={199} top={393} background={require("./images/box1.png")}>
                     <Text left={280} top={428} value="电网&amp;负载" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Image left={281} top={625} src={require("./images/img1.png")} />
@@ -114,7 +147,7 @@ export default class Load extends BaseComponent {
                         <Container left={2145} top={1531} background={require("./images/tip.png")}>
                             <Text left={2145} top={1543} width={179} value={`${toFixed(this.state.当月能耗, 0)}`} suffix="kW" font="Microsoft Yahei" weight="bold" fontSize={45} suffixFontSize={30} align="center" />
                         </Container>
-                        <LineChart left={1853} top={1643} width={485} height={160} color="rgba(68,175,244,0.8)" />
+                        <BarChart left={1853} top={1643} width={485} height={160} color="rgba(68,175,244,0.8)" xLabels={['Week1', 'Week2', 'Week3', 'Week4']} min={this.state.当月能耗 - 30} max={this.state.当月能耗 + 30} />
                     </Container>
                 </Container>
 
@@ -183,15 +216,6 @@ export default class Load extends BaseComponent {
     }
 
     /**
-     * 登录按钮点击事件
-     *
-     * @memberof Load
-     */
-    _onLoginButtonClick() {
-        this.context.router.history.replace('/overview');
-    }
-
-    /**
      * 获取照明用电详情界面
      *
      * @returns 照明用电详情界面
@@ -207,13 +231,13 @@ export default class Load extends BaseComponent {
                     <Container left={2079} top={622} background={require("./images/tip1.png")}>
                         <Text left={2079} top={649} width={341} value={`${toFixed(this.state.照明用电1, 0)}`} suffix="kWh" font="SourceHanSansSC-Heavy" weight="bold" fontSize={79} suffixFontSize={52} align="center" />
                     </Container>
-                    <LineChart left={1230} top={786} width={1193} height={356} color="rgba(68,175,244,0.8)" />
+                    <BarChart left={1230} top={786} width={1193} height={356} color="rgba(68,175,244,0.8)" min={this.state.照明用电1 - 30} max={this.state.照明用电1 + 30} />
 
                     <Text left={2529} top={1672} value="2#" font="SourceHanSansSC-Bold" fontSize={60} />
                     <Container left={2079} top={1246} background={require("./images/tip1.png")}>
                         <Text left={2079} top={1273} width={341} value={`${toFixed(this.state.照明用电2, 0)}`} suffix="kWh" font="SourceHanSansSC-Heavy" weight="bold" fontSize={79} suffixFontSize={52} align="center" />
                     </Container>
-                    <LineChart left={1230} top={1410} width={1193} height={356} color="rgba(68,175,244,0.8)" />
+                    <BarChart left={1230} top={1410} width={1193} height={356} color="rgba(68,175,244,0.8)" min={this.state.照明用电2 - 30} max={this.state.照明用电2 + 30} />
                 </Container>
             </Dialog>
         );
@@ -235,13 +259,13 @@ export default class Load extends BaseComponent {
                     <Container left={2079} top={622} background={require("./images/tip1.png")}>
                         <Text left={2079} top={649} width={341} value={`${toFixed(this.state.泵站用电1, 0)}`} suffix="kWh" font="SourceHanSansSC-Heavy" weight="bold" fontSize={79} suffixFontSize={52} align="center" />
                     </Container>
-                    <LineChart left={1230} top={786} width={1193} height={356} color="rgba(68,175,244,0.8)" />
+                    <BarChart left={1230} top={786} width={1193} height={356} color="rgba(68,175,244,0.8)" min={this.state.泵站用电1 - 30} max={this.state.泵站用电1 + 30} />
 
                     <Text left={2529} top={1672} value="2#" font="SourceHanSansSC-Bold" fontSize={60} />
                     <Container left={2079} top={1246} background={require("./images/tip1.png")}>
                         <Text left={2079} top={1273} width={341} value={`${toFixed(this.state.泵站用电2, 0)}`} suffix="kWh" font="SourceHanSansSC-Heavy" weight="bold" fontSize={79} suffixFontSize={52} align="center" />
                     </Container>
-                    <LineChart left={1230} top={1410} width={1193} height={356} color="rgba(68,175,244,0.8)" />
+                    <BarChart left={1230} top={1410} width={1193} height={356} color="rgba(68,175,244,0.8)" min={this.state.泵站用电2 - 30} max={this.state.泵站用电2 + 30} />
                 </Container>
             </Dialog>
         );
@@ -262,7 +286,7 @@ export default class Load extends BaseComponent {
                     <Container left={2210} top={907} background={require("./images/tip2.png")}>
                         <Text left={2210} top={939} width={373} value={`${toFixed(this.state.当日能耗, 0)}`} suffix="kWh" font="SourceHanSansSC-Heavy" weight="bold" fontSize={94} suffixFontSize={62} align="center" />
                     </Container>
-                    <LineChart left={1202} top={1103} width={1417} height={422} color="rgba(68,175,244,0.8)" />
+                    <BarChart left={1202} top={1103} width={1417} height={422} color="rgba(68,175,244,0.8)" min={this.state.当日能耗 - 30} max={this.state.当日能耗 + 30} />
                 </Container>
             </Dialog>
         );
@@ -281,9 +305,9 @@ export default class Load extends BaseComponent {
                     <Text left={1791} top={745} value="当月能耗" font="SourceHanSansSC-Bold" fontSize={60} />
 
                     <Container left={2210} top={907} background={require("./images/tip2.png")}>
-                        <Text left={2210} top={939} width={373} value={`${toFixed(this.state.当日能耗, 0)}`} suffix="kWh" font="SourceHanSansSC-Heavy" weight="bold" fontSize={94} suffixFontSize={62} align="center" />
+                        <Text left={2210} top={939} width={373} value={`${toFixed(this.state.当月能耗, 0)}`} suffix="kWh" font="SourceHanSansSC-Heavy" weight="bold" fontSize={94} suffixFontSize={62} align="center" />
                     </Container>
-                    <LineChart left={1202} top={1103} width={1417} height={422} color="rgba(68,175,244,0.8)" />
+                    <BarChart left={1202} top={1103} width={1417} height={422} color="rgba(68,175,244,0.8)" xLabels={['Week1', 'Week2', 'Week3', 'Week4']} min={this.state.当月能耗 - 30} max={this.state.当月能耗 + 30} />
                 </Container>
             </Dialog>
         );

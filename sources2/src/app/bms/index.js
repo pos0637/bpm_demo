@@ -40,6 +40,27 @@ export default class Bms extends BaseComponent {
 
     componentDidMount() {
         super.componentDidMount();
+        this.timer = setInterval(() => {
+            const data = {
+                SOC1: getRandom(50, 99),
+                SOC2: getRandom(50, 99),
+                剩余容量1: getRandom(200, 500),
+                剩余容量2: getRandom(200, 500),
+                组端电压1: getRandom(200, 230),
+                组端电压2: getRandom(200, 230),
+                电池电压1: getRandom(200, 230),
+                电池电压2: getRandom(200, 230),
+                电池内阻1: getRandom(20, 35),
+                电池内阻2: getRandom(20, 35),
+                电池温度1: getRandom(20, 30),
+                电池温度2: getRandom(20, 30),
+                热失控: getRandom(70, 80),
+                剩余容量: getRandom(40, 60),
+                健康状态: getRandom(40, 60)
+            };
+
+            this.setState(data);
+        }, 2000);
     }
 
     componentWillUnmount() {
@@ -50,6 +71,10 @@ export default class Bms extends BaseComponent {
     render() {
         return (
             <Container width={3840} height={2160}>
+                <Image left={199} top={96} src={require("../../framework/images/logo.png")} />
+                <Image left={3270} top={2026} src={require("../../framework/images/logo2.png")} />
+                <Image left={199} top={198} src={require("../../framework/images/title.png")} />
+
                 <Container left={173} top={378} background={require("./images/box1.png")}>
                     <Text left={278} top={428} value="BMS&amp;电池" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Image left={275} top={629} src={require("./images/img1.png")} />

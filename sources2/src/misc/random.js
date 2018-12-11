@@ -26,5 +26,10 @@ export function getRandom(min, max) {
  * @returns 随机键值
  */
 export function getRandomKey() {
-    return new Date().getTime();
+    if (!window.uuid) {
+        window.uuid = 0;
+    }
+
+    window.uuid += 1;
+    return new Date().getTime() + window.uuid;
 }

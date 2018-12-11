@@ -19,10 +19,14 @@ export default class Login extends BaseComponent {
 
     render() {
         return (
-            <Container width={3840} height={2160}>               
-                <Container left={1128} top={551} background={require("./images/box1.png")}>                    
+            <Container width={3840} height={2160}>
+                <Image left={199} top={96} src={require("../../framework/images/logo.png")} />
+                <Image left={3270} top={2026} src={require("../../framework/images/logo2.png")} />
+                <Image left={199} top={198} src={require("../../framework/images/title.png")} />
+
+                <Container left={1128} top={551} background={require("./images/box1.png")}>
                     <Image left={1558} top={707} src={require("./images/icon1.png")} />
-                    <Input left={1642} top={674} width={500} height={100} value="请输入用户账号"  />
+                    <Input left={1642} top={674} width={500} height={100} value="请输入用户账号" />
                     <Image left={1564} top={858} src={require("./images/icon2.png")} />
                     <Input left={1642} top={822} width={500} height={100} type="password" value="请输入密码" />
                     <Image left={1447} top={1024} src={require("./images/login.png")} onClick={() => this._onLoginButtonClick()} />

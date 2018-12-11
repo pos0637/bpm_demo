@@ -6,8 +6,9 @@ import Image from '~/app/components/image';
 import Container from '~/app/components/container';
 import Progress from '~/app/components/lineProgress';
 import Switch from '~/app/components/switch';
-import LineChart from '~/app/components/lineChart';
+import BarChart from '~/app/components/barChart';
 import { toFixed, pad } from '~/misc/number';
+import { getRandom } from '~/misc/random';
 
 /**
  * 概览视图
@@ -37,10 +38,34 @@ export default class Overview extends BaseComponent {
         今日放电总量1: 960,
         今日充电总量2: 1660,
         今日放电总量2: 960,
+        充放电量曲线1: 50,
+        充放电量曲线2: 50
     }
 
     componentDidMount() {
         super.componentDidMount();
+        this.timer = setInterval(() => {
+            const data = {
+                无故障运行时间: getRandom(10, 100),
+                节炭量1: getRandom(200, 700),
+                节炭量2: getRandom(200, 700),
+                母线1: getRandom(200, 700),
+                母线2: getRandom(200, 700),
+                总充电量: getRandom(1000, 2000),
+                总放电量: getRandom(1000, 2000),
+                安防系统状态: getRandom(0, 1),
+                充电1: getRandom(0, 1),
+                节能总费用: getRandom(10000, 27000),
+                今日充电总量1: getRandom(1000, 2000),
+                今日放电总量1: getRandom(500, 1000),
+                今日充电总量2: getRandom(1000, 2000),
+                今日放电总量2: getRandom(500, 1000),
+                充放电量曲线1: getRandom(50, 100),
+                充放电量曲线2: getRandom(50, 100)
+            };
+
+            this.setState(data);
+        }, 2000);
     }
 
     componentWillUnmount() {
@@ -51,6 +76,10 @@ export default class Overview extends BaseComponent {
     render() {
         return (
             <Container width={3840} height={2160}>
+                <Image left={199} top={96} src={require("../../framework/images/logo.png")} />
+                <Image left={3270} top={2026} src={require("../../framework/images/logo2.png")} />
+                <Image left={199} top={198} src={require("../../framework/images/title.png")} />
+
                 <Text left={1895} top={194} value="无故障运行" font="SourceHanSansSC-Light" fontSize={58.39} />
                 <Text left={2232} top={174} value={pad(this.state.无故障运行时间, 4)} font="SourceHanSansSC-Bold" fontSize={96.43} color="rgb(102, 224, 250)" />
                 <Text left={2494} top={194} value="天" font="SourceHanSansSC-Light" fontSize={58.39} />
@@ -102,7 +131,6 @@ export default class Overview extends BaseComponent {
                     <Image left={700} top={1645} src={require("./images/ems_icon.png")} />
 
                     {this.state.充电1 === 0 ? <Image left={372} top={1782} src={require("./images/charging_arrow.gif")} /> : <Image left={372} top={1796} src={require("./images/discharging_arrow.gif")} />}
-                    {this.state.充电1 !== 0 ? <Image left={372} top={1796} src={require("./images/discharging_arrow.png")} /> : <Image left={372} top={1782} src={require("./images/charging_arrow.png")} />}
                 </Container>
 
                 <Container left={1996} top={1491} background={require("./images/box3.png")} onClick={() => window.login && this.context.router.history.replace('/air')}>
@@ -147,9 +175,9 @@ export default class Overview extends BaseComponent {
                 <Container left={2575} top={1491} background={require("./images/box7.png")}>
                     <Text left={2677} top={1543} value="充放电量曲线" font="SourceHanSansSC-Bold" fontSize={48} />
                     <Text left={2673} top={1665} value="1#系统" font="SourceHanSansSC-Heavy" fontSize={48} />
-                    <LineChart left={2673} top={1746} width={404} height={215} color="rgba(68,175,244,0.8)" />
+                    <BarChart left={2673} top={1746} width={404} height={215} color="rgba(68,175,244,0.8)" min={this.state.充放电量曲线1 - 30} max={this.state.充放电量曲线1 + 30} />
                     <Text left={3129} top={1665} value="2#系统" font="SourceHanSansSC-Heavy" fontSize={48} />
-                    <LineChart left={3129} top={1746} width={404} height={215} color="rgba(68,175,244,0.8)" />
+                    <BarChart left={3129} top={1746} width={404} height={215} color="rgba(68,175,244,0.8)" min={this.state.充放电量曲线2 - 30} max={this.state.充放电量曲线2 + 30} />
                 </Container>
 
                 <Container left={228} top={1641} width={306} height={333} onClick={() => window.login && this.context.router.history.replace('/load')} />

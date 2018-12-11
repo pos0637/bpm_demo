@@ -5,6 +5,7 @@ import Text from '~/app/components/text';
 import Image from '~/app/components/image';
 import Container from '~/app/components/container';
 import Switch from '~/app/components/switch';
+import { getRandom } from '~/misc/random';
 
 /**
  * 空调&灭火器视图
@@ -27,6 +28,16 @@ export default class Air extends BaseComponent {
 
     componentDidMount() {
         super.componentDidMount();
+        this.timer = setInterval(() => {
+            const data = {
+                电气室温度1: getRandom(20, 40),
+                电气室温度2: getRandom(20, 40),
+                安防系统状态: getRandom(0, 1),
+                氢气探测器状态: getRandom(0, 1)
+            };
+
+            this.setState(data);
+        }, 2000);
     }
 
     componentWillUnmount() {
@@ -37,6 +48,10 @@ export default class Air extends BaseComponent {
     render() {
         return (
             <Container width={3840} height={2160}>
+                <Image left={199} top={96} src={require("../../framework/images/logo.png")} />
+                <Image left={3270} top={2026} src={require("../../framework/images/logo2.png")} />
+                <Image left={199} top={198} src={require("../../framework/images/title.png")} />
+
                 <Container left={173} top={378} background={require("./images/box1.png")}>
                     <Text left={278} top={428} value="空调&amp;灭火器" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Image left={248} top={632} src={require("./images/img1.png")} />
