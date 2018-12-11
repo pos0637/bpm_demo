@@ -307,7 +307,7 @@ export default class Load extends BaseComponent {
                     <Text left={1791} top={745} value="当月能耗" font="SourceHanSansSC-Bold" fontSize={60} />
 
                     <Container left={2210} top={907} background={require("./images/tip2.png")}>
-                        <Text left={2210} top={939} width={373} value={`${toFixed(this.state.当月能耗, 0)}`} suffix="kWh" font="SourceHanSansSC-Heavy" weight="bold" fontSize={94} suffixFontSize={62} align="center" />
+                        <Text left={2210} top={939} width={373} value={`${toFixed(this.state.当月能耗, 0)}`} suffix="kW" font="SourceHanSansSC-Heavy" weight="bold" fontSize={94} suffixFontSize={62} align="center" />
                     </Container>
                     <BarChart left={1202} top={1103} width={1417} height={422} color="rgba(68,175,244,0.8)" xLabels={['Week1', 'Week2', 'Week3', 'Week4']} min={this.state.当月能耗 - 30} max={this.state.当月能耗 + 30} />
                 </Container>

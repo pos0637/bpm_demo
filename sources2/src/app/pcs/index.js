@@ -147,13 +147,13 @@ export default class Pcs extends BaseComponent {
                 </Container>
 
                 <Container left={916} top={1316} background={require("./images/box3.png")} onClick={() => this.setState({ showDialog5: true })}>
-                    <Text left={1022} top={1369} value="日放电电量" font="SourceHanSansSC-Medium" fontSize={48} />
+                    <Text left={1022} top={1369} value="日放电功率" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Text left={1700} top={1494} value={`${toFixed(this.state.日放电功率1, 0)}`} font="SourceHanSansSC-Heavy" fontSize={45} />
                     <Text left={1700} top={1553} value="w" font="SourceHanSansSC-Heavy" fontSize={45} />
                     <BarChart left={1026} top={1488} width={637} height={115} color="rgba(68,175,244,0.8)" min={this.state.日放电功率1 - 30} max={this.state.日放电功率1 + 30} />
                 </Container>
                 <Container left={1933} top={1316} background={require("./images/box3.png")} onClick={() => this.setState({ showDialog6: true })}>
-                    <Text left={2043} top={1369} value="日放电电量" font="SourceHanSansSC-Medium" fontSize={48} />
+                    <Text left={2043} top={1369} value="日放电功率" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Text left={2717} top={1494} value={`${toFixed(this.state.日放电功率2, 0)}`} font="SourceHanSansSC-Heavy" fontSize={45} />
                     <Text left={2717} top={1553} value="w" font="SourceHanSansSC-Heavy" fontSize={45} />
                     <BarChart left={2043} top={1488} width={637} height={115} color="rgba(68,175,244,0.8)" min={this.state.日放电功率2 - 30} max={this.state.日放电功率2 + 30} />
