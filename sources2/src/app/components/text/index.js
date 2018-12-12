@@ -34,6 +34,7 @@ export default class Text extends BaseComponent {
         left: null,
         top: null,
         bottom: null,
+        width: null,
         font: 'SourceHanSansSC-Medium',
         fontSize: 48,
         weight: 'normal',
@@ -68,10 +69,10 @@ export default class Text extends BaseComponent {
         }
 
         const { left, top } = this.getRelativePosition(this.props.left, this.props.top);
-        const { bottom } = this.props;
+        const { bottom, width, align } = this.props;
 
         return (
-            <span style={{ position: 'absolute', left: `${left}px`, top: `${top}px`, bottom: `${bottom}px`, fontFamily: font, fontSize: `${fontSize}px`, fontWeight: weight, color: color, lineHeight: 1, textAlign: this.props.align, width: `${this.props.width}px` }}>
+            <span style={{ position: 'absolute', left: `${left}px`, top: `${top}px`, bottom: `${bottom}px`, fontFamily: font, fontSize: `${fontSize}px`, fontWeight: weight, color: color, lineHeight: 1, textAlign: align, width: `${width}px` }}>
                 {value}{suffixContent}
             </span>
         );

@@ -7,6 +7,7 @@ import Container from '~/app/components/container';
 import Switch from '~/app/components/switch';
 import CircleProgress from '~/app/components/progress';
 import BarChart from '~/app/components/barChart';
+import Gauge from '~/app/components/gauge';
 import Dialog from '~/app/components/dialog';
 import { toFixed } from '~/misc/number';
 import { getRandom } from '~/misc/random';
@@ -96,12 +97,8 @@ export default class Transformer extends BaseComponent {
                     <Image left={999} top={606} src={require("./images/line1.png")} />
                     <Image left={1300} top={606} src={require("./images/line1.png")} />
 
-                    <CircleProgress left={1040} top={701} width={164} value={this.state.温度1 / 100 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)">
-                        <Text left={1040} top={758} width={164} value={`${toFixed(this.state.温度1, 0)}℃`} font="SourceHanSansSC-Bold" fontSize={39} align="center" />
-                    </CircleProgress>
-                    <CircleProgress left={1341} top={701} width={164} value={this.state.温度2 / 100 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)">
-                        <Text left={1341} top={758} width={164} value={`${toFixed(this.state.温度2, 0)}℃`} font="SourceHanSansSC-Bold" fontSize={39} align="center" />
-                    </CircleProgress>
+                    <Gauge left={1040} top={701} width={164} value={this.state.温度1 / 100 * 100} content={`${toFixed(this.state.温度1, 0)}℃`} fontSize={32} />
+                    <Gauge left={1341} top={701} width={164} value={this.state.温度2 / 100 * 100} content={`${toFixed(this.state.温度2, 0)}℃`} fontSize={32} />
 
                     <Text left={1052} top={1023} value="风扇" font="SourceHanSansSC-Medium" fontSize={40} color={this.state.风扇1 ? "rgb(60, 211, 238)" : "rgb(137, 149, 165)"} />
                     <Text left={1052} top={1191} value="风扇" font="SourceHanSansSC-Medium" fontSize={40} color={this.state.风扇2 ? "rgb(60, 211, 238)" : "rgb(137, 149, 165)"} />
