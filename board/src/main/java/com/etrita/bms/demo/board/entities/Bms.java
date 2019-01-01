@@ -79,49 +79,50 @@ public class Bms {
     /**
      * 读取ModbusTcp数据
      *
-     * @param reader 数据读取器
+     * @param bms1Reader 数据读取器
+     * @param bms2Reader 数据读取器
      * @throws Exception
      */
-    public void readModbusTcpData(IDataReader reader) throws Exception {
-        setSoc1(reader.readFloat(1, 3, 107));
-        setElectricity1(reader.readFloat(1, 3, 113));
-        setVoltage1(reader.readFloat(1, 3, 119));
-        setSoc2(reader.readFloat(1, 3, 141));
-        setElectricity2(reader.readFloat(1, 3, 147));
-        setVoltage2(reader.readFloat(1, 3, 153));
+    public void readModbusTcpData(IDataReader bms1Reader, IDataReader bms2Reader) throws Exception {
+        setSoc1(bms1Reader.readFloat(1, 3, 3));
+        setElectricity1(bms1Reader.readFloat(1, 3, 9));
+        setVoltage1(bms1Reader.readFloat(1, 3, 15));
+        setSoc2(bms2Reader.readFloat(1, 3, 3));
+        setElectricity2(bms2Reader.readFloat(1, 3, 9));
+        setVoltage2(bms2Reader.readFloat(1, 3, 15));
         // TODO: 热失控、剩余容量、SOH
 
         for (int i = 0; i < MAX_BATTERIES; ++i) {
             batteries1[i] = new Battery(
-                    reader.readFloat(1, 3, 97 + i * 2),
-                    reader.readFloat(1, 3, 727 + i * 2),
-                    reader.readFloat(1, 3, 1357 + i * 2),
-                    reader.readFloat(1, 3, 1987 + i * 2),
-                    reader.readFloat(1, 3, 2617 + i * 2)
+                    bms1Reader.readFloat(2, 3, 97 + i * 2),
+                    bms1Reader.readFloat(2, 3, 727 + i * 2),
+                    bms1Reader.readFloat(2, 3, 1357 + i * 2),
+                    bms1Reader.readFloat(2, 3, 1987 + i * 2),
+                    bms1Reader.readFloat(2, 3, 2617 + i * 2)
             );
 
             batteries2[i] = new Battery(
-                    reader.readFloat(1, 3, 97 + i * 2),
-                    reader.readFloat(1, 3, 727 + i * 2),
-                    reader.readFloat(1, 3, 1357 + i * 2),
-                    reader.readFloat(1, 3, 1987 + i * 2),
-                    reader.readFloat(1, 3, 2617 + i * 2)
+                    bms1Reader.readFloat(3, 3, 97 + i * 2),
+                    bms1Reader.readFloat(3, 3, 727 + i * 2),
+                    bms1Reader.readFloat(3, 3, 1357 + i * 2),
+                    bms1Reader.readFloat(3, 3, 1987 + i * 2),
+                    bms1Reader.readFloat(3, 3, 2617 + i * 2)
             );
 
             batteries3[i] = new Battery(
-                    reader.readFloat(1, 3, 97 + i * 2),
-                    reader.readFloat(1, 3, 727 + i * 2),
-                    reader.readFloat(1, 3, 1357 + i * 2),
-                    reader.readFloat(1, 3, 1987 + i * 2),
-                    reader.readFloat(1, 3, 2617 + i * 2)
+                    bms2Reader.readFloat(2, 3, 97 + i * 2),
+                    bms2Reader.readFloat(2, 3, 727 + i * 2),
+                    bms2Reader.readFloat(2, 3, 1357 + i * 2),
+                    bms2Reader.readFloat(2, 3, 1987 + i * 2),
+                    bms2Reader.readFloat(2, 3, 2617 + i * 2)
             );
 
             batteries4[i] = new Battery(
-                    reader.readFloat(1, 3, 97 + i * 2),
-                    reader.readFloat(1, 3, 727 + i * 2),
-                    reader.readFloat(1, 3, 1357 + i * 2),
-                    reader.readFloat(1, 3, 1987 + i * 2),
-                    reader.readFloat(1, 3, 2617 + i * 2)
+                    bms2Reader.readFloat(3, 3, 97 + i * 2),
+                    bms2Reader.readFloat(3, 3, 727 + i * 2),
+                    bms2Reader.readFloat(3, 3, 1357 + i * 2),
+                    bms2Reader.readFloat(3, 3, 1987 + i * 2),
+                    bms2Reader.readFloat(3, 3, 2617 + i * 2)
             );
         }
     }

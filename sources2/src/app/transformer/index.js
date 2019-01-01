@@ -77,8 +77,8 @@ export default class Transformer extends BaseComponent {
                 data.温度1 = transformer.temperature1;
                 data.温度2 = transformer.temperature2;
                 data.变压器状态 = transformer.state;
-                data.合闸1 = switch1;
-                data.合闸2 = switch2;
+                data.合闸1 = transformer.switch1;
+                data.合闸2 = transformer.switch2;
                 data.充放电实时功率1 = transformer.electricity1;
                 data.充放电实时功率2 = transformer.electricity2;
                 data.充放电实时功率曲线1 = transformer.electricityData1;

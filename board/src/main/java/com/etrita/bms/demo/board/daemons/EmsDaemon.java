@@ -1,12 +1,12 @@
 package com.etrita.bms.demo.board.daemons;
 
 import com.etrita.bms.demo.board.communications.IDataReader;
+import com.etrita.bms.demo.board.communications.ModbusTcpDataReader;
 import com.etrita.bms.demo.board.entities.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.furongsoft.core.misc.Tracker;
 import lombok.Getter;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -21,6 +21,42 @@ import java.io.File;
 @Getter
 public class EmsDaemon implements Runnable, InitializingBean {
     /**
+     * ModbusTcp从站IP地址
+     */
+    @Value("${bms.modbus.host}")
+    private String host;
+
+    /**
+     * ModbusTcp从站端口
+     */
+    @Value("${bms.modbus.pcs_port}")
+    private int pcsPort;
+
+    /**
+     * ModbusTcp从站端口
+     */
+    @Value("${bms.modbus.other1_port}")
+    private int other1Port;
+
+    /**
+     * ModbusTcp从站端口
+     */
+    @Value("${bms.modbus.other2_port}")
+    private int other2Port;
+
+    /**
+     * ModbusTcp从站端口
+     */
+    @Value("${bms.modbus.bms1_port}")
+    private int bms1Port;
+
+    /**
+     * ModbusTcp从站端口
+     */
+    @Value("${bms.modbus.bms2_port}")
+    private int bms2Port;
+
+    /**
      * 更新时间间隔
      */
     @Value("${bms.update.interval}")
@@ -29,7 +65,27 @@ public class EmsDaemon implements Runnable, InitializingBean {
     /**
      * 数据读取器
      */
-    private IDataReader dataReader;
+    private IDataReader pcsDataReader;
+
+    /**
+     * 数据读取器
+     */
+    private IDataReader other1DataReader;
+
+    /**
+     * 数据读取器
+     */
+    private IDataReader other2DataReader;
+
+    /**
+     * 数据读取器
+     */
+    private IDataReader bms1DataReader;
+
+    /**
+     * 数据读取器
+     */
+    private IDataReader bms2DataReader;
 
     /**
      * 预览视图数据
@@ -56,15 +112,19 @@ public class EmsDaemon implements Runnable, InitializingBean {
      */
     private Bms bms = new Bms();
 
-    @Autowired
-    public EmsDaemon(IDataReader dataReader) {
-        this.dataReader = dataReader;
-    }
-
     @Override
     public void run() {
         try {
-            dataReader.reset();
+            pcsDataReader = new ModbusTcpDataReader(host, pcsPort);
+            other1DataReader = new ModbusTcpDataReader(host, other1Port);
+            other2DataReader = new ModbusTcpDataReader(host, other2Port);
+            bms1DataReader = new ModbusTcpDataReader(host, bms1Port);
+            bms2DataReader = new ModbusTcpDataReader(host, bms2Port);
+            pcsDataReader.reset();
+            other1DataReader.reset();
+            other2DataReader.reset();
+            bms1DataReader.reset();
+            bms2DataReader.reset();
             load();
         } catch (Exception e) {
             Tracker.error(e);
@@ -72,17 +132,20 @@ public class EmsDaemon implements Runnable, InitializingBean {
 
         while (true) {
             try {
-                overview.readModbusTcpData(dataReader);
-                pcs.readModbusTcpData(dataReader);
-                load.readModbusTcpData(dataReader);
-                transformer.readModbusTcpData(dataReader);
-                bms.readModbusTcpData(dataReader);
+                overview.readModbusTcpData(pcsDataReader);
+                pcs.readModbusTcpData(pcsDataReader);
+                transformer.readModbusTcpData(other1DataReader, other2DataReader);
+                bms.readModbusTcpData(bms1DataReader, bms1DataReader);
 
                 save();
                 Thread.sleep(interval);
             } catch (Exception e) {
                 try {
-                    dataReader.reset();
+                    pcsDataReader.reset();
+                    other1DataReader.reset();
+                    other2DataReader.reset();
+                    bms1DataReader.reset();
+                    bms2DataReader.reset();
                     Thread.sleep(1000);
                 } catch (Exception e1) {
                     Tracker.error(e1);

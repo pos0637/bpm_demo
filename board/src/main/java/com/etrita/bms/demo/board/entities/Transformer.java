@@ -85,21 +85,25 @@ public class Transformer {
     /**
      * 读取ModbusTcp数据
      *
-     * @param reader 数据读取器
+     * @param other1Reader 数据读取器
+     * @param other2Reader 数据读取器
      * @throws Exception
      */
-    public void readModbusTcpData(IDataReader reader) throws Exception {
-        byte state11 = reader.readByte(1, 2, 32);
-        byte state12 = reader.readByte(1, 2, 36);
-        byte state21 = reader.readByte(1, 2, 34);
-        byte state22 = reader.readByte(1, 2, 38);
+    public void readModbusTcpData(IDataReader other1Reader, IDataReader other2Reader) throws Exception {
+        setFan1(other2Reader.readByte(1, 2, 1));
+        setFan2(other2Reader.readByte(2, 2, 1));
+
+        byte state11 = other2Reader.readByte(1, 2, 2);
+        byte state12 = other2Reader.readByte(2, 2, 2);
+        byte state21 = other2Reader.readByte(1, 2, 4);
+        byte state22 = other2Reader.readByte(2, 2, 4);
         setState(((state11 == 1) || (state12 == 1)) ? 1 : ((state21 == 1) || (state22 == 1)) ? 2 : 0);
 
-        setSwitch1(reader.readByte(1, 2, 1));
-        setSwitch2(reader.readByte(1, 2, 2));
+        // setSwitch1(other1Reader.readByte(1, 2, 1));
+        // setSwitch2(other1Reader.readByte(1, 2, 2));
 
-        setElectricity1(reader.readFloat(1, 3, 51));
-        setElectricity2(reader.readFloat(1, 3, 79));
+        setElectricity1(other1Reader.readFloat(1, 3, 31));
+        setElectricity2(other1Reader.readFloat(2, 3, 31));
 
         if ((lastDate == null) || (new Date().getTime() - lastDate.getTime() > 10000)) {
             lastDate = new Date();

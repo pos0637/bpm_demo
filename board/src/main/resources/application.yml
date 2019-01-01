@@ -21,6 +21,10 @@ bms:
     # host: 127.0.0.1
     # port: 502
     host: 192.168.99.100
-    port: 2401
+    pcs_port: 502
+    other1_port: 503
+    other2_port: 504
+    bms1_port: 505
+    bms2_port: 506
   update:
     interval: 3000

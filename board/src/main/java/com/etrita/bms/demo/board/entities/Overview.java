@@ -100,33 +100,33 @@ public class Overview {
     /**
      * 读取ModbusTcp数据
      *
-     * @param reader 数据读取器
+     * @param pcsReader 数据读取器
      * @throws Exception
      */
-    public void readModbusTcpData(IDataReader reader) throws Exception {
-        byte state11 = reader.readByte(1, 2, 5);
-        byte state12 = reader.readByte(1, 2, 6);
-        // byte state13 = reader.readByte(1, 2, 7);
+    public void readModbusTcpData(IDataReader pcsReader) throws Exception {
+        byte state11 = pcsReader.readByte(1, 2, 24);
+        byte state12 = pcsReader.readByte(1, 2, 25);
+        // byte state13 = reader.readByte(1, 2, 26);
         setState1((state11 == 1) ? 0 : (state12 == 1) ? 1 : 2);
 
-        byte state21 = reader.readByte(1, 2, 15);
-        byte state22 = reader.readByte(1, 2, 16);
-        // byte state23 = reader.readByte(1, 2, 17);
+        byte state21 = pcsReader.readByte(2, 2, 24);
+        byte state22 = pcsReader.readByte(2, 2, 25);
+        // byte state23 = reader.readByte(2, 2, 26);
         setState2((state21 == 1) ? 0 : (state22 == 1) ? 1 : 2);
 
-        setLoadPower1(reader.readFloat(1, 3, 31));
-        setLoadPower2(reader.readFloat(1, 3, 33));
-        setTotalChargingElectricity(reader.readFloat(1, 3, 25));
-        setTotalDischargingElectricity(reader.readFloat(1, 3, 27));
-        setChargingElectricity1(reader.readFloat(1, 3, 59));
-        setDischargingElectricity1(reader.readFloat(1, 3, 61));
-        setChargingElectricity2(reader.readFloat(1, 3, 87));
-        setDischargingElectricity2(reader.readFloat(1, 3, 89));
+        // setLoadPower1(reader.readFloat(1, 3, 31));
+        // setLoadPower2(reader.readFloat(1, 3, 33));
+        // setTotalChargingElectricity(reader.readFloat(1, 3, 25));
+        // setTotalDischargingElectricity(reader.readFloat(1, 3, 27));
+        setChargingElectricity1(pcsReader.readFloat(1, 3, 67));
+        setDischargingElectricity1(pcsReader.readFloat(1, 3, 65));
+        setChargingElectricity2(pcsReader.readFloat(2, 3, 67));
+        setDischargingElectricity2(pcsReader.readFloat(2, 3, 65));
 
         if ((lastDate == null) || (new Date().getTime() - lastDate.getTime() > 10000)) {
             lastDate = new Date();
-            electricityData1.push(dateFormat.format(lastDate), reader.readFloat(1, 3, 51));
-            electricityData2.push(dateFormat.format(lastDate), reader.readFloat(1, 3, 79));
+            electricityData1.push(dateFormat.format(lastDate), pcsReader.readFloat(1, 3, 31));
+            electricityData2.push(dateFormat.format(lastDate), pcsReader.readFloat(2, 3, 31));
         }
     }
 }

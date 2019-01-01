@@ -1,12 +1,12 @@
 package com.etrita.bms.demo.board.entities;
 
-import com.etrita.bms.demo.board.communications.IDataReader;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.Setter;
+        import com.etrita.bms.demo.board.communications.IDataReader;
+        import com.fasterxml.jackson.annotation.JsonIgnore;
+        import lombok.Getter;
+        import lombok.Setter;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+        import java.text.SimpleDateFormat;
+        import java.util.Date;
 
 /**
  * PCS视图数据
@@ -140,41 +140,41 @@ public class Pcs {
     /**
      * 读取ModbusTcp数据
      *
-     * @param reader 数据读取器
+     * @param pcsReader 数据读取器
      * @throws Exception
      */
-    public void readModbusTcpData(IDataReader reader) throws Exception {
-        byte state11 = reader.readByte(1, 2, 5);
-        byte state12 = reader.readByte(1, 2, 6);
-        // byte state13 = reader.readByte(1, 2, 7);
+    public void readModbusTcpData(IDataReader pcsReader) throws Exception {
+        byte state11 = pcsReader.readByte(1, 2, 24);
+        byte state12 = pcsReader.readByte(1, 2, 25);
+        // byte state13 = reader.readByte(1, 2, 26);
         setState1((state11 == 1) ? 0 : (state12 == 1) ? 1 : 2);
 
-        byte state21 = reader.readByte(1, 2, 15);
-        byte state22 = reader.readByte(1, 2, 16);
-        // byte state23 = reader.readByte(1, 2, 17);
+        byte state21 = pcsReader.readByte(2, 2, 24);
+        byte state22 = pcsReader.readByte(2, 2, 25);
+        // byte state23 = reader.readByte(2, 2, 26);
         setState2((state21 == 1) ? 0 : (state22 == 1) ? 1 : 2);
 
-        byte state31 = reader.readByte(1, 2, 11);
-        byte state32 = reader.readByte(1, 2, 12);
+        byte state31 = pcsReader.readByte(1, 2, 18);
+        byte state32 = pcsReader.readByte(1, 2, 19);
         setGridState1((state31 == 1) ? 2 : (state32 == 1) ? 1 : 0);
 
-        byte state41 = reader.readByte(1, 2, 11);
-        byte state42 = reader.readByte(1, 2, 12);
+        byte state41 = pcsReader.readByte(2, 2, 18);
+        byte state42 = pcsReader.readByte(2, 2, 19);
         setGridState1((state41 == 1) ? 2 : (state42 == 1) ? 1 : 0);
 
-        setVoltage11(reader.readFloat(1, 3, 53));
-        setCurrent1(reader.readFloat(1, 3, 55));
-        setVoltage11(reader.readFloat(1, 3, 57));
-        setVoltage21(reader.readFloat(1, 3, 81));
-        setCurrent2(reader.readFloat(1, 3, 83));
-        setVoltage21(reader.readFloat(1, 3, 85));
+        setVoltage11(pcsReader.readFloat(1, 3, 23));
+        setCurrent1(pcsReader.readFloat(1, 3, 21));
+        setVoltage12(pcsReader.readFloat(1, 3, 25));
+        setVoltage21(pcsReader.readFloat(2, 3, 23));
+        setCurrent2(pcsReader.readFloat(2, 3, 21));
+        setVoltage22(pcsReader.readFloat(2, 3, 25));
 
-        setChargingElectricity1(reader.readFloat(1, 3, 59));
-        setDischargingElectricity1(reader.readFloat(1, 3, 61));
-        setChargingElectricity2(reader.readFloat(1, 3, 87));
-        setDischargingElectricity2(reader.readFloat(1, 3, 89));
-        setElectricity1(reader.readFloat(1, 3, 51));
-        setElectricity2(reader.readFloat(1, 3, 79));
+        setChargingElectricity1(pcsReader.readFloat(1, 3, 67));
+        setDischargingElectricity1(pcsReader.readFloat(1, 3, 65));
+        setChargingElectricity2(pcsReader.readFloat(2, 3, 67));
+        setDischargingElectricity2(pcsReader.readFloat(2, 3, 65));
+        setElectricity1(pcsReader.readFloat(1, 3, 31));
+        setElectricity2(pcsReader.readFloat(2, 3, 31));
 
         if ((lastDate == null) || (new Date().getTime() - lastDate.getTime() > 10000)) {
             lastDate = new Date();
