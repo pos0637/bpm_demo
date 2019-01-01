@@ -11,6 +11,7 @@ import Gauge from '~/app/components/gauge';
 import Dialog from '~/app/components/dialog';
 import { toFixed } from '~/misc/number';
 import { getRandom } from '~/misc/random';
+import { getTransformerData } from '~/api/v1/board';
 import style from './index.scss';
 
 /**
@@ -37,6 +38,8 @@ export default class Transformer extends BaseComponent {
         总放电电量2: 2100,
         充放电实时功率1: 910,
         充放电实时功率2: 910,
+        充放电实时功率曲线1: {},
+        充放电实时功率曲线2: {},
         合闸1: 0,
         合闸2: 0,
         showDialog1: false,
@@ -62,10 +65,25 @@ export default class Transformer extends BaseComponent {
                 总放电电量2: getRandom(1800, 2500),
                 充放电实时功率1: getRandom(500, 1000),
                 充放电实时功率2: getRandom(500, 1000),
+                充放电实时功率曲线1: {},
+                充放电实时功率曲线2: {},
                 合闸1: getRandom(0, 1),
                 合闸2: getRandom(0, 1)
             };
 
+            getTransformerData(transformer => {
+                data.风扇1 = transformer.fan1;
+                data.风扇2 = transformer.fan2;
+                data.温度1 = transformer.temperature1;
+                data.温度2 = transformer.temperature2;
+                data.变压器状态 = transformer.state;
+                data.合闸1 = switch1;
+                data.合闸2 = switch2;
+                data.充放电实时功率1 = transformer.electricity1;
+                data.充放电实时功率2 = transformer.electricity2;
+                data.充放电实时功率曲线1 = transformer.electricityData1;
+                data.充放电实时功率曲线2 = transformer.electricityData2;
+            });
             this.setState(data);
         }, 2000);
     }
@@ -148,8 +166,8 @@ export default class Transformer extends BaseComponent {
                         <Text left={2628} top={1058} width={180} value={`${toFixed(this.state.充放电实时功率2, 0)}`} suffix="kW" font="Microsoft Yahei" weight="bold" fontSize={45} suffixFontSize={30} align="center" />
                     </Container>
 
-                    <BarChart left={1751} top={1135} width={487} height={130} color="rgba(68,175,244,0.8)" min={this.state.充放电实时功率1 - 30} max={this.state.充放电实时功率1 + 30} onClick={() => this.setState({ showDialog5: true })} />
-                    <BarChart left={2335} top={1135} width={487} height={130} color="rgba(68,175,244,0.8)" min={this.state.充放电实时功率2 - 30} max={this.state.充放电实时功率2 + 30} onClick={() => this.setState({ showDialog6: true })} />
+                    <BarChart left={1751} top={1135} width={487} height={130} color="rgba(68,175,244,0.8)" xLabels={this.state.充放电实时功率曲线1.xLabels} data={this.state.充放电实时功率曲线1.data} onClick={() => this.setState({ showDialog5: true })} />
+                    <BarChart left={2335} top={1135} width={487} height={130} color="rgba(68,175,244,0.8)" xLabels={this.state.充放电实时功率曲线2.xLabels} data={this.state.充放电实时功率曲线2.data} onClick={() => this.setState({ showDialog6: true })} />
                 </Container>
                 <Container left={1680} top={1459} background={require("./images/box4.png")}>
                     <Text left={1790} top={1664} value="I段开关" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(7, 229, 255)" />

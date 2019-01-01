@@ -42,8 +42,8 @@ export default class Overview extends BaseComponent {
         今日放电总量1: 960,
         今日充电总量2: 1660,
         今日放电总量2: 960,
-        充放电量曲线1: 50,
-        充放电量曲线2: 50
+        充放电量曲线1: {},
+        充放电量曲线2: {}
     }
 
     componentDidMount() {
@@ -66,8 +66,8 @@ export default class Overview extends BaseComponent {
                 今日放电总量1: getRandom(500, 1000),
                 今日充电总量2: getRandom(1000, 2000),
                 今日放电总量2: getRandom(500, 1000),
-                充放电量曲线1: getRandom(50, 100),
-                充放电量曲线2: getRandom(50, 100)
+                充放电量曲线1: {},
+                充放电量曲线2: {}
             };
 
             getOverviewData(overview => {
@@ -81,6 +81,8 @@ export default class Overview extends BaseComponent {
                 data.今日放电总量1 = overview.dischargingElectricity1;
                 data.今日充电总量2 = overview.chargingElectricity2;
                 data.今日放电总量2 = overview.dischargingElectricity2;
+                data.充放电量曲线1 = overview.electricityData1;
+                data.充放电量曲线2 = overview.electricityData2;
             });
             this.setState(data);
         }, 2000);
@@ -194,9 +196,9 @@ export default class Overview extends BaseComponent {
                 <Container left={2600} top={1502} background={require("./images/box7.png")}>
                     <Text left={2677} top={1543} value="充放电量曲线" font="SourceHanSansSC-Bold" fontSize={48} />
                     <Text left={2673} top={1665} value="1#系统" font="SourceHanSansSC-Heavy" fontSize={48} />
-                    <BarChart left={2673} top={1746} width={404} height={215} color="rgba(68,175,244,0.8)" min={this.state.充放电量曲线1 - 30} max={this.state.充放电量曲线1 + 30} />
+                    <BarChart left={2673} top={1746} width={404} height={215} color="rgba(68,175,244,0.8)" xLabels={this.state.充放电量曲线1.xLabels} data={this.state.充放电量曲线1.data} />
                     <Text left={3129} top={1665} value="2#系统" font="SourceHanSansSC-Heavy" fontSize={48} />
-                    <BarChart left={3129} top={1746} width={404} height={215} color="rgba(68,175,244,0.8)" min={this.state.充放电量曲线2 - 30} max={this.state.充放电量曲线2 + 30} />
+                    <BarChart left={3129} top={1746} width={404} height={215} color="rgba(68,175,244,0.8)" xLabels={this.state.充放电量曲线2.xLabels} data={this.state.充放电量曲线2.data} />
                 </Container>
 
                 <Container left={228} top={1641} width={306} height={333} onClick={() => window.login && this.context.router.history.replace('/load')} />

@@ -10,6 +10,7 @@ import BarChart from '~/app/components/barChart';
 import Dialog from '~/app/components/dialog';
 import { toFixed } from '~/misc/number';
 import { getRandom } from '~/misc/random';
+import { getPcsData } from '~/api/v1/board';
 import style from './index.scss';
 
 /**
@@ -35,12 +36,18 @@ export default class Pcs extends BaseComponent {
         日放电电量2: 3600,
         日放电功率1: 360,
         日放电功率2: 360,
+        日充电电量曲线1: {},
+        日放电电量曲线1: {},
+        日充电电量曲线2: {},
+        日放电电量曲线2: {},
+        日放电功率曲线1: {},
+        日放电功率曲线2: {},
         直流电压1: 220,
         直流电压2: 220,
         直流电流1: 50,
         直流电流2: 50,
-        逆变电流1: 50,
-        逆变电流2: 50,
+        交流电压1: 50,
+        交流电压2: 50,
         showDialog1: false,
         showDialog2: false,
         showDialog3: false,
@@ -63,14 +70,44 @@ export default class Pcs extends BaseComponent {
                 日放电电量2: getRandom(3000, 4000),
                 日放电功率1: getRandom(200, 400),
                 日放电功率2: getRandom(200, 400),
+                日充电电量曲线1: {},
+                日放电电量曲线1: {},
+                日充电电量曲线2: {},
+                日放电电量曲线2: {},
+                日放电功率曲线1: {},
+                日放电功率曲线2: {},
                 直流电压1: getRandom(200, 230),
                 直流电压2: getRandom(200, 230),
                 直流电流1: getRandom(30, 60),
                 直流电流2: getRandom(30, 60),
-                逆变电流1: getRandom(30, 60),
-                逆变电流2: getRandom(30, 60)
+                交流电压1: getRandom(30, 60),
+                交流电压2: getRandom(30, 60)
             };
 
+            getPcsData(pcs => {
+                data.充电1 = pcs.state1;
+                data.充电2 = pcs.state2;
+                data.电网状态1 = pcs.gridState1;
+                data.电网状态2 = pcs.gridState2;
+                data.日充电电量1 = pcs.chargingElectricity1;
+                data.日放电电量1 = pcs.dischargingElectricity1;
+                data.日充电电量2 = pcs.chargingElectricity2;
+                data.日放电电量2 = pcs.dischargingElectricity2;
+                data.日放电功率1 = pcs.electricity1;
+                data.日放电功率2 = pcs.electricity2;
+                data.日充电电量曲线1 = pcs.chargingElectricityData1;
+                data.日放电电量曲线1 = pcs.dischargingElectricityData1;
+                data.日充电电量曲线2 = pcs.chargingElectricityData2;
+                data.日放电电量曲线2 = pcs.dischargingElectricityData2;
+                data.日放电功率曲线1 = pcs.electricityData1;
+                data.日放电功率曲线2 = pcs.electricityData2;
+                data.直流电压1 = pcs.voltage11;
+                data.直流电压2 = pcs.voltage21;
+                data.直流电流1 = pcs.current1;
+                data.直流电流2 = pcs.current2;
+                data.交流电压1 = pcs.voltage21;
+                data.交流电压2 = pcs.voltage22;
+            });
             this.setState(data);
         }, 2000);
     }
@@ -109,6 +146,7 @@ export default class Pcs extends BaseComponent {
                     <Switch left={3479} top={1675} src1={require("./images/grid_state_fault0.png")} src2={require("./images/grid_state_fault1.png")} value={this.state.电网状态2 === 2} />
                 </Container>
 
+                {/* TODO: 修改储能电站状态 */}
                 <Container left={943} top={393} background={require("./images/box3.png")}>
                     <Text left={1022} top={428} value="1#储能电站" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Switch left={1024} top={550} src1={require("./images/charging0.png")} src2={require("./images/charging1.png")} value={this.state.充电1 === 0} />
@@ -124,45 +162,45 @@ export default class Pcs extends BaseComponent {
                     <Text left={1022} top={742} value="日充电电量" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Text left={1700} top={866} value={`${toFixed(this.state.日充电电量1, 0)}`} font="SourceHanSansSC-Heavy" fontSize={45} />
                     <Text left={1700} top={918} value="kWh" font="SourceHanSansSC-Heavy" fontSize={45} />
-                    <BarChart left={1026} top={861} width={637} height={115} color="rgba(68,175,244,0.8)" min={this.state.日充电电量1 - 30} max={this.state.日充电电量1 + 30} />
+                    <BarChart left={1026} top={861} width={637} height={115} color="rgba(68,175,244,0.8)" xLabels={this.state.日充电电量曲线1.xLabels} data={this.state.日充电电量曲线1.data} />
                 </Container>
                 <Container left={1960} top={707} background={require("./images/box3.png")} onClick={() => this.setState({ showDialog2: true })}>
                     <Text left={2043} top={742} value="日充电电量" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Text left={2717} top={866} value={`${toFixed(this.state.日充电电量2, 0)}`} font="SourceHanSansSC-Heavy" fontSize={45} />
                     <Text left={2717} top={918} value="kWh" font="SourceHanSansSC-Heavy" fontSize={45} />
-                    <BarChart left={2043} top={861} width={637} height={115} color="rgba(68,175,244,0.8)" min={this.state.日充电电量2 - 30} max={this.state.日充电电量2 + 30} />
+                    <BarChart left={2043} top={861} width={637} height={115} color="rgba(68,175,244,0.8)" xLabels={this.state.日充电电量曲线2.xLabels} data={this.state.日充电电量曲线2.data} />
                 </Container>
 
                 <Container left={943} top={1019} background={require("./images/box3.png")} onClick={() => this.setState({ showDialog3: true })}>
                     <Text left={1022} top={1054} value="日放电电量" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Text left={1700} top={1179} value={`${toFixed(this.state.日放电电量1, 0)}`} font="SourceHanSansSC-Heavy" fontSize={45} />
                     <Text left={1700} top={1229} value="kWh" font="SourceHanSansSC-Heavy" fontSize={45} />
-                    <BarChart left={1026} top={1173} width={637} height={115} color="rgba(68,175,244,0.8)" min={this.state.日放电电量1 - 30} max={this.state.日放电电量1 + 30} />
+                    <BarChart left={1026} top={1173} width={637} height={115} color="rgba(68,175,244,0.8)" xLabels={this.state.日放电电量曲线1.xLabels} data={this.state.日放电电量曲线1.data} />
                 </Container>
                 <Container left={1960} top={1019} background={require("./images/box3.png")} onClick={() => this.setState({ showDialog4: true })}>
                     <Text left={2043} top={1054} value="日放电电量" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Text left={2717} top={1179} value={`${toFixed(this.state.日放电电量2, 0)}`} font="SourceHanSansSC-Heavy" fontSize={45} />
                     <Text left={2717} top={1229} value="kWh" font="SourceHanSansSC-Heavy" fontSize={45} />
-                    <BarChart left={2043} top={1173} width={637} height={115} color="rgba(68,175,244,0.8)" min={this.state.日放电电量2 - 30} max={this.state.日放电电量2 + 30} />
+                    <BarChart left={2043} top={1173} width={637} height={115} color="rgba(68,175,244,0.8)" xLabels={this.state.日放电电量曲线2.xLabels} data={this.state.日放电电量曲线2.data} />
                 </Container>
 
                 <Container left={943} top={1334} background={require("./images/box3.png")} onClick={() => this.setState({ showDialog5: true })}>
                     <Text left={1022} top={1369} value="日放电功率" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Text left={1700} top={1494} value={`${toFixed(this.state.日放电功率1, 0)}`} font="SourceHanSansSC-Heavy" fontSize={45} />
                     <Text left={1700} top={1553} value="w" font="SourceHanSansSC-Heavy" fontSize={45} />
-                    <BarChart left={1026} top={1488} width={637} height={115} color="rgba(68,175,244,0.8)" min={this.state.日放电功率1 - 30} max={this.state.日放电功率1 + 30} />
+                    <BarChart left={1026} top={1488} width={637} height={115} color="rgba(68,175,244,0.8)" xLabels={this.state.日放电功率曲线1.xLabels} data={this.state.日放电功率曲线1.data} />
                 </Container>
                 <Container left={1960} top={1334} background={require("./images/box3.png")} onClick={() => this.setState({ showDialog6: true })}>
                     <Text left={2043} top={1369} value="日放电功率" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Text left={2717} top={1494} value={`${toFixed(this.state.日放电功率2, 0)}`} font="SourceHanSansSC-Heavy" fontSize={45} />
                     <Text left={2717} top={1553} value="w" font="SourceHanSansSC-Heavy" fontSize={45} />
-                    <BarChart left={2043} top={1488} width={637} height={115} color="rgba(68,175,244,0.8)" min={this.state.日放电功率2 - 30} max={this.state.日放电功率2 + 30} />
+                    <BarChart left={2043} top={1488} width={637} height={115} color="rgba(68,175,244,0.8)" xLabels={this.state.日放电功率曲线2.xLabels} data={this.state.日放电功率曲线2.data} />
                 </Container>
 
                 <Container left={943} top={1646} background={require("./images/box4.png")}>
                     <Text left={1024} top={1690} value="直流电压" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Text left={1299} top={1690} value="直流电流" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
-                    <Text left={1588} top={1690} value="逆变电流" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
+                    <Text left={1588} top={1690} value="交流电压" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Container left={1024} top={1771} background={require("./images/tip.png")}>
                         <Text left={1024} top={1783} width={150} value={`${toFixed(this.state.直流电压1, 0)}V`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
                     </Container>
@@ -170,16 +208,16 @@ export default class Pcs extends BaseComponent {
                         <Text left={1299} top={1783} width={150} value={`${toFixed(this.state.直流电流1, 0)}A`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
                     </Container>
                     <Container left={1588} top={1771} background={require("./images/tip.png")}>
-                        <Text left={1588} top={1783} width={150} value={`${toFixed(this.state.逆变电流1, 0)}A`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
+                        <Text left={1588} top={1783} width={150} value={`${toFixed(this.state.交流电压1, 0)}V`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
                     </Container>
                     <Progress left={1024} top={1850} width={221} height={14} value={this.state.直流电压1 / 400 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
                     <Progress left={1299} top={1850} width={221} height={14} value={this.state.直流电流1 / 200 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
-                    <Progress left={1588} top={1850} width={221} height={14} value={this.state.逆变电流1 / 200 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
+                    <Progress left={1588} top={1850} width={221} height={14} value={this.state.交流电压1 / 200 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
                 </Container>
                 <Container left={1960} top={1646} background={require("./images/box4.png")}>
                     <Text left={2041} top={1690} value="直流电压" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Text left={2316} top={1690} value="直流电流" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
-                    <Text left={2605} top={1690} value="逆变电流" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
+                    <Text left={2605} top={1690} value="交流电压" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Container left={2041} top={1771} background={require("./images/tip.png")}>
                         <Text left={2041} top={1783} width={150} value={`${toFixed(this.state.直流电压1, 0)}V`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
                     </Container>
@@ -187,11 +225,11 @@ export default class Pcs extends BaseComponent {
                         <Text left={2316} top={1783} width={150} value={`${toFixed(this.state.直流电流1, 0)}A`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
                     </Container>
                     <Container left={2605} top={1771} background={require("./images/tip.png")}>
-                        <Text left={2605} top={1783} width={150} value={`${toFixed(this.state.逆变电流1, 0)}A`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
+                        <Text left={2605} top={1783} width={150} value={`${toFixed(this.state.交流电压1, 0)}V`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
                     </Container>
                     <Progress left={2041} top={1850} width={221} height={14} value={this.state.直流电压1 / 400 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
                     <Progress left={2316} top={1850} width={221} height={14} value={this.state.直流电流1 / 200 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
-                    <Progress left={2605} top={1850} width={221} height={14} value={this.state.逆变电流1 / 200 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
+                    <Progress left={2605} top={1850} width={221} height={14} value={this.state.交流电压1 / 200 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
                 </Container>
 
                 {this.state.showDialog1 && this._onDialog1()}

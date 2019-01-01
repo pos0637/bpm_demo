@@ -114,6 +114,8 @@ Mock.onGet(/api\/v1\/board\/transformer[?.*]?/).reply(() =>
             "state": 0,
             "switch1": 0,
             "switch2": 0,
+            "electricity1": 0,
+            "electricity2": 0,
             "electricityData1": {
                 xLabels: ['0:00', '3:00', '6:00', '9:00', '12:00', '15:00', '18:00', '21:00', '23:00'],
                 data: [getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220)]

@@ -117,12 +117,12 @@ public class Pcs {
     private ChartData dischargingElectricityData2 = new ChartData(9);
 
     /**
-     * 充放电量1
+     * 充放电量曲线1
      */
     private ChartData electricityData1 = new ChartData(9);
 
     /**
-     * 充放电量2
+     * 充放电量曲线2
      */
     private ChartData electricityData2 = new ChartData(9);
 

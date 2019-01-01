@@ -77,6 +77,9 @@ public class EmsDaemon implements Runnable, InitializingBean {
                 load.readModbusTcpData(dataReader);
                 transformer.readModbusTcpData(dataReader);
                 bms.readModbusTcpData(dataReader);
+
+                save();
+                Thread.sleep(interval);
             } catch (Exception e) {
                 try {
                     dataReader.reset();
@@ -85,13 +88,6 @@ public class EmsDaemon implements Runnable, InitializingBean {
                     Tracker.error(e1);
                 }
 
-                Tracker.error(e);
-            }
-
-            try {
-                save();
-                Thread.sleep(interval);
-            } catch (Exception e) {
                 Tracker.error(e);
             }
         }

@@ -54,10 +54,20 @@ public class Transformer {
     /**
      * 充放电量1
      */
-    private ChartData electricityData1 = new ChartData(9);
+    private float electricity1;
 
     /**
      * 充放电量2
+     */
+    private float electricity2;
+
+    /**
+     * 充放电量曲线1
+     */
+    private ChartData electricityData1 = new ChartData(9);
+
+    /**
+     * 充放电量曲线2
      */
     private ChartData electricityData2 = new ChartData(9);
 
@@ -88,10 +98,13 @@ public class Transformer {
         setSwitch1(reader.readByte(1, 2, 1));
         setSwitch2(reader.readByte(1, 2, 2));
 
+        setElectricity1(reader.readFloat(1, 3, 51));
+        setElectricity2(reader.readFloat(1, 3, 79));
+
         if ((lastDate == null) || (new Date().getTime() - lastDate.getTime() > 10000)) {
             lastDate = new Date();
-            electricityData1.push(dateFormat.format(lastDate), reader.readFloat(1, 3, 51));
-            electricityData2.push(dateFormat.format(lastDate), reader.readFloat(1, 3, 79));
+            electricityData1.push(dateFormat.format(lastDate), getElectricity1());
+            electricityData2.push(dateFormat.format(lastDate), getElectricity2());
         }
     }
 }
