@@ -34,9 +34,9 @@ public class EmsDaemon implements Runnable, InitializingBean {
     private Overview overview = new Overview();
 
     /**
-     * 主视图数据
+     * PCS视图数据
      */
-    private Main main = new Main();
+    private Pcs pcs = new Pcs();
 
     /**
      * 负载视图数据
@@ -69,7 +69,7 @@ public class EmsDaemon implements Runnable, InitializingBean {
         while (true) {
             try {
                 overview.readModbusTcpData(dataReader);
-                main.readModbusTcpData(dataReader);
+                pcs.readModbusTcpData(dataReader);
                 load.readModbusTcpData(dataReader);
                 transformer.readModbusTcpData(dataReader);
                 bms.readModbusTcpData(dataReader);

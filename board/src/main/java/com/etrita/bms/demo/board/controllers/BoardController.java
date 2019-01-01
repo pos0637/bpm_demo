@@ -30,13 +30,13 @@ public class BoardController {
     }
 
     /**
-     * 获取主视图数据
+     * 获取PCS视图数据
      *
-     * @return 主视图数据
+     * @return PCS视图数据
      */
-    @GetMapping("/main")
-    public RestResponse main() {
-        return new RestResponse(200, null, this.emsDaemon.getMain());
+    @GetMapping("/pcs")
+    public RestResponse pcs() {
+        return new RestResponse(200, null, this.emsDaemon.getPcs());
     }
 
     /**
