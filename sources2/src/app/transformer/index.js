@@ -30,7 +30,7 @@ export default class Transformer extends BaseComponent {
         风扇2: true,
         温度1: 40,
         温度2: 40,
-        安防系统状态: 0,
+        变压器状态: 0,
         总充电电量1: 2100,
         总放电电量1: 2100,
         总充电电量2: 2100,
@@ -55,7 +55,7 @@ export default class Transformer extends BaseComponent {
                 风扇2: getRandom(0, 1) === 0,
                 温度1: getRandom(20, 50),
                 温度2: getRandom(20, 50),
-                安防系统状态: getRandom(0, 1),
+                变压器状态: getRandom(0, 1),
                 总充电电量1: getRandom(1800, 2500),
                 总放电电量1: getRandom(1800, 2500),
                 总充电电量2: getRandom(1800, 2500),
@@ -106,9 +106,9 @@ export default class Transformer extends BaseComponent {
                     <Switch left={1251} top={1154} src1={require("./images/fan_on.png")} src2={require("./images/fan_off.png")} value={this.state.风扇2} />
                 </Container>
                 <Container left={939} top={1459} background={require("./images/box5.png")}>
-                    <Switch left={1021} top={1593} src1={require("./images/security_system_normal0.png")} src2={require("./images/security_system_normal1.png")} value={this.state.安防系统状态 === 0} />
-                    <Switch left={1224} top={1593} src1={require("./images/security_system_alarm0.png")} src2={require("./images/security_system_alarm1.png")} value={this.state.安防系统状态 === 1} />
-                    <Switch left={1446} top={1593} src1={require("./images/security_system_fault0.png")} src2={require("./images/security_system_fault1.png")} value={this.state.安防系统状态 === 2} />
+                    <Switch left={1021} top={1593} src1={require("./images/security_system_normal0.png")} src2={require("./images/security_system_normal1.png")} value={this.state.变压器状态 === 0} />
+                    <Switch left={1224} top={1593} src1={require("./images/security_system_alarm0.png")} src2={require("./images/security_system_alarm1.png")} value={this.state.变压器状态 === 1} />
+                    <Switch left={1446} top={1593} src1={require("./images/security_system_fault0.png")} src2={require("./images/security_system_fault1.png")} value={this.state.变压器状态 === 2} />
                 </Container>
                 <Container left={1680} top={393} background={require("./images/box3.png")}>
                     <Text left={1909} top={550} value="1#并网柜" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />

@@ -9,6 +9,7 @@ import Switch from '~/app/components/switch';
 import BarChart from '~/app/components/barChart';
 import { toFixed, pad } from '~/misc/number';
 import { getRandom } from '~/misc/random';
+import { getOverviewData } from '~/api/v1/board';
 import style from './index.scss';
 
 /**
@@ -34,6 +35,8 @@ export default class Overview extends BaseComponent {
         总放电量: 669,
         安防系统状态: 0,
         充电1: 0,
+        电站运行状态1: 0,
+        电站运行状态2: 0,
         节能总费用: 26000,
         今日充电总量1: 1660,
         今日放电总量1: 960,
@@ -56,6 +59,8 @@ export default class Overview extends BaseComponent {
                 总放电量: getRandom(1000, 2000),
                 安防系统状态: getRandom(0, 1),
                 充电1: getRandom(0, 1),
+                电站运行状态1: getRandom(0, 2),
+                电站运行状态2: getRandom(0, 2),
                 节能总费用: getRandom(10000, 27000),
                 今日充电总量1: getRandom(1000, 2000),
                 今日放电总量1: getRandom(500, 1000),
@@ -65,6 +70,18 @@ export default class Overview extends BaseComponent {
                 充放电量曲线2: getRandom(50, 100)
             };
 
+            getOverviewData(overview => {
+                data.电站运行状态1 = overview.state1;
+                data.电站运行状态2 = overview.state2;
+                data.母线1 = overview.loadPower1;
+                data.母线2 = overview.loadPower2;
+                data.总充电量 = overview.totalChargingElectricity;
+                data.总放电量 = overview.totalDischargingElectricity;
+                data.今日充电总量1 = overview.chargingElectricity1;
+                data.今日放电总量1 = overview.dischargingElectricity1;
+                data.今日充电总量2 = overview.chargingElectricity2;
+                data.今日放电总量2 = overview.dischargingElectricity2;
+            });
             this.setState(data);
         }, 2000);
     }
@@ -141,6 +158,7 @@ export default class Overview extends BaseComponent {
                     <Switch left={2338} top={1753} src1={require("./images/security_system_alarm0.png")} src2={require("./images/security_system_alarm1.png")} value={this.state.安防系统状态 !== 0} />
                 </Container>
 
+                {/* TODO: 修正运行状态错误 */}
                 <Container left={2600} top={99} background={require("./images/box4.png")}>
                     <Text left={2677} top={133} value="电站运行状态" font="SourceHanSansSC-Bold" fontSize={48} />
                     <Switch left={2682} top={251} src1={require("./images/charging0.png")} src2={require("./images/charging1.png")} value={this.state.充电1 === 0} />
