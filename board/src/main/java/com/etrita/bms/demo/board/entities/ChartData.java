@@ -1,7 +1,8 @@
 package com.etrita.bms.demo.board.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -12,6 +13,8 @@ import java.util.List;
  * @author Alex
  */
 @Getter
+@Setter
+@NoArgsConstructor
 public class ChartData {
     /**
      * X轴标签列表
@@ -26,7 +29,6 @@ public class ChartData {
     /**
      * 数据最大长度
      */
-    @JsonIgnore
     private int maxLength;
 
     /**

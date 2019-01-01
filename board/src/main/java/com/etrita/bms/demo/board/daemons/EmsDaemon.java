@@ -2,12 +2,15 @@ package com.etrita.bms.demo.board.daemons;
 
 import com.etrita.bms.demo.board.communications.IDataReader;
 import com.etrita.bms.demo.board.entities.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.furongsoft.core.misc.Tracker;
 import lombok.Getter;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
+import java.io.File;
 
 /**
  * EMS通讯服务
@@ -62,6 +65,7 @@ public class EmsDaemon implements Runnable, InitializingBean {
     public void run() {
         try {
             dataReader.reset();
+            load();
         } catch (Exception e) {
             Tracker.error(e);
         }
@@ -73,7 +77,6 @@ public class EmsDaemon implements Runnable, InitializingBean {
                 load.readModbusTcpData(dataReader);
                 transformer.readModbusTcpData(dataReader);
                 bms.readModbusTcpData(dataReader);
-                Thread.sleep(interval);
             } catch (Exception e) {
                 try {
                     dataReader.reset();
@@ -84,11 +87,44 @@ public class EmsDaemon implements Runnable, InitializingBean {
 
                 Tracker.error(e);
             }
+
+            try {
+                save();
+                Thread.sleep(interval);
+            } catch (Exception e) {
+                Tracker.error(e);
+            }
         }
     }
 
     @Override
     public void afterPropertiesSet() throws Exception {
         new Thread(this).start();
+    }
+
+    private void load() throws Exception {
+        File file = new File("./data");
+        if (!file.exists()) {
+            return;
+        }
+
+        ObjectMapper mapper = new ObjectMapper();
+        overview = mapper.readValue(new File(file.getAbsolutePath() + "/overview"), Overview.class);
+        pcs = mapper.readValue(new File(file.getAbsolutePath() + "/pcs"), Pcs.class);
+        transformer = mapper.readValue(new File(file.getAbsolutePath() + "/transformer"), Transformer.class);
+        bms = mapper.readValue(new File(file.getAbsolutePath() + "/bms"), Bms.class);
+    }
+
+    private void save() throws Exception {
+        File file = new File("./data");
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.writeValue(new File(file.getAbsolutePath() + "/overview"), overview);
+        mapper.writeValue(new File(file.getAbsolutePath() + "/pcs"), pcs);
+        mapper.writeValue(new File(file.getAbsolutePath() + "/transformer"), transformer);
+        mapper.writeValue(new File(file.getAbsolutePath() + "/bms"), bms);
     }
 }
