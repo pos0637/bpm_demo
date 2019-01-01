@@ -7,6 +7,7 @@ import Container from '~/app/components/container';
 import CircleProgress from '~/app/components/progress';
 import { toFixed, pad } from '~/misc/number';
 import { getRandom } from '~/misc/random';
+import { getBmsData } from '~/api/v1/board';
 import style from './index.scss';
 
 /**
@@ -60,6 +61,14 @@ export default class Bms extends BaseComponent {
                 健康状态: getRandom(40, 60)
             };
 
+            getBmsData(bms => {
+                data.SOC1 = bms.soc1;
+                data.SOC2= bms.soc2;
+                data.剩余容量1 = bms.electricity1;
+                data.剩余容量2 = bms.electricity2;
+                data.组端电压1 = bms.voltage1;
+                data.组端电压2 = bms.voltage2;
+            });
             this.setState(data);
         }, 2000);
     }
