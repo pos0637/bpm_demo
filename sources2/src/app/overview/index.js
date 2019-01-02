@@ -42,8 +42,14 @@ export default class Overview extends BaseComponent {
         今日放电总量1: 960,
         今日充电总量2: 1660,
         今日放电总量2: 960,
-        充放电量曲线1: {},
-        充放电量曲线2: {}
+        充放电功率1: 960,
+        充放电功率2: 960,
+        充放电量曲线1: null,
+        充放电量曲线2: null,
+        并网点需求1: 960,
+        并网点需求2: 960,
+        并网点需求曲线1: null,
+        并网点需求曲线2: null
     }
 
     componentDidMount() {

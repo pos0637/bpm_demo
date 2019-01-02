@@ -26,10 +26,10 @@ export default class Pcs extends BaseComponent {
     }
 
     state = {
-        电网状态1: 0,
-        电网状态2: 0,
-        充电1: 0,
-        充电2: 0,
+        PCS1状态: 0,
+        PCS2状态: 0,
+        电站运行状态1: 0,
+        电站运行状态2: 0,
         日充电电量1: 3600,
         日放电电量1: 3600,
         日充电电量2: 3600,
@@ -60,10 +60,10 @@ export default class Pcs extends BaseComponent {
         super.componentDidMount();
         this.timer = setInterval(() => {
             const data = {
-                电网状态1: getRandom(0, 1),
-                电网状态2: getRandom(0, 1),
-                充电1: getRandom(0, 1),
-                充电2: getRandom(0, 1),
+                PCS1状态: getRandom(0, 1),
+                PCS2状态: getRandom(0, 1),
+                电站运行状态1: getRandom(0, 1),
+                电站运行状态2: getRandom(0, 1),
                 日充电电量1: getRandom(3000, 4000),
                 日放电电量1: getRandom(3000, 4000),
                 日充电电量2: getRandom(3000, 4000),
@@ -85,10 +85,10 @@ export default class Pcs extends BaseComponent {
             };
 
             getPcsData(pcs => {
-                data.充电1 = pcs.state1;
-                data.充电2 = pcs.state2;
-                data.电网状态1 = pcs.gridState1;
-                data.电网状态2 = pcs.gridState2;
+                data.电站运行状态1 = pcs.state1;
+                data.电站运行状态2 = pcs.state2;
+                data.PCS1状态 = pcs.gridState1;
+                data.PCS2状态 = pcs.gridState2;
                 data.日充电电量1 = pcs.chargingElectricity1;
                 data.日放电电量1 = pcs.dischargingElectricity1;
                 data.日充电电量2 = pcs.chargingElectricity2;
@@ -127,35 +127,38 @@ export default class Pcs extends BaseComponent {
 
                 <Container left={200} top={393} background={require("./images/box1.png")}>
                     <Text left={279} top={433} value="PCS&nbsp;1" font="SourceHanSansSC-Medium" fontSize={48} />
-                    <Image left={251} top={726} src={require("./images/img1.png")} className={style.move} />
+                    <Image left={281} top={707} src={require("./images/img1.png")} className={style.move} />
                 </Container>
                 <Container left={3003} top={393} background={require("./images/box1.png")}>
                     <Text left={3085} top={433} value="PCS&nbsp;2" font="SourceHanSansSC-Medium" fontSize={48} />
-                    <Image left={3053} top={726} src={require("./images/img1.png")} className={style.move} />
+                    <Image left={3086} top={707} src={require("./images/img1.png")} className={style.move} />
                 </Container>
                 <Container left={200} top={1500} background={require("./images/box2.png")}>
-                    <Text left={281} top={1535} value="电网数据" font="SourceHanSansSC-Medium" fontSize={48} />
-                    <Switch left={281} top={1673} src1={require("./images/grid_state_normal0.png")} src2={require("./images/grid_state_normal1.png")} value={this.state.电网状态1 === 0} />
-                    <Switch left={476} top={1674} src1={require("./images/grid_state_alarm0.png")} src2={require("./images/grid_state_alarm1.png")} value={this.state.电网状态1 === 1} />
-                    <Switch left={663} top={1675} src1={require("./images/grid_state_fault0.png")} src2={require("./images/grid_state_fault1.png")} value={this.state.电网状态1 === 2} />
+                    <Text left={281} top={1535} value="PCS1状态" font="SourceHanSansSC-Medium" fontSize={48} />
+                    <Switch left={281} top={1673} src1={require("./images/grid_state_normal0.png")} src2={require("./images/grid_state_normal1.png")} value={this.state.PCS1状态 === 0} />
+                    <Switch left={476} top={1674} src1={require("./images/grid_state_alarm0.png")} src2={require("./images/grid_state_alarm1.png")} value={this.state.PCS1状态 === 1} />
+                    <Switch left={663} top={1675} src1={require("./images/grid_state_fault0.png")} src2={require("./images/grid_state_fault1.png")} value={this.state.PCS1状态 === 2} />
                 </Container>
                 <Container left={3006} top={1500} background={require("./images/box2.png")}>
-                    <Text left={3097} top={1535} value="电网数据" font="SourceHanSansSC-Medium" fontSize={48} />
-                    <Switch left={3086} top={1673} src1={require("./images/grid_state_normal0.png")} src2={require("./images/grid_state_normal1.png")} value={this.state.电网状态2 === 0} />
-                    <Switch left={3284} top={1674} src1={require("./images/grid_state_alarm0.png")} src2={require("./images/grid_state_alarm1.png")} value={this.state.电网状态2 === 1} />
-                    <Switch left={3479} top={1675} src1={require("./images/grid_state_fault0.png")} src2={require("./images/grid_state_fault1.png")} value={this.state.电网状态2 === 2} />
+                    <Text left={3097} top={1535} value="PCS2状态" font="SourceHanSansSC-Medium" fontSize={48} />
+                    <Switch left={3086} top={1673} src1={require("./images/grid_state_normal0.png")} src2={require("./images/grid_state_normal1.png")} value={this.state.PCS2状态 === 0} />
+                    <Switch left={3284} top={1674} src1={require("./images/grid_state_alarm0.png")} src2={require("./images/grid_state_alarm1.png")} value={this.state.PCS2状态 === 1} />
+                    <Switch left={3479} top={1675} src1={require("./images/grid_state_fault0.png")} src2={require("./images/grid_state_fault1.png")} value={this.state.PCS2状态 === 2} />
                 </Container>
 
-                {/* TODO: 修改储能电站状态 */}
                 <Container left={943} top={393} background={require("./images/box3.png")}>
                     <Text left={1022} top={428} value="1#储能电站" font="SourceHanSansSC-Medium" fontSize={48} />
-                    <Switch left={1024} top={550} src1={require("./images/charging0.png")} src2={require("./images/charging1.png")} value={this.state.充电1 === 0} />
-                    <Switch left={1474} top={550} src1={require("./images/discharging0.png")} src2={require("./images/discharging1.png")} value={this.state.充电1 !== 0} />
+                    <Switch left={1024} top={547} src1={require("./images/charging0.png")} src2={require("./images/charging1.png")} value={this.state.电站运行状态1 === 0} />
+                    <Text left={1223} top={575} value='充电' font="SourceHanSansSC-Medium" fontSize={40} color={this.state.电站运行状态1 === 0? 'rgb(210, 86, 107)': 'rgb(65, 82, 98)'} />
+                    <Switch left={1474} top={547} src1={require("./images/discharging0.png")} src2={require("./images/discharging1.png")} value={this.state.电站运行状态1 !== 0} />
+                    <Text left={1671} top={575} value='放电' font="SourceHanSansSC-Medium" fontSize={40} color={this.state.电站运行状态1 !== 0? 'rgb(68, 205, 103)': 'rgb(65, 82, 98)'} />
                 </Container>
                 <Container left={1960} top={393} background={require("./images/box3.png")}>
                     <Text left={2037} top={428} value="2#储能电站" font="SourceHanSansSC-Medium" fontSize={48} />
-                    <Switch left={2041} top={550} src1={require("./images/charging0.png")} src2={require("./images/charging1.png")} value={this.state.充电2 === 0} />
-                    <Switch left={2491} top={550} src1={require("./images/discharging0.png")} src2={require("./images/discharging1.png")} value={this.state.充电2 !== 0} />
+                    <Switch left={2029} top={547} src1={require("./images/charging0.png")} src2={require("./images/charging1.png")} value={this.state.电站运行状态2 === 0} />
+                    <Text left={2226} top={575} value='充电' font="SourceHanSansSC-Medium" fontSize={40} color={this.state.电站运行状态2 === 0? 'rgb(210, 86, 107)': 'rgb(65, 82, 98)'} />
+                    <Switch left={2479} top={547} src1={require("./images/discharging0.png")} src2={require("./images/discharging1.png")} value={this.state.电站运行状态2 !== 0} />
+                    <Text left={2676} top={575} value='放电' font="SourceHanSansSC-Medium" fontSize={40} color={this.state.电站运行状态2 !== 0? 'rgb(68, 205, 103)': 'rgb(65, 82, 98)'} />
                 </Container>
 
                 <Container left={943} top={707} background={require("./images/box3.png")} onClick={() => this.setState({ showDialog1: true })}>
