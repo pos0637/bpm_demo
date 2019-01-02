@@ -115,13 +115,17 @@ export default class Transformer extends BaseComponent {
                     <Image left={999} top={606} src={require("./images/line1.png")} />
                     <Image left={1300} top={606} src={require("./images/line1.png")} />
 
-                    <Gauge left={1040} top={701} width={164} value={this.state.温度1 / 100 * 100} content={`${toFixed(this.state.温度1, 0)}℃`} fontSize={32} />
-                    <Gauge left={1341} top={701} width={164} value={this.state.温度2 / 100 * 100} content={`${toFixed(this.state.温度2, 0)}℃`} fontSize={32} />
+                    <Text left={1092} top={673} value="温度" font="SourceHanSansSC-Light" fontSize={36} />
+                    <Text left={1389} top={673} value="温度" font="SourceHanSansSC-Light" fontSize={36} />
+                    <Gauge left={1040} top={764} width={164} value={this.state.温度1 / 100 * 100} content={`${toFixed(this.state.温度1, 0)}℃`} fontSize={32} />
+                    <Gauge left={1341} top={764} width={164} value={this.state.温度2 / 100 * 100} content={`${toFixed(this.state.温度2, 0)}℃`} fontSize={32} />
 
-                    <Text left={1052} top={1023} value="风扇" font="SourceHanSansSC-Medium" fontSize={40} color={this.state.风扇1 ? "rgb(60, 211, 238)" : "rgb(137, 149, 165)"} />
-                    <Text left={1052} top={1191} value="风扇" font="SourceHanSansSC-Medium" fontSize={40} color={this.state.风扇2 ? "rgb(60, 211, 238)" : "rgb(137, 149, 165)"} />
-                    <Switch left={1251} top={986} src1={require("./images/fan_on.png")} src2={require("./images/fan_off.png")} value={this.state.风扇1} />
-                    <Switch left={1251} top={1154} src1={require("./images/fan_on.png")} src2={require("./images/fan_off.png")} value={this.state.风扇2} />
+                    <Text left={1092} top={1072} value="风扇" font="SourceHanSansSC-Light" fontSize={36} />
+                    <Text left={1389} top={1072} value="风扇" font="SourceHanSansSC-Light" fontSize={36} />
+                    <Switch left={1078} top={1140} src1={require("./images/fan_on.png")} src2={require("./images/fan_off.png")} value={this.state.风扇1} />
+                    <Switch left={1375} top={1140} src1={require("./images/fan_on.png")} src2={require("./images/fan_off.png")} value={this.state.风扇2} />
+                    <Text left={1103} top={1270} value={this.state.风扇1 ? '开': '关'} font="SourceHanSansSC-Light" fontSize={40} color={this.state.风扇1 ? "rgb(1, 255, 186)" : "rgb(137, 149, 165)"} />
+                    <Text left={1399} top={1270} value={this.state.风扇2 ? '开': '关'} font="SourceHanSansSC-Light" fontSize={40} color={this.state.风扇2 ? "rgb(1, 255, 186)" : "rgb(137, 149, 165)"} />
                 </Container>
                 <Container left={939} top={1459} background={require("./images/box5.png")}>
                     <Switch left={1021} top={1593} src1={require("./images/security_system_normal0.png")} src2={require("./images/security_system_normal1.png")} value={this.state.变压器状态 === 0} />
