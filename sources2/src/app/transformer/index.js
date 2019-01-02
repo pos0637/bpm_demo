@@ -103,11 +103,11 @@ export default class Transformer extends BaseComponent {
 
                 <Container left={199} top={393} background={require("./images/box1.png")}>
                     <Text left={276} top={427} value="变压器" font="SourceHanSansSC-Medium" fontSize={48} />
-                    <Image left={316} top={890} src={require("./images/img1.png")} className={style.move} />
+                    <Image left={264} top={891} src={require("./images/img1.png")} className={style.move} />
                 </Container>
                 <Container left={2959} top={393} background={require("./images/box6.png")}>
                     <Text left={3036} top={427} value="并网柜" font="SourceHanSansSC-Medium" fontSize={48} />
-                    <Image left={3026} top={846} src={require("./images/img2.png")} className={style.move} />
+                    <Image left={3018} top={889} src={require("./images/img2.png")} className={style.move} />
                 </Container>
                 <Container left={939} top={393} background={require("./images/box2.png")}>
                     <Text left={1041} top={550} value="1#变压器" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
