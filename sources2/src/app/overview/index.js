@@ -66,8 +66,14 @@ export default class Overview extends BaseComponent {
                 今日放电总量1: getRandom(500, 1000),
                 今日充电总量2: getRandom(1000, 2000),
                 今日放电总量2: getRandom(500, 1000),
-                充放电量曲线1: {},
-                充放电量曲线2: {}
+                充放电功率1: getRandom(500, 1000),
+                充放电功率2: getRandom(500, 1000),
+                充放电功率曲线1: null,
+                充放电功率曲线2: null,
+                并网点需求1: getRandom(500, 1000),
+                并网点需求2: getRandom(500, 1000),
+                并网点需求曲线1: null,
+                并网点需求曲线2: null
             };
 
             getOverviewData(overview => {
@@ -80,9 +86,7 @@ export default class Overview extends BaseComponent {
                 data.今日充电总量1 = overview.chargingElectricity1;
                 data.今日放电总量1 = overview.dischargingElectricity1;
                 data.今日充电总量2 = overview.chargingElectricity2;
-                data.今日放电总量2 = overview.dischargingElectricity2;
-                data.充放电量曲线1 = overview.electricityData1;
-                data.充放电量曲线2 = overview.electricityData2;
+                data.今日放电总量2 = overview.dischargingElectricity2;                
             });
             this.setState(data);
         }, 2000);
@@ -121,7 +125,7 @@ export default class Overview extends BaseComponent {
                         <Text left={355} top={739} value={`节炭量${toFixed(this.state.节炭量2, 1)}吨`} font="SourceHanSansSC-Light" fontSize={27.69} />
                         <Progress left={355} top={785} width={251} height={9} value={this.state.节炭量2 / 1000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
                     </Container>
-                    <Container left={1962} top={1059} background={require("./images/small_box1.png")}>
+                    <Container left={1962} top={1059} background={require("./images/small_box2.png")}>
                         <Text left={2296} top={1108} value="负载" font="SourceHanSansSC-Medium" fontSize={46.24} />
                         <Text left={2136} top={1199} value={`1#母线${toFixed(this.state.母线1, 1)}kW`} font="SourceHanSansSC-Light" fontSize={27.69} align="right" width={250} />
                         <Progress left={2136} top={1245} width={251} height={9} value={this.state.母线1 / 1000 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)" />
@@ -177,30 +181,49 @@ export default class Overview extends BaseComponent {
                 </Container>
 
                 <Container left={2600} top={802} background={require("./images/box6.png")}>
-                    <Text left={2677} top={840} value="日充/放电量" font="SourceHanSansSC-Bold" fontSize={48} />
-                    <Text left={2679} top={1005} value="1#" font="SourceHanSansSC-Medium" fontSize={40} />
-                    <Text left={2776} top={995} value="今日充电总量" font="SourceHanSansSC-Heavy" fontSize={48} />
-                    <Text left={2776} top={1055} value={`${toFixed(this.state.今日充电总量1, 1)}kWh`} font="SourceHanSansSC-Heavy" fontSize={48} />
-                    <Progress left={2775} top={1131} width={251} height={9} value={this.state.今日充电总量1 / 2000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
-                    <Text left={3241} top={995} value="今日放电总量" font="SourceHanSansSC-Heavy" fontSize={48} />
-                    <Text left={3241} top={1055} value={`${toFixed(this.state.今日放电总量1, 1)}kWh`} font="SourceHanSansSC-Heavy" fontSize={48} />
-                    <Progress left={3240} top={1131} width={251} height={9} value={this.state.今日放电总量1 / 2000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
+                    <Text left={2678} top={840} value="日充/放功率" font="SourceHanSansSC-Bold" fontSize={48} />
+                    <Text left={2678} top={993} value="1#充/放电功率" font="SourceHanSansSC-Regular" fontSize={32} />
+                    <Container left={2936} top={969} background={require("./images/tip.png")}>
+                        <Text left={2936} top={983} width={158} value={`${toFixed(this.state.充放电功率1, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
+                    </Container>
+                    <BarChart left={2678} top={1050} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.充放电功率曲线1} />
+                    
+                    <Text left={2678} top={1224} value="2#充/放电功率" font="SourceHanSansSC-Regular" fontSize={32} />
+                    <Container left={2936} top={1203} background={require("./images/tip.png")}>
+                        <Text left={2936} top={1217} width={158} value={`${toFixed(this.state.充放电功率2, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
+                    </Container>
+                    <BarChart left={2678} top={1284} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.充放电功率曲线2} />
 
-                    <Text left={2684} top={1254} value="2#" font="SourceHanSansSC-Medium" fontSize={40} />
-                    <Text left={2782} top={1245} value="今日充电总量" font="SourceHanSansSC-Heavy" fontSize={48} />
-                    <Text left={2782} top={1305} value={`${toFixed(this.state.今日充电总量2, 1)}kWh`} font="SourceHanSansSC-Heavy" fontSize={48} />
-                    <Progress left={2775} top={1381} width={251} height={9} value={this.state.今日充电总量2 / 2000 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)" />
-                    <Text left={3247} top={1245} value="今日放电总量" font="SourceHanSansSC-Heavy" fontSize={48} />
-                    <Text left={3247} top={1305} value={`${toFixed(this.state.今日放电总量2, 1)}kWh`} font="SourceHanSansSC-Heavy" fontSize={48} />
-                    <Progress left={3240} top={1381} width={251} height={9} value={this.state.今日放电总量2 / 2000 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)" />
+                    <Text left={3146} top={993} value="1#并网点需求" font="SourceHanSansSC-Regular" fontSize={32} />
+                    <Container left={3405} top={969} background={require("./images/tip.png")}>
+                        <Text left={3405} top={983} width={158} value={`${toFixed(this.state.并网点需求1, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
+                    </Container>
+                    <BarChart left={3146} top={1050} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.并网点需求曲线1} />
+                    
+                    <Text left={3146} top={1224} value="2#并网点需求" font="SourceHanSansSC-Regular" fontSize={32} />
+                    <Container left={3405} top={1203} background={require("./images/tip.png")}>
+                        <Text left={3405} top={1217} width={158} value={`${toFixed(this.state.并网点需求2, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
+                    </Container>
+                    <BarChart left={3146} top={1284} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.并网点需求曲线2} />
                 </Container>
 
                 <Container left={2600} top={1502} background={require("./images/box7.png")}>
-                    <Text left={2677} top={1543} value="充放电量曲线" font="SourceHanSansSC-Bold" fontSize={48} />
-                    <Text left={2673} top={1665} value="1#系统" font="SourceHanSansSC-Heavy" fontSize={48} />
-                    <BarChart left={2673} top={1746} width={404} height={215} color="rgba(68,175,244,0.8)" xLabels={this.state.充放电量曲线1.xLabels} data={this.state.充放电量曲线1.data} />
-                    <Text left={3129} top={1665} value="2#系统" font="SourceHanSansSC-Heavy" fontSize={48} />
-                    <BarChart left={3129} top={1746} width={404} height={215} color="rgba(68,175,244,0.8)" xLabels={this.state.充放电量曲线2.xLabels} data={this.state.充放电量曲线2.data} />
+                    <Text left={2676} top={1543} value="日充/放电量" font="SourceHanSansSC-Bold" fontSize={48} />
+                    <Text left={2675} top={1666} value="1#" font="SourceHanSansSC-Medium" fontSize={32} />
+                    <Text left={2748} top={1663} value="今日充电总量" font="SourceHanSansSC-Heavy" fontSize={32} />
+                    <Text left={2747} top={1710} value={`${toFixed(this.state.今日充电总量1, 1)}kWh`} font="SourceHanSansSC-Heavy" fontSize={32} />
+                    <Progress left={2748} top={1765} width={251} height={9} value={this.state.今日充电总量1 / 2000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
+                    <Text left={3193} top={1663} value="今日放电总量" font="SourceHanSansSC-Heavy" fontSize={32} />
+                    <Text left={3193} top={1710} value={`${toFixed(this.state.今日放电总量1, 1)}kWh`} font="SourceHanSansSC-Heavy" fontSize={32} />
+                    <Progress left={3192} top={1765} width={251} height={9} value={this.state.今日放电总量1 / 2000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
+
+                    <Text left={2679} top={1837} value="2#" font="SourceHanSansSC-Medium" fontSize={32} />
+                    <Text left={2753} top={1834} value="今日充电总量" font="SourceHanSansSC-Heavy" fontSize={32} />
+                    <Text left={2752} top={1880} value={`${toFixed(this.state.今日充电总量2, 1)}kWh`} font="SourceHanSansSC-Heavy" fontSize={32} />
+                    <Progress left={2751} top={1938} width={251} height={9} value={this.state.今日充电总量2 / 2000 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)" />
+                    <Text left={3193} top={1834} value="今日放电总量" font="SourceHanSansSC-Heavy" fontSize={32} />
+                    <Text left={3193} top={1880} value={`${toFixed(this.state.今日放电总量2, 1)}kWh`} font="SourceHanSansSC-Heavy" fontSize={32} />
+                    <Progress left={3192} top={1938} width={251} height={9} value={this.state.今日放电总量2 / 2000 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)" />
                 </Container>
 
                 <Container left={228} top={1641} width={306} height={333} onClick={() => window.login && this.context.router.history.replace('/load')} />

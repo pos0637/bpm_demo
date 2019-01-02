@@ -20,7 +20,6 @@ export default class BarChart extends BaseComponent {
         min: PropTypes.number,
         max: PropTypes.number,
         color: PropTypes.string,
-        xLabels: PropTypes.array,
         data: PropTypes.array,
         onClick: PropTypes.func // 点击事件处理函数
     }
@@ -31,8 +30,7 @@ export default class BarChart extends BaseComponent {
         min: 0,
         max: 1,
         color: 'rgba(251,207,72,0.8)',
-        xLabels: null,
-        data: null,
+        data: { xLabels: null, data: null },
         onClick: null
     }
 
@@ -80,7 +78,18 @@ export default class BarChart extends BaseComponent {
     }
 
     render() {
-        let { xLabels, data } = this.props;
+        let xLabels = null;
+        let data = null;
+        if (this.props.data !== null) {
+            if (this.props.data.xLabels) {
+                xLabels = this.props.data.xLabels;
+            }
+
+            if (this.props.data.data) {
+                data = this.props.data.data;
+            }
+        }
+
         if (!xLabels || (xLabels.length === 0)) {
             xLabels = ['0:00', '3:00', '6:00', '9:00', '12:00', '15:00', '18:00', '21:00', '23:00'];
         }

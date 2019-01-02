@@ -36,12 +36,12 @@ export default class Pcs extends BaseComponent {
         日放电电量2: 3600,
         日放电功率1: 360,
         日放电功率2: 360,
-        日充电电量曲线1: {},
-        日放电电量曲线1: {},
-        日充电电量曲线2: {},
-        日放电电量曲线2: {},
-        日放电功率曲线1: {},
-        日放电功率曲线2: {},
+        日充电电量曲线1: null,
+        日放电电量曲线1: null,
+        日充电电量曲线2: null,
+        日放电电量曲线2: null,
+        日放电功率曲线1: null,
+        日放电功率曲线2: null,
         直流电压1: 220,
         直流电压2: 220,
         直流电流1: 50,
@@ -70,12 +70,12 @@ export default class Pcs extends BaseComponent {
                 日放电电量2: getRandom(3000, 4000),
                 日放电功率1: getRandom(200, 400),
                 日放电功率2: getRandom(200, 400),
-                日充电电量曲线1: {},
-                日放电电量曲线1: {},
-                日充电电量曲线2: {},
-                日放电电量曲线2: {},
-                日放电功率曲线1: {},
-                日放电功率曲线2: {},
+                日充电电量曲线1: null,
+                日放电电量曲线1: null,
+                日充电电量曲线2: null,
+                日放电电量曲线2: null,
+                日放电功率曲线1: null,
+                日放电功率曲线2: null,
                 直流电压1: getRandom(200, 230),
                 直流电压2: getRandom(200, 230),
                 直流电流1: getRandom(30, 60),
@@ -162,39 +162,39 @@ export default class Pcs extends BaseComponent {
                     <Text left={1022} top={742} value="日充电电量" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Text left={1700} top={866} value={`${toFixed(this.state.日充电电量1, 0)}`} font="SourceHanSansSC-Heavy" fontSize={45} />
                     <Text left={1700} top={918} value="kWh" font="SourceHanSansSC-Heavy" fontSize={45} />
-                    <BarChart left={1026} top={861} width={637} height={115} color="rgba(68,175,244,0.8)" xLabels={this.state.日充电电量曲线1.xLabels} data={this.state.日充电电量曲线1.data} />
+                    <BarChart left={1026} top={861} width={637} height={115} color="rgba(68,175,244,0.8)" data={this.state.日充电电量曲线1} />
                 </Container>
                 <Container left={1960} top={707} background={require("./images/box3.png")} onClick={() => this.setState({ showDialog2: true })}>
                     <Text left={2043} top={742} value="日充电电量" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Text left={2717} top={866} value={`${toFixed(this.state.日充电电量2, 0)}`} font="SourceHanSansSC-Heavy" fontSize={45} />
                     <Text left={2717} top={918} value="kWh" font="SourceHanSansSC-Heavy" fontSize={45} />
-                    <BarChart left={2043} top={861} width={637} height={115} color="rgba(68,175,244,0.8)" xLabels={this.state.日充电电量曲线2.xLabels} data={this.state.日充电电量曲线2.data} />
+                    <BarChart left={2043} top={861} width={637} height={115} color="rgba(68,175,244,0.8)" data={this.state.日充电电量曲线2} />
                 </Container>
 
                 <Container left={943} top={1019} background={require("./images/box3.png")} onClick={() => this.setState({ showDialog3: true })}>
                     <Text left={1022} top={1054} value="日放电电量" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Text left={1700} top={1179} value={`${toFixed(this.state.日放电电量1, 0)}`} font="SourceHanSansSC-Heavy" fontSize={45} />
                     <Text left={1700} top={1229} value="kWh" font="SourceHanSansSC-Heavy" fontSize={45} />
-                    <BarChart left={1026} top={1173} width={637} height={115} color="rgba(68,175,244,0.8)" xLabels={this.state.日放电电量曲线1.xLabels} data={this.state.日放电电量曲线1.data} />
+                    <BarChart left={1026} top={1173} width={637} height={115} color="rgba(68,175,244,0.8)" data={this.state.日放电电量曲线1} />
                 </Container>
                 <Container left={1960} top={1019} background={require("./images/box3.png")} onClick={() => this.setState({ showDialog4: true })}>
                     <Text left={2043} top={1054} value="日放电电量" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Text left={2717} top={1179} value={`${toFixed(this.state.日放电电量2, 0)}`} font="SourceHanSansSC-Heavy" fontSize={45} />
                     <Text left={2717} top={1229} value="kWh" font="SourceHanSansSC-Heavy" fontSize={45} />
-                    <BarChart left={2043} top={1173} width={637} height={115} color="rgba(68,175,244,0.8)" xLabels={this.state.日放电电量曲线2.xLabels} data={this.state.日放电电量曲线2.data} />
+                    <BarChart left={2043} top={1173} width={637} height={115} color="rgba(68,175,244,0.8)" data={this.state.日放电电量曲线2} />
                 </Container>
 
                 <Container left={943} top={1334} background={require("./images/box3.png")} onClick={() => this.setState({ showDialog5: true })}>
                     <Text left={1022} top={1369} value="日放电功率" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Text left={1700} top={1494} value={`${toFixed(this.state.日放电功率1, 0)}`} font="SourceHanSansSC-Heavy" fontSize={45} />
                     <Text left={1700} top={1553} value="w" font="SourceHanSansSC-Heavy" fontSize={45} />
-                    <BarChart left={1026} top={1488} width={637} height={115} color="rgba(68,175,244,0.8)" xLabels={this.state.日放电功率曲线1.xLabels} data={this.state.日放电功率曲线1.data} />
+                    <BarChart left={1026} top={1488} width={637} height={115} color="rgba(68,175,244,0.8)" data={this.state.日放电功率曲线1} />
                 </Container>
                 <Container left={1960} top={1334} background={require("./images/box3.png")} onClick={() => this.setState({ showDialog6: true })}>
                     <Text left={2043} top={1369} value="日放电功率" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Text left={2717} top={1494} value={`${toFixed(this.state.日放电功率2, 0)}`} font="SourceHanSansSC-Heavy" fontSize={45} />
                     <Text left={2717} top={1553} value="w" font="SourceHanSansSC-Heavy" fontSize={45} />
-                    <BarChart left={2043} top={1488} width={637} height={115} color="rgba(68,175,244,0.8)" xLabels={this.state.日放电功率曲线2.xLabels} data={this.state.日放电功率曲线2.data} />
+                    <BarChart left={2043} top={1488} width={637} height={115} color="rgba(68,175,244,0.8)" data={this.state.日放电功率曲线2} />
                 </Container>
 
                 <Container left={943} top={1646} background={require("./images/box4.png")}>

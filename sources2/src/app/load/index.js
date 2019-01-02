@@ -149,7 +149,7 @@ export default class Load extends BaseComponent {
                         <Container left={2145} top={1531} background={require("./images/tip.png")}>
                             <Text left={2145} top={1543} width={179} value={`${toFixed(this.state.当月能耗, 0)}`} suffix="kW" font="Microsoft Yahei" weight="bold" fontSize={45} suffixFontSize={30} align="center" />
                         </Container>
-                        <BarChart left={1853} top={1643} width={485} height={160} color="rgba(68,175,244,0.8)" xLabels={['Week1', 'Week2', 'Week3', 'Week4']} min={this.state.当月能耗 - 30} max={this.state.当月能耗 + 30} />
+                        <BarChart left={1853} top={1643} width={485} height={160} color="rgba(68,175,244,0.8)" data={{xLabels: ['Week1', 'Week2', 'Week3', 'Week4']}} min={this.state.当月能耗 - 30} max={this.state.当月能耗 + 30} />
                     </Container>
                 </Container>
 
@@ -309,7 +309,7 @@ export default class Load extends BaseComponent {
                     <Container left={2210} top={907} background={require("./images/tip2.png")}>
                         <Text left={2210} top={939} width={373} value={`${toFixed(this.state.当月能耗, 0)}`} suffix="kW" font="SourceHanSansSC-Heavy" weight="bold" fontSize={94} suffixFontSize={62} align="center" />
                     </Container>
-                    <BarChart left={1202} top={1103} width={1417} height={422} color="rgba(68,175,244,0.8)" xLabels={['Week1', 'Week2', 'Week3', 'Week4']} min={this.state.当月能耗 - 30} max={this.state.当月能耗 + 30} />
+                    <BarChart left={1202} top={1103} width={1417} height={422} color="rgba(68,175,244,0.8)" data={{ xLabels: ['Week1', 'Week2', 'Week3', 'Week4'] }} min={this.state.当月能耗 - 30} max={this.state.当月能耗 + 30} />
                 </Container>
             </Dialog>
         );
