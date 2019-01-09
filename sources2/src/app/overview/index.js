@@ -27,8 +27,8 @@ export default class Overview extends BaseComponent {
     state = {
         showLoginForm: false, // 显示登录窗口
         无故障运行时间: 27,
-        节炭量1: 567,
-        节炭量2: 567,
+        节煤量1: 567,
+        节煤量2: 567,
         母线1: 678,
         母线2: 678,
         总充电量: 1669,
@@ -46,10 +46,14 @@ export default class Overview extends BaseComponent {
         充放电功率2: 960,
         充放电量曲线1: null,
         充放电量曲线2: null,
-        并网点需求1: 960,
-        并网点需求2: 960,
-        并网点需求曲线1: null,
-        并网点需求曲线2: null
+        变压器功率1: 960,
+        变压器功率2: 960,
+        变压器曲线1: null,
+        变压器曲线2: null,
+        需求功率1: 960,
+        需求功率2: 960,
+        需求功率曲线1: null,
+        需求功率曲线2: null
     }
 
     componentDidMount() {
@@ -59,8 +63,10 @@ export default class Overview extends BaseComponent {
             if (process.env.NODE_ENV === 'development') {
                 data = {
                     无故障运行时间: getRandom(10, 100),
-                    节炭量1: getRandom(200, 700),
-                    节炭量2: getRandom(200, 700),
+                    节煤量1: getRandom(200, 700),
+                    节煤量2: getRandom(200, 700),
+                    功率需求1: getRandom(500, 1000),
+                    功率需求2: getRandom(500, 1000),
                     母线1: getRandom(200, 700),
                     母线2: getRandom(200, 700),
                     总充电量: getRandom(1000, 2000),
@@ -78,10 +84,14 @@ export default class Overview extends BaseComponent {
                     充放电功率2: getRandom(500, 1000),
                     充放电功率曲线1: null,
                     充放电功率曲线2: null,
-                    并网点需求1: getRandom(500, 1000),
-                    并网点需求2: getRandom(500, 1000),
-                    并网点需求曲线1: null,
-                    并网点需求曲线2: null
+                    变压器功率1: getRandom(500, 1000),
+                    变压器功率2: getRandom(500, 1000),
+                    变压器曲线1: null,
+                    变压器曲线2: null,
+                    需求功率1: getRandom(500, 1000),
+                    需求功率2: getRandom(500, 1000),
+                    需求功率曲线1: null,
+                    需求功率曲线2: null
                 };
                 this.setState(data);
             }
@@ -111,44 +121,49 @@ export default class Overview extends BaseComponent {
     render() {
         return (
             <Container width={3840} height={2160}>
-                <Image left={199} top={96} src={require("../../framework/images/logo.png")} />
-                <Image left={3270} top={2026} src={require("../../framework/images/logo2.png")} />
-                <Image left={199} top={198} src={require("../../framework/images/title.png")} />
+                <Image left={200} top={173} src={require("../../framework/images/logo.png")} />
+                <Image left={902} top={184} src={require("../../framework/images/title.png")} />
 
-                <Text left={1895} top={194} value="无故障运行" font="SourceHanSansSC-Light" fontSize={58.39} />
-                <Text left={2232} top={174} value={pad(this.state.无故障运行时间, 4)} font="SourceHanSansSC-Bold" fontSize={96.43} color="rgb(102, 224, 250)" />
-                <Text left={2494} top={194} value="天" font="SourceHanSansSC-Light" fontSize={58.39} />
+                <Text left={2891} top={185} value="无故障运行" font="SourceHanSansSC-Light" fontSize={58.39} />
+                <Text left={3274} top={164} value={pad(this.state.无故障运行时间, 4)} font="SourceHanSansSC-Bold" fontSize={96.43} color="rgb(102, 224, 250)" />
+                <Text left={3545} top={188} value="天" font="SourceHanSansSC-Light" fontSize={58.39} />
 
                 <Container left={199} top={319} background={require("./images/box1.png")} onClick={() => this.context.router.history.replace('/login')}>
                     <Text left={275} top={354} value="清洁能源微网系统" font="SourceHanSansSC-Bold" fontSize={48} />
-                    <Image left={859} top={718} src={require("./images/line.gif")} />
-                    <Image left={639} top={976} src={require("./images/charging_station.png")} className={style.move} />
-                    <Image left={643} top={478} src={require("./images/grid.png")} className={style.move} />
-                    <Image left={1675} top={979} src={require("./images/load.png")} className={style.move} />
-                    <Image left={1675} top={477} src={require("./images/storage.png")} className={style.move} />
-                    <Image left={1159} top={978} src={require("./images/photovoltaic.png")} className={style.move} />
-                    <Text left={793} top={1391} value="充电桩" font="SourceHanSansSC-Medium" fontSize={46.24} />
-                    <Text left={1277} top={1391} value="光伏发电" font="SourceHanSansSC-Medium" fontSize={46.24} />
-                    <Container left={283} top={538} background={require("./images/small_box1.png")}>
-                        <Text left={355} top={573} value="电网" font="SourceHanSansSC-Medium" fontSize={46.24} />
-                        <Text left={355} top={664} value={`节炭量${toFixed(this.state.节炭量1, 1)}吨`} font="SourceHanSansSC-Light" fontSize={27.69} />
-                        <Progress left={355} top={710} width={251} height={9} value={this.state.节炭量1 / 1000 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)" />
-                        <Text left={355} top={739} value={`节炭量${toFixed(this.state.节炭量2, 1)}吨`} font="SourceHanSansSC-Light" fontSize={27.69} />
-                        <Progress left={355} top={785} width={251} height={9} value={this.state.节炭量2 / 1000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
+                    <Image left={726} top={566} src={require("./images/line.gif")} />
+                    <Image left={616} top={891} src={require("./images/charging_station.png")} className={style.move} />
+                    <Image left={712} top={519} src={require("./images/grid.png")} className={style.move} />
+                    <Image left={1291} top={891} src={require("./images/load.png")} className={style.move} />
+                    <Image left={1200} top={519} src={require("./images/storage.png")} className={style.move} />
+                    <Image left={955} top={1130} src={require("./images/photovoltaic.png")} />
+                    <Text left={1002} top={1390} value="光伏发电" font="SourceHanSansSC-Medium" fontSize={46.24} />
+                    <Container left={279} top={519} background={require("./images/small_box1.png")}>
+                        <Text left={351} top={554} value="电网" font="SourceHanSansSC-Medium" fontSize={46.24} />
+                        <Text left={351} top={645} value={`节煤量${toFixed(this.state.节煤量1, 1)}吨`} font="SourceHanSansSC-Light" fontSize={27.69} />
+                        <Progress left={351} top={690} width={251} height={9} value={this.state.节煤量1 / 1000 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)" />
+                        <Text left={351} top={720} value={`节煤量${toFixed(this.state.节煤量2, 1)}吨`} font="SourceHanSansSC-Light" fontSize={27.69} />
+                        <Progress left={351} top={766} width={251} height={9} value={this.state.节煤量2 / 1000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
                     </Container>
-                    <Container left={1962} top={1059} background={require("./images/small_box2.png")}>
-                        <Text left={2296} top={1108} value="负载" font="SourceHanSansSC-Medium" fontSize={46.24} />
-                        <Text left={2136} top={1199} value={`1#母线${toFixed(this.state.母线1, 1)}kW`} font="SourceHanSansSC-Light" fontSize={27.69} align="right" width={250} />
-                        <Progress left={2136} top={1245} width={251} height={9} value={this.state.母线1 / 1000 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)" />
-                        <Text left={2136} top={1275} value={`2#母线${toFixed(this.state.母线2, 1)}KW`} font="SourceHanSansSC-Light" fontSize={27.69} align="right" width={250} />
-                        <Progress left={2136} top={1322} width={251} height={9} value={this.state.母线2 / 1000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
+                    <Container left={279} top={948} background={require("./images/small_box1.png")}>
+                        <Text left={351} top={983} value="需求" font="SourceHanSansSC-Medium" fontSize={46.24} />
+                        <Text left={351} top={1074} value='1#功率需求' font="SourceHanSansSC-Light" fontSize={27.69} />
+                        <Progress left={351} top={1120} width={251} height={9} value={this.state.需求功率1 / 1000 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)" />
+                        <Text left={351} top={1156} value='2#功率需求' font="SourceHanSansSC-Light" fontSize={27.69} />
+                        <Progress left={351} top={1195} width={251} height={9} value={this.state.需求功率2 / 1000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
                     </Container>
-                    <Container left={1946} top={540} background={require("./images/small_box2.png")}>
-                        <Text left={2299} top={583} value="储能" font="SourceHanSansSC-Medium" fontSize={46.24} />
-                        <Text left={2140} top={672} value={`总充电量${toFixed(this.state.总充电量, 1)}kWh`} font="SourceHanSansSC-Light" fontSize={27.69} align="right" width={250} />
-                        <Progress left={2140} top={718} width={251} height={9} value={this.state.总充电量 / 2000 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)" />
-                        <Text left={2140} top={748} value={`总放电量${toFixed(this.state.总放电量, 1)}kWh`} font="SourceHanSansSC-Light" fontSize={27.69} align="right" width={250} />
-                        <Progress left={2140} top={794} width={251} height={9} value={this.state.总放电量 / 2000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
+                    <Container left={1370} top={524} background={require("./images/small_box2.png")}>
+                        <Text left={1743} top={567} value="储能" font="SourceHanSansSC-Medium" fontSize={46.24} />
+                        <Text left={1584} top={656} value={`总充电量${toFixed(this.state.总充电量, 1)}kWh`} font="SourceHanSansSC-Light" fontSize={27.69} align="right" width={250} />
+                        <Progress left={1584} top={702} width={251} height={9} value={this.state.总充电量 / 2000 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)" />
+                        <Text left={1584} top={732} value={`总放电量${toFixed(this.state.总放电量, 1)}kWh`} font="SourceHanSansSC-Light" fontSize={27.69} align="right" width={250} />
+                        <Progress left={1584} top={778} width={251} height={9} value={this.state.总放电量 / 2000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
+                    </Container>
+                    <Container left={1370} top={950} background={require("./images/small_box2.png")}>
+                        <Text left={1724} top={999} value="负载" font="SourceHanSansSC-Medium" fontSize={46.24} />
+                        <Text left={1564} top={1090} value={`1#母线${toFixed(this.state.母线1, 1)}kW`} font="SourceHanSansSC-Light" fontSize={27.69} align="right" width={250} />
+                        <Progress left={1564} top={1136} width={251} height={9} value={this.state.母线1 / 1000 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)" />
+                        <Text left={1564} top={1166} value={`2#母线${toFixed(this.state.母线2, 1)}KW`} font="SourceHanSansSC-Light" fontSize={27.69} align="right" width={250} />
+                        <Progress left={1564} top={1213} width={251} height={9} value={this.state.母线2 / 1000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
                     </Container>
                 </Container>
 
@@ -176,46 +191,58 @@ export default class Overview extends BaseComponent {
                     <Switch left={2338} top={1753} src1={require("./images/security_system_alarm0.png")} src2={require("./images/security_system_alarm1.png")} value={this.state.安防系统状态 !== 0} />
                 </Container>
 
-                <Container left={2600} top={99} background={require("./images/box4.png")}>
-                    <Text left={2677} top={133} value="电站运行状态" font="SourceHanSansSC-Bold" fontSize={48} />
-                    <Switch left={2682} top={251} src1={require("./images/charging.png")} src2={require("./images/discharging.png")} value={this.state.电站运行状态1 === 0} />
-                    <Text left={2923} top={287} value={`1# ${this.state.电站运行状态1 === 0 ? '充电' : '放电'}`} font="SourceHanSansSC-Medium" fontSize={40} color={this.state.电站运行状态1 === 0 ? 'rgb(210, 86, 107)' : 'rgb(79, 146, 180)'} />
-                    <Switch left={3186} top={251} src1={require("./images/charging.png")} src2={require("./images/discharging.png")} value={this.state.电站运行状态2 === 0} />
-                    <Text left={3426} top={287} value={`2# ${this.state.电站运行状态2 === 0 ? '充电' : '放电'}`} font="SourceHanSansSC-Medium" fontSize={40} color={this.state.电站运行状态2 === 0 ? 'rgb(210, 86, 107)' : 'rgb(79, 146, 180)'} />
+                <Container left={2024} top={319} background={require("./images/box4.png")}>
+                    <Text left={2093} top={358} value="电站运行状态" font="SourceHanSansSC-Bold" fontSize={48} />
+                    <Switch left={2090} top={501} src1={require("./images/charging.png")} src2={require("./images/discharging.png")} value={this.state.电站运行状态1 === 0} />
+                    <Text left={2279} top={532} value={`1# ${this.state.电站运行状态1 === 0 ? '充电' : '放电'}`} font="SourceHanSansSC-Medium" fontSize={40} color={this.state.电站运行状态1 === 0 ? 'rgb(210, 86, 107)' : 'rgb(79, 146, 180)'} />
+                    <Switch left={2460} top={501} src1={require("./images/charging.png")} src2={require("./images/discharging.png")} value={this.state.电站运行状态2 === 0} />
+                    <Text left={2646} top={532} value={`2# ${this.state.电站运行状态2 === 0 ? '充电' : '放电'}`} font="SourceHanSansSC-Medium" fontSize={40} color={this.state.电站运行状态2 === 0 ? 'rgb(210, 86, 107)' : 'rgb(79, 146, 180)'} />
                 </Container>
 
-                <Container left={2600} top={429} background={require("./images/box5.png")}>
-                    <Text left={2677} top={470} value="电站节能总费用" font="SourceHanSansSC-Bold" fontSize={48} />
-                    <Image left={3341} top={536} src={require("./images/money.gif")} />
-                    <Text left={2676} top={600} value={`${toFixed(this.state.节能总费用, 0)}`} font="SourceHanSansSC-Heavy" fontSize={146} />
-                    <Text left={3190} top={648} value="元" font="SourceHanSansSC-Regular" fontSize={72} color="rgb(60, 211, 238)" />
+                <Container left={2843} top={319} background={require("./images/box5.png")}>
+                    <Text left={2910} top={358} value="电站节能总费用" font="SourceHanSansSC-Bold" fontSize={48} />
+                    <Image left={3432} top={454} src={require("./images/money.gif")} />
+                    <Text left={2910} top={500} value={`${toFixed(this.state.节能总费用, 0)}`} font="SourceHanSansSC-Heavy" fontSize={120} />
+                    <Text left={3315} top={533} value="元" font="SourceHanSansSC-Regular" fontSize={72} color="rgb(60, 211, 238)" />
                 </Container>
 
-                <Container left={2600} top={802} background={require("./images/box6.png")}>
-                    <Text left={2678} top={840} value="日充/放功率" font="SourceHanSansSC-Bold" fontSize={48} />
-                    <Text left={2678} top={993} value="1#充/放电功率" font="SourceHanSansSC-Regular" fontSize={32} />
-                    <Container left={2936} top={969} background={require("./images/tip.png")}>
-                        <Text left={2936} top={983} width={158} value={`${toFixed(this.state.充放电功率1, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
+                <Container left={2023} top={698} background={require("./images/box6.png")}>
+                    <Text left={2094} top={734} value="日充/放功率" font="SourceHanSansSC-Bold" fontSize={48} />
+                    <Text left={2094} top={906} value="1#充/放电功率" font="SourceHanSansSC-Regular" fontSize={32} />
+                    <Container left={2353} top={882} background={require("./images/tip.png")}>
+                        <Text left={2353} top={896} width={158} value={`${toFixed(this.state.充放电功率1, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
                     </Container>
-                    <BarChart left={2678} top={1050} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.充放电功率曲线1} />
+                    <BarChart left={2094} top={963} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.充放电功率曲线1} />
 
-                    <Text left={2678} top={1224} value="2#充/放电功率" font="SourceHanSansSC-Regular" fontSize={32} />
-                    <Container left={2936} top={1203} background={require("./images/tip.png")}>
-                        <Text left={2936} top={1217} width={158} value={`${toFixed(this.state.充放电功率2, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
+                    <Text left={2094} top={1212} value="2#充/放电功率" font="SourceHanSansSC-Regular" fontSize={32} />
+                    <Container left={2353} top={1188} background={require("./images/tip.png")}>
+                        <Text left={2353} top={1202} width={158} value={`${toFixed(this.state.充放电功率2, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
                     </Container>
-                    <BarChart left={2678} top={1284} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.充放电功率曲线2} />
+                    <BarChart left={2094} top={1269} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.充放电功率曲线2} />
 
-                    <Text left={3146} top={993} value="1#并网点需求" font="SourceHanSansSC-Regular" fontSize={32} />
-                    <Container left={3405} top={969} background={require("./images/tip.png")}>
-                        <Text left={3405} top={983} width={158} value={`${toFixed(this.state.并网点需求1, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
+                    <Text left={2619} top={906} value="1#变压器功率" font="SourceHanSansSC-Regular" fontSize={32} />
+                    <Container left={2879} top={882} background={require("./images/tip.png")}>
+                        <Text left={2879} top={896} width={158} value={`${toFixed(this.state.变压器功率1, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
                     </Container>
-                    <BarChart left={3146} top={1050} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.并网点需求曲线1} />
+                    <BarChart left={2619} top={963} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.变压器功率曲线1} />
 
-                    <Text left={3146} top={1224} value="2#并网点需求" font="SourceHanSansSC-Regular" fontSize={32} />
-                    <Container left={3405} top={1203} background={require("./images/tip.png")}>
-                        <Text left={3405} top={1217} width={158} value={`${toFixed(this.state.并网点需求2, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
+                    <Text left={2619} top={1212} value="2#变压器功率" font="SourceHanSansSC-Regular" fontSize={32} />
+                    <Container left={2879} top={1188} background={require("./images/tip.png")}>
+                        <Text left={2879} top={1202} width={158} value={`${toFixed(this.state.变压器功率2, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
                     </Container>
-                    <BarChart left={3146} top={1284} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.并网点需求曲线2} />
+                    <BarChart left={2619} top={1269} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.变压器功率曲线2} />
+
+                    <Text left={3140} top={906} value="1#需求功率" font="SourceHanSansSC-Regular" fontSize={32} />
+                    <Container left={3399} top={882} background={require("./images/tip.png")}>
+                        <Text left={3399} top={896} width={158} value={`${toFixed(this.state.需求功率1, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
+                    </Container>
+                    <BarChart left={3140} top={963} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.需求功率曲线1} />
+
+                    <Text left={3140} top={1212} value="2#需求功率" font="SourceHanSansSC-Regular" fontSize={32} />
+                    <Container left={3399} top={1188} background={require("./images/tip.png")}>
+                        <Text left={3399} top={1202} width={158} value={`${toFixed(this.state.需求功率2, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
+                    </Container>
+                    <BarChart left={3140} top={1269} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.需求功率曲线2} />
                 </Container>
 
                 <Container left={2600} top={1502} background={require("./images/box7.png")}>
