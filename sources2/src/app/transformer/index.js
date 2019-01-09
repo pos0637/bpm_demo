@@ -53,38 +53,47 @@ export default class Transformer extends BaseComponent {
     componentDidMount() {
         super.componentDidMount();
         this.timer = setInterval(() => {
-            const data = {
-                风扇1: getRandom(0, 1) === 0,
-                风扇2: getRandom(0, 1) === 0,
-                温度1: getRandom(20, 50),
-                温度2: getRandom(20, 50),
-                变压器状态: getRandom(0, 1),
-                总充电电量1: getRandom(1800, 2500),
-                总放电电量1: getRandom(1800, 2500),
-                总充电电量2: getRandom(1800, 2500),
-                总放电电量2: getRandom(1800, 2500),
-                充放电实时功率1: getRandom(500, 1000),
-                充放电实时功率2: getRandom(500, 1000),
-                充放电实时功率曲线1: null,
-                充放电实时功率曲线2: null,
-                合闸1: getRandom(0, 1),
-                合闸2: getRandom(0, 1)
-            };
-
-            getTransformerData(transformer => {
-                data.风扇1 = transformer.fan1;
-                data.风扇2 = transformer.fan2;
-                data.温度1 = transformer.temperature1;
-                data.温度2 = transformer.temperature2;
-                data.变压器状态 = transformer.state;
-                data.合闸1 = transformer.switch1;
-                data.合闸2 = transformer.switch2;
-                data.充放电实时功率1 = transformer.electricity1;
-                data.充放电实时功率2 = transformer.electricity2;
-                data.充放电实时功率曲线1 = transformer.electricityData1;
-                data.充放电实时功率曲线2 = transformer.electricityData2;
-            });
-            this.setState(data);
+            let data = {};
+            if (process.env.NODE_ENV === 'development') {
+                data = {
+                    风扇1: getRandom(0, 1) === 0,
+                    风扇2: getRandom(0, 1) === 0,
+                    温度1: getRandom(20, 50),
+                    温度2: getRandom(20, 50),
+                    变压器状态: getRandom(0, 1),
+                    总充电电量1: getRandom(1800, 2500),
+                    总放电电量1: getRandom(1800, 2500),
+                    总充电电量2: getRandom(1800, 2500),
+                    总放电电量2: getRandom(1800, 2500),
+                    充放电实时功率1: getRandom(500, 1000),
+                    充放电实时功率2: getRandom(500, 1000),
+                    充放电实时功率曲线1: null,
+                    充放电实时功率曲线2: null,
+                    合闸1: getRandom(0, 1),
+                    合闸2: getRandom(0, 1)
+                };
+                this.setState(data);
+            }
+            else {
+                getTransformerData(transformer => {
+                    data.风扇1 = transformer.fan1;
+                    data.风扇2 = transformer.fan2;
+                    data.温度1 = transformer.temperature1;
+                    data.温度2 = transformer.temperature2;
+                    data.变压器状态 = transformer.state;
+                    data.总充电电量1 = transformer.totalChargingElectricity1;
+                    data.总放电电量1 = transformer.totalDischargingElectricity1;
+                    data.总充电电量2 = transformer.totalChargingElectricity2;
+                    data.总放电电量2 = transformer.totalDischargingElectricity2;
+                    data.合闸1 = transformer.switch1;
+                    data.合闸2 = transformer.switch2;
+                    data.充放电实时功率1 = transformer.electricity1;
+                    data.充放电实时功率2 = transformer.electricity2;
+                    data.充放电实时功率曲线1 = transformer.electricityData1;
+                    data.充放电实时功率曲线2 = transformer.electricityData2;
+                    this.setState(data);
+                });
+            }
         }, 2000);
     }
 
@@ -124,8 +133,8 @@ export default class Transformer extends BaseComponent {
                     <Text left={1389} top={1072} value="风扇" font="SourceHanSansSC-Light" fontSize={36} />
                     <Switch left={1078} top={1140} src1={require("./images/fan_on.png")} src2={require("./images/fan_off.png")} value={this.state.风扇1} />
                     <Switch left={1375} top={1140} src1={require("./images/fan_on.png")} src2={require("./images/fan_off.png")} value={this.state.风扇2} />
-                    <Text left={1103} top={1270} value={this.state.风扇1 ? '开': '关'} font="SourceHanSansSC-Light" fontSize={40} color={this.state.风扇1 ? "rgb(1, 255, 186)" : "rgb(137, 149, 165)"} />
-                    <Text left={1399} top={1270} value={this.state.风扇2 ? '开': '关'} font="SourceHanSansSC-Light" fontSize={40} color={this.state.风扇2 ? "rgb(1, 255, 186)" : "rgb(137, 149, 165)"} />
+                    <Text left={1103} top={1270} value={this.state.风扇1 ? '开' : '关'} font="SourceHanSansSC-Light" fontSize={40} color={this.state.风扇1 ? "rgb(1, 255, 186)" : "rgb(137, 149, 165)"} />
+                    <Text left={1399} top={1270} value={this.state.风扇2 ? '开' : '关'} font="SourceHanSansSC-Light" fontSize={40} color={this.state.风扇2 ? "rgb(1, 255, 186)" : "rgb(137, 149, 165)"} />
                 </Container>
                 <Container left={939} top={1459} background={require("./images/box5.png")}>
                     <Switch left={1021} top={1593} src1={require("./images/security_system_normal0.png")} src2={require("./images/security_system_normal1.png")} value={this.state.变压器状态 === 0} />

@@ -10,6 +10,7 @@ import BarChart from '~/app/components/barChart';
 import Dialog from '~/app/components/dialog';
 import { toFixed } from '~/misc/number';
 import { getRandom } from '~/misc/random';
+import { getLoadData } from '~/api/v1/board';
 import style from './index.scss';
 
 /**
@@ -56,32 +57,56 @@ export default class Load extends BaseComponent {
     componentDidMount() {
         super.componentDidMount();
         this.timer = setInterval(() => {
-            const data = {
-                A相电压1: getRandom(200, 230),
-                B相电压1: getRandom(200, 230),
-                C相电压1: getRandom(200, 230),
-                A相电流1: getRandom(30, 60),
-                B相电流1: getRandom(30, 60),
-                C相电流1: getRandom(30, 60),
-                A相电压2: getRandom(200, 230),
-                B相电压2: getRandom(200, 230),
-                C相电压2: getRandom(200, 230),
-                A相电流2: getRandom(30, 60),
-                B相电流2: getRandom(30, 60),
-                C相电流2: getRandom(30, 60),
-                当日能耗: getRandom(1800, 2500),
-                当月能耗: getRandom(500, 1000),
-                主楼公共区用电: getRandom(500, 1000),
-                主楼耗能: getRandom(1800, 2500),
-                配楼公共区用电: getRandom(500, 1000),
-                配楼耗能: getRandom(1800, 2500),
-                泵站用电: getRandom(500, 1000),
-                泵站耗能: getRandom(1800, 2500),
-                空调用电: getRandom(500, 1000),
-                空调耗能: getRandom(1800, 2500)
-            };
-
-            this.setState(data);
+            let data = {};
+            if (process.env.NODE_ENV === 'development') {
+                data = {
+                    A相电压1: getRandom(200, 230),
+                    B相电压1: getRandom(200, 230),
+                    C相电压1: getRandom(200, 230),
+                    A相电流1: getRandom(30, 60),
+                    B相电流1: getRandom(30, 60),
+                    C相电流1: getRandom(30, 60),
+                    A相电压2: getRandom(200, 230),
+                    B相电压2: getRandom(200, 230),
+                    C相电压2: getRandom(200, 230),
+                    A相电流2: getRandom(30, 60),
+                    B相电流2: getRandom(30, 60),
+                    C相电流2: getRandom(30, 60),
+                    当日能耗: getRandom(1800, 2500),
+                    当月能耗: getRandom(500, 1000),
+                    主楼公共区用电: getRandom(500, 1000),
+                    主楼耗能: getRandom(1800, 2500),
+                    配楼公共区用电: getRandom(500, 1000),
+                    配楼耗能: getRandom(1800, 2500),
+                    泵站用电: getRandom(500, 1000),
+                    泵站耗能: getRandom(1800, 2500),
+                    空调用电: getRandom(500, 1000),
+                    空调耗能: getRandom(1800, 2500)
+                };
+                this.setState(data);
+            }
+            else {
+                getLoadData(load => {
+                    data.A相电压1 = load.voltageA1;
+                    data.B相电压1 = load.voltageB1;
+                    data.C相电压1 = load.voltageC1;
+                    data.A相电流1 = load.currentA1;
+                    data.B相电流1 = load.currentB1;
+                    data.C相电流1 = load.currentC1;
+                    data.A相电压2 = load.voltageA2;
+                    data.B相电压2 = load.voltageB2;
+                    data.C相电压2 = load.voltageC2;
+                    data.A相电流2 = load.currentA2;
+                    data.B相电流2 = load.currentB2;
+                    data.C相电流2 = load.currentC2;
+                    data.当日能耗 = load.power;
+                    data.主楼公共区用电 = load.power1;
+                    data.配楼公共区用电 = load.power2;
+                    data.泵站用电 = load.power3;
+                    data.空调用电 = load.power4;
+                    this.setState(data);
+                });
+            }
         }, 2000);
     }
 
@@ -123,41 +148,41 @@ export default class Load extends BaseComponent {
                     <Text left={2292} top={873} value="C相电流" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
 
                     <CircleProgress left={1209} top={705} width={105} value={this.state.A相电压1 / 230 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)">
-                        <Text left={1209} top={745} width={105} value={`${toFixed(this.state.A相电压1, 0)}V`} font="SourceHanSansSC-Regular" fontSize={30} align="center" />                        
+                        <Text left={1209} top={745} width={105} value={`${toFixed(this.state.A相电压1, 0)}V`} font="SourceHanSansSC-Regular" fontSize={30} align="center" />
                     </CircleProgress>
                     <CircleProgress left={1417} top={705} width={105} value={this.state.B相电压1 / 230 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)">
-                        <Text left={1417} top={745} width={105} value={`${toFixed(this.state.B相电压1, 0)}V`} font="SourceHanSansSC-Regular" fontSize={30} align="center" />                        
+                        <Text left={1417} top={745} width={105} value={`${toFixed(this.state.B相电压1, 0)}V`} font="SourceHanSansSC-Regular" fontSize={30} align="center" />
                     </CircleProgress>
                     <CircleProgress left={1624} top={705} width={105} value={this.state.C相电压1 / 230 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)">
-                        <Text left={1624} top={745} width={105} value={`${toFixed(this.state.C相电压1, 0)}V`} font="SourceHanSansSC-Regular" fontSize={30} align="center" />                        
+                        <Text left={1624} top={745} width={105} value={`${toFixed(this.state.C相电压1, 0)}V`} font="SourceHanSansSC-Regular" fontSize={30} align="center" />
                     </CircleProgress>
                     <CircleProgress left={1209} top={944} width={105} value={this.state.A相电流1 / 60 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)">
-                        <Text left={1209} top={985} width={105} value={`${toFixed(this.state.A相电流1, 0)}A`} font="SourceHanSansSC-Regular" fontSize={30} align="center" />                        
+                        <Text left={1209} top={985} width={105} value={`${toFixed(this.state.A相电流1, 0)}A`} font="SourceHanSansSC-Regular" fontSize={30} align="center" />
                     </CircleProgress>
                     <CircleProgress left={1417} top={944} width={105} value={this.state.B相电流1 / 60 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)">
-                        <Text left={1417} top={985} width={105} value={`${toFixed(this.state.B相电流1, 0)}A`} font="SourceHanSansSC-Regular" fontSize={30} align="center" />                        
+                        <Text left={1417} top={985} width={105} value={`${toFixed(this.state.B相电流1, 0)}A`} font="SourceHanSansSC-Regular" fontSize={30} align="center" />
                     </CircleProgress>
                     <CircleProgress left={1624} top={944} width={105} value={this.state.C相电流1 / 60 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)">
-                        <Text left={1624} top={985} width={105} value={`${toFixed(this.state.C相电流1, 0)}A`} font="SourceHanSansSC-Regular" fontSize={30} align="center" />                        
+                        <Text left={1624} top={985} width={105} value={`${toFixed(this.state.C相电流1, 0)}A`} font="SourceHanSansSC-Regular" fontSize={30} align="center" />
                     </CircleProgress>
 
                     <CircleProgress left={1900} top={705} width={105} value={this.state.A相电压2 / 230 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)">
-                        <Text left={1900} top={745} width={105} value={`${toFixed(this.state.A相电压2, 0)}V`} font="SourceHanSansSC-Regular" fontSize={30} align="center" />                        
+                        <Text left={1900} top={745} width={105} value={`${toFixed(this.state.A相电压2, 0)}V`} font="SourceHanSansSC-Regular" fontSize={30} align="center" />
                     </CircleProgress>
                     <CircleProgress left={2108} top={705} width={105} value={this.state.B相电压2 / 230 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)">
-                        <Text left={2108} top={745} width={105} value={`${toFixed(this.state.B相电压2, 0)}V`} font="SourceHanSansSC-Regular" fontSize={30} align="center" />                        
+                        <Text left={2108} top={745} width={105} value={`${toFixed(this.state.B相电压2, 0)}V`} font="SourceHanSansSC-Regular" fontSize={30} align="center" />
                     </CircleProgress>
                     <CircleProgress left={2315} top={705} width={105} value={this.state.C相电压2 / 230 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)">
-                        <Text left={2315} top={745} width={105} value={`${toFixed(this.state.C相电压2, 0)}V`} font="SourceHanSansSC-Regular" fontSize={30} align="center" />                        
+                        <Text left={2315} top={745} width={105} value={`${toFixed(this.state.C相电压2, 0)}V`} font="SourceHanSansSC-Regular" fontSize={30} align="center" />
                     </CircleProgress>
                     <CircleProgress left={1900} top={944} width={105} value={this.state.A相电流2 / 60 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)">
-                        <Text left={1900} top={985} width={105} value={`${toFixed(this.state.A相电流2, 0)}A`} font="SourceHanSansSC-Regular" fontSize={30} align="center" />                        
+                        <Text left={1900} top={985} width={105} value={`${toFixed(this.state.A相电流2, 0)}A`} font="SourceHanSansSC-Regular" fontSize={30} align="center" />
                     </CircleProgress>
                     <CircleProgress left={2108} top={944} width={105} value={this.state.B相电流2 / 60 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)">
-                        <Text left={2108} top={985} width={105} value={`${toFixed(this.state.B相电流2, 0)}A`} font="SourceHanSansSC-Regular" fontSize={30} align="center" />                        
+                        <Text left={2108} top={985} width={105} value={`${toFixed(this.state.B相电流2, 0)}A`} font="SourceHanSansSC-Regular" fontSize={30} align="center" />
                     </CircleProgress>
                     <CircleProgress left={2315} top={944} width={105} value={this.state.C相电流2 / 60 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)">
-                        <Text left={2315} top={985} width={105} value={`${toFixed(this.state.C相电流2, 0)}A`} font="SourceHanSansSC-Regular" fontSize={30} align="center" />                        
+                        <Text left={2315} top={985} width={105} value={`${toFixed(this.state.C相电流2, 0)}A`} font="SourceHanSansSC-Regular" fontSize={30} align="center" />
                     </CircleProgress>
 
                     <Container left={2597} top={634} width={218} height={340} onClick={() => this.setState({ showDialog3: true })}>
@@ -173,7 +198,7 @@ export default class Load extends BaseComponent {
                         <Container left={3283} top={636} background={require("./images/tip3.png")}>
                             <Text left={3283} top={666} width={300} value={`${toFixed(this.state.当月能耗, 0)}`} suffix="kW" font="SourceHanSansSC-Bold" fontSize={76} suffixFontSize={45} align="center" />
                         </Container>
-                        <BarChart left={3014} top={799} width={585} height={196} color="rgba(68,175,244,0.8)" data={{xLabels: ['Week1', 'Week2', 'Week3', 'Week4']}} min={this.state.当月能耗 - 30} max={this.state.当月能耗 + 30} />
+                        <BarChart left={3014} top={799} width={585} height={196} color="rgba(68,175,244,0.8)" data={{ xLabels: ['Week1', 'Week2', 'Week3', 'Week4'] }} min={this.state.当月能耗 - 30} max={this.state.当月能耗 + 30} />
                     </Container>
                 </Container>
 

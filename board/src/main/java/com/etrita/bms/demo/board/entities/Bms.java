@@ -18,6 +18,21 @@ public class Bms {
     private final static int MAX_BATTERIES = 315;
 
     /**
+     * 热失控
+     */
+    private float thermal;
+
+    /**
+     * SOC
+     */
+    private float soc;
+
+    /**
+     * 健康状态
+     */
+    private float soh;
+
+    /**
      * 1#BMS SOC
      */
     private float soc1;
@@ -90,8 +105,14 @@ public class Bms {
         setSoc2(bms2Reader.readFloat(1, 3, 3));
         setElectricity2(bms2Reader.readFloat(1, 3, 9));
         setVoltage2(bms2Reader.readFloat(1, 3, 15));
-        // TODO: 热失控、剩余容量、SOH
 
+        // TODO: 热失控
+        setSoc((getSoc1() + getSoc2()) / 2);
+        float soh1 = bms1Reader.readFloat(1, 3, 5);
+        float soh2 = bms2Reader.readFloat(1, 3, 5);
+        setSoh((soh1 + soh2) / 2);
+
+        /*
         for (int i = 0; i < MAX_BATTERIES; ++i) {
             batteries1[i] = new Battery(
                     bms1Reader.readFloat(2, 3, 97 + i * 2),
@@ -125,5 +146,6 @@ public class Bms {
                     bms2Reader.readFloat(3, 3, 2617 + i * 2)
             );
         }
+        */
     }
 }

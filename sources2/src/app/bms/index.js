@@ -83,20 +83,21 @@ export default class Bms extends BaseComponent {
                 };
                 this.setState(data);
             }
-
-            getBmsData(bms => {
-                data.SOC1 = bms.soc1;
-                data.SOC2 = bms.soc2;
-                data.剩余容量1 = bms.electricity1;
-                data.剩余容量2 = bms.electricity2;
-                data.组端电压1 = bms.voltage1;
-                data.组端电压2 = bms.voltage2;
-                data.batteries1 = bms.batteries1;
-                data.batteries2 = bms.batteries2;
-                data.batteries3 = bms.batteries3;
-                data.batteries4 = bms.batteries4;
-                this.setState(data);
-            });
+            else {
+                getBmsData(bms => {
+                    data.SOC1 = bms.soc1;
+                    data.SOC2 = bms.soc2;
+                    data.剩余容量1 = bms.electricity1;
+                    data.剩余容量2 = bms.electricity2;
+                    data.组端电压1 = bms.voltage1;
+                    data.组端电压2 = bms.voltage2;
+                    data.batteries1 = bms.batteries1;
+                    data.batteries2 = bms.batteries2;
+                    data.batteries3 = bms.batteries3;
+                    data.batteries4 = bms.batteries4;
+                    this.setState(data);
+                });
+            }
         }, 2000);
     }
 

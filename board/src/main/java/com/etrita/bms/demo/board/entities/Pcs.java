@@ -154,12 +154,12 @@ public class Pcs {
         // byte state23 = reader.readByte(2, 2, 26);
         setState2((state21 == 1) ? 0 : (state22 == 1) ? 1 : 2);
 
-        byte state31 = pcsReader.readByte(1, 2, 18);
-        byte state32 = pcsReader.readByte(1, 2, 19);
+        byte state31 = pcsReader.readByte(1, 2, 35);
+        byte state32 = pcsReader.readByte(1, 2, 36);
         setGridState1((state31 == 1) ? 2 : (state32 == 1) ? 1 : 0);
 
-        byte state41 = pcsReader.readByte(2, 2, 18);
-        byte state42 = pcsReader.readByte(2, 2, 19);
+        byte state41 = pcsReader.readByte(2, 2, 35);
+        byte state42 = pcsReader.readByte(2, 2, 36);
         setGridState1((state41 == 1) ? 2 : (state42 == 1) ? 1 : 0);
 
         setVoltage11(pcsReader.readFloat(1, 3, 23));

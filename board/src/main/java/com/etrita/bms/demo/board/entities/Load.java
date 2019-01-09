@@ -1,12 +1,8 @@
 package com.etrita.bms.demo.board.entities;
 
 import com.etrita.bms.demo.board.communications.IDataReader;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * 负载视图数据
@@ -17,11 +13,114 @@ import java.util.Date;
 @Setter
 public class Load {
     /**
+     * 1# A相电压
+     */
+    private float voltageA1;
+
+    /**
+     * 1# B相电压
+     */
+    private float voltageB1;
+
+    /**
+     * 1# C相电压
+     */
+    private float voltageC1;
+
+    /**
+     * 1# A相电流
+     */
+    private float currentA1;
+
+    /**
+     * 1# B相电流
+     */
+    private float currentB1;
+
+    /**
+     * 1# C相电流
+     */
+    private float currentC1;
+
+
+    /**
+     * 2# A相电压
+     */
+    private float voltageA2;
+
+    /**
+     * 2# B相电压
+     */
+    private float voltageB2;
+
+    /**
+     * 2# C相电压
+     */
+    private float voltageC2;
+
+    /**
+     * 2# A相电流
+     */
+    private float currentA2;
+
+    /**
+     * 2# B相电流
+     */
+    private float currentB2;
+
+    /**
+     * 2# C相电流
+     */
+    private float currentC2;
+
+    /**
+     * 当日能耗
+     */
+    private float power;
+
+    /**
+     * 主楼公共区用电功率
+     */
+    private float power1;
+
+    /**
+     * 配楼公共区用电功率
+     */
+    private float power2;
+
+    /**
+     * 泵站能耗功率
+     */
+    private float power3;
+
+    /**
+     * 空调用电功率
+     */
+    private float power4;
+
+    /**
      * 读取ModbusTcp数据
      *
-     * @param reader 数据读取器
+     * @param other1Reader 数据读取器
      * @throws Exception
      */
-    public void readModbusTcpData(IDataReader reader) throws Exception {
+    public void readModbusTcpData(IDataReader other1Reader) throws Exception {
+        setVoltageA1(other1Reader.readFloat(3, 3, 5));
+        setVoltageB1(other1Reader.readFloat(3, 3, 7));
+        setVoltageC1(other1Reader.readFloat(3, 3, 9));
+        setCurrentA1(other1Reader.readFloat(3, 3, 11));
+        setCurrentB1(other1Reader.readFloat(3, 3, 13));
+        setCurrentC1(other1Reader.readFloat(3, 3, 15));
+        setVoltageA2(other1Reader.readFloat(3, 3, 41));
+        setVoltageB2(other1Reader.readFloat(3, 3, 43));
+        setVoltageC2(other1Reader.readFloat(3, 3, 45));
+        setCurrentA2(other1Reader.readFloat(3, 3, 47));
+        setCurrentB2(other1Reader.readFloat(3, 3, 49));
+        setCurrentC2(other1Reader.readFloat(3, 3, 51));
+        setPower(other1Reader.readFloat(3, 3, 289));
+        setPower1(other1Reader.readFloat(3, 3, 73));
+        setPower2(other1Reader.readFloat(3, 3, 109));
+        setPower3(other1Reader.readFloat(3, 3, 145) + other1Reader.readFloat(3, 3, 181));
+        setPower4(other1Reader.readFloat(3, 3, 217) + other1Reader.readFloat(3, 3, 253));
     }
 }

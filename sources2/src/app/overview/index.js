@@ -55,46 +55,51 @@ export default class Overview extends BaseComponent {
     componentDidMount() {
         super.componentDidMount();
         this.timer = setInterval(() => {
-            const data = {
-                无故障运行时间: getRandom(10, 100),
-                节炭量1: getRandom(200, 700),
-                节炭量2: getRandom(200, 700),
-                母线1: getRandom(200, 700),
-                母线2: getRandom(200, 700),
-                总充电量: getRandom(1000, 2000),
-                总放电量: getRandom(1000, 2000),
-                安防系统状态: getRandom(0, 1),
-                充电1: getRandom(0, 1),
-                电站运行状态1: getRandom(0, 2),
-                电站运行状态2: getRandom(0, 2),
-                节能总费用: getRandom(10000, 27000),
-                今日充电总量1: getRandom(1000, 2000),
-                今日放电总量1: getRandom(500, 1000),
-                今日充电总量2: getRandom(1000, 2000),
-                今日放电总量2: getRandom(500, 1000),
-                充放电功率1: getRandom(500, 1000),
-                充放电功率2: getRandom(500, 1000),
-                充放电功率曲线1: null,
-                充放电功率曲线2: null,
-                并网点需求1: getRandom(500, 1000),
-                并网点需求2: getRandom(500, 1000),
-                并网点需求曲线1: null,
-                并网点需求曲线2: null
-            };
-
-            getOverviewData(overview => {
-                data.电站运行状态1 = overview.state1;
-                data.电站运行状态2 = overview.state2;
-                data.母线1 = overview.loadPower1;
-                data.母线2 = overview.loadPower2;
-                data.总充电量 = overview.totalChargingElectricity;
-                data.总放电量 = overview.totalDischargingElectricity;
-                data.今日充电总量1 = overview.chargingElectricity1;
-                data.今日放电总量1 = overview.dischargingElectricity1;
-                data.今日充电总量2 = overview.chargingElectricity2;
-                data.今日放电总量2 = overview.dischargingElectricity2;                
-            });
-            this.setState(data);
+            let data = {};
+            if (process.env.NODE_ENV === 'development') {
+                data = {
+                    无故障运行时间: getRandom(10, 100),
+                    节炭量1: getRandom(200, 700),
+                    节炭量2: getRandom(200, 700),
+                    母线1: getRandom(200, 700),
+                    母线2: getRandom(200, 700),
+                    总充电量: getRandom(1000, 2000),
+                    总放电量: getRandom(1000, 2000),
+                    安防系统状态: getRandom(0, 1),
+                    充电1: getRandom(0, 1),
+                    电站运行状态1: getRandom(0, 2),
+                    电站运行状态2: getRandom(0, 2),
+                    节能总费用: getRandom(10000, 27000),
+                    今日充电总量1: getRandom(1000, 2000),
+                    今日放电总量1: getRandom(500, 1000),
+                    今日充电总量2: getRandom(1000, 2000),
+                    今日放电总量2: getRandom(500, 1000),
+                    充放电功率1: getRandom(500, 1000),
+                    充放电功率2: getRandom(500, 1000),
+                    充放电功率曲线1: null,
+                    充放电功率曲线2: null,
+                    并网点需求1: getRandom(500, 1000),
+                    并网点需求2: getRandom(500, 1000),
+                    并网点需求曲线1: null,
+                    并网点需求曲线2: null
+                };
+                this.setState(data);
+            }
+            else {
+                getOverviewData(overview => {
+                    data.电站运行状态1 = overview.state1;
+                    data.电站运行状态2 = overview.state2;
+                    data.母线1 = overview.loadPower1;
+                    data.母线2 = overview.loadPower2;
+                    data.总充电量 = overview.totalChargingElectricity;
+                    data.总放电量 = overview.totalDischargingElectricity;
+                    data.今日充电总量1 = overview.chargingElectricity1;
+                    data.今日放电总量1 = overview.dischargingElectricity1;
+                    data.今日充电总量2 = overview.chargingElectricity2;
+                    data.今日放电总量2 = overview.dischargingElectricity2;
+                });
+                this.setState(data);
+            }
         }, 2000);
     }
 
@@ -170,13 +175,13 @@ export default class Overview extends BaseComponent {
                     <Switch left={2094} top={1756} src1={require("./images/security_system_normal0.png")} src2={require("./images/security_system_normal1.png")} value={this.state.安防系统状态 === 0} />
                     <Switch left={2338} top={1753} src1={require("./images/security_system_alarm0.png")} src2={require("./images/security_system_alarm1.png")} value={this.state.安防系统状态 !== 0} />
                 </Container>
-               
+
                 <Container left={2600} top={99} background={require("./images/box4.png")}>
                     <Text left={2677} top={133} value="电站运行状态" font="SourceHanSansSC-Bold" fontSize={48} />
                     <Switch left={2682} top={251} src1={require("./images/charging.png")} src2={require("./images/discharging.png")} value={this.state.电站运行状态1 === 0} />
-                    <Text left={2923} top={287} value={`1# ${this.state.电站运行状态1 === 0? '充电': '放电'}`} font="SourceHanSansSC-Medium" fontSize={40} color={this.state.电站运行状态1 === 0? 'rgb(210, 86, 107)': 'rgb(79, 146, 180)'} />
+                    <Text left={2923} top={287} value={`1# ${this.state.电站运行状态1 === 0 ? '充电' : '放电'}`} font="SourceHanSansSC-Medium" fontSize={40} color={this.state.电站运行状态1 === 0 ? 'rgb(210, 86, 107)' : 'rgb(79, 146, 180)'} />
                     <Switch left={3186} top={251} src1={require("./images/charging.png")} src2={require("./images/discharging.png")} value={this.state.电站运行状态2 === 0} />
-                    <Text left={3426} top={287} value={`2# ${this.state.电站运行状态2 === 0? '充电': '放电'}`} font="SourceHanSansSC-Medium" fontSize={40} color={this.state.电站运行状态2 === 0? 'rgb(210, 86, 107)': 'rgb(79, 146, 180)'} />
+                    <Text left={3426} top={287} value={`2# ${this.state.电站运行状态2 === 0 ? '充电' : '放电'}`} font="SourceHanSansSC-Medium" fontSize={40} color={this.state.电站运行状态2 === 0 ? 'rgb(210, 86, 107)' : 'rgb(79, 146, 180)'} />
                 </Container>
 
                 <Container left={2600} top={429} background={require("./images/box5.png")}>
@@ -193,7 +198,7 @@ export default class Overview extends BaseComponent {
                         <Text left={2936} top={983} width={158} value={`${toFixed(this.state.充放电功率1, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
                     </Container>
                     <BarChart left={2678} top={1050} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.充放电功率曲线1} />
-                    
+
                     <Text left={2678} top={1224} value="2#充/放电功率" font="SourceHanSansSC-Regular" fontSize={32} />
                     <Container left={2936} top={1203} background={require("./images/tip.png")}>
                         <Text left={2936} top={1217} width={158} value={`${toFixed(this.state.充放电功率2, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
@@ -205,7 +210,7 @@ export default class Overview extends BaseComponent {
                         <Text left={3405} top={983} width={158} value={`${toFixed(this.state.并网点需求1, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
                     </Container>
                     <BarChart left={3146} top={1050} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.并网点需求曲线1} />
-                    
+
                     <Text left={3146} top={1224} value="2#并网点需求" font="SourceHanSansSC-Regular" fontSize={32} />
                     <Container left={3405} top={1203} background={require("./images/tip.png")}>
                         <Text left={3405} top={1217} width={158} value={`${toFixed(this.state.并网点需求2, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />

@@ -18,8 +18,8 @@ logging:
 
 bms:
   modbus:
-    host: 127.0.0.1
-    # host: 192.168.99.100
+    # host: 127.0.0.1
+    host: 192.168.99.100
     pcs_port: 502
     other1_port: 503
     other2_port: 504

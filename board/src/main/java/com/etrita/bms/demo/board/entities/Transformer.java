@@ -52,6 +52,26 @@ public class Transformer {
     private int switch2;
 
     /**
+     * 总充电电量1
+     */
+    private float totalChargingElectricity1;
+
+    /**
+     * 总放电电量1
+     */
+    private float totalDischargingElectricity1;
+
+    /**
+     * 总充电电量2
+     */
+    private float totalChargingElectricity2;
+
+    /**
+     * 总放电电量2
+     */
+    private float totalDischargingElectricity2;
+
+    /**
      * 充放电量1
      */
     private float electricity1;
@@ -90,6 +110,16 @@ public class Transformer {
      * @throws Exception
      */
     public void readModbusTcpData(IDataReader other1Reader, IDataReader other2Reader) throws Exception {
+        float temperature11 = other2Reader.readFloat(1, 3, 1);
+        float temperature12 = other2Reader.readFloat(1, 3, 3);
+        float temperature13 = other2Reader.readFloat(1, 3, 5);
+        setTemperature1((temperature11 + temperature12 + temperature13) / 3);
+
+        float temperature21 = other2Reader.readFloat(2, 3, 1);
+        float temperature22 = other2Reader.readFloat(2, 3, 3);
+        float temperature23 = other2Reader.readFloat(2, 3, 5);
+        setTemperature2((temperature21 + temperature22 + temperature23) / 3);
+
         setFan1(other2Reader.readByte(1, 2, 1));
         setFan2(other2Reader.readByte(2, 2, 1));
 
@@ -99,8 +129,13 @@ public class Transformer {
         byte state22 = other2Reader.readByte(2, 2, 4);
         setState(((state11 == 1) || (state12 == 1)) ? 1 : ((state21 == 1) || (state22 == 1)) ? 2 : 0);
 
-        // setSwitch1(other1Reader.readByte(1, 2, 1));
-        // setSwitch2(other1Reader.readByte(1, 2, 2));
+        setSwitch1(other1Reader.readByte(4, 2, 19));
+        setSwitch2(other1Reader.readByte(4, 2, 19));
+
+        setTotalChargingElectricity1(other2Reader.readFloat(3, 3, 1));
+        setTotalDischargingElectricity1(other2Reader.readFloat(3, 3, 11));
+        setTotalChargingElectricity2(other2Reader.readFloat(4, 3, 1));
+        setTotalDischargingElectricity2(other2Reader.readFloat(3, 3, 11));
 
         setElectricity1(other1Reader.readFloat(1, 3, 31));
         setElectricity2(other1Reader.readFloat(2, 3, 31));

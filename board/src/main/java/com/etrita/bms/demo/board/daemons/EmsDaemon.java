@@ -133,24 +133,65 @@ public class EmsDaemon implements Runnable, InitializingBean {
         while (true) {
             try {
                 // overview.readModbusTcpData(pcsDataReader);
-                pcs.readModbusTcpData(pcsDataReader);
-                transformer.readModbusTcpData(other1DataReader, other2DataReader);
-                // bms.readModbusTcpData(bms1DataReader, bms1DataReader);
-
-                save();
-                Thread.sleep(interval);
             } catch (Exception e) {
                 try {
                     pcsDataReader.reset();
+                    Thread.sleep(1000);
+                } catch (Exception e1) {
+                    Tracker.error(e1);
+                }
+            }
+
+            try {
+                load.readModbusTcpData(other1DataReader);
+            } catch (Exception e) {
+                try {
+                    other1DataReader.reset();
+                    Thread.sleep(1000);
+                } catch (Exception e1) {
+                    Tracker.error(e1);
+                }
+            }
+
+            try {
+                pcs.readModbusTcpData(pcsDataReader);
+            } catch (Exception e) {
+                try {
+                    pcsDataReader.reset();
+                    Thread.sleep(1000);
+                } catch (Exception e1) {
+                    Tracker.error(e1);
+                }
+            }
+
+            try {
+                transformer.readModbusTcpData(other1DataReader, other2DataReader);
+            } catch (Exception e) {
+                try {
                     other1DataReader.reset();
                     other2DataReader.reset();
+                    Thread.sleep(1000);
+                } catch (Exception e1) {
+                    Tracker.error(e1);
+                }
+            }
+
+            try {
+                bms.readModbusTcpData(bms1DataReader, bms1DataReader);
+            } catch (Exception e) {
+                try {
                     bms1DataReader.reset();
                     bms2DataReader.reset();
                     Thread.sleep(1000);
                 } catch (Exception e1) {
                     Tracker.error(e1);
                 }
+            }
 
+            try {
+                save();
+                Thread.sleep(interval);
+            } catch (Exception e) {
                 Tracker.error(e);
             }
         }
