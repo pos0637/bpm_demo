@@ -132,10 +132,10 @@ public class EmsDaemon implements Runnable, InitializingBean {
 
         while (true) {
             try {
-                overview.readModbusTcpData(pcsDataReader);
+                // overview.readModbusTcpData(pcsDataReader);
                 pcs.readModbusTcpData(pcsDataReader);
                 transformer.readModbusTcpData(other1DataReader, other2DataReader);
-                bms.readModbusTcpData(bms1DataReader, bms1DataReader);
+                // bms.readModbusTcpData(bms1DataReader, bms1DataReader);
 
                 save();
                 Thread.sleep(interval);

@@ -37,39 +37,66 @@ export default class Bms extends BaseComponent {
         电池温度2: 25,
         热失控: 70,
         剩余容量: 56,
-        健康状态: 50
+        健康状态: 50,
+        batteries1: [],
+        batteries2: [],
+        batteries3: [],
+        batteries4: [],
+        currentBatteryId: 0
     }
+
+    sohThreshold1 = 50
+
+    sohThreshold2 = 80
+
+    normalIcon = require("./images/normal.png");
+
+    alarmIcon = require("./images/alarm.png");
+
+    faultIcon = require("./images/fault.png");
 
     componentDidMount() {
         super.componentDidMount();
         this.timer = setInterval(() => {
-            const data = {
-                SOC1: getRandom(50, 99),
-                SOC2: getRandom(50, 99),
-                剩余容量1: getRandom(200, 500),
-                剩余容量2: getRandom(200, 500),
-                组端电压1: getRandom(200, 230),
-                组端电压2: getRandom(200, 230),
-                电池电压1: getRandom(200, 230),
-                电池电压2: getRandom(200, 230),
-                电池内阻1: getRandom(20, 35),
-                电池内阻2: getRandom(20, 35),
-                电池温度1: getRandom(20, 30),
-                电池温度2: getRandom(20, 30),
-                热失控: getRandom(70, 80),
-                剩余容量: getRandom(40, 60),
-                健康状态: getRandom(40, 60)
-            };
+            let data = {};
+            if (process.env.NODE_ENV === 'development') {
+                data = {
+                    SOC1: getRandom(50, 99),
+                    SOC2: getRandom(50, 99),
+                    剩余容量1: getRandom(200, 500),
+                    剩余容量2: getRandom(200, 500),
+                    组端电压1: getRandom(200, 230),
+                    组端电压2: getRandom(200, 230),
+                    电池电压1: getRandom(200, 230),
+                    电池电压2: getRandom(200, 230),
+                    电池内阻1: getRandom(20, 35),
+                    电池内阻2: getRandom(20, 35),
+                    电池温度1: getRandom(20, 30),
+                    电池温度2: getRandom(20, 30),
+                    热失控: getRandom(70, 80),
+                    剩余容量: getRandom(40, 60),
+                    健康状态: getRandom(40, 60),
+                    batteries1: [],
+                    batteries2: [],
+                    batteries3: [],
+                    batteries4: []
+                };
+                this.setState(data);
+            }
 
             getBmsData(bms => {
                 data.SOC1 = bms.soc1;
-                data.SOC2= bms.soc2;
+                data.SOC2 = bms.soc2;
                 data.剩余容量1 = bms.electricity1;
                 data.剩余容量2 = bms.electricity2;
                 data.组端电压1 = bms.voltage1;
                 data.组端电压2 = bms.voltage2;
+                data.batteries1 = bms.batteries1;
+                data.batteries2 = bms.batteries2;
+                data.batteries3 = bms.batteries3;
+                data.batteries4 = bms.batteries4;
+                this.setState(data);
             });
-            this.setState(data);
         }, 2000);
     }
 
@@ -94,8 +121,8 @@ export default class Bms extends BaseComponent {
                 <Container left={1084} top={392} background={require("./images/box2.png")}>
                     <Text left={1170} top={515} value="1#" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Text left={1917} top={515} value="2#" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
-                    {this._getCells(1343, 528, 1178)}
-                    {this._getCells(2089, 528, 1924)}
+                    {this._getCells(this.state.batteries1, 1343, 528, 1178)}
+                    {this._getCells(this.state.batteries2, 2089, 528, 1924)}
 
                     <Text left={2685} top={528} value="SOC" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Text left={2685} top={591} value="剩余容量" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
@@ -117,8 +144,8 @@ export default class Bms extends BaseComponent {
                 <Container left={1084} top={1178} background={require("./images/box3.png")}>
                     <Text left={1170} top={1301} value="1#" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Text left={1917} top={1301} value="2#" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
-                    {this._getCells(1343, 1314, 1178)}
-                    {this._getCells(2089, 1314, 1924)}
+                    {this._getCells(this.state.batteries3, 1343, 1314, 1178)}
+                    {this._getCells(this.state.batteries4, 2089, 1314, 1924)}
 
                     <Text left={2685} top={1317} value="SOC" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Text left={2685} top={1380} value="剩余容量" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
@@ -162,29 +189,26 @@ export default class Bms extends BaseComponent {
     /**
      * 获取单元格列表
      *
+     * @param {*} batteries 电池数据
      * @param {*} startX1 横坐标
      * @param {*} startY1 纵坐标
      * @param {*} startX2 横坐标
      * @returns 单元格列表
      * @memberof Bms
      */
-    _getCells(startX1, startY1, startX2) {
+    _getCells(batteries, startX1, startY1, startX2) {
         const cells = [];
         const width = 33;
         const height = 34;
         let y = startY1;
         let id = 1;
 
-        const normal = require("./images/normal.png");
-        const alarm = require("./images/alarm.png");
-        const fault = require("./images/fault.png");
-        const images = [normal, normal, normal, normal, normal, normal, normal, normal, alarm, fault];
-
         for (let i = 0; i < 16; i += 1, id += 1) {
             const left = startX1 + i * 33;
+            const batteryid = id;
             const cell = (
-                <Container left={left} top={y}>
-                    <Image left={left} top={y} src={images[getRandom(0, images.length - 1)]} />
+                <Container left={left} top={y} width={33} height={34} onClick={() => this._onCellClick(batteryid)}>
+                    <Image left={left} top={y} src={this._getBatteryIcon(batteries, id - 1)} />
                     <Text left={left} top={y + 7} width={width} value={pad(id, 3)} align="center" fontSize={18} />
                 </Container>
             );
@@ -195,9 +219,10 @@ export default class Bms extends BaseComponent {
             y += height;
             for (let i = 0; i < 21; i += 1, id += 1) {
                 const left = startX2 + i * 33;
+                const batteryid = id;
                 const cell = (
-                    <Container left={left} top={y}>
-                        <Image left={left} top={y} src={images[getRandom(0, images.length - 1)]} />
+                    <Container left={left} top={y} width={33} height={34} onClick={() => this._onCellClick(batteryid)}>
+                        <Image left={left} top={y} src={this._getBatteryIcon(batteries, id - 1)} />
                         <Text left={left} top={y + 7} width={width} value={pad(id, 3)} align="center" fontSize={18} />
                     </Container>
                 );
@@ -206,5 +231,38 @@ export default class Bms extends BaseComponent {
         }
 
         return cells;
+    }
+
+    /**
+     * 获取电池图标
+     *
+     * @param {*} batteries 电池数据
+     * @param {*} id 电池索引
+     * @returns 电池图标
+     * @memberof Bms
+     */
+    _getBatteryIcon(batteries, id) {
+        let icon = this.normalIcon;
+        if (batteries.length > id) {
+            if (batteries[id].soh > this.sohThreshold1) {
+                icon = this.alarmIcon;
+            }
+
+            if (batteries[id].soh > this.sohThreshold2) {
+                icon = this.faultIcon;
+            }
+        }
+
+        return icon;
+    }
+
+    /**
+     * 电池点击事件处理函数
+     *
+     * @param {*} id 电池索引
+     * @memberof Bms
+     */
+    _onCellClick(id) {
+        this.setState({ currentBatteryId: id });
     }
 }
