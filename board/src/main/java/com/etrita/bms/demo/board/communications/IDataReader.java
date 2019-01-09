@@ -45,4 +45,16 @@ public interface IDataReader {
      * @throws Exception
      */
     float readFloat(int salveId, int functionCode, int start) throws Exception;
+
+    /**
+     * 读取数据
+     *
+     * @param salveId      从站索引
+     * @param functionCode 功能码
+     * @param start        起始地址
+     * @param length       长度
+     * @return 数据
+     * @throws Exception
+     */
+    byte[] read(int salveId, int functionCode, int start, int length) throws Exception;
 }

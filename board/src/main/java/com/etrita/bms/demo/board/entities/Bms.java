@@ -112,6 +112,11 @@ public class Bms {
         float soh2 = bms2Reader.readFloat(1, 3, 5);
         setSoh((soh1 + soh2) / 2);
 
+        byte[] data1 = bms1Reader.read(2, 3, 97, 5 * MAX_BATTERIES * 2);
+        byte[] data2 = bms1Reader.read(3, 3, 97, 5 * MAX_BATTERIES * 2);
+        byte[] data3 = bms2Reader.read(2, 3, 97, 5 * MAX_BATTERIES * 2);
+        byte[] data4 = bms2Reader.read(3, 3, 97, 5 * MAX_BATTERIES * 2);
+
         /*
         for (int i = 0; i < MAX_BATTERIES; ++i) {
             batteries1[i] = new Battery(
