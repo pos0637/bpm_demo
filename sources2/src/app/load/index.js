@@ -6,6 +6,7 @@ import Image from '~/app/components/image';
 import Container from '~/app/components/container';
 import Progress from '~/app/components/lineProgress';
 import CircleProgress from '~/app/components/progress';
+import BarChart from '~/app/components/barChart';
 import LineChart from '~/app/components/lineChart';
 import Dialog from '~/app/components/dialog';
 import { toFixed } from '~/misc/number';
@@ -39,7 +40,7 @@ export default class Load extends BaseComponent {
         B相电流2: 50,
         C相电流2: 50,
         当日能耗: 2100,
-        当月能耗: 910,
+        当月能耗: null,
         主楼公共区用电: 910,
         主楼耗能: 2100,
         配楼公共区用电: 910,
@@ -73,7 +74,7 @@ export default class Load extends BaseComponent {
                     B相电流2: getRandom(30, 60),
                     C相电流2: getRandom(30, 60),
                     当日能耗: getRandom(1800, 2500),
-                    当月能耗: getRandom(500, 1000),
+                    当月能耗: null,
                     主楼公共区用电: getRandom(500, 1000),
                     主楼耗能: getRandom(1800, 2500),
                     配楼公共区用电: getRandom(500, 1000),
@@ -100,6 +101,7 @@ export default class Load extends BaseComponent {
                     data.B相电流2 = load.currentB2;
                     data.C相电流2 = load.currentC2;
                     data.当日能耗 = load.power;
+                    data.当月能耗 = load.powerData;
                     data.主楼公共区用电 = load.power1;
                     data.配楼公共区用电 = load.power2;
                     data.泵站用电 = load.power3;
@@ -195,9 +197,9 @@ export default class Load extends BaseComponent {
                     <Container left={3013} top={634} width={586} height={361} onClick={() => this.setState({ showDialog4: true })}>
                         <Text left={3013} top={634} value="当月能耗" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                         <Container left={3283} top={636} background={require("./images/tip3.png")}>
-                            <Text left={3283} top={666} width={300} value={`${toFixed(this.state.当月能耗, 0)}`} suffix="kW" font="SourceHanSansSC-Bold" fontSize={76} suffixFontSize={45} align="center" />
+                            <Text left={3283} top={666} width={300} value={`${toFixed(this.state.当日能耗, 0)}`} suffix="kWh" font="SourceHanSansSC-Bold" fontSize={76} suffixFontSize={45} align="center" />
                         </Container>
-                        <LineChart left={3014} top={799} width={585} height={196} color="rgba(68,175,244,0.8)" data={{ xLabels: ['Week1', 'Week2', 'Week3', 'Week4'] }} min={this.state.当月能耗 - 30} max={this.state.当月能耗 + 30} />
+                        <BarChart left={3014} top={799} width={585} height={196} color="rgba(68,175,244,0.8)" data={this.state.当月能耗} maxTicksLimitX={7} suggestedMin={330} suggestedMax={400} />
                     </Container>
                 </Container>
 

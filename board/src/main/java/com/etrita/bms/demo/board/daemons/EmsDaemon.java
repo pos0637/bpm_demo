@@ -108,6 +108,11 @@ public class EmsDaemon implements Runnable, InitializingBean {
     private Transformer transformer = new Transformer();
 
     /**
+     * 空调视图数据
+     */
+    private Air air = new Air();
+
+    /**
      * BMS视图数据
      */
     private Bms bms = new Bms();
@@ -157,11 +162,12 @@ public class EmsDaemon implements Runnable, InitializingBean {
             }
 
             try {
-                pcs.readModbusTcpData(pcsDataReader);
+                pcs.readModbusTcpData(pcsDataReader, other2DataReader);
             } catch (Exception e) {
                 Tracker.error(e);
                 try {
                     pcsDataReader.reset();
+                    other2DataReader.reset();
                     Thread.sleep(1000);
                 } catch (Exception e1) {
                     Tracker.error(e1);
@@ -169,10 +175,11 @@ public class EmsDaemon implements Runnable, InitializingBean {
             }
 
             try {
-                transformer.readModbusTcpData(other1DataReader, other2DataReader);
+                transformer.readModbusTcpData(pcsDataReader, other1DataReader, other2DataReader);
             } catch (Exception e) {
                 Tracker.error(e);
                 try {
+                    pcsDataReader.reset();
                     other1DataReader.reset();
                     other2DataReader.reset();
                     Thread.sleep(1000);
@@ -188,6 +195,18 @@ public class EmsDaemon implements Runnable, InitializingBean {
                 try {
                     bms1DataReader.reset();
                     bms2DataReader.reset();
+                    Thread.sleep(1000);
+                } catch (Exception e1) {
+                    Tracker.error(e1);
+                }
+            }
+
+            try {
+                air.readModbusTcpData(other1DataReader);
+            } catch (Exception e) {
+                Tracker.error(e);
+                try {
+                    other1DataReader.reset();
                     Thread.sleep(1000);
                 } catch (Exception e1) {
                     Tracker.error(e1);
@@ -220,6 +239,7 @@ public class EmsDaemon implements Runnable, InitializingBean {
         pcs = mapper.readValue(new File(file.getAbsolutePath() + "/pcs"), Pcs.class);
         transformer = mapper.readValue(new File(file.getAbsolutePath() + "/transformer"), Transformer.class);
         bms = mapper.readValue(new File(file.getAbsolutePath() + "/bms"), Bms.class);
+        air = mapper.readValue(new File(file.getAbsolutePath() + "/air"), Air.class);
     }
 
     private void save() throws Exception {
@@ -234,5 +254,6 @@ public class EmsDaemon implements Runnable, InitializingBean {
         mapper.writeValue(new File(file.getAbsolutePath() + "/pcs"), pcs);
         mapper.writeValue(new File(file.getAbsolutePath() + "/transformer"), transformer);
         mapper.writeValue(new File(file.getAbsolutePath() + "/bms"), bms);
+        mapper.writeValue(new File(file.getAbsolutePath() + "/air"), air);
     }
 }

@@ -68,4 +68,14 @@ public class BoardController {
     public RestResponse bms() {
         return new RestResponse(200, null, this.emsDaemon.getBms());
     }
+
+    /**
+     * 获取空调视图数据
+     *
+     * @return 空调视图数据
+     */
+    @GetMapping("/air")
+    public RestResponse air() {
+        return new RestResponse(200, null, this.emsDaemon.getAir());
+    }
 }

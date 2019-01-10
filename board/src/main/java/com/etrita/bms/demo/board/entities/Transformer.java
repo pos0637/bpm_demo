@@ -1,12 +1,8 @@
 package com.etrita.bms.demo.board.entities;
 
 import com.etrita.bms.demo.board.communications.IDataReader;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * 变压器视图数据
@@ -91,25 +87,27 @@ public class Transformer {
      */
     private ChartData electricityData2 = new ChartData(9);
 
-    /**
-     * 最后采样时间
-     */
-    @JsonIgnore
-    private Date lastDate;
+    public Transformer() {
+        String[] xLabels = new String[24 * 6];
+        for (int i = 0, id = 0; i < 24; ++i) {
+            for (int j = 0; j < 6; ++j, ++id) {
+                xLabels[id] = String.format("%d:%d0", i, j);
+            }
+        }
 
-    /**
-     * 时间格式
-     */
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("mm:ss");
+        electricityData1 = new ChartData(xLabels.length, xLabels, null);
+        electricityData2 = new ChartData(xLabels.length, xLabels, null);
+    }
 
     /**
      * 读取ModbusTcp数据
      *
+     * @param pcsReader    数据读取器
      * @param other1Reader 数据读取器
      * @param other2Reader 数据读取器
      * @throws Exception
      */
-    public void readModbusTcpData(IDataReader other1Reader, IDataReader other2Reader) throws Exception {
+    public void readModbusTcpData(IDataReader pcsReader, IDataReader other1Reader, IDataReader other2Reader) throws Exception {
         float temperature11 = other2Reader.readFloat(1, 3, 1);
         float temperature12 = other2Reader.readFloat(1, 3, 3);
         float temperature13 = other2Reader.readFloat(1, 3, 5);
@@ -137,13 +135,10 @@ public class Transformer {
         setTotalChargingElectricity2(other2Reader.readFloat(4, 3, 1));
         setTotalDischargingElectricity2(other2Reader.readFloat(4, 3, 11));
 
-        setElectricity1(other1Reader.readFloat(1, 3, 31));
-        setElectricity2(other1Reader.readFloat(2, 3, 31));
+        setElectricity1(pcsReader.readFloat(1, 3, 31));
+        setElectricity2(pcsReader.readFloat(2, 3, 31));
 
-        if ((lastDate == null) || (new Date().getTime() - lastDate.getTime() > 10000)) {
-            lastDate = new Date();
-            electricityData1.push(dateFormat.format(lastDate), getElectricity1());
-            electricityData2.push(dateFormat.format(lastDate), getElectricity2());
-        }
+        electricityData1.push(null, getElectricity1());
+        electricityData2.push(null, getElectricity2());
     }
 }

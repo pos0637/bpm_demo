@@ -80,10 +80,7 @@ export default class Overview extends BaseComponent {
                     今日放电总量2: getRandom(500, 1000),
                     充放电功率1: getRandom(500, 1000),
                     充放电功率2: getRandom(500, 1000),
-                    充放电功率曲线1: {
-                        xLabels: ['0:00', '0:10', '0:20', '0:30', '0:40', '0:50', '1:00', '1:10', '1:20', '1:30', '1:40', '1:50', '2:00', '2:10', '2:20', '2:30', '2:40', '2:50', '3:00', '3:10', '3:20', '3:30', '3:40', '3:50', '4:00', '4:10', '4:20'],
-                        data: [getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220)]
-                    },
+                    充放电功率曲线1: null,
                     充放电功率曲线2: null,
                     变压器功率1: getRandom(500, 1000),
                     变压器功率2: getRandom(500, 1000),
@@ -118,7 +115,7 @@ export default class Overview extends BaseComponent {
                     data.充放电功率曲线1 = overview.electricityData1;
                     data.充放电功率曲线2 = overview.electricityData2;
                     data.变压器功率1 = overview.loadPower1;
-                    data.变压器功率2 = overview.loadPower1;
+                    data.变压器功率2 = overview.loadPower2;
                     data.变压器功率曲线1 = overview.loadPowerData1;
                     data.变压器功率曲线2 = overview.loadPowerData2;
                     data.需求功率1 = overview.transformerPower1;
@@ -137,6 +134,14 @@ export default class Overview extends BaseComponent {
     }
 
     render() {
+        let arrow = <div />;
+        if (this.state.充电状态 === 0) {
+            arrow = <Image left={372} top={1782} src={require("./images/charging_arrow.gif")} />;
+        }
+        else if (this.state.充电状态 === 1) {
+            arrow = <Image left={372} top={1796} src={require("./images/discharging_arrow.gif")} />
+        }
+
         return (
             <Container width={3840} height={2160}>
                 <Image left={200} top={173} src={require("../../framework/images/logo.png")} />
@@ -164,16 +169,16 @@ export default class Overview extends BaseComponent {
                     </Container>
                     <Container left={279} top={948} background={require("./images/small_box1.png")}>
                         <Text left={351} top={983} value="需求" font="SourceHanSansSC-Medium" fontSize={46.24} />
-                        <Text left={351} top={1074} value='1#功率需求' font="SourceHanSansSC-Light" fontSize={27.69} />
+                        <Text left={351} top={1074} value={`1#功率需求${toFixed(this.state.需求功率1, 1)}kW`} font="SourceHanSansSC-Light" fontSize={27.69} />
                         <Progress left={351} top={1120} width={251} height={9} value={this.state.需求功率1 / 1000 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)" />
-                        <Text left={351} top={1156} value='2#功率需求' font="SourceHanSansSC-Light" fontSize={27.69} />
+                        <Text left={351} top={1156} value={`2#功率需求${toFixed(this.state.需求功率2, 1)}kW`} font="SourceHanSansSC-Light" fontSize={27.69} />
                         <Progress left={351} top={1195} width={251} height={9} value={this.state.需求功率2 / 1000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
                     </Container>
                     <Container left={1370} top={524} background={require("./images/small_box2.png")}>
                         <Text left={1743} top={567} value="储能" font="SourceHanSansSC-Medium" fontSize={46.24} />
-                        <Text left={1574} top={656} value={`总充电量${toFixed(this.state.总充电量, 1)}kWh`} font="SourceHanSansSC-Light" fontSize={27.69} align="right" width={250} />
+                        <Text left={1554} top={656} value={`总充电量${toFixed(this.state.总充电量, 1)}kWh`} font="SourceHanSansSC-Light" fontSize={27.69} align="right" width={250} />
                         <Progress left={1584} top={702} width={251} height={9} value={this.state.总充电量 / 2000 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)" />
-                        <Text left={1574} top={732} value={`总放电量${toFixed(this.state.总放电量, 1)}kWh`} font="SourceHanSansSC-Light" fontSize={27.69} align="right" width={250} />
+                        <Text left={1554} top={732} value={`总放电量${toFixed(this.state.总放电量, 1)}kWh`} font="SourceHanSansSC-Light" fontSize={27.69} align="right" width={250} />
                         <Progress left={1584} top={778} width={251} height={9} value={this.state.总放电量 / 2000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
                     </Container>
                     <Container left={1370} top={950} background={require("./images/small_box2.png")}>
@@ -198,8 +203,7 @@ export default class Overview extends BaseComponent {
                     <Image left={293} top={1758} src={require("./images/link.png")} />
                     <Image left={700} top={1645} src={require("./images/ems_icon.png")} />
 
-                    {/* TODO: 修正运行状态错误 */}
-                    {this.state.充电状态 === 0 ? <Image left={372} top={1782} src={require("./images/charging_arrow.gif")} /> : <Image left={372} top={1796} src={require("./images/discharging_arrow.gif")} />}
+                    {arrow}
                 </Container>
 
                 <Container left={2023} top={1506} background={require("./images/box3.png")} onClick={() => window.login && this.context.router.history.replace('/air')}>
@@ -230,37 +234,37 @@ export default class Overview extends BaseComponent {
                     <Container left={2353} top={882} background={require("./images/tip.png")}>
                         <Text left={2353} top={896} width={158} value={`${toFixed(this.state.充放电功率1, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
                     </Container>
-                    <LineChart left={2094} top={963} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.充放电功率曲线1} maxTicksLimitX={6} />
+                    <LineChart left={2094} top={963} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.充放电功率曲线1} maxTicksLimitX={12} suggestedMin={-250} suggestedMax={250} />
 
                     <Text left={2094} top={1212} value="2#充/放电功率" font="SourceHanSansSC-Regular" fontSize={32} />
                     <Container left={2353} top={1188} background={require("./images/tip.png")}>
                         <Text left={2353} top={1202} width={158} value={`${toFixed(this.state.充放电功率2, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
                     </Container>
-                    <LineChart left={2094} top={1269} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.充放电功率曲线2} maxTicksLimitX={6} />
+                    <LineChart left={2094} top={1269} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.充放电功率曲线2} maxTicksLimitX={12} suggestedMin={-250} suggestedMax={250} />
 
                     <Text left={2619} top={906} value="1#变压器功率" font="SourceHanSansSC-Regular" fontSize={32} />
                     <Container left={2879} top={882} background={require("./images/tip.png")}>
                         <Text left={2879} top={896} width={158} value={`${toFixed(this.state.变压器功率1, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
                     </Container>
-                    <LineChart left={2619} top={963} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.变压器功率曲线1} maxTicksLimitX={6} />
+                    <LineChart left={2619} top={963} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.变压器功率曲线1} maxTicksLimitX={12} suggestedMin={-250} suggestedMax={250} />
 
                     <Text left={2619} top={1212} value="2#变压器功率" font="SourceHanSansSC-Regular" fontSize={32} />
                     <Container left={2879} top={1188} background={require("./images/tip.png")}>
                         <Text left={2879} top={1202} width={158} value={`${toFixed(this.state.变压器功率2, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
                     </Container>
-                    <LineChart left={2619} top={1269} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.变压器功率曲线2} maxTicksLimitX={6} />
+                    <LineChart left={2619} top={1269} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.变压器功率曲线2} maxTicksLimitX={12} suggestedMin={-250} suggestedMax={250} />
 
                     <Text left={3140} top={906} value="1#需求功率" font="SourceHanSansSC-Regular" fontSize={32} />
                     <Container left={3399} top={882} background={require("./images/tip.png")}>
                         <Text left={3399} top={896} width={158} value={`${toFixed(this.state.需求功率1, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
                     </Container>
-                    <LineChart left={3140} top={963} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.需求功率曲线1} maxTicksLimitX={6} />
+                    <LineChart left={3140} top={963} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.需求功率曲线1} maxTicksLimitX={12} suggestedMin={-250} suggestedMax={250} />
 
                     <Text left={3140} top={1212} value="2#需求功率" font="SourceHanSansSC-Regular" fontSize={32} />
                     <Container left={3399} top={1188} background={require("./images/tip.png")}>
                         <Text left={3399} top={1202} width={158} value={`${toFixed(this.state.需求功率2, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
                     </Container>
-                    <LineChart left={3140} top={1269} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.需求功率曲线2} maxTicksLimitX={6} />
+                    <LineChart left={3140} top={1269} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.需求功率曲线2} maxTicksLimitX={12} suggestedMin={-250} suggestedMax={250} />
                 </Container>
 
                 <Container left={2600} top={1502} background={require("./images/box7.png")}>

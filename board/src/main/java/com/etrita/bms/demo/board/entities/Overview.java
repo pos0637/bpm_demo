@@ -1,12 +1,8 @@
 package com.etrita.bms.demo.board.entities;
 
 import com.etrita.bms.demo.board.communications.IDataReader;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * 预览视图数据
@@ -134,43 +130,48 @@ public class Overview {
     /**
      * 充放电功率曲线1
      */
-    private ChartData electricityData1 = new ChartData(9);
+    private ChartData electricityData1;
 
     /**
      * 充放电功率曲线2
      */
-    private ChartData electricityData2 = new ChartData(9);
+    private ChartData electricityData2;
 
     /**
      * 变压器功率曲线1
      */
-    private ChartData transformerPowerData1 = new ChartData(9);
+    private ChartData transformerPowerData1;
 
     /**
      * 变压器功率曲线2
      */
-    private ChartData transformerPowerData2 = new ChartData(9);
+    private ChartData transformerPowerData2;
 
     /**
      * 需求功率曲线1
      */
-    private ChartData loadPowerData1 = new ChartData(9);
+    private ChartData loadPowerData1;
 
     /**
      * 需求功率曲线2
      */
-    private ChartData loadPowerData2 = new ChartData(9);
+    private ChartData loadPowerData2;
 
-    /**
-     * 最后采样时间
-     */
-    @JsonIgnore
-    private Date lastDate;
+    public Overview() {
+        String[] xLabels = new String[24 * 6];
+        for (int i = 0, id = 0; i < 24; ++i) {
+            for (int j = 0; j < 6; ++j, ++id) {
+                xLabels[id] = String.format("%d:%d0", i, j);
+            }
+        }
 
-    /**
-     * 时间格式
-     */
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("mm:ss");
+        electricityData1 = new ChartData(xLabels.length, xLabels, 10 * 60 * 1000);
+        electricityData2 = new ChartData(xLabels.length, xLabels, 10 * 60 * 1000);
+        transformerPowerData1 = new ChartData(xLabels.length, xLabels, 10 * 60 * 1000);
+        transformerPowerData2 = new ChartData(xLabels.length, xLabels, 10 * 60 * 1000);
+        loadPowerData1 = new ChartData(xLabels.length, xLabels, 10 * 60 * 1000);
+        loadPowerData2 = new ChartData(xLabels.length, xLabels, 10 * 60 * 1000);
+    }
 
     /**
      * 读取ModbusTcp数据
@@ -208,26 +209,23 @@ public class Overview {
         float pcsPower2 = pcsReader.readFloat(2, 3, 31);
         setElectricity1(pcsPower1);
         setElectricity2(pcsPower2);
-        setTransformerPower1(other1Reader.readFloat(4, 3, 1));
-        setTransformerPower2(other1Reader.readFloat(4, 3, 37));
+        setTransformerPower1(other1Reader.readFloat(3, 3, 1));
+        setTransformerPower2(other1Reader.readFloat(3, 3, 37));
         setLoadPower1(getTransformerPower1() - pcsPower1);
         setLoadPower2(getTransformerPower2() - pcsPower2);
-        setTotalChargingElectricity(other2Reader.readFloat(5, 3, 1));
-        setTotalDischargingElectricity(other2Reader.readFloat(5, 3, 11));
+        setTotalChargingElectricity(other2Reader.readFloat(3, 3, 1) + other2Reader.readFloat(4, 3, 1));
+        setTotalDischargingElectricity(other2Reader.readFloat(3, 3, 11) + other2Reader.readFloat(4, 3, 11));
         setChargingElectricity1(other2Reader.readFloat(3, 3, 1) - lastChargingElectricity1);
         setDischargingElectricity1(other2Reader.readFloat(3, 3, 11) - lastDischargingElectricity1);
         setChargingElectricity2(other2Reader.readFloat(4, 3, 1) - lastChargingElectricity2);
         setDischargingElectricity2(other2Reader.readFloat(4, 3, 11) - lastDischargingElectricity2);
 
-        if ((lastDate == null) || (new Date().getTime() - lastDate.getTime() > 10000)) {
-            lastDate = new Date();
-            electricityData1.push(dateFormat.format(lastDate), pcsPower1);
-            electricityData2.push(dateFormat.format(lastDate), pcsPower2);
-            transformerPowerData1.push(dateFormat.format(lastDate), getTransformerPower1());
-            transformerPowerData2.push(dateFormat.format(lastDate), getTransformerPower2());
-            loadPowerData1.push(dateFormat.format(lastDate), getTransformerPower1() - pcsPower1);
-            loadPowerData2.push(dateFormat.format(lastDate), getTransformerPower2() - pcsPower1);
-        }
+        electricityData1.push(null, pcsPower1);
+        electricityData2.push(null, pcsPower2);
+        transformerPowerData1.push(null, getTransformerPower1());
+        transformerPowerData2.push(null, getTransformerPower2());
+        loadPowerData1.push(null, getTransformerPower1() - pcsPower1);
+        loadPowerData2.push(null, getTransformerPower2() - pcsPower1);
 
         setSaveCost1((float) ((2 * getTotalDischargingElectricity() - getTotalChargingElectricity()) * 0.028));
         setSaveCost2((float) (getSaveCost1() * 2.77));

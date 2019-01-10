@@ -207,7 +207,7 @@ export default class Pcs extends BaseComponent {
                 <Container left={943} top={1646} background={require("./images/box4.png")}>
                     <Text left={1024} top={1690} value="直流电压" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Text left={1299} top={1690} value="直流电流" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
-                    <Text left={1588} top={1690} value="交流电压" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
+                    <Text left={1588} top={1690} value="交流电流" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Container left={1024} top={1771} background={require("./images/tip.png")}>
                         <Text left={1024} top={1783} width={150} value={`${toFixed(this.state.直流电压1, 0)}V`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
                     </Container>
@@ -215,7 +215,7 @@ export default class Pcs extends BaseComponent {
                         <Text left={1299} top={1783} width={150} value={`${toFixed(this.state.直流电流1, 0)}A`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
                     </Container>
                     <Container left={1588} top={1771} background={require("./images/tip.png")}>
-                        <Text left={1588} top={1783} width={150} value={`${toFixed(this.state.交流电压1, 0)}V`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
+                        <Text left={1588} top={1783} width={150} value={`${toFixed(this.state.交流电压1, 0)}A`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
                     </Container>
                     <Progress left={1024} top={1850} width={221} height={14} value={this.state.直流电压1 / 400 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
                     <Progress left={1299} top={1850} width={221} height={14} value={this.state.直流电流1 / 200 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
@@ -224,7 +224,7 @@ export default class Pcs extends BaseComponent {
                 <Container left={1960} top={1646} background={require("./images/box4.png")}>
                     <Text left={2041} top={1690} value="直流电压" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Text left={2316} top={1690} value="直流电流" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
-                    <Text left={2605} top={1690} value="交流电压" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
+                    <Text left={2605} top={1690} value="交流电流" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Container left={2041} top={1771} background={require("./images/tip.png")}>
                         <Text left={2041} top={1783} width={150} value={`${toFixed(this.state.直流电压1, 0)}V`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
                     </Container>
@@ -232,7 +232,7 @@ export default class Pcs extends BaseComponent {
                         <Text left={2316} top={1783} width={150} value={`${toFixed(this.state.直流电流1, 0)}A`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
                     </Container>
                     <Container left={2605} top={1771} background={require("./images/tip.png")}>
-                        <Text left={2605} top={1783} width={150} value={`${toFixed(this.state.交流电压1, 0)}V`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
+                        <Text left={2605} top={1783} width={150} value={`${toFixed(this.state.交流电压1, 0)}A`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
                     </Container>
                     <Progress left={2041} top={1850} width={221} height={14} value={this.state.直流电压1 / 400 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
                     <Progress left={2316} top={1850} width={221} height={14} value={this.state.直流电流1 / 200 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />

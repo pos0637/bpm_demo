@@ -54,3 +54,14 @@ export function getTransformerData(succ, err) {
 export function getBmsData(succ, err) {
     request('/api/v1/board/bms', 'get', null, succ, err);
 }
+
+/**
+ * 获取空调视图数据
+ * 
+ * @export
+ * @param {*} succ 成功处理函数
+ * @param {*} err 错误处理函数
+ */
+export function getAirData(succ, err) {
+    request('/api/v1/board/air', 'get', null, succ, err);
+}

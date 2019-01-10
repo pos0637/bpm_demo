@@ -22,7 +22,9 @@ export default class BarChart extends BaseComponent {
         color: PropTypes.string,
         data: PropTypes.array,
         onClick: PropTypes.func, // 点击事件处理函数
-        maxTicksLimitX: PropTypes.number // 横轴最大标记个数
+        maxTicksLimitX: PropTypes.number, // 横轴最大标记个数
+        suggestedMin: PropTypes.number, // 最小值
+        suggestedMax: PropTypes.number, // 最大值
     }
 
     static defaultProps = {
@@ -33,7 +35,9 @@ export default class BarChart extends BaseComponent {
         color: 'rgba(251,207,72,0.8)',
         data: { xLabels: null, data: null },
         onClick: null,
-        maxTicksLimitX: null
+        maxTicksLimitX: null,
+        suggestedMin: null,
+        suggestedMax: null
     }
 
     chartOptions = {
@@ -74,7 +78,9 @@ export default class BarChart extends BaseComponent {
                     color: 'rgba(255, 255, 255, 0.2)'
                 },
                 ticks: {
-                    fontColor: this.props.color
+                    fontColor: this.props.color,
+                    suggestedMin: this.props.suggestedMin,
+                    suggestedMax: this.props.suggestedMax
                 }
             }]
         }
@@ -84,8 +90,8 @@ export default class BarChart extends BaseComponent {
         let xLabels = null;
         let data = null;
         if (this.props.data !== null) {
-            if (this.props.data.xLabels) {
-                xLabels = this.props.data.xLabels;
+            if (this.props.data.xlabels) {
+                xLabels = this.props.data.xlabels;
             }
 
             if (this.props.data.data) {

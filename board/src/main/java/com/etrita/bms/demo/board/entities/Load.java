@@ -99,6 +99,28 @@ public class Load {
     private float power4;
 
     /**
+     * 当月能耗曲线
+     */
+    private ChartData powerData;
+
+    public Load() {
+        String[] xLabels = new String[7];
+        for (int i = 0; i < xLabels.length; ++i) {
+            xLabels[i] = String.format("Day%d", i + 1);
+        }
+
+        // TODO: fix it
+        powerData = new ChartData(xLabels.length, xLabels, null);
+        powerData.push(null, 487);
+        powerData.push(null, 498);
+        powerData.push(null, 501);
+        powerData.push(null, 475);
+        powerData.push(null, 483);
+        powerData.push(null, 492);
+        powerData.push(null, 488);
+    }
+
+    /**
      * 读取ModbusTcp数据
      *
      * @param other1Reader 数据读取器
@@ -118,8 +140,11 @@ public class Load {
         setCurrentB2(other1Reader.readFloat(3, 3, 49));
         setCurrentC2(other1Reader.readFloat(3, 3, 51));
         setPower(other1Reader.readFloat(3, 3, 289));
+        // TODO: fix it
+        powerData.set(6, getPower());
         setPower1(other1Reader.readFloat(3, 3, 73));
-        setPower2(other1Reader.readFloat(3, 3, 109));
+        // TODO: check it
+        setPower2(Math.abs(other1Reader.readFloat(3, 3, 109)));
         setPower3(other1Reader.readFloat(3, 3, 145) + other1Reader.readFloat(3, 3, 181));
         setPower4(other1Reader.readFloat(3, 3, 217) + other1Reader.readFloat(3, 3, 253));
     }

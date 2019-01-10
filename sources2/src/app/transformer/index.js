@@ -39,8 +39,8 @@ export default class Transformer extends BaseComponent {
         总放电电量2: 2100,
         充放电实时功率1: 910,
         充放电实时功率2: 910,
-        充放电实时功率曲线1: {},
-        充放电实时功率曲线2: {},
+        充放电实时功率曲线1: null,
+        充放电实时功率曲线2: null,
         合闸1: 0,
         合闸2: 0,
         showDialog1: false,
@@ -179,8 +179,8 @@ export default class Transformer extends BaseComponent {
                         <Text left={2628} top={1058} width={180} value={`${toFixed(this.state.充放电实时功率2, 0)}`} suffix="kW" font="Microsoft Yahei" weight="bold" fontSize={45} suffixFontSize={30} align="center" />
                     </Container>
 
-                    <LineChart left={1751} top={1135} width={487} height={130} color="rgba(68,175,244,0.8)" data={this.state.充放电实时功率曲线1} onClick={() => this.setState({ showDialog5: true })} maxTicksLimitX={6} />
-                    <LineChart left={2335} top={1135} width={487} height={130} color="rgba(68,175,244,0.8)" data={this.state.充放电实时功率曲线2} onClick={() => this.setState({ showDialog6: true })} maxTicksLimitX={6} />
+                    <LineChart left={1751} top={1135} width={487} height={130} color="rgba(68,175,244,0.8)" data={this.state.充放电实时功率曲线1} onClick={() => this.setState({ showDialog5: true })} maxTicksLimitX={12} suggestedMin={-250} suggestedMax={250} />
+                    <LineChart left={2335} top={1135} width={487} height={130} color="rgba(68,175,244,0.8)" data={this.state.充放电实时功率曲线2} onClick={() => this.setState({ showDialog6: true })} maxTicksLimitX={12} suggestedMin={-250} suggestedMax={250} />
                 </Container>
                 <Container left={1680} top={1459} background={require("./images/box4.png")}>
                     <Text left={1790} top={1664} value="I段开关" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(7, 229, 255)" />

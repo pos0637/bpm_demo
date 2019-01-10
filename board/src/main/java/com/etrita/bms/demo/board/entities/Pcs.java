@@ -1,12 +1,12 @@
 package com.etrita.bms.demo.board.entities;
 
-        import com.etrita.bms.demo.board.communications.IDataReader;
-        import com.fasterxml.jackson.annotation.JsonIgnore;
-        import lombok.Getter;
-        import lombok.Setter;
+import com.etrita.bms.demo.board.communications.IDataReader;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.Setter;
 
-        import java.text.SimpleDateFormat;
-        import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * PCS视图数据
@@ -45,6 +45,26 @@ public class Pcs {
      * 2#日放电电量
      */
     private float dischargingElectricity2;
+
+    /**
+     * 1#昨日充电总量
+     */
+    private float lastChargingElectricity1;
+
+    /**
+     * 1#昨日放电总量
+     */
+    private float lastDischargingElectricity1;
+
+    /**
+     * 2#昨日充电总量
+     */
+    private float lastChargingElectricity2;
+
+    /**
+     * 2#昨日放电总量
+     */
+    private float lastDischargingElectricity2;
 
     /**
      * 充放电量1
@@ -99,32 +119,32 @@ public class Pcs {
     /**
      * 1#日充电电量
      */
-    private ChartData chargingElectricityData1 = new ChartData(9);
+    private ChartData chargingElectricityData1;
 
     /**
      * 1#日放电电量
      */
-    private ChartData dischargingElectricityData1 = new ChartData(9);
+    private ChartData dischargingElectricityData1;
 
     /**
      * 2#日充电电量
      */
-    private ChartData chargingElectricityData2 = new ChartData(9);
+    private ChartData chargingElectricityData2;
 
     /**
      * 2#日放电电量
      */
-    private ChartData dischargingElectricityData2 = new ChartData(9);
+    private ChartData dischargingElectricityData2;
 
     /**
      * 充放电量曲线1
      */
-    private ChartData electricityData1 = new ChartData(9);
+    private ChartData electricityData1;
 
     /**
      * 充放电量曲线2
      */
-    private ChartData electricityData2 = new ChartData(9);
+    private ChartData electricityData2;
 
     /**
      * 最后采样时间
@@ -137,13 +157,69 @@ public class Pcs {
      */
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("mm:ss");
 
+    public Pcs() {
+        String[] xLabels = new String[7];
+        for (int i = 0; i < xLabels.length; ++i) {
+            xLabels[i] = String.format("Day%d", i + 1);
+        }
+
+        chargingElectricityData1 = new ChartData(xLabels.length, xLabels, null);
+        dischargingElectricityData1 = new ChartData(xLabels.length, xLabels, null);
+        chargingElectricityData2 = new ChartData(xLabels.length, xLabels, null);
+        dischargingElectricityData2 = new ChartData(xLabels.length, xLabels, null);
+
+        // TODO: fix it
+        chargingElectricityData1.push(null, 798);
+        chargingElectricityData1.push(null, 982);
+        chargingElectricityData1.push(null, 884);
+        chargingElectricityData1.push(null, 746);
+        chargingElectricityData1.push(null, 789);
+        chargingElectricityData1.push(null, 812);
+        chargingElectricityData1.push(null, 941);
+
+        dischargingElectricityData1.push(null, 887);
+        dischargingElectricityData1.push(null, 952);
+        dischargingElectricityData1.push(null, 814);
+        dischargingElectricityData1.push(null, 776);
+        dischargingElectricityData1.push(null, 739);
+        dischargingElectricityData1.push(null, 802);
+        dischargingElectricityData1.push(null, 741);
+
+        chargingElectricityData2.push(null, 738);
+        chargingElectricityData2.push(null, 912);
+        chargingElectricityData2.push(null, 854);
+        chargingElectricityData2.push(null, 716);
+        chargingElectricityData2.push(null, 779);
+        chargingElectricityData2.push(null, 862);
+        chargingElectricityData2.push(null, 841);
+
+        dischargingElectricityData2.push(null, 787);
+        dischargingElectricityData2.push(null, 852);
+        dischargingElectricityData2.push(null, 714);
+        dischargingElectricityData2.push(null, 716);
+        dischargingElectricityData2.push(null, 839);
+        dischargingElectricityData2.push(null, 902);
+        dischargingElectricityData2.push(null, 741);
+
+        xLabels = new String[24 * 6];
+        for (int i = 0, id = 0; i < 24; ++i) {
+            for (int j = 0; j < 6; ++j, ++id) {
+                xLabels[id] = String.format("%d:%d0", i, j);
+            }
+        }
+
+        electricityData1 = new ChartData(xLabels.length, xLabels, null);
+        electricityData2 = new ChartData(xLabels.length, xLabels, null);
+    }
+
     /**
      * 读取ModbusTcp数据
      *
-     * @param pcsReader 数据读取器
+     * @param pcsReader    数据读取器
+     * @param other2Reader 数据读取器
      * @throws Exception
      */
-    public void readModbusTcpData(IDataReader pcsReader) throws Exception {
+    public void readModbusTcpData(IDataReader pcsReader, IDataReader other2Reader) throws Exception {
         byte state11 = pcsReader.readByte(1, 2, 24);
         byte state12 = pcsReader.readByte(1, 2, 25);
         // byte state13 = reader.readByte(1, 2, 26);
@@ -164,26 +240,23 @@ public class Pcs {
 
         setVoltage11(pcsReader.readFloat(1, 3, 23));
         setCurrent1(pcsReader.readFloat(1, 3, 21));
-        setVoltage12(pcsReader.readFloat(1, 3, 25));
+        setVoltage12(pcsReader.readFloat(1, 3, 29));
         setVoltage21(pcsReader.readFloat(2, 3, 23));
         setCurrent2(pcsReader.readFloat(2, 3, 21));
-        setVoltage22(pcsReader.readFloat(2, 3, 25));
+        setVoltage22(pcsReader.readFloat(2, 3, 29));
 
-        setChargingElectricity1(pcsReader.readFloat(1, 3, 67));
-        setDischargingElectricity1(pcsReader.readFloat(1, 3, 65));
-        setChargingElectricity2(pcsReader.readFloat(2, 3, 67));
-        setDischargingElectricity2(pcsReader.readFloat(2, 3, 65));
+        setChargingElectricity1(other2Reader.readFloat(3, 3, 1) - lastChargingElectricity1);
+        setDischargingElectricity1(other2Reader.readFloat(3, 3, 11) - lastDischargingElectricity1);
+        setChargingElectricity2(other2Reader.readFloat(4, 3, 1) - lastChargingElectricity2);
+        setDischargingElectricity2(other2Reader.readFloat(4, 3, 11) - lastDischargingElectricity2);
         setElectricity1(pcsReader.readFloat(1, 3, 31));
         setElectricity2(pcsReader.readFloat(2, 3, 31));
 
-        if ((lastDate == null) || (new Date().getTime() - lastDate.getTime() > 10000)) {
-            lastDate = new Date();
-            chargingElectricityData1.push(dateFormat.format(lastDate), getChargingElectricity1());
-            dischargingElectricityData1.push(dateFormat.format(lastDate), getDischargingElectricity1());
-            chargingElectricityData2.push(dateFormat.format(lastDate), getChargingElectricity2());
-            dischargingElectricityData2.push(dateFormat.format(lastDate), getDischargingElectricity2());
-            electricityData1.push(dateFormat.format(lastDate), getElectricity1());
-            electricityData2.push(dateFormat.format(lastDate), getElectricity2());
-        }
+        chargingElectricityData1.set(6, getChargingElectricity1());
+        dischargingElectricityData1.set(6, getDischargingElectricity1());
+        chargingElectricityData2.set(6, getChargingElectricity2());
+        dischargingElectricityData2.set(6, getDischargingElectricity2());
+        electricityData1.push(null, getElectricity1());
+        electricityData2.push(null, getElectricity2());
     }
 }
