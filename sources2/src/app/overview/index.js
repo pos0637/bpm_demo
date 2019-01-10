@@ -6,7 +6,7 @@ import Image from '~/app/components/image';
 import Container from '~/app/components/container';
 import Progress from '~/app/components/lineProgress';
 import Switch from '~/app/components/switch';
-import BarChart from '~/app/components/barChart';
+import LineChart from '~/app/components/lineChart';
 import { toFixed, pad } from '~/misc/number';
 import { getRandom } from '~/misc/random';
 import { getOverviewData } from '~/api/v1/board';
@@ -80,7 +80,10 @@ export default class Overview extends BaseComponent {
                     今日放电总量2: getRandom(500, 1000),
                     充放电功率1: getRandom(500, 1000),
                     充放电功率2: getRandom(500, 1000),
-                    充放电功率曲线1: null,
+                    充放电功率曲线1: {
+                        xLabels: ['0:00', '0:10', '0:20', '0:30', '0:40', '0:50', '1:00', '1:10', '1:20', '1:30', '1:40', '1:50', '2:00', '2:10', '2:20', '2:30', '2:40', '2:50', '3:00', '3:10', '3:20', '3:30', '3:40', '3:50', '4:00', '4:10', '4:20'],
+                        data: [getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220)]
+                    },
                     充放电功率曲线2: null,
                     变压器功率1: getRandom(500, 1000),
                     变压器功率2: getRandom(500, 1000),
@@ -227,37 +230,37 @@ export default class Overview extends BaseComponent {
                     <Container left={2353} top={882} background={require("./images/tip.png")}>
                         <Text left={2353} top={896} width={158} value={`${toFixed(this.state.充放电功率1, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
                     </Container>
-                    <BarChart left={2094} top={963} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.充放电功率曲线1} />
+                    <LineChart left={2094} top={963} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.充放电功率曲线1} maxTicksLimitX={6} />
 
                     <Text left={2094} top={1212} value="2#充/放电功率" font="SourceHanSansSC-Regular" fontSize={32} />
                     <Container left={2353} top={1188} background={require("./images/tip.png")}>
                         <Text left={2353} top={1202} width={158} value={`${toFixed(this.state.充放电功率2, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
                     </Container>
-                    <BarChart left={2094} top={1269} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.充放电功率曲线2} />
+                    <LineChart left={2094} top={1269} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.充放电功率曲线2} maxTicksLimitX={6} />
 
                     <Text left={2619} top={906} value="1#变压器功率" font="SourceHanSansSC-Regular" fontSize={32} />
                     <Container left={2879} top={882} background={require("./images/tip.png")}>
                         <Text left={2879} top={896} width={158} value={`${toFixed(this.state.变压器功率1, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
                     </Container>
-                    <BarChart left={2619} top={963} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.变压器功率曲线1} />
+                    <LineChart left={2619} top={963} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.变压器功率曲线1} maxTicksLimitX={6} />
 
                     <Text left={2619} top={1212} value="2#变压器功率" font="SourceHanSansSC-Regular" fontSize={32} />
                     <Container left={2879} top={1188} background={require("./images/tip.png")}>
                         <Text left={2879} top={1202} width={158} value={`${toFixed(this.state.变压器功率2, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
                     </Container>
-                    <BarChart left={2619} top={1269} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.变压器功率曲线2} />
+                    <LineChart left={2619} top={1269} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.变压器功率曲线2} maxTicksLimitX={6} />
 
                     <Text left={3140} top={906} value="1#需求功率" font="SourceHanSansSC-Regular" fontSize={32} />
                     <Container left={3399} top={882} background={require("./images/tip.png")}>
                         <Text left={3399} top={896} width={158} value={`${toFixed(this.state.需求功率1, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
                     </Container>
-                    <BarChart left={3140} top={963} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.需求功率曲线1} />
+                    <LineChart left={3140} top={963} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.需求功率曲线1} maxTicksLimitX={6} />
 
                     <Text left={3140} top={1212} value="2#需求功率" font="SourceHanSansSC-Regular" fontSize={32} />
                     <Container left={3399} top={1188} background={require("./images/tip.png")}>
                         <Text left={3399} top={1202} width={158} value={`${toFixed(this.state.需求功率2, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
                     </Container>
-                    <BarChart left={3140} top={1269} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.需求功率曲线2} />
+                    <LineChart left={3140} top={1269} width={429} height={120} color="rgba(68,175,244,0.8)" data={this.state.需求功率曲线2} maxTicksLimitX={6} />
                 </Container>
 
                 <Container left={2600} top={1502} background={require("./images/box7.png")}>

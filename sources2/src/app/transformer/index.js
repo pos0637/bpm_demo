@@ -6,6 +6,7 @@ import Image from '~/app/components/image';
 import Container from '~/app/components/container';
 import Switch from '~/app/components/switch';
 import CircleProgress from '~/app/components/progress';
+import LineChart from '~/app/components/lineChart';
 import BarChart from '~/app/components/barChart';
 import Gauge from '~/app/components/gauge';
 import Dialog from '~/app/components/dialog';
@@ -178,8 +179,8 @@ export default class Transformer extends BaseComponent {
                         <Text left={2628} top={1058} width={180} value={`${toFixed(this.state.充放电实时功率2, 0)}`} suffix="kW" font="Microsoft Yahei" weight="bold" fontSize={45} suffixFontSize={30} align="center" />
                     </Container>
 
-                    <BarChart left={1751} top={1135} width={487} height={130} color="rgba(68,175,244,0.8)" data={this.state.充放电实时功率曲线1} onClick={() => this.setState({ showDialog5: true })} />
-                    <BarChart left={2335} top={1135} width={487} height={130} color="rgba(68,175,244,0.8)" data={this.state.充放电实时功率曲线2} onClick={() => this.setState({ showDialog6: true })} />
+                    <LineChart left={1751} top={1135} width={487} height={130} color="rgba(68,175,244,0.8)" data={this.state.充放电实时功率曲线1} onClick={() => this.setState({ showDialog5: true })} maxTicksLimitX={6} />
+                    <LineChart left={2335} top={1135} width={487} height={130} color="rgba(68,175,244,0.8)" data={this.state.充放电实时功率曲线2} onClick={() => this.setState({ showDialog6: true })} maxTicksLimitX={6} />
                 </Container>
                 <Container left={1680} top={1459} background={require("./images/box4.png")}>
                     <Text left={1790} top={1664} value="I段开关" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(7, 229, 255)" />

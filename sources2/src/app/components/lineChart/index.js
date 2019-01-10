@@ -21,7 +21,9 @@ export default class LineChart extends BaseComponent {
         max: PropTypes.number,
         color: PropTypes.string,
         xLabels: PropTypes.array,
-        data: PropTypes.array
+        data: PropTypes.array,
+        onClick: PropTypes.func, // 点击事件处理函数
+        maxTicksLimitX: PropTypes.number // 横轴最大标记个数
     }
 
     static defaultProps = {
@@ -31,7 +33,9 @@ export default class LineChart extends BaseComponent {
         max: 1,
         color: 'rgba(251,207,72,0.8)',
         xLabels: null,
-        data: null
+        data: null,
+        onClick: null,
+        maxTicksLimitX: null
     }
 
     chartOptions = {
@@ -52,7 +56,8 @@ export default class LineChart extends BaseComponent {
                 radius: 0 // 线条上点
             },
             line: {
-                borderWidth: 0 // 线条边框宽度
+                borderWidth: 0, // 线条边框宽度
+                tension: 0 // 折线
             }
         },
         scales: {
@@ -62,7 +67,8 @@ export default class LineChart extends BaseComponent {
                     color: 'rgba(255, 255, 255, 0.2)'
                 },
                 ticks: {
-                    fontColor: this.props.color
+                    fontColor: this.props.color,
+                    maxTicksLimit: this.props.maxTicksLimitX
                 }
             }],
             yAxes: [{
@@ -78,7 +84,18 @@ export default class LineChart extends BaseComponent {
     }
 
     render() {
-        let { xLabels, data } = this.props;
+        let xLabels = null;
+        let data = null;
+        if (this.props.data !== null) {
+            if (this.props.data.xLabels) {
+                xLabels = this.props.data.xLabels;
+            }
+
+            if (this.props.data.data) {
+                data = this.props.data.data;
+            }
+        }
+
         if (!xLabels || (xLabels.length === 0)) {
             xLabels = ['0:00', '3:00', '6:00', '9:00', '12:00', '15:00', '18:00', '21:00', '23:00'];
         }
@@ -99,9 +116,10 @@ export default class LineChart extends BaseComponent {
         }];
 
         const { left, top } = this.getRelativePosition(this.props.left, this.props.top);
+        const { onClick } = this.props;
 
         return (
-            <div style={{ position: 'absolute', left: `${left}px`, top: `${top}px` }}>
+            <div style={{ position: 'absolute', left: `${left}px`, top: `${top}px` }} onClick={onClick}>
                 <Line
                     data={{ labels: xLabels, datasets: datasets }}
                     options={this.chartOptions}
