@@ -100,8 +100,10 @@ export default class Bms extends BaseComponent {
                     data.batteries1 = bms.batteries1;
                     data.batteries2 = bms.batteries2;
                     data.batteries3 = bms.batteries3;
-                    data.batteries4 = bms.batteries4;
+                    data.batteries4 = bms.batteries4;                    
                     this.setState(data);
+                    this._onCellClick1(this.state.currentBatteryPackId1, this.state.currentBatteryId1);
+                    this._onCellClick2(this.state.currentBatteryPackId2, this.state.currentBatteryId2);
                 });
             }
         }, 2000);
@@ -214,7 +216,7 @@ export default class Bms extends BaseComponent {
             const left = startX1 + i * 33;
             const batteryId = id;
             const cell = (
-                <Container left={left} top={y} width={33} height={34} onClick={() => (batteryPackId <= 2) ? this._onCellClick1(batteryPackId, batteryId) : this._onCellClick2(batteryPackId, batteryId)}>
+                <Container left={left} top={y} width={33} height={34} onClick={() => (batteryPackId <= 2) ? this._onCellClick1(batteryPackId, batteryId) : this._onCellClick2(batteryPackId - 2, batteryId)}>
                     <Image left={left} top={y} src={this._getBatteryIcon(batteries, id - 1)} />
                     <Text left={left} top={y + 7} width={width} value={pad(id, 3)} align="center" fontSize={18} />
                 </Container>
@@ -228,7 +230,7 @@ export default class Bms extends BaseComponent {
                 const left = startX2 + i * 33;
                 const batteryId = id;
                 const cell = (
-                    <Container left={left} top={y} width={33} height={34} onClick={() => (batteryPackId <= 2) ? this._onCellClick1(batteryPackId, batteryId) : this._onCellClick2(batteryPackId, batteryId)}>
+                    <Container left={left} top={y} width={33} height={34} onClick={() => (batteryPackId <= 2) ? this._onCellClick1(batteryPackId, batteryId) : this._onCellClick2(batteryPackId - 2, batteryId)}>
                         <Image left={left} top={y} src={this._getBatteryIcon(batteries, id - 1)} />
                         <Text left={left} top={y + 7} width={width} value={pad(id, 3)} align="center" fontSize={18} />
                     </Container>
@@ -271,12 +273,17 @@ export default class Bms extends BaseComponent {
      * @memberof Bms
      */
     _onCellClick1(batteryPackId, batteryId) {
+        const batteries = (batteryPackId === 1) ? this.state.batteries1 : this.state.batteries2;
+        const voltage = (batteries.length > batteryId) ? batteries[batteryId].voltage : 0;
+        const resistance = (batteries.length > batteryId) ? batteries[batteryId].resistance : 0;
+        const temperature = (batteries.length > batteryId) ? batteries[batteryId].temperature : 0;
+
         this.setState({
             currentBatteryPackId1: batteryPackId,
             currentBatteryId1: batteryId,
-            电池电压1: (batteryPackId === 1) ? this.state.batteries1[batteryId].voltage : this.state.batteries2[batteryId].voltage,
-            电池内阻1: (batteryPackId === 1) ? this.state.batteries1[batteryId].resistance : this.state.batteries2[batteryId].resistance,
-            电池温度1: (batteryPackId === 1) ? this.state.batteries1[batteryId].temperature : this.state.batteries2[batteryId].temperature
+            电池电压1: voltage,
+            电池内阻1: resistance,
+            电池温度1: temperature
         });
     }
 
@@ -288,12 +295,17 @@ export default class Bms extends BaseComponent {
      * @memberof Bms
      */
     _onCellClick2(batteryPackId, batteryId) {
+        const batteries = (batteryPackId === 3) ? this.state.batteries3 : this.state.batteries4;
+        const voltage = (batteries.length > batteryId) ? batteries[batteryId].voltage : 0;
+        const resistance = (batteries.length > batteryId) ? batteries[batteryId].resistance : 0;
+        const temperature = (batteries.length > batteryId) ? batteries[batteryId].temperature : 0;
+
         this.setState({
             currentBatteryPackId2: batteryPackId,
             currentBatteryId2: batteryId,
-            电池电压2: (batteryPackId === 3) ? this.state.batteries3[batteryId].voltage : this.state.batteries4[batteryId].voltage,
-            电池内阻2: (batteryPackId === 3) ? this.state.batteries3[batteryId].resistance : this.state.batteries4[batteryId].resistance,
-            电池温度2: (batteryPackId === 3) ? this.state.batteries3[batteryId].temperature : this.state.batteries4[batteryId].temperature
+            电池电压2: voltage,
+            电池内阻2: resistance,
+            电池温度2: temperature
         });
     }
 }

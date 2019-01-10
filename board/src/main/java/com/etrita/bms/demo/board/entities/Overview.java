@@ -42,6 +42,16 @@ public class Overview {
     private float bill;
 
     /**
+     * 节煤量
+     */
+    private float saveCost1;
+
+    /**
+     * 节碳量
+     */
+    private float saveCost2;
+
+    /**
      * 需求 1#需求功率： 1#变压器功率
      */
     private float transformerPower1;
@@ -62,12 +72,12 @@ public class Overview {
     private float loadPower2;
 
     /**
-     * 储能 总充电量：并网柜总充电电量
+     * 储能 总充电量
      */
     private float totalChargingElectricity;
 
     /**
-     * 储能 总放电量：并网柜总放电电量
+     * 储能 总放电量
      */
     private float totalDischargingElectricity;
 
@@ -184,18 +194,30 @@ public class Overview {
         setChargingState((getState1() == 0) && (getState2() == 0) ? 0 : 1);
         setSecuritySystemState(other1Reader.readByte(4, 2, 19));
 
+        float data11 = other2Reader.readFloat(3, 3, 7);
+        float data12 = other2Reader.readFloat(3, 3, 9);
+        float data13 = other2Reader.readFloat(3, 3, 13);
+        float data14 = other2Reader.readFloat(3, 3, 15);
+        float data21 = other2Reader.readFloat(4, 3, 7);
+        float data22 = other2Reader.readFloat(4, 3, 9);
+        float data23 = other2Reader.readFloat(4, 3, 13);
+        float data24 = other2Reader.readFloat(4, 3, 15);
+        setBill((float) ((data13 * 1.4523 + data14 * 1.3240 - data11 * 0.8053 - data12 * 0.3116) + (data23 * 1.4523 + data24 * 1.3240 - data21 * 0.8053 - data22 * 0.3116)));
+
         float pcsPower1 = pcsReader.readFloat(1, 3, 31);
         float pcsPower2 = pcsReader.readFloat(2, 3, 31);
+        setElectricity1(pcsPower1);
+        setElectricity2(pcsPower2);
         setTransformerPower1(other1Reader.readFloat(4, 3, 1));
         setTransformerPower2(other1Reader.readFloat(4, 3, 37));
         setLoadPower1(getTransformerPower1() - pcsPower1);
         setLoadPower2(getTransformerPower2() - pcsPower2);
         setTotalChargingElectricity(other2Reader.readFloat(5, 3, 1));
         setTotalDischargingElectricity(other2Reader.readFloat(5, 3, 11));
-        setChargingElectricity1(pcsReader.readFloat(3, 3, 1) - lastChargingElectricity1);
-        setDischargingElectricity1(pcsReader.readFloat(3, 3, 11) - lastDischargingElectricity1);
-        setChargingElectricity2(pcsReader.readFloat(4, 3, 1) - lastChargingElectricity2);
-        setDischargingElectricity2(pcsReader.readFloat(4, 3, 11) - lastDischargingElectricity2);
+        setChargingElectricity1(other2Reader.readFloat(3, 3, 1) - lastChargingElectricity1);
+        setDischargingElectricity1(other2Reader.readFloat(3, 3, 11) - lastDischargingElectricity1);
+        setChargingElectricity2(other2Reader.readFloat(4, 3, 1) - lastChargingElectricity2);
+        setDischargingElectricity2(other2Reader.readFloat(4, 3, 11) - lastDischargingElectricity2);
 
         if ((lastDate == null) || (new Date().getTime() - lastDate.getTime() > 10000)) {
             lastDate = new Date();
@@ -206,5 +228,8 @@ public class Overview {
             loadPowerData1.push(dateFormat.format(lastDate), getTransformerPower1() - pcsPower1);
             loadPowerData2.push(dateFormat.format(lastDate), getTransformerPower2() - pcsPower1);
         }
+
+        setSaveCost1((float) ((2 * getTotalDischargingElectricity() - getTotalChargingElectricity()) * 0.028));
+        setSaveCost2((float) (getSaveCost1() * 2.77));
     }
 }

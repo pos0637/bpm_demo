@@ -27,8 +27,8 @@ export default class Overview extends BaseComponent {
     state = {
         showLoginForm: false, // 显示登录窗口
         无故障运行时间: 27,
-        节煤量1: 567,
-        节煤量2: 567,
+        节煤量: 567,
+        节碳量: 567,
         母线1: 678,
         母线2: 678,
         总充电量: 1669,
@@ -63,8 +63,8 @@ export default class Overview extends BaseComponent {
             if (process.env.NODE_ENV === 'development') {
                 data = {
                     无故障运行时间: getRandom(10, 100),
-                    节煤量1: getRandom(200, 700),
-                    节煤量2: getRandom(200, 700),
+                    节煤量: getRandom(200, 700),
+                    节碳量: getRandom(200, 700),
                     母线1: getRandom(200, 700),
                     母线2: getRandom(200, 700),
                     总充电量: getRandom(1000, 2000),
@@ -97,6 +97,9 @@ export default class Overview extends BaseComponent {
                 getOverviewData(overview => {
                     data.电站运行状态1 = overview.state1;
                     data.电站运行状态2 = overview.state2;
+                    data.节能总费用 = overview.bill;
+                    data.节煤量 = overview.saveCost1;
+                    data.节碳量 = overview.saveCost2;
                     data.母线1 = overview.loadPower1;
                     data.母线2 = overview.loadPower2;
                     data.总充电量 = overview.totalChargingElectricity;
@@ -119,8 +122,8 @@ export default class Overview extends BaseComponent {
                     data.需求功率2 = overview.transformerPower2;
                     data.需求功率曲线1 = overview.transformerPowerData1;
                     data.需求功率曲线2 = overview.transformerPowerData2;
+                    this.setState(data);
                 });
-                this.setState(data);
             }
         }, 2000);
     }
@@ -151,10 +154,10 @@ export default class Overview extends BaseComponent {
                     <Text left={1002} top={1390} value="光伏发电" font="SourceHanSansSC-Medium" fontSize={46.24} />
                     <Container left={279} top={519} background={require("./images/small_box1.png")}>
                         <Text left={351} top={554} value="电网" font="SourceHanSansSC-Medium" fontSize={46.24} />
-                        <Text left={351} top={645} value={`节煤量${toFixed(this.state.节煤量1, 1)}吨`} font="SourceHanSansSC-Light" fontSize={27.69} />
-                        <Progress left={351} top={690} width={251} height={9} value={this.state.节煤量1 / 1000 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)" />
-                        <Text left={351} top={720} value={`节煤量${toFixed(this.state.节煤量2, 1)}吨`} font="SourceHanSansSC-Light" fontSize={27.69} />
-                        <Progress left={351} top={766} width={251} height={9} value={this.state.节煤量2 / 1000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
+                        <Text left={351} top={645} value={`节煤量${toFixed(this.state.节煤量, 1)}吨`} font="SourceHanSansSC-Light" fontSize={27.69} />
+                        <Progress left={351} top={690} width={251} height={9} value={this.state.节煤量 / 1000 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)" />
+                        <Text left={351} top={720} value={`节碳量${toFixed(this.state.节碳量, 1)}吨`} font="SourceHanSansSC-Light" fontSize={27.69} />
+                        <Progress left={351} top={766} width={251} height={9} value={this.state.节碳量 / 1000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
                     </Container>
                     <Container left={279} top={948} background={require("./images/small_box1.png")}>
                         <Text left={351} top={983} value="需求" font="SourceHanSansSC-Medium" fontSize={46.24} />
@@ -165,9 +168,9 @@ export default class Overview extends BaseComponent {
                     </Container>
                     <Container left={1370} top={524} background={require("./images/small_box2.png")}>
                         <Text left={1743} top={567} value="储能" font="SourceHanSansSC-Medium" fontSize={46.24} />
-                        <Text left={1584} top={656} value={`总充电量${toFixed(this.state.总充电量, 1)}kWh`} font="SourceHanSansSC-Light" fontSize={27.69} align="right" width={250} />
+                        <Text left={1574} top={656} value={`总充电量${toFixed(this.state.总充电量, 1)}kWh`} font="SourceHanSansSC-Light" fontSize={27.69} align="right" width={250} />
                         <Progress left={1584} top={702} width={251} height={9} value={this.state.总充电量 / 2000 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)" />
-                        <Text left={1584} top={732} value={`总放电量${toFixed(this.state.总放电量, 1)}kWh`} font="SourceHanSansSC-Light" fontSize={27.69} align="right" width={250} />
+                        <Text left={1574} top={732} value={`总放电量${toFixed(this.state.总放电量, 1)}kWh`} font="SourceHanSansSC-Light" fontSize={27.69} align="right" width={250} />
                         <Progress left={1584} top={778} width={251} height={9} value={this.state.总放电量 / 2000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
                     </Container>
                     <Container left={1370} top={950} background={require("./images/small_box2.png")}>
