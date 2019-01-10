@@ -7,6 +7,7 @@ import Container from '~/app/components/container';
 import Switch from '~/app/components/switch';
 import Progress from '~/app/components/lineProgress';
 import BarChart from '~/app/components/barChart';
+import LineChart from '~/app/components/lineChart';
 import Dialog from '~/app/components/dialog';
 import { toFixed } from '~/misc/number';
 import { getRandom } from '~/misc/random';
@@ -40,8 +41,8 @@ export default class Pcs extends BaseComponent {
         日放电电量曲线1: null,
         日充电电量曲线2: null,
         日放电电量曲线2: null,
-        日放电功率曲线1: null,
-        日放电功率曲线2: null,
+        日充放电功率曲线1: null,
+        日充放电功率曲线2: null,
         直流电压1: 220,
         直流电压2: 220,
         直流电流1: 50,
@@ -76,8 +77,8 @@ export default class Pcs extends BaseComponent {
                     日放电电量曲线1: null,
                     日充电电量曲线2: null,
                     日放电电量曲线2: null,
-                    日放电功率曲线1: null,
-                    日放电功率曲线2: null,
+                    日充放电功率曲线1: null,
+                    日充放电功率曲线2: null,
                     直流电压1: getRandom(200, 230),
                     直流电压2: getRandom(200, 230),
                     直流电流1: getRandom(30, 60),
@@ -103,8 +104,8 @@ export default class Pcs extends BaseComponent {
                     data.日放电电量曲线1 = pcs.dischargingElectricityData1;
                     data.日充电电量曲线2 = pcs.chargingElectricityData2;
                     data.日放电电量曲线2 = pcs.dischargingElectricityData2;
-                    data.日放电功率曲线1 = pcs.electricityData1;
-                    data.日放电功率曲线2 = pcs.electricityData2;
+                    data.日充放电功率曲线1 = pcs.electricityData1;
+                    data.日充放电功率曲线2 = pcs.electricityData2;
                     data.直流电压1 = pcs.voltage11;
                     data.直流电压2 = pcs.voltage21;
                     data.直流电流1 = pcs.current1;
@@ -195,13 +196,13 @@ export default class Pcs extends BaseComponent {
                     <Text left={1022} top={1369} value="日充/放电功率" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Text left={1700} top={1494} value={`${toFixed(this.state.日充放电功率1, 0)}`} font="SourceHanSansSC-Heavy" fontSize={45} />
                     <Text left={1700} top={1553} value="w" font="SourceHanSansSC-Heavy" fontSize={45} />
-                    <BarChart left={1026} top={1488} width={637} height={115} color="rgba(68,175,244,0.8)" data={this.state.日放电功率曲线1} maxTicksLimitX={7} />
+                    <LineChart left={1026} top={1488} width={637} height={115} color="rgba(68,175,244,0.8)" data={this.state.日充放电功率曲线1} maxTicksLimitX={12} suggestedMin={-250} suggestedMax={250} />
                 </Container>
                 <Container left={1960} top={1334} background={require("./images/box3.png")} onClick={() => this.setState({ showDialog6: true })}>
                     <Text left={2043} top={1369} value="日充/放电功率" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Text left={2717} top={1494} value={`${toFixed(this.state.日充放电功率2, 0)}`} font="SourceHanSansSC-Heavy" fontSize={45} />
                     <Text left={2717} top={1553} value="w" font="SourceHanSansSC-Heavy" fontSize={45} />
-                    <BarChart left={2043} top={1488} width={637} height={115} color="rgba(68,175,244,0.8)" data={this.state.日放电功率曲线2} maxTicksLimitX={7} />
+                    <LineChart left={2043} top={1488} width={637} height={115} color="rgba(68,175,244,0.8)" data={this.state.日充放电功率曲线2} maxTicksLimitX={12} suggestedMin={-250} suggestedMax={250} />
                 </Container>
 
                 <Container left={943} top={1646} background={require("./images/box4.png")}>
@@ -264,7 +265,7 @@ export default class Pcs extends BaseComponent {
                     <Container left={2210} top={907} background={require("./images/tip1.png")}>
                         <Text left={2210} top={939} width={373} value={`${toFixed(this.state.日充电电量1, 0)}`} suffix="kWh" font="SourceHanSansSC-Heavy" weight="bold" fontSize={94} suffixFontSize={62} align="center" />
                     </Container>
-                    <BarChart left={1202} top={1103} width={1417} height={422} color="rgba(68,175,244,0.8)" min={this.state.日充电电量1 - 30} max={this.state.日充电电量1 + 30} />
+                    <BarChart left={1202} top={1103} width={1417} height={422} color="rgba(68,175,244,0.8)" data={this.state.日充电电量曲线1} maxTicksLimitX={7} />
                 </Container>
             </Dialog>
         );
@@ -285,7 +286,7 @@ export default class Pcs extends BaseComponent {
                     <Container left={2210} top={907} background={require("./images/tip1.png")}>
                         <Text left={2210} top={939} width={373} value={`${toFixed(this.state.日充电电量2, 0)}`} suffix="kWh" font="SourceHanSansSC-Heavy" weight="bold" fontSize={94} suffixFontSize={62} align="center" />
                     </Container>
-                    <BarChart left={1202} top={1103} width={1417} height={422} color="rgba(68,175,244,0.8)" min={this.state.日充电电量2 - 30} max={this.state.日充电电量2 + 30} />
+                    <BarChart left={1202} top={1103} width={1417} height={422} color="rgba(68,175,244,0.8)" data={this.state.日充电电量曲线2} maxTicksLimitX={7} />
                 </Container>
             </Dialog>
         );
@@ -306,7 +307,7 @@ export default class Pcs extends BaseComponent {
                     <Container left={2210} top={907} background={require("./images/tip1.png")}>
                         <Text left={2210} top={939} width={373} value={`${toFixed(this.state.日放电电量1, 0)}`} suffix="kWh" font="SourceHanSansSC-Heavy" weight="bold" fontSize={94} suffixFontSize={62} align="center" />
                     </Container>
-                    <BarChart left={1202} top={1103} width={1417} height={422} color="rgba(68,175,244,0.8)" min={this.state.日放电电量1 - 30} max={this.state.日放电电量1 + 30} />
+                    <BarChart left={1202} top={1103} width={1417} height={422} color="rgba(68,175,244,0.8)" data={this.state.日放电电量曲线1} maxTicksLimitX={7} />
                 </Container>
             </Dialog>
         );
@@ -327,7 +328,7 @@ export default class Pcs extends BaseComponent {
                     <Container left={2210} top={907} background={require("./images/tip1.png")}>
                         <Text left={2210} top={939} width={373} value={`${toFixed(this.state.日放电电量2, 0)}`} suffix="kWh" font="SourceHanSansSC-Heavy" weight="bold" fontSize={94} suffixFontSize={62} align="center" />
                     </Container>
-                    <BarChart left={1202} top={1103} width={1417} height={422} color="rgba(68,175,244,0.8)" min={this.state.日放电电量2 - 30} max={this.state.日放电电量2 + 30} />
+                    <BarChart left={1202} top={1103} width={1417} height={422} color="rgba(68,175,244,0.8)" data={this.state.日放电电量曲线2} maxTicksLimitX={7} />
                 </Container>
             </Dialog>
         );
@@ -346,9 +347,9 @@ export default class Pcs extends BaseComponent {
                     <Text left={1791} top={745} value="日放电功率" font="SourceHanSansSC-Bold" fontSize={60} />
 
                     <Container left={2210} top={907} background={require("./images/tip1.png")}>
-                        <Text left={2210} top={939} width={373} value={`${toFixed(this.state.日放电功率1, 0)}`} suffix="kWh" font="SourceHanSansSC-Heavy" weight="bold" fontSize={94} suffixFontSize={62} align="center" />
+                        <Text left={2210} top={939} width={373} value={`${toFixed(this.state.日充放电功率1, 0)}`} suffix="kWh" font="SourceHanSansSC-Heavy" weight="bold" fontSize={94} suffixFontSize={62} align="center" />
                     </Container>
-                    <BarChart left={1202} top={1103} width={1417} height={422} color="rgba(68,175,244,0.8)" min={this.state.日放电功率1 - 30} max={this.state.日放电功率1 + 30} />
+                    <LineChart left={1202} top={1103} width={1417} height={422} color="rgba(68,175,244,0.8)" data={this.state.日充放电功率曲线1} maxTicksLimitX={12} suggestedMin={-250} suggestedMax={250} />
                 </Container>
             </Dialog>
         );
@@ -367,9 +368,9 @@ export default class Pcs extends BaseComponent {
                     <Text left={1791} top={745} value="日放电功率" font="SourceHanSansSC-Bold" fontSize={60} />
 
                     <Container left={2210} top={907} background={require("./images/tip1.png")}>
-                        <Text left={2210} top={939} width={373} value={`${toFixed(this.state.日放电功率2, 0)}`} suffix="kWh" font="SourceHanSansSC-Heavy" weight="bold" fontSize={94} suffixFontSize={62} align="center" />
+                        <Text left={2210} top={939} width={373} value={`${toFixed(this.state.日充放电功率2, 0)}`} suffix="kWh" font="SourceHanSansSC-Heavy" weight="bold" fontSize={94} suffixFontSize={62} align="center" />
                     </Container>
-                    <BarChart left={1202} top={1103} width={1417} height={422} color="rgba(68,175,244,0.8)" min={this.state.日放电功率2 - 30} max={this.state.日放电功率2 + 30} />
+                    <LineChart left={1202} top={1103} width={1417} height={422} color="rgba(68,175,244,0.8)" data={this.state.日充放电功率曲线2} maxTicksLimitX={12} suggestedMin={-250} suggestedMax={250} />
                 </Container>
             </Dialog>
         );

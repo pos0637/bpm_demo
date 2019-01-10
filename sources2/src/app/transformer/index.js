@@ -189,10 +189,12 @@ export default class Transformer extends BaseComponent {
                     <Switch left={2604} top={1660} src1={require("./images/link_on.png")} src2={require("./images/link_off.png")} value={this.state.合闸1 === 0} />
                 </Container>
 
+                {/*
                 {this.state.showDialog1 && this._onDialog1()}
                 {this.state.showDialog2 && this._onDialog2()}
                 {this.state.showDialog3 && this._onDialog3()}
                 {this.state.showDialog4 && this._onDialog4()}
+                */}
                 {this.state.showDialog5 && this._onDialog5()}
                 {this.state.showDialog6 && this._onDialog6()}
             </Container>
@@ -298,7 +300,7 @@ export default class Transformer extends BaseComponent {
                     <Container left={2210} top={907} background={require("./images/tip1.png")}>
                         <Text left={2210} top={939} width={373} value={`${toFixed(this.state.充放电实时功率1, 0)}`} suffix="kW" font="SourceHanSansSC-Heavy" weight="bold" fontSize={94} suffixFontSize={62} align="center" />
                     </Container>
-                    <BarChart left={1202} top={1103} width={1417} height={422} color="rgba(68,175,244,0.8)" min={this.state.充放电实时功率1 - 30} max={this.state.充放电实时功率1 + 30} />
+                    <LineChart left={1202} top={1103} width={1417} height={422} color="rgba(68,175,244,0.8)" data={this.state.充放电实时功率曲线2} onClick={() => this.setState({ showDialog5: true })} maxTicksLimitX={12} suggestedMin={-250} suggestedMax={250} />
                 </Container>
             </Dialog>
         );
@@ -319,7 +321,7 @@ export default class Transformer extends BaseComponent {
                     <Container left={2210} top={907} background={require("./images/tip1.png")}>
                         <Text left={2210} top={939} width={373} value={`${toFixed(this.state.充放电实时功率2, 0)}`} suffix="kW" font="SourceHanSansSC-Heavy" weight="bold" fontSize={94} suffixFontSize={62} align="center" />
                     </Container>
-                    <BarChart left={1202} top={1103} width={1417} height={422} color="rgba(68,175,244,0.8)" min={this.state.充放电实时功率2 - 30} max={this.state.充放电实时功率2 + 30} />
+                    <LineChart left={1202} top={1103} width={1417} height={422} color="rgba(68,175,244,0.8)" data={this.state.充放电实时功率曲线2} onClick={() => this.setState({ showDialog5: true })} maxTicksLimitX={12} suggestedMin={-250} suggestedMax={250} />
                 </Container>
             </Dialog>
         );
