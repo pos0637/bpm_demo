@@ -4,6 +4,9 @@ import com.etrita.bms.demo.board.communications.IDataReader;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * 变压器视图数据
  *
@@ -95,8 +98,8 @@ public class Transformer {
             }
         }
 
-        electricityData1 = new ChartData(xLabels.length, xLabels, 10 * 60 * 1000);
-        electricityData2 = new ChartData(xLabels.length, xLabels, 10 * 60 * 1000);
+        electricityData1 = new ChartData(xLabels.length, xLabels, null);
+        electricityData2 = new ChartData(xLabels.length, xLabels, null);
     }
 
     /**
@@ -138,7 +141,22 @@ public class Transformer {
         setElectricity1(pcsReader.readFloat(1, 3, 31));
         setElectricity2(pcsReader.readFloat(2, 3, 31));
 
-        electricityData1.push(null, getElectricity1());
-        electricityData2.push(null, getElectricity2());
+        int chartId = getChartId();
+        electricityData1.set(chartId, getElectricity1());
+        electricityData2.set(chartId, getElectricity2());
+    }
+
+    /**
+     * 获取图表索引
+     *
+     * @return 图表索引
+     */
+    private int getChartId() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE) / 10;
+
+        return hour * 6 + minute;
     }
 }

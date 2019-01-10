@@ -4,6 +4,9 @@ import com.etrita.bms.demo.board.communications.IDataReader;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * 预览视图数据
  *
@@ -145,12 +148,12 @@ public class Overview {
             }
         }
 
-        electricityData1 = new ChartData(xLabels.length, xLabels, 10 * 60 * 1000);
-        electricityData2 = new ChartData(xLabels.length, xLabels, 10 * 60 * 1000);
-        transformerPowerData1 = new ChartData(xLabels.length, xLabels, 10 * 60 * 1000);
-        transformerPowerData2 = new ChartData(xLabels.length, xLabels, 10 * 60 * 1000);
-        loadPowerData1 = new ChartData(xLabels.length, xLabels, 10 * 60 * 1000);
-        loadPowerData2 = new ChartData(xLabels.length, xLabels, 10 * 60 * 1000);
+        electricityData1 = new ChartData(xLabels.length, xLabels, null);
+        electricityData2 = new ChartData(xLabels.length, xLabels, null);
+        transformerPowerData1 = new ChartData(xLabels.length, xLabels, null);
+        transformerPowerData2 = new ChartData(xLabels.length, xLabels, null);
+        loadPowerData1 = new ChartData(xLabels.length, xLabels, null);
+        loadPowerData2 = new ChartData(xLabels.length, xLabels, null);
     }
 
     /**
@@ -209,14 +212,29 @@ public class Overview {
         setChargingElectricity2(other2Reader.readFloat(4, 3, 1) - globalData.getLastChargingElectricity2());
         setDischargingElectricity2(other2Reader.readFloat(4, 3, 11) - globalData.getLastDischargingElectricity2());
 
-        electricityData1.push(null, pcsPower1);
-        electricityData2.push(null, pcsPower2);
-        transformerPowerData1.push(null, getTransformerPower1());
-        transformerPowerData2.push(null, getTransformerPower2());
-        loadPowerData1.push(null, getTransformerPower1() - pcsPower1);
-        loadPowerData2.push(null, getTransformerPower2() - pcsPower1);
+        int chartId = getChartId();
+        electricityData1.set(chartId, pcsPower1);
+        electricityData2.set(chartId, pcsPower2);
+        transformerPowerData1.set(chartId, getTransformerPower1());
+        transformerPowerData2.set(chartId, getTransformerPower2());
+        loadPowerData1.set(chartId, getTransformerPower1() - pcsPower1);
+        loadPowerData2.set(chartId, getTransformerPower2() - pcsPower1);
 
         setSaveCost1((float) ((2 * getTotalDischargingElectricity() - getTotalChargingElectricity()) * 0.028));
         setSaveCost2((float) (getSaveCost1() * 2.77));
+    }
+
+    /**
+     * 获取图表索引
+     *
+     * @return 图表索引
+     */
+    private int getChartId() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE) / 10;
+
+        return hour * 6 + minute;
     }
 }

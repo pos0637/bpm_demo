@@ -139,7 +139,7 @@ export default class Bms extends BaseComponent {
                     <Text left={2908} top={590} value={`${toFixed(this.state.剩余容量1, 0)}kWh`} font="SourceHanSansSC-Heavy" fontSize={40} />
                     <Text left={2908} top={664} value={`${toFixed(this.state.组端电压1, 0)}V`} font="SourceHanSansSC-Heavy" fontSize={40} />
 
-                    <Text left={2685} top={772} value={`${this.state.currentBatteryPackId1}# ${this.state.currentBatteryId1}`} font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
+                    <Text left={2685} top={772} value={`${this.state.currentBatteryPackId1}# ${this.state.currentBatteryId1 + 1}`} font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Image left={2686} top={811} src={require("./images/line.png")} />
 
                     <Text left={2686} top={857} value="电池电压" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
@@ -162,7 +162,7 @@ export default class Bms extends BaseComponent {
                     <Text left={2908} top={1379} value={`${toFixed(this.state.剩余容量2, 0)}kWh`} font="SourceHanSansSC-Heavy" fontSize={40} />
                     <Text left={2908} top={1453} value={`${toFixed(this.state.组端电压2, 0)}V`} font="SourceHanSansSC-Heavy" fontSize={40} />
 
-                    <Text left={2683} top={1561} value={`${this.state.currentBatteryPackId2}# ${this.state.currentBatteryId2}`} font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
+                    <Text left={2683} top={1561} value={`${this.state.currentBatteryPackId2}# ${this.state.currentBatteryId2 + 1}`} font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Image left={2686} top={1611} src={require("./images/line.png")} />
 
                     <Text left={2686} top={1646} value="电池电压" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
@@ -216,7 +216,7 @@ export default class Bms extends BaseComponent {
             const left = startX1 + i * 33;
             const batteryId = id;
             const cell = (
-                <Container left={left} top={y} width={33} height={34} onClick={() => (batteryPackId <= 2) ? this._onCellClick1(batteryPackId, batteryId) : this._onCellClick2(batteryPackId - 2, batteryId)}>
+                <Container left={left} top={y} width={33} height={34} onClick={() => (batteryPackId <= 2) ? this._onCellClick1(batteryPackId, batteryId - 1) : this._onCellClick2(batteryPackId - 2, batteryId - 1)}>
                     <Image left={left} top={y} src={this._getBatteryIcon(batteries, id - 1)} />
                     <Text left={left} top={y + 7} width={width} value={pad(id, 3)} align="center" fontSize={18} />
                 </Container>
@@ -230,7 +230,7 @@ export default class Bms extends BaseComponent {
                 const left = startX2 + i * 33;
                 const batteryId = id;
                 const cell = (
-                    <Container left={left} top={y} width={33} height={34} onClick={() => (batteryPackId <= 2) ? this._onCellClick1(batteryPackId, batteryId) : this._onCellClick2(batteryPackId - 2, batteryId)}>
+                    <Container left={left} top={y} width={33} height={34} onClick={() => (batteryPackId <= 2) ? this._onCellClick1(batteryPackId, batteryId - 1) : this._onCellClick2(batteryPackId - 2, batteryId - 1)}>
                         <Image left={left} top={y} src={this._getBatteryIcon(batteries, id - 1)} />
                         <Text left={left} top={y + 7} width={width} value={pad(id, 3)} align="center" fontSize={18} />
                     </Container>

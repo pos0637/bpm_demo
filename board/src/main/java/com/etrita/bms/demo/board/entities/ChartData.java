@@ -65,6 +65,9 @@ public class ChartData {
         this.maxLength = maxLength;
         this.duration = duration;
         this.xLabels.addAll(Arrays.asList(xLabels));
+        for (int i = 0; i < xLabels.length; ++i) {
+            this.data.add(null);
+        }
     }
 
     /**
