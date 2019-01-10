@@ -82,12 +82,12 @@ public class ModbusTcpDataReader implements IDataReader, DisposableBean {
     public byte[] read(int salveId, int functionCode, int start, int length) throws Exception {
         ByteBuffer buffer = ByteBuffer.allocate(length * 2);
         while (length > 120) {
-            byte[] data = readData(salveId, functionCode, start, Math.min(length, 120)).popAll();
-            ArrayUtils.reverse(data);
+            int count = Math.min(length, 120);
+            byte[] data = readData(salveId, functionCode, start, count).popAll();
             buffer.put(data);
 
-            start += data.length;
-            length -= data.length;
+            start += count;
+            length -= count;
         }
 
         buffer.flip();

@@ -48,9 +48,9 @@ export default class Bms extends BaseComponent {
         currentBatteryId2: 0
     }
 
-    sohThreshold1 = 50
+    sohThreshold1 = 80
 
-    sohThreshold2 = 80
+    sohThreshold2 = 50
 
     normalIcon = require("./images/normal.png");
 
@@ -100,7 +100,7 @@ export default class Bms extends BaseComponent {
                     data.batteries1 = bms.batteries1;
                     data.batteries2 = bms.batteries2;
                     data.batteries3 = bms.batteries3;
-                    data.batteries4 = bms.batteries4;                    
+                    data.batteries4 = bms.batteries4;
                     this.setState(data);
                     this._onCellClick1(this.state.currentBatteryPackId1, this.state.currentBatteryId1);
                     this._onCellClick2(this.state.currentBatteryPackId2, this.state.currentBatteryId2);
@@ -253,11 +253,11 @@ export default class Bms extends BaseComponent {
     _getBatteryIcon(batteries, id) {
         let icon = this.normalIcon;
         if (batteries.length > id) {
-            if (batteries[id].soh > this.sohThreshold1) {
+            if (batteries[id].soh < this.sohThreshold1) {
                 icon = this.alarmIcon;
             }
 
-            if (batteries[id].soh > this.sohThreshold2) {
+            if (batteries[id].soh < this.sohThreshold2) {
                 icon = this.faultIcon;
             }
         }

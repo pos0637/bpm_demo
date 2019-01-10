@@ -163,6 +163,6 @@ public class Bms {
      * @return 数据
      */
     private float readFloat(byte[] data, int offset) {
-        return ByteBuffer.wrap(data, offset, 4).order(ByteOrder.LITTLE_ENDIAN).getFloat();
+        return ByteBuffer.wrap(data, offset, 4).order(ByteOrder.BIG_ENDIAN).getFloat();
     }
 }
