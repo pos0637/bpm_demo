@@ -132,10 +132,12 @@ public class EmsDaemon implements Runnable, InitializingBean {
 
         while (true) {
             try {
-                // overview.readModbusTcpData(pcsDataReader);
+                overview.readModbusTcpData(pcsDataReader, other1DataReader, other2DataReader);
             } catch (Exception e) {
+                Tracker.error(e);
                 try {
                     pcsDataReader.reset();
+                    other1DataReader.reset();
                     Thread.sleep(1000);
                 } catch (Exception e1) {
                     Tracker.error(e1);
@@ -145,6 +147,7 @@ public class EmsDaemon implements Runnable, InitializingBean {
             try {
                 load.readModbusTcpData(other1DataReader);
             } catch (Exception e) {
+                Tracker.error(e);
                 try {
                     other1DataReader.reset();
                     Thread.sleep(1000);
@@ -156,6 +159,7 @@ public class EmsDaemon implements Runnable, InitializingBean {
             try {
                 pcs.readModbusTcpData(pcsDataReader);
             } catch (Exception e) {
+                Tracker.error(e);
                 try {
                     pcsDataReader.reset();
                     Thread.sleep(1000);
@@ -167,6 +171,7 @@ public class EmsDaemon implements Runnable, InitializingBean {
             try {
                 transformer.readModbusTcpData(other1DataReader, other2DataReader);
             } catch (Exception e) {
+                Tracker.error(e);
                 try {
                     other1DataReader.reset();
                     other2DataReader.reset();
@@ -179,6 +184,7 @@ public class EmsDaemon implements Runnable, InitializingBean {
             try {
                 bms.readModbusTcpData(bms1DataReader, bms1DataReader);
             } catch (Exception e) {
+                Tracker.error(e);
                 try {
                     bms1DataReader.reset();
                     bms2DataReader.reset();
@@ -210,6 +216,7 @@ public class EmsDaemon implements Runnable, InitializingBean {
 
         ObjectMapper mapper = new ObjectMapper();
         overview = mapper.readValue(new File(file.getAbsolutePath() + "/overview"), Overview.class);
+        load = mapper.readValue(new File(file.getAbsolutePath() + "/load"), Load.class);
         pcs = mapper.readValue(new File(file.getAbsolutePath() + "/pcs"), Pcs.class);
         transformer = mapper.readValue(new File(file.getAbsolutePath() + "/transformer"), Transformer.class);
         bms = mapper.readValue(new File(file.getAbsolutePath() + "/bms"), Bms.class);
@@ -223,6 +230,7 @@ public class EmsDaemon implements Runnable, InitializingBean {
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.writeValue(new File(file.getAbsolutePath() + "/overview"), overview);
+        mapper.writeValue(new File(file.getAbsolutePath() + "/load"), load);
         mapper.writeValue(new File(file.getAbsolutePath() + "/pcs"), pcs);
         mapper.writeValue(new File(file.getAbsolutePath() + "/transformer"), transformer);
         mapper.writeValue(new File(file.getAbsolutePath() + "/bms"), bms);

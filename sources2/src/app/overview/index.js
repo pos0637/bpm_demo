@@ -34,7 +34,7 @@ export default class Overview extends BaseComponent {
         总充电量: 1669,
         总放电量: 669,
         安防系统状态: 0,
-        充电1: 0,
+        充电状态: 0,
         电站运行状态1: 0,
         电站运行状态2: 0,
         节能总费用: 26000,
@@ -48,8 +48,8 @@ export default class Overview extends BaseComponent {
         充放电量曲线2: null,
         变压器功率1: 960,
         变压器功率2: 960,
-        变压器曲线1: null,
-        变压器曲线2: null,
+        变压器功率曲线1: null,
+        变压器功率曲线2: null,
         需求功率1: 960,
         需求功率2: 960,
         需求功率曲线1: null,
@@ -65,14 +65,12 @@ export default class Overview extends BaseComponent {
                     无故障运行时间: getRandom(10, 100),
                     节煤量1: getRandom(200, 700),
                     节煤量2: getRandom(200, 700),
-                    功率需求1: getRandom(500, 1000),
-                    功率需求2: getRandom(500, 1000),
                     母线1: getRandom(200, 700),
                     母线2: getRandom(200, 700),
                     总充电量: getRandom(1000, 2000),
                     总放电量: getRandom(1000, 2000),
                     安防系统状态: getRandom(0, 1),
-                    充电1: getRandom(0, 1),
+                    充电状态: getRandom(0, 1),
                     电站运行状态1: getRandom(0, 2),
                     电站运行状态2: getRandom(0, 2),
                     节能总费用: getRandom(10000, 27000),
@@ -86,8 +84,8 @@ export default class Overview extends BaseComponent {
                     充放电功率曲线2: null,
                     变压器功率1: getRandom(500, 1000),
                     变压器功率2: getRandom(500, 1000),
-                    变压器曲线1: null,
-                    变压器曲线2: null,
+                    变压器功率曲线1: null,
+                    变压器功率曲线2: null,
                     需求功率1: getRandom(500, 1000),
                     需求功率2: getRandom(500, 1000),
                     需求功率曲线1: null,
@@ -103,10 +101,24 @@ export default class Overview extends BaseComponent {
                     data.母线2 = overview.loadPower2;
                     data.总充电量 = overview.totalChargingElectricity;
                     data.总放电量 = overview.totalDischargingElectricity;
+                    data.安防系统状态 = overview.securitySystemState;
+                    data.充电状态 = overview.chargingState;
                     data.今日充电总量1 = overview.chargingElectricity1;
                     data.今日放电总量1 = overview.dischargingElectricity1;
                     data.今日充电总量2 = overview.chargingElectricity2;
                     data.今日放电总量2 = overview.dischargingElectricity2;
+                    data.充放电功率1 = overview.electricity1;
+                    data.充放电功率2 = overview.electricity2;
+                    data.充放电功率曲线1 = overview.electricityData1;
+                    data.充放电功率曲线2 = overview.electricityData2;
+                    data.变压器功率1 = overview.loadPower1;
+                    data.变压器功率2 = overview.loadPower1;
+                    data.变压器功率曲线1 = overview.loadPowerData1;
+                    data.变压器功率曲线2 = overview.loadPowerData2;
+                    data.需求功率1 = overview.transformerPower1;
+                    data.需求功率2 = overview.transformerPower2;
+                    data.需求功率曲线1 = overview.transformerPowerData1;
+                    data.需求功率曲线2 = overview.transformerPowerData2;
                 });
                 this.setState(data);
             }
@@ -181,7 +193,7 @@ export default class Overview extends BaseComponent {
                     <Image left={700} top={1645} src={require("./images/ems_icon.png")} />
 
                     {/* TODO: 修正运行状态错误 */}
-                    {this.state.充电1 === 0 ? <Image left={372} top={1782} src={require("./images/charging_arrow.gif")} /> : <Image left={372} top={1796} src={require("./images/discharging_arrow.gif")} />}
+                    {this.state.充电状态 === 0 ? <Image left={372} top={1782} src={require("./images/charging_arrow.gif")} /> : <Image left={372} top={1796} src={require("./images/discharging_arrow.gif")} />}
                 </Container>
 
                 <Container left={2023} top={1506} background={require("./images/box3.png")} onClick={() => window.login && this.context.router.history.replace('/air')}>

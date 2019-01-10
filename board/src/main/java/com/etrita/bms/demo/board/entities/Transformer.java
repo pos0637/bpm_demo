@@ -135,7 +135,7 @@ public class Transformer {
         setTotalChargingElectricity1(other2Reader.readFloat(3, 3, 1));
         setTotalDischargingElectricity1(other2Reader.readFloat(3, 3, 11));
         setTotalChargingElectricity2(other2Reader.readFloat(4, 3, 1));
-        setTotalDischargingElectricity2(other2Reader.readFloat(3, 3, 11));
+        setTotalDischargingElectricity2(other2Reader.readFloat(4, 3, 11));
 
         setElectricity1(other1Reader.readFloat(1, 3, 31));
         setElectricity2(other1Reader.readFloat(2, 3, 31));

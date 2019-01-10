@@ -4,6 +4,9 @@ import com.etrita.bms.demo.board.communications.IDataReader;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
 /**
  * BMS视图数据
  *
@@ -117,40 +120,49 @@ public class Bms {
         byte[] data3 = bms2Reader.read(2, 3, 97, 5 * MAX_BATTERIES * 2);
         byte[] data4 = bms2Reader.read(3, 3, 97, 5 * MAX_BATTERIES * 2);
 
-        /*
-        for (int i = 0; i < MAX_BATTERIES; ++i) {
+        for (int i = 0, j = 0; i < MAX_BATTERIES; ++i, j += 4) {
             batteries1[i] = new Battery(
-                    bms1Reader.readFloat(2, 3, 97 + i * 2),
-                    bms1Reader.readFloat(2, 3, 727 + i * 2),
-                    bms1Reader.readFloat(2, 3, 1357 + i * 2),
-                    bms1Reader.readFloat(2, 3, 1987 + i * 2),
-                    bms1Reader.readFloat(2, 3, 2617 + i * 2)
+                    readFloat(data1, j),
+                    readFloat(data1, j + (315 * 4)),
+                    readFloat(data1, j + (315 * 4 * 2)),
+                    readFloat(data1, j + (315 * 4 * 3)),
+                    readFloat(data1, j + (315 * 4 * 4))
             );
 
             batteries2[i] = new Battery(
-                    bms1Reader.readFloat(3, 3, 97 + i * 2),
-                    bms1Reader.readFloat(3, 3, 727 + i * 2),
-                    bms1Reader.readFloat(3, 3, 1357 + i * 2),
-                    bms1Reader.readFloat(3, 3, 1987 + i * 2),
-                    bms1Reader.readFloat(3, 3, 2617 + i * 2)
+                    readFloat(data2, j),
+                    readFloat(data2, j + (315 * 4)),
+                    readFloat(data2, j + (315 * 4 * 2)),
+                    readFloat(data2, j + (315 * 4 * 3)),
+                    readFloat(data2, j + (315 * 4 * 4))
             );
 
             batteries3[i] = new Battery(
-                    bms2Reader.readFloat(2, 3, 97 + i * 2),
-                    bms2Reader.readFloat(2, 3, 727 + i * 2),
-                    bms2Reader.readFloat(2, 3, 1357 + i * 2),
-                    bms2Reader.readFloat(2, 3, 1987 + i * 2),
-                    bms2Reader.readFloat(2, 3, 2617 + i * 2)
+                    readFloat(data3, j),
+                    readFloat(data3, j + (315 * 4)),
+                    readFloat(data3, j + (315 * 4 * 2)),
+                    readFloat(data3, j + (315 * 4 * 3)),
+                    readFloat(data3, j + (315 * 4 * 4))
             );
 
             batteries4[i] = new Battery(
-                    bms2Reader.readFloat(3, 3, 97 + i * 2),
-                    bms2Reader.readFloat(3, 3, 727 + i * 2),
-                    bms2Reader.readFloat(3, 3, 1357 + i * 2),
-                    bms2Reader.readFloat(3, 3, 1987 + i * 2),
-                    bms2Reader.readFloat(3, 3, 2617 + i * 2)
+                    readFloat(data4, j),
+                    readFloat(data4, j + (315 * 4)),
+                    readFloat(data4, j + (315 * 4 * 2)),
+                    readFloat(data4, j + (315 * 4 * 3)),
+                    readFloat(data4, j + (315 * 4 * 4))
             );
         }
-        */
+    }
+
+    /**
+     * 读取数据
+     *
+     * @param data   数据
+     * @param offset 起始地址
+     * @return 数据
+     */
+    private float readFloat(byte[] data, int offset) {
+        return ByteBuffer.wrap(data, offset, 4).order(ByteOrder.LITTLE_ENDIAN).getFloat();
     }
 }

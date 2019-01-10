@@ -42,7 +42,10 @@ export default class Bms extends BaseComponent {
         batteries2: [],
         batteries3: [],
         batteries4: [],
-        currentBatteryId: 0
+        currentBatteryPackId1: 1,
+        currentBatteryId1: 0,
+        currentBatteryPackId2: 1,
+        currentBatteryId2: 0
     }
 
     sohThreshold1 = 50
@@ -91,6 +94,9 @@ export default class Bms extends BaseComponent {
                     data.剩余容量2 = bms.electricity2;
                     data.组端电压1 = bms.voltage1;
                     data.组端电压2 = bms.voltage2;
+                    data.热失控 = bms.thermal;
+                    data.剩余容量 = bms.soc;
+                    data.健康状态 = bms.soh;
                     data.batteries1 = bms.batteries1;
                     data.batteries2 = bms.batteries2;
                     data.batteries3 = bms.batteries3;
@@ -121,8 +127,8 @@ export default class Bms extends BaseComponent {
                 <Container left={1084} top={392} background={require("./images/box2.png")}>
                     <Text left={1170} top={515} value="1#" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Text left={1917} top={515} value="2#" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
-                    {this._getCells(this.state.batteries1, 1343, 528, 1178)}
-                    {this._getCells(this.state.batteries2, 2089, 528, 1924)}
+                    {this._getCells(1, this.state.batteries1, 1343, 528, 1178)}
+                    {this._getCells(2, this.state.batteries2, 2089, 528, 1924)}
 
                     <Text left={2685} top={528} value="SOC" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Text left={2685} top={591} value="剩余容量" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
@@ -131,7 +137,7 @@ export default class Bms extends BaseComponent {
                     <Text left={2908} top={590} value={`${toFixed(this.state.剩余容量1, 0)}kWh`} font="SourceHanSansSC-Heavy" fontSize={40} />
                     <Text left={2908} top={664} value={`${toFixed(this.state.组端电压1, 0)}V`} font="SourceHanSansSC-Heavy" fontSize={40} />
 
-                    <Text left={2685} top={772} value="1# 194" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
+                    <Text left={2685} top={772} value={`${this.state.currentBatteryPackId1}# ${this.state.currentBatteryId1}`} font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Image left={2686} top={811} src={require("./images/line.png")} />
 
                     <Text left={2686} top={857} value="电池电压" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
@@ -144,8 +150,8 @@ export default class Bms extends BaseComponent {
                 <Container left={1084} top={1178} background={require("./images/box3.png")}>
                     <Text left={1170} top={1301} value="1#" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Text left={1917} top={1301} value="2#" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
-                    {this._getCells(this.state.batteries3, 1343, 1314, 1178)}
-                    {this._getCells(this.state.batteries4, 2089, 1314, 1924)}
+                    {this._getCells(3, this.state.batteries3, 1343, 1314, 1178)}
+                    {this._getCells(4, this.state.batteries4, 2089, 1314, 1924)}
 
                     <Text left={2685} top={1317} value="SOC" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Text left={2685} top={1380} value="剩余容量" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
@@ -154,7 +160,7 @@ export default class Bms extends BaseComponent {
                     <Text left={2908} top={1379} value={`${toFixed(this.state.剩余容量2, 0)}kWh`} font="SourceHanSansSC-Heavy" fontSize={40} />
                     <Text left={2908} top={1453} value={`${toFixed(this.state.组端电压2, 0)}V`} font="SourceHanSansSC-Heavy" fontSize={40} />
 
-                    <Text left={2683} top={1561} value="1#  194" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
+                    <Text left={2683} top={1561} value={`${this.state.currentBatteryPackId2}# ${this.state.currentBatteryId2}`} font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Image left={2686} top={1611} src={require("./images/line.png")} />
 
                     <Text left={2686} top={1646} value="电池电压" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
@@ -189,6 +195,7 @@ export default class Bms extends BaseComponent {
     /**
      * 获取单元格列表
      *
+     * @param {*} batteryPackId 电池组索引
      * @param {*} batteries 电池数据
      * @param {*} startX1 横坐标
      * @param {*} startY1 纵坐标
@@ -196,7 +203,7 @@ export default class Bms extends BaseComponent {
      * @returns 单元格列表
      * @memberof Bms
      */
-    _getCells(batteries, startX1, startY1, startX2) {
+    _getCells(batteryPackId, batteries, startX1, startY1, startX2) {
         const cells = [];
         const width = 33;
         const height = 34;
@@ -205,9 +212,9 @@ export default class Bms extends BaseComponent {
 
         for (let i = 0; i < 16; i += 1, id += 1) {
             const left = startX1 + i * 33;
-            const batteryid = id;
+            const batteryId = id;
             const cell = (
-                <Container left={left} top={y} width={33} height={34} onClick={() => this._onCellClick(batteryid)}>
+                <Container left={left} top={y} width={33} height={34} onClick={() => (batteryPackId <= 2) ? this._onCellClick1(batteryPackId, batteryId) : this._onCellClick2(batteryPackId, batteryId)}>
                     <Image left={left} top={y} src={this._getBatteryIcon(batteries, id - 1)} />
                     <Text left={left} top={y + 7} width={width} value={pad(id, 3)} align="center" fontSize={18} />
                 </Container>
@@ -219,9 +226,9 @@ export default class Bms extends BaseComponent {
             y += height;
             for (let i = 0; i < 21; i += 1, id += 1) {
                 const left = startX2 + i * 33;
-                const batteryid = id;
+                const batteryId = id;
                 const cell = (
-                    <Container left={left} top={y} width={33} height={34} onClick={() => this._onCellClick(batteryid)}>
+                    <Container left={left} top={y} width={33} height={34} onClick={() => (batteryPackId <= 2) ? this._onCellClick1(batteryPackId, batteryId) : this._onCellClick2(batteryPackId, batteryId)}>
                         <Image left={left} top={y} src={this._getBatteryIcon(batteries, id - 1)} />
                         <Text left={left} top={y + 7} width={width} value={pad(id, 3)} align="center" fontSize={18} />
                     </Container>
@@ -259,10 +266,34 @@ export default class Bms extends BaseComponent {
     /**
      * 电池点击事件处理函数
      *
-     * @param {*} id 电池索引
+     * @param {*} batteryPackId 电池组索引
+     * @param {*} batteryId 电池索引
      * @memberof Bms
      */
-    _onCellClick(id) {
-        this.setState({ currentBatteryId: id });
+    _onCellClick1(batteryPackId, batteryId) {
+        this.setState({
+            currentBatteryPackId1: batteryPackId,
+            currentBatteryId1: batteryId,
+            电池电压1: (batteryPackId === 1) ? this.state.batteries1[batteryId].voltage : this.state.batteries2[batteryId].voltage,
+            电池内阻1: (batteryPackId === 1) ? this.state.batteries1[batteryId].resistance : this.state.batteries2[batteryId].resistance,
+            电池温度1: (batteryPackId === 1) ? this.state.batteries1[batteryId].temperature : this.state.batteries2[batteryId].temperature
+        });
+    }
+
+    /**
+     * 电池点击事件处理函数
+     *
+     * @param {*} batteryPackId 电池组索引
+     * @param {*} batteryId 电池索引
+     * @memberof Bms
+     */
+    _onCellClick2(batteryPackId, batteryId) {
+        this.setState({
+            currentBatteryPackId2: batteryPackId,
+            currentBatteryId2: batteryId,
+            电池电压2: (batteryPackId === 3) ? this.state.batteries3[batteryId].voltage : this.state.batteries4[batteryId].voltage,
+            电池内阻2: (batteryPackId === 3) ? this.state.batteries3[batteryId].resistance : this.state.batteries4[batteryId].resistance,
+            电池温度2: (batteryPackId === 3) ? this.state.batteries3[batteryId].temperature : this.state.batteries4[batteryId].temperature
+        });
     }
 }
