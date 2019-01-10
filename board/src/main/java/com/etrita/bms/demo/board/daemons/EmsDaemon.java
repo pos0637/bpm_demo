@@ -117,6 +117,11 @@ public class EmsDaemon implements Runnable, InitializingBean {
      */
     private Bms bms = new Bms();
 
+    /**
+     * 全局数据
+     */
+    private GlobalData globalData = new GlobalData();
+
     @Override
     public void run() {
         try {
@@ -137,7 +142,7 @@ public class EmsDaemon implements Runnable, InitializingBean {
 
         while (true) {
             try {
-                overview.readModbusTcpData(pcsDataReader, other1DataReader, other2DataReader);
+                overview.readModbusTcpData(pcsDataReader, other1DataReader, other2DataReader, globalData);
             } catch (Exception e) {
                 Tracker.error(e);
                 try {
@@ -162,7 +167,7 @@ public class EmsDaemon implements Runnable, InitializingBean {
             }
 
             try {
-                pcs.readModbusTcpData(pcsDataReader, other2DataReader);
+                pcs.readModbusTcpData(pcsDataReader, other2DataReader, globalData);
             } catch (Exception e) {
                 Tracker.error(e);
                 try {
@@ -240,6 +245,8 @@ public class EmsDaemon implements Runnable, InitializingBean {
         transformer = mapper.readValue(new File(file.getAbsolutePath() + "/transformer"), Transformer.class);
         bms = mapper.readValue(new File(file.getAbsolutePath() + "/bms"), Bms.class);
         air = mapper.readValue(new File(file.getAbsolutePath() + "/air"), Air.class);
+        globalData = mapper.readValue(new File(file.getAbsolutePath() + "/global"), GlobalData.class);
+        globalData.valid();
     }
 
     private void save() throws Exception {
@@ -255,5 +262,6 @@ public class EmsDaemon implements Runnable, InitializingBean {
         mapper.writeValue(new File(file.getAbsolutePath() + "/transformer"), transformer);
         mapper.writeValue(new File(file.getAbsolutePath() + "/bms"), bms);
         mapper.writeValue(new File(file.getAbsolutePath() + "/air"), air);
+        mapper.writeValue(new File(file.getAbsolutePath() + "/global"), globalData);
     }
 }

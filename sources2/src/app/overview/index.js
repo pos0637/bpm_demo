@@ -6,6 +6,7 @@ import Image from '~/app/components/image';
 import Container from '~/app/components/container';
 import Progress from '~/app/components/lineProgress';
 import Switch from '~/app/components/switch';
+import Switch2 from '~/app/components/switch2';
 import LineChart from '~/app/components/lineChart';
 import { toFixed, pad } from '~/misc/number';
 import { getRandom } from '~/misc/random';
@@ -95,6 +96,7 @@ export default class Overview extends BaseComponent {
             }
             else {
                 getOverviewData(overview => {
+                    data.无故障运行时间 = Math.ceil((new Date().getTime() - new Date('2019-01-01').getTime()) / (1000 * 60 * 60 * 24));
                     data.电站运行状态1 = overview.state1;
                     data.电站运行状态2 = overview.state2;
                     data.节能总费用 = overview.bill;
@@ -141,6 +143,9 @@ export default class Overview extends BaseComponent {
         else if (this.state.充电状态 === 1) {
             arrow = <Image left={372} top={1796} src={require("./images/discharging_arrow.gif")} />
         }
+
+        const statesText = ['充电', '放电', '待机'];
+        const statesColor = ['rgb(210, 86, 107)', 'rgb(68, 205, 103)', 'rgb(79, 146, 180)'];
 
         return (
             <Container width={3840} height={2160}>
@@ -215,10 +220,10 @@ export default class Overview extends BaseComponent {
 
                 <Container left={2024} top={319} background={require("./images/box4.png")}>
                     <Text left={2093} top={358} value="电站运行状态" font="SourceHanSansSC-Bold" fontSize={48} />
-                    <Switch left={2090} top={501} src1={require("./images/charging.png")} src2={require("./images/discharging.png")} value={this.state.电站运行状态1 === 0} />
-                    <Text left={2279} top={532} value={`1# ${this.state.电站运行状态1 === 0 ? '充电' : '放电'}`} font="SourceHanSansSC-Medium" fontSize={40} color={this.state.电站运行状态1 === 0 ? 'rgb(210, 86, 107)' : 'rgb(79, 146, 180)'} />
-                    <Switch left={2460} top={501} src1={require("./images/charging.png")} src2={require("./images/discharging.png")} value={this.state.电站运行状态2 === 0} />
-                    <Text left={2646} top={532} value={`2# ${this.state.电站运行状态2 === 0 ? '充电' : '放电'}`} font="SourceHanSansSC-Medium" fontSize={40} color={this.state.电站运行状态2 === 0 ? 'rgb(210, 86, 107)' : 'rgb(79, 146, 180)'} />
+                    <Switch2 left={2090} top={501} src={[require("./images/charging.png"), require("./images/discharging.png"), require("./images/standby.png")]} value={this.state.电站运行状态1} />
+                    <Text left={2279} top={532} value={`1# ${statesText[this.state.电站运行状态1]}`} font="SourceHanSansSC-Medium" fontSize={40} color={statesColor[this.state.电站运行状态1]} />
+                    <Switch2 left={2460} top={501} src={[require("./images/charging.png"), require("./images/discharging.png"), require("./images/standby.png")]} value={this.state.电站运行状态2} />
+                    <Text left={2646} top={532} value={`2# ${statesText[this.state.电站运行状态2]}`} font="SourceHanSansSC-Medium" fontSize={40} color={statesColor[this.state.电站运行状态2]} />
                 </Container>
 
                 <Container left={2843} top={319} background={require("./images/box5.png")}>

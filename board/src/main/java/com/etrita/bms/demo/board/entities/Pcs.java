@@ -1,12 +1,8 @@
 package com.etrita.bms.demo.board.entities;
 
 import com.etrita.bms.demo.board.communications.IDataReader;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * PCS视图数据
@@ -45,26 +41,6 @@ public class Pcs {
      * 2#日放电电量
      */
     private float dischargingElectricity2;
-
-    /**
-     * 1#昨日充电总量
-     */
-    private float lastChargingElectricity1;
-
-    /**
-     * 1#昨日放电总量
-     */
-    private float lastDischargingElectricity1;
-
-    /**
-     * 2#昨日充电总量
-     */
-    private float lastChargingElectricity2;
-
-    /**
-     * 2#昨日放电总量
-     */
-    private float lastDischargingElectricity2;
 
     /**
      * 充放电量1
@@ -146,17 +122,6 @@ public class Pcs {
      */
     private ChartData electricityData2;
 
-    /**
-     * 最后采样时间
-     */
-    @JsonIgnore
-    private Date lastDate;
-
-    /**
-     * 时间格式
-     */
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("mm:ss");
-
     public Pcs() {
         String[] xLabels = new String[7];
         for (int i = 0; i < xLabels.length; ++i) {
@@ -208,8 +173,8 @@ public class Pcs {
             }
         }
 
-        electricityData1 = new ChartData(xLabels.length, xLabels, null);
-        electricityData2 = new ChartData(xLabels.length, xLabels, null);
+        electricityData1 = new ChartData(xLabels.length, xLabels, 10 * 60 * 1000);
+        electricityData2 = new ChartData(xLabels.length, xLabels, 10 * 60 * 1000);
     }
 
     /**
@@ -217,9 +182,18 @@ public class Pcs {
      *
      * @param pcsReader    数据读取器
      * @param other2Reader 数据读取器
+     * @param globalData   全局数据
      * @throws Exception
      */
-    public void readModbusTcpData(IDataReader pcsReader, IDataReader other2Reader) throws Exception {
+    public void readModbusTcpData(IDataReader pcsReader, IDataReader other2Reader, GlobalData globalData) throws Exception {
+        if (!globalData.isInvalid()) {
+            globalData.setLastChargingElectricity1(other2Reader.readFloat(3, 3, 1));
+            globalData.setLastDischargingElectricity1(other2Reader.readFloat(3, 3, 11));
+            globalData.setLastChargingElectricity2(other2Reader.readFloat(4, 3, 1));
+            globalData.setLastDischargingElectricity2(other2Reader.readFloat(4, 3, 11));
+            globalData.valid();
+        }
+
         byte state11 = pcsReader.readByte(1, 2, 24);
         byte state12 = pcsReader.readByte(1, 2, 25);
         // byte state13 = reader.readByte(1, 2, 26);
@@ -245,10 +219,11 @@ public class Pcs {
         setCurrent2(pcsReader.readFloat(2, 3, 21));
         setVoltage22(pcsReader.readFloat(2, 3, 29));
 
-        setChargingElectricity1(other2Reader.readFloat(3, 3, 1) - lastChargingElectricity1);
-        setDischargingElectricity1(other2Reader.readFloat(3, 3, 11) - lastDischargingElectricity1);
-        setChargingElectricity2(other2Reader.readFloat(4, 3, 1) - lastChargingElectricity2);
-        setDischargingElectricity2(other2Reader.readFloat(4, 3, 11) - lastDischargingElectricity2);
+        setChargingElectricity1(other2Reader.readFloat(3, 3, 1) - globalData.getLastChargingElectricity1());
+        setDischargingElectricity1(other2Reader.readFloat(3, 3, 11) - globalData.getLastDischargingElectricity1());
+        setChargingElectricity2(other2Reader.readFloat(4, 3, 1) - globalData.getLastChargingElectricity2());
+        setDischargingElectricity2(other2Reader.readFloat(4, 3, 11) - globalData.getLastDischargingElectricity2());
+
         setElectricity1(pcsReader.readFloat(1, 3, 31));
         setElectricity2(pcsReader.readFloat(2, 3, 31));
 

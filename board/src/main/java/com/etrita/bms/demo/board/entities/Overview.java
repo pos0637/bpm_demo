@@ -98,26 +98,6 @@ public class Overview {
     private float dischargingElectricity2;
 
     /**
-     * 1#昨日充电总量
-     */
-    private float lastChargingElectricity1;
-
-    /**
-     * 1#昨日放电总量
-     */
-    private float lastDischargingElectricity1;
-
-    /**
-     * 2#昨日充电总量
-     */
-    private float lastChargingElectricity2;
-
-    /**
-     * 2#昨日放电总量
-     */
-    private float lastDischargingElectricity2;
-
-    /**
      * 充放电功率1
      */
     private float electricity1;
@@ -179,9 +159,18 @@ public class Overview {
      * @param pcsReader    数据读取器
      * @param other1Reader 数据读取器
      * @param other2Reader 数据读取器
+     * @param globalData   全局数据
      * @throws Exception
      */
-    public void readModbusTcpData(IDataReader pcsReader, IDataReader other1Reader, IDataReader other2Reader) throws Exception {
+    public void readModbusTcpData(IDataReader pcsReader, IDataReader other1Reader, IDataReader other2Reader, GlobalData globalData) throws Exception {
+        if (!globalData.isInvalid()) {
+            globalData.setLastChargingElectricity1(other2Reader.readFloat(3, 3, 1));
+            globalData.setLastDischargingElectricity1(other2Reader.readFloat(3, 3, 11));
+            globalData.setLastChargingElectricity2(other2Reader.readFloat(4, 3, 1));
+            globalData.setLastDischargingElectricity2(other2Reader.readFloat(4, 3, 11));
+            globalData.valid();
+        }
+
         byte state11 = pcsReader.readByte(1, 2, 24);
         byte state12 = pcsReader.readByte(1, 2, 25);
         // byte state13 = reader.readByte(1, 2, 26);
@@ -192,7 +181,7 @@ public class Overview {
         // byte state23 = reader.readByte(2, 2, 26);
         setState2((state21 == 1) ? 0 : (state22 == 1) ? 1 : 2);
 
-        setChargingState((getState1() == 0) && (getState2() == 0) ? 0 : 1);
+        setChargingState((getState1() == 2) && (getState2() == 2) ? 2 : (getState1() == 0) || (getState2() == 0) ? 0 : 1);
         setSecuritySystemState(other1Reader.readByte(4, 2, 19));
 
         float data11 = other2Reader.readFloat(3, 3, 7);
@@ -215,10 +204,10 @@ public class Overview {
         setLoadPower2(getTransformerPower2() - pcsPower2);
         setTotalChargingElectricity(other2Reader.readFloat(3, 3, 1) + other2Reader.readFloat(4, 3, 1));
         setTotalDischargingElectricity(other2Reader.readFloat(3, 3, 11) + other2Reader.readFloat(4, 3, 11));
-        setChargingElectricity1(other2Reader.readFloat(3, 3, 1) - lastChargingElectricity1);
-        setDischargingElectricity1(other2Reader.readFloat(3, 3, 11) - lastDischargingElectricity1);
-        setChargingElectricity2(other2Reader.readFloat(4, 3, 1) - lastChargingElectricity2);
-        setDischargingElectricity2(other2Reader.readFloat(4, 3, 11) - lastDischargingElectricity2);
+        setChargingElectricity1(other2Reader.readFloat(3, 3, 1) - globalData.getLastChargingElectricity1());
+        setDischargingElectricity1(other2Reader.readFloat(3, 3, 11) - globalData.getLastDischargingElectricity1());
+        setChargingElectricity2(other2Reader.readFloat(4, 3, 1) - globalData.getLastChargingElectricity2());
+        setDischargingElectricity2(other2Reader.readFloat(4, 3, 11) - globalData.getLastDischargingElectricity2());
 
         electricityData1.push(null, pcsPower1);
         electricityData2.push(null, pcsPower2);
