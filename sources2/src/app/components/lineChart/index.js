@@ -71,7 +71,7 @@ export default class LineChart extends BaseComponent {
                     color: 'rgba(255, 255, 255, 0.2)'
                 },
                 ticks: {
-                    fontColor: this.props.color,
+                    fontColor: 'rgba(68, 175, 244, 0.8)',
                     maxTicksLimit: this.props.maxTicksLimitX
                 }
             }],
@@ -81,7 +81,7 @@ export default class LineChart extends BaseComponent {
                     color: 'rgba(255, 255, 255, 0.2)'
                 },
                 ticks: {
-                    fontColor: this.props.color,
+                    fontColor: 'rgba(68, 175, 244, 0.8)',
                     suggestedMin: this.props.suggestedMin,
                     suggestedMax: this.props.suggestedMax
                 }
