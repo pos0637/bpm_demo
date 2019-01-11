@@ -131,10 +131,10 @@ public class Pcs {
             xLabels[i] = String.format("Day%d", i + 1);
         }
 
-        chargingElectricityData1 = new ChartData(xLabels.length, xLabels, null);
-        dischargingElectricityData1 = new ChartData(xLabels.length, xLabels, null);
-        chargingElectricityData2 = new ChartData(xLabels.length, xLabels, null);
-        dischargingElectricityData2 = new ChartData(xLabels.length, xLabels, null);
+        chargingElectricityData1 = new ChartData(xLabels.length, xLabels);
+        dischargingElectricityData1 = new ChartData(xLabels.length, xLabels);
+        chargingElectricityData2 = new ChartData(xLabels.length, xLabels);
+        dischargingElectricityData2 = new ChartData(xLabels.length, xLabels);
 
         // TODO: fix it
         chargingElectricityData1.push(null, 798);
@@ -176,8 +176,8 @@ public class Pcs {
             }
         }
 
-        electricityData1 = new ChartData(xLabels.length, xLabels, null);
-        electricityData2 = new ChartData(xLabels.length, xLabels, null);
+        electricityData1 = new ChartData(xLabels.length, xLabels);
+        electricityData2 = new ChartData(xLabels.length, xLabels);
     }
 
     /**

@@ -98,8 +98,8 @@ public class Transformer {
             }
         }
 
-        electricityData1 = new ChartData(xLabels.length, xLabels, null);
-        electricityData2 = new ChartData(xLabels.length, xLabels, null);
+        electricityData1 = new ChartData(xLabels.length, xLabels);
+        electricityData2 = new ChartData(xLabels.length, xLabels);
     }
 
     /**

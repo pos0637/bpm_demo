@@ -110,7 +110,7 @@ public class Load {
         }
 
         // TODO: fix it
-        powerData = new ChartData(xLabels.length, xLabels, null);
+        powerData = new ChartData(xLabels.length, xLabels);
         powerData.push(null, 487);
         powerData.push(null, 498);
         powerData.push(null, 501);

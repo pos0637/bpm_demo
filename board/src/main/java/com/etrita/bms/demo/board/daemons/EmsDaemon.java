@@ -153,7 +153,7 @@ public class EmsDaemon implements Runnable, InitializingBean {
                     Tracker.error(e1);
                 }
             }
-
+            /*
             try {
                 load.readModbusTcpData(other1DataReader);
             } catch (Exception e) {
@@ -217,7 +217,7 @@ public class EmsDaemon implements Runnable, InitializingBean {
                     Tracker.error(e1);
                 }
             }
-
+            */
             try {
                 save();
                 Thread.sleep(interval);
