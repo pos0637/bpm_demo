@@ -164,6 +164,8 @@ export default class Overview extends BaseComponent {
                     <Image left={1291} top={891} src={require("./images/load.png")} className={style.move} />
                     <Image left={1200} top={519} src={require("./images/storage.png")} className={style.move} />
                     <Image left={955} top={1130} src={require("./images/photovoltaic.png")} />
+                    <Image left={992} top={871} src={require("./images/cloud.png")} />
+                    <Text left={1085} top={935} value="ESS" font="SourceHanSansSC-Heavy" fontSize={34} color="rgb(22, 38, 60)" />
                     <Text left={1002} top={1390} value="光伏发电" font="SourceHanSansSC-Medium" fontSize={46.24} />
                     <Container left={279} top={519} background={require("./images/small_box1.png")}>
                         <Text left={351} top={554} value="电网" font="SourceHanSansSC-Medium" fontSize={46.24} />
