@@ -232,8 +232,8 @@ public class Overview {
     private int getChartId() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
-        int hour = calendar.get(Calendar.MINUTE) % 24;
-        int minute = calendar.get(Calendar.SECOND) % 6;
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE) / 10;
 
         return hour * 6 + minute;
     }
