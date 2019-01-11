@@ -16,7 +16,7 @@ import java.util.*;
 @Setter
 @NoArgsConstructor
 public class ChartData {
-    private static final SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
+    private static final SimpleDateFormat df = new SimpleDateFormat("HH:mm");
 
     /**
      * 图表数据列表

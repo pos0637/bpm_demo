@@ -138,12 +138,12 @@ public class Overview {
     private ChartData loadPowerData2;
 
     public Overview() {
-        electricityData1 = new ChartData(24 * 6, 1000);
-        electricityData2 = new ChartData(24 * 6, 1000);
-        transformerPowerData1 = new ChartData(24 * 6, 1000);
-        transformerPowerData2 = new ChartData(24 * 6, 1000);
-        loadPowerData1 = new ChartData(24 * 6, 1000);
-        loadPowerData2 = new ChartData(24 * 6, 1000);
+        electricityData1 = new ChartData(24 * 6, 10 * 60 * 1000);
+        electricityData2 = new ChartData(24 * 6, 10 * 60 * 1000);
+        transformerPowerData1 = new ChartData(24 * 6, 10 * 60 * 1000);
+        transformerPowerData2 = new ChartData(24 * 6, 10 * 60 * 1000);
+        loadPowerData1 = new ChartData(24 * 6, 10 * 60 * 1000);
+        loadPowerData2 = new ChartData(24 * 6, 10 * 60 * 1000);
     }
 
     /**

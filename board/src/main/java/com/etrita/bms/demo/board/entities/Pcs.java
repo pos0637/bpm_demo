@@ -4,9 +4,6 @@ import com.etrita.bms.demo.board.communications.IDataReader;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Calendar;
-import java.util.Date;
-
 /**
  * PCS视图数据
  *
@@ -169,15 +166,8 @@ public class Pcs {
         dischargingElectricityData2.push(null, 902);
         dischargingElectricityData2.push(null, 741);
 
-        xLabels = new String[24 * 6];
-        for (int i = 0, id = 0; i < 24; ++i) {
-            for (int j = 0; j < 6; ++j, ++id) {
-                xLabels[id] = String.format("%d:%d0", i, j);
-            }
-        }
-
-        electricityData1 = new ChartData(xLabels.length, xLabels);
-        electricityData2 = new ChartData(xLabels.length, xLabels);
+        electricityData1 = new ChartData(24 * 6, 10 * 60 * 1000);
+        electricityData2 = new ChartData(24 * 6, 10 * 60 * 1000);
     }
 
     /**
@@ -235,22 +225,7 @@ public class Pcs {
         chargingElectricityData2.set(6, getChargingElectricity2());
         dischargingElectricityData2.set(6, getDischargingElectricity2());
 
-        int chartId = getChartId();
-        electricityData1.set(chartId, getElectricity1());
-        electricityData2.set(chartId, getElectricity2());
-    }
-
-    /**
-     * 获取图表索引
-     *
-     * @return 图表索引
-     */
-    private int getChartId() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(new Date());
-        int hour = calendar.get(Calendar.HOUR_OF_DAY);
-        int minute = calendar.get(Calendar.MINUTE) / 10;
-
-        return hour * 6 + minute;
+        electricityData1.push(getElectricity1());
+        electricityData2.push(getElectricity2());
     }
 }
