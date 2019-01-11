@@ -166,12 +166,12 @@ public class Overview {
      * @throws Exception
      */
     public void readModbusTcpData(IDataReader pcsReader, IDataReader other1Reader, IDataReader other2Reader, GlobalData globalData) throws Exception {
-        if (!globalData.isInvalid()) {
+        if (!globalData.isValid()) {
             globalData.setLastChargingElectricity1(other2Reader.readFloat(3, 3, 1));
             globalData.setLastDischargingElectricity1(other2Reader.readFloat(3, 3, 11));
             globalData.setLastChargingElectricity2(other2Reader.readFloat(4, 3, 1));
             globalData.setLastDischargingElectricity2(other2Reader.readFloat(4, 3, 11));
-            globalData.valid();
+            globalData.setUpdated();
         }
 
         byte state11 = pcsReader.readByte(1, 2, 24);
@@ -232,8 +232,8 @@ public class Overview {
     private int getChartId() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
-        int hour = calendar.get(Calendar.HOUR_OF_DAY);
-        int minute = calendar.get(Calendar.MINUTE) / 10;
+        int hour = calendar.get(Calendar.MINUTE) % 24;
+        int minute = calendar.get(Calendar.SECOND) % 6;
 
         return hour * 6 + minute;
     }

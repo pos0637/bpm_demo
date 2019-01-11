@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 public class GlobalData extends UpdateableData {
     public GlobalData() {
-        super(24 * 60 * 60 * 1000);
+        super(23);
     }
 
     /**

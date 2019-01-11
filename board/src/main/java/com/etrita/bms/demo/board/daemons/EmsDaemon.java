@@ -153,7 +153,7 @@ public class EmsDaemon implements Runnable, InitializingBean {
                     Tracker.error(e1);
                 }
             }
-
+            /*
             try {
                 load.readModbusTcpData(other1DataReader);
             } catch (Exception e) {
@@ -217,7 +217,7 @@ public class EmsDaemon implements Runnable, InitializingBean {
                     Tracker.error(e1);
                 }
             }
-
+            */
             try {
                 save();
                 Thread.sleep(interval);
@@ -246,7 +246,7 @@ public class EmsDaemon implements Runnable, InitializingBean {
         bms = mapper.readValue(new File(file.getAbsolutePath() + "/bms"), Bms.class);
         air = mapper.readValue(new File(file.getAbsolutePath() + "/air"), Air.class);
         globalData = mapper.readValue(new File(file.getAbsolutePath() + "/global"), GlobalData.class);
-        globalData.valid();
+        globalData.setUpdated();
     }
 
     private void save() throws Exception {

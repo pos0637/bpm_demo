@@ -1,9 +1,9 @@
 package com.etrita.bms.demo.board.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -15,19 +15,17 @@ import java.util.Date;
 @Setter
 public class UpdateableData {
     /**
-     * 数据失效时间
+     * 数据更新时间
      */
-    @JsonIgnore
-    private int timeout;
+    private int triggerTime;
 
     /**
-     * 最后更新时间
+     * 是否更新
      */
-    @JsonIgnore
-    private Date lastDate;
+    private boolean updated;
 
-    public UpdateableData(int timeout) {
-        this.timeout = timeout;
+    public UpdateableData(int triggerTime) {
+        this.triggerTime = triggerTime;
     }
 
     /**
@@ -35,14 +33,22 @@ public class UpdateableData {
      *
      * @return 是否有效
      */
-    public boolean isInvalid() {
-        return !((lastDate == null) || (new Date().getTime() - lastDate.getTime() > timeout));
+    public boolean isValid() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        if (hour < triggerTime) {
+            updated = false;
+            return true;
+        } else {
+            return updated;
+        }
     }
 
     /**
-     * 数据有效
+     * 设置数据更新
      */
-    public void valid() {
-        lastDate = new Date();
+    public void setUpdated() {
+        updated = true;
     }
 }

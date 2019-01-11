@@ -189,12 +189,12 @@ public class Pcs {
      * @throws Exception
      */
     public void readModbusTcpData(IDataReader pcsReader, IDataReader other2Reader, GlobalData globalData) throws Exception {
-        if (!globalData.isInvalid()) {
+        if (!globalData.isValid()) {
             globalData.setLastChargingElectricity1(other2Reader.readFloat(3, 3, 1));
             globalData.setLastDischargingElectricity1(other2Reader.readFloat(3, 3, 11));
             globalData.setLastChargingElectricity2(other2Reader.readFloat(4, 3, 1));
             globalData.setLastDischargingElectricity2(other2Reader.readFloat(4, 3, 11));
-            globalData.valid();
+            globalData.setUpdated();
         }
 
         byte state11 = pcsReader.readByte(1, 2, 24);

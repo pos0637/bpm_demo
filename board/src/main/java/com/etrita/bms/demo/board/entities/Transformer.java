@@ -83,12 +83,12 @@ public class Transformer {
     /**
      * 充放电量曲线1
      */
-    private ChartData electricityData1 = new ChartData(9);
+    private ChartData electricityData1;
 
     /**
      * 充放电量曲线2
      */
-    private ChartData electricityData2 = new ChartData(9);
+    private ChartData electricityData2;
 
     public Transformer() {
         String[] xLabels = new String[24 * 6];
