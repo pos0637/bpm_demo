@@ -1,5 +1,6 @@
 package com.etrita.bms.demo.board.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -187,7 +188,9 @@ public class ChartData {
 
     @Getter
     @Setter
-    class ChartItem {
+    @NoArgsConstructor
+    @AllArgsConstructor
+    static class ChartItem {
         private String xLabel;
         private long date;
         private Object data;
