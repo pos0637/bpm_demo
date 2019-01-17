@@ -235,33 +235,36 @@ export default class Load extends BaseComponent {
      * @memberof Load
      */
     _loadData() {
-        const data = {};
         if (process.env.NODE_ENV === 'development') {
-            data.A相电压1 = getRandom(200, 230);
-            data.B相电压1 = getRandom(200, 230);
-            data.C相电压1 = getRandom(200, 230);
-            data.A相电流1 = getRandom(30, 60);
-            data.B相电流1 = getRandom(30, 60);
-            data.C相电流1 = getRandom(30, 60);
-            data.A相电压2 = getRandom(200, 230);
-            data.B相电压2 = getRandom(200, 230);
-            data.C相电压2 = getRandom(200, 230);
-            data.A相电流2 = getRandom(30, 60);
-            data.B相电流2 = getRandom(30, 60);
-            data.C相电流2 = getRandom(30, 60);
-            data.当日能耗 = getRandom(1800, 2500);
-            data.当月能耗 = null;
-            data.主楼公共区用电 = getRandom(500, 1000);
-            data.主楼耗能 = getRandom(1800, 2500);
-            data.配楼公共区用电 = getRandom(500, 1000);
-            data.配楼耗能 = getRandom(1800, 2500);
-            data.泵站用电 = getRandom(500, 1000);
-            data.泵站耗能 = getRandom(1800, 2500);
-            data.空调用电 = getRandom(500, 1000);
-            data.空调耗能 = getRandom(1800, 2500);
+            const data = {
+                A相电压1: getRandom(200, 230),
+                B相电压1: getRandom(200, 230),
+                C相电压1: getRandom(200, 230),
+                A相电流1: getRandom(30, 60),
+                B相电流1: getRandom(30, 60),
+                C相电流1: getRandom(30, 60),
+                A相电压2: getRandom(200, 230),
+                B相电压2: getRandom(200, 230),
+                C相电压2: getRandom(200, 230),
+                A相电流2: getRandom(30, 60),
+                B相电流2: getRandom(30, 60),
+                C相电流2: getRandom(30, 60),
+                当日能耗: getRandom(1800, 2500),
+                当月能耗: null,
+                主楼公共区用电: getRandom(500, 1000),
+                主楼耗能: getRandom(1800, 2500),
+                配楼公共区用电: getRandom(500, 1000),
+                配楼耗能: getRandom(1800, 2500),
+                泵站用电: getRandom(500, 1000),
+                泵站耗能: getRandom(1800, 2500),
+                空调用电: getRandom(500, 1000),
+                空调耗能: getRandom(1800, 2500)
+            };
+            this.setState(data);
         }
         else {
             getLoadData(load => {
+                const data = {};
                 data.A相电压1 = load.voltageA1;
                 data.B相电压1 = load.voltageB1;
                 data.C相电压1 = load.voltageC1;
@@ -280,10 +283,9 @@ export default class Load extends BaseComponent {
                 data.配楼公共区用电 = load.power2;
                 data.泵站用电 = load.power3;
                 data.空调用电 = load.power4;
+                this.setLoadingState(false);
+                this.setState(data);
             });
-
-            this.setState(data);
-            this.setLoadingState(false);
         }
     }
 

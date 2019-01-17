@@ -58,54 +58,16 @@ export default class Bms extends BaseComponent {
 
     faultIcon = require("./images/fault.png");
 
+    constructor(props) {
+        super(props);
+        this.setLoadingState(true);
+        this._loadData();
+    }
+
     componentDidMount() {
         super.componentDidMount();
         this.timer = setInterval(() => {
-            let data = {};
-            if (process.env.NODE_ENV === 'development') {
-                data = {
-                    SOC1: getRandom(50, 99),
-                    SOC2: getRandom(50, 99),
-                    剩余容量1: getRandom(200, 500),
-                    剩余容量2: getRandom(200, 500),
-                    组端电压1: getRandom(200, 230),
-                    组端电压2: getRandom(200, 230),
-                    电池电压1: getRandom(200, 230),
-                    电池电压2: getRandom(200, 230),
-                    电池内阻1: getRandom(20, 35),
-                    电池内阻2: getRandom(20, 35),
-                    电池温度1: getRandom(20, 30),
-                    电池温度2: getRandom(20, 30),
-                    热失控: getRandom(70, 80),
-                    剩余容量: getRandom(40, 60),
-                    健康状态: getRandom(40, 60),
-                    batteries1: [],
-                    batteries2: [],
-                    batteries3: [],
-                    batteries4: []
-                };
-                this.setState(data);
-            }
-            else {
-                getBmsData(bms => {
-                    data.SOC1 = bms.soc1;
-                    data.SOC2 = bms.soc2;
-                    data.剩余容量1 = bms.electricity1;
-                    data.剩余容量2 = bms.electricity2;
-                    data.组端电压1 = bms.voltage1;
-                    data.组端电压2 = bms.voltage2;
-                    data.热失控 = bms.thermal;
-                    data.剩余容量 = bms.soc;
-                    data.健康状态 = bms.soh;
-                    data.batteries1 = bms.batteries1;
-                    data.batteries2 = bms.batteries2;
-                    data.batteries3 = bms.batteries3;
-                    data.batteries4 = bms.batteries4;
-                    this.setState(data);
-                    this._onCellClick1(this.state.currentBatteryPackId1, this.state.currentBatteryId1);
-                    this._onCellClick2(this.state.currentBatteryPackId2, this.state.currentBatteryId2);
-                });
-            }
+            this._loadData();
         }, 2000);
     }
 
@@ -192,6 +154,60 @@ export default class Bms extends BaseComponent {
                 </Container>
             </Container>
         );
+    }
+
+    /**
+     * 加载数据
+     *
+     * @memberof Bms
+     */
+    _loadData() {
+        if (process.env.NODE_ENV === 'development') {
+            const data = {
+                SOC1: getRandom(50, 99),
+                SOC2: getRandom(50, 99),
+                剩余容量1: getRandom(200, 500),
+                剩余容量2: getRandom(200, 500),
+                组端电压1: getRandom(200, 230),
+                组端电压2: getRandom(200, 230),
+                电池电压1: getRandom(200, 230),
+                电池电压2: getRandom(200, 230),
+                电池内阻1: getRandom(20, 35),
+                电池内阻2: getRandom(20, 35),
+                电池温度1: getRandom(20, 30),
+                电池温度2: getRandom(20, 30),
+                热失控: getRandom(70, 80),
+                剩余容量: getRandom(40, 60),
+                健康状态: getRandom(40, 60),
+                batteries1: [],
+                batteries2: [],
+                batteries3: [],
+                batteries4: []
+            };
+            this.setState(data);
+        }
+        else {
+            getBmsData(bms => {
+                const data = {};
+                data.SOC1 = bms.soc1;
+                data.SOC2 = bms.soc2;
+                data.剩余容量1 = bms.electricity1;
+                data.剩余容量2 = bms.electricity2;
+                data.组端电压1 = bms.voltage1;
+                data.组端电压2 = bms.voltage2;
+                data.热失控 = bms.thermal;
+                data.剩余容量 = bms.soc;
+                data.健康状态 = bms.soh;
+                data.batteries1 = bms.batteries1;
+                data.batteries2 = bms.batteries2;
+                data.batteries3 = bms.batteries3;
+                data.batteries4 = bms.batteries4;
+                this.setLoadingState(false);
+                this.setState(data);
+                this._onCellClick1(this.state.currentBatteryPackId1, this.state.currentBatteryId1);
+                this._onCellClick2(this.state.currentBatteryPackId2, this.state.currentBatteryId2);
+            });
+        }
     }
 
     /**

@@ -57,64 +57,16 @@ export default class Pcs extends BaseComponent {
         showDialog6: false
     }
 
+    constructor(props) {
+        super(props);
+        this.setLoadingState(true);
+        this._loadData();
+    }
+
     componentDidMount() {
         super.componentDidMount();
         this.timer = setInterval(() => {
-            let data = {};
-            if (process.env.NODE_ENV === 'development') {
-                data = {
-                    PCS1状态: getRandom(0, 1),
-                    PCS2状态: getRandom(0, 1),
-                    电站运行状态1: getRandom(0, 1),
-                    电站运行状态2: getRandom(0, 1),
-                    日充电电量1: getRandom(3000, 4000),
-                    日放电电量1: getRandom(3000, 4000),
-                    日充电电量2: getRandom(3000, 4000),
-                    日放电电量2: getRandom(3000, 4000),
-                    日充放电功率1: getRandom(200, 400),
-                    日充放电功率2: getRandom(200, 400),
-                    日充电电量曲线1: null,
-                    日放电电量曲线1: null,
-                    日充电电量曲线2: null,
-                    日放电电量曲线2: null,
-                    日充放电功率曲线1: null,
-                    日充放电功率曲线2: null,
-                    直流电压1: getRandom(200, 230),
-                    直流电压2: getRandom(200, 230),
-                    直流电流1: getRandom(30, 60),
-                    直流电流2: getRandom(30, 60),
-                    交流电压1: getRandom(30, 60),
-                    交流电压2: getRandom(30, 60)
-                };
-                this.setState(data);
-            }
-            else {
-                getPcsData(pcs => {
-                    data.电站运行状态1 = pcs.state1;
-                    data.电站运行状态2 = pcs.state2;
-                    data.PCS1状态 = pcs.gridState1;
-                    data.PCS2状态 = pcs.gridState2;
-                    data.日充电电量1 = pcs.chargingElectricity1;
-                    data.日放电电量1 = pcs.dischargingElectricity1;
-                    data.日充电电量2 = pcs.chargingElectricity2;
-                    data.日放电电量2 = pcs.dischargingElectricity2;
-                    data.日充放电功率1 = pcs.electricity1;
-                    data.日充放电功率2 = pcs.electricity2;
-                    data.日充电电量曲线1 = pcs.chargingElectricityData1;
-                    data.日放电电量曲线1 = pcs.dischargingElectricityData1;
-                    data.日充电电量曲线2 = pcs.chargingElectricityData2;
-                    data.日放电电量曲线2 = pcs.dischargingElectricityData2;
-                    data.日充放电功率曲线1 = pcs.electricityData1;
-                    data.日充放电功率曲线2 = pcs.electricityData2;
-                    data.直流电压1 = pcs.voltage11;
-                    data.直流电压2 = pcs.voltage21;
-                    data.直流电流1 = pcs.current1;
-                    data.直流电流2 = pcs.current2;
-                    data.交流电压1 = pcs.voltage21;
-                    data.交流电压2 = pcs.voltage22;
-                    this.setState(data);
-                });
-            }
+            this._loadData();
         }, 2000);
     }
 
@@ -248,6 +200,70 @@ export default class Pcs extends BaseComponent {
                 {this.state.showDialog6 && this._onDialog6()}
             </Container>
         );
+    }
+
+    /**
+     * 加载数据
+     *
+     * @memberof Pcs
+     */
+    _loadData() {
+        if (process.env.NODE_ENV === 'development') {
+            const data = {
+                PCS1状态: getRandom(0, 1),
+                PCS2状态: getRandom(0, 1),
+                电站运行状态1: getRandom(0, 1),
+                电站运行状态2: getRandom(0, 1),
+                日充电电量1: getRandom(3000, 4000),
+                日放电电量1: getRandom(3000, 4000),
+                日充电电量2: getRandom(3000, 4000),
+                日放电电量2: getRandom(3000, 4000),
+                日充放电功率1: getRandom(200, 400),
+                日充放电功率2: getRandom(200, 400),
+                日充电电量曲线1: null,
+                日放电电量曲线1: null,
+                日充电电量曲线2: null,
+                日放电电量曲线2: null,
+                日充放电功率曲线1: null,
+                日充放电功率曲线2: null,
+                直流电压1: getRandom(200, 230),
+                直流电压2: getRandom(200, 230),
+                直流电流1: getRandom(30, 60),
+                直流电流2: getRandom(30, 60),
+                交流电压1: getRandom(30, 60),
+                交流电压2: getRandom(30, 60)
+            };
+            this.setState(data);
+        }
+        else {
+            getPcsData(pcs => {
+                const data = {};
+                data.电站运行状态1 = pcs.state1;
+                data.电站运行状态2 = pcs.state2;
+                data.PCS1状态 = pcs.gridState1;
+                data.PCS2状态 = pcs.gridState2;
+                data.日充电电量1 = pcs.chargingElectricity1;
+                data.日放电电量1 = pcs.dischargingElectricity1;
+                data.日充电电量2 = pcs.chargingElectricity2;
+                data.日放电电量2 = pcs.dischargingElectricity2;
+                data.日充放电功率1 = pcs.electricity1;
+                data.日充放电功率2 = pcs.electricity2;
+                data.日充电电量曲线1 = pcs.chargingElectricityData1;
+                data.日放电电量曲线1 = pcs.dischargingElectricityData1;
+                data.日充电电量曲线2 = pcs.chargingElectricityData2;
+                data.日放电电量曲线2 = pcs.dischargingElectricityData2;
+                data.日充放电功率曲线1 = pcs.electricityData1;
+                data.日充放电功率曲线2 = pcs.electricityData2;
+                data.直流电压1 = pcs.voltage11;
+                data.直流电压2 = pcs.voltage21;
+                data.直流电流1 = pcs.current1;
+                data.直流电流2 = pcs.current2;
+                data.交流电压1 = pcs.voltage21;
+                data.交流电压2 = pcs.voltage22;
+                this.setLoadingState(false);
+                this.setState(data);
+            });
+        }
     }
 
     /**

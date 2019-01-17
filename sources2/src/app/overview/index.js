@@ -57,76 +57,16 @@ export default class Overview extends BaseComponent {
         需求功率曲线2: null
     }
 
+    constructor(props) {
+        super(props);
+        this.setLoadingState(true);
+        this._loadData();
+    }
+
     componentDidMount() {
         super.componentDidMount();
         this.timer = setInterval(() => {
-            let data = {};
-            if (process.env.NODE_ENV === 'development') {
-                data = {
-                    无故障运行时间: getRandom(10, 100),
-                    节煤量: getRandom(200, 700),
-                    节碳量: getRandom(200, 700),
-                    母线1: getRandom(200, 700),
-                    母线2: getRandom(200, 700),
-                    总充电量: getRandom(1000, 2000),
-                    总放电量: getRandom(1000, 2000),
-                    安防系统状态: getRandom(0, 1),
-                    充电状态: getRandom(0, 1),
-                    电站运行状态1: getRandom(0, 2),
-                    电站运行状态2: getRandom(0, 2),
-                    节能总费用: getRandom(10000, 27000),
-                    今日充电总量1: getRandom(1000, 2000),
-                    今日放电总量1: getRandom(500, 1000),
-                    今日充电总量2: getRandom(1000, 2000),
-                    今日放电总量2: getRandom(500, 1000),
-                    充放电功率1: getRandom(500, 1000),
-                    充放电功率2: getRandom(500, 1000),
-                    充放电功率曲线1: null,
-                    充放电功率曲线2: null,
-                    变压器功率1: getRandom(500, 1000),
-                    变压器功率2: getRandom(500, 1000),
-                    变压器功率曲线1: null,
-                    变压器功率曲线2: null,
-                    需求功率1: getRandom(500, 1000),
-                    需求功率2: getRandom(500, 1000),
-                    需求功率曲线1: null,
-                    需求功率曲线2: null
-                };
-                this.setState(data);
-            }
-            else {
-                getOverviewData(overview => {
-                    data.无故障运行时间 = Math.ceil((new Date().getTime() - new Date('2019-01-01').getTime()) / (1000 * 60 * 60 * 24));
-                    data.电站运行状态1 = overview.state1;
-                    data.电站运行状态2 = overview.state2;
-                    data.节能总费用 = overview.bill;
-                    data.节煤量 = overview.saveCost1;
-                    data.节碳量 = overview.saveCost2;
-                    data.母线1 = overview.loadPower1;
-                    data.母线2 = overview.loadPower2;
-                    data.总充电量 = overview.totalChargingElectricity;
-                    data.总放电量 = overview.totalDischargingElectricity;
-                    data.安防系统状态 = overview.securitySystemState;
-                    data.充电状态 = overview.chargingState;
-                    data.今日充电总量1 = overview.chargingElectricity1;
-                    data.今日放电总量1 = overview.dischargingElectricity1;
-                    data.今日充电总量2 = overview.chargingElectricity2;
-                    data.今日放电总量2 = overview.dischargingElectricity2;
-                    data.充放电功率1 = overview.electricity1;
-                    data.充放电功率2 = overview.electricity2;
-                    data.充放电功率曲线1 = overview.electricityData1;
-                    data.充放电功率曲线2 = overview.electricityData2;
-                    data.变压器功率1 = overview.loadPower1;
-                    data.变压器功率2 = overview.loadPower2;
-                    data.变压器功率曲线1 = overview.loadPowerData1;
-                    data.变压器功率曲线2 = overview.loadPowerData2;
-                    data.需求功率1 = overview.transformerPower1;
-                    data.需求功率2 = overview.transformerPower2;
-                    data.需求功率曲线1 = overview.transformerPowerData1;
-                    data.需求功率曲线2 = overview.transformerPowerData2;
-                    this.setState(data);
-                });
-            }
+            this._loadData();
         }, 2000);
     }
 
@@ -299,6 +239,82 @@ export default class Overview extends BaseComponent {
                 <Container left={1431} top={1641} width={500} height={333} onClick={() => window.login && this.context.router.history.replace('/bms')} />
             </Container>
         );
+    }
+
+    /**
+     * 加载数据
+     *
+     * @memberof Overview
+     */
+    _loadData() {
+        if (process.env.NODE_ENV === 'development') {
+            const data = {
+                无故障运行时间: getRandom(10, 100),
+                节煤量: getRandom(200, 700),
+                节碳量: getRandom(200, 700),
+                母线1: getRandom(200, 700),
+                母线2: getRandom(200, 700),
+                总充电量: getRandom(1000, 2000),
+                总放电量: getRandom(1000, 2000),
+                安防系统状态: getRandom(0, 1),
+                充电状态: getRandom(0, 1),
+                电站运行状态1: getRandom(0, 2),
+                电站运行状态2: getRandom(0, 2),
+                节能总费用: getRandom(10000, 27000),
+                今日充电总量1: getRandom(1000, 2000),
+                今日放电总量1: getRandom(500, 1000),
+                今日充电总量2: getRandom(1000, 2000),
+                今日放电总量2: getRandom(500, 1000),
+                充放电功率1: getRandom(500, 1000),
+                充放电功率2: getRandom(500, 1000),
+                充放电功率曲线1: null,
+                充放电功率曲线2: null,
+                变压器功率1: getRandom(500, 1000),
+                变压器功率2: getRandom(500, 1000),
+                变压器功率曲线1: null,
+                变压器功率曲线2: null,
+                需求功率1: getRandom(500, 1000),
+                需求功率2: getRandom(500, 1000),
+                需求功率曲线1: null,
+                需求功率曲线2: null
+            };
+            this.setState(data);
+        }
+        else {
+            const data = {};
+            getOverviewData(overview => {
+                data.无故障运行时间 = Math.ceil((new Date().getTime() - new Date('2019-01-01').getTime()) / (1000 * 60 * 60 * 24));
+                data.电站运行状态1 = overview.state1;
+                data.电站运行状态2 = overview.state2;
+                data.节能总费用 = overview.bill;
+                data.节煤量 = overview.saveCost1;
+                data.节碳量 = overview.saveCost2;
+                data.母线1 = overview.loadPower1;
+                data.母线2 = overview.loadPower2;
+                data.总充电量 = overview.totalChargingElectricity;
+                data.总放电量 = overview.totalDischargingElectricity;
+                data.安防系统状态 = overview.securitySystemState;
+                data.充电状态 = overview.chargingState;
+                data.今日充电总量1 = overview.chargingElectricity1;
+                data.今日放电总量1 = overview.dischargingElectricity1;
+                data.今日充电总量2 = overview.chargingElectricity2;
+                data.今日放电总量2 = overview.dischargingElectricity2;
+                data.充放电功率1 = overview.electricity1;
+                data.充放电功率2 = overview.electricity2;
+                data.充放电功率曲线1 = overview.electricityData1;
+                data.充放电功率曲线2 = overview.electricityData2;
+                data.变压器功率1 = overview.loadPower1;
+                data.变压器功率2 = overview.loadPower2;
+                data.变压器功率曲线1 = overview.loadPowerData1;
+                data.变压器功率曲线2 = overview.loadPowerData2;
+                data.需求功率1 = overview.transformerPower1;
+                data.需求功率2 = overview.transformerPower2;
+                data.需求功率曲线1 = overview.transformerPowerData1;
+                data.需求功率曲线2 = overview.transformerPowerData2;
+                this.setLoadingState(false);
+                this.setState(data);
+            });
+        }
     }
 
     /**

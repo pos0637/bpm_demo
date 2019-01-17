@@ -30,28 +30,16 @@ export default class Air extends BaseComponent {
         氢气探测器状态: 0
     }
 
+    constructor(props) {
+        super(props);
+        this.setLoadingState(true);
+        this._loadData();
+    }
+
     componentDidMount() {
         super.componentDidMount();
         this.timer = setInterval(() => {
-            let data = {};
-            if (process.env.NODE_ENV === 'development') {
-                data = {
-                    电气室温度1: getRandom(20, 40),
-                    电气室温度2: getRandom(20, 40),
-                    安防系统状态: getRandom(0, 1),
-                    氢气探测器状态: getRandom(0, 1)
-                };
-                this.setState(data);
-            }
-            else {
-                getAirData(air => {
-                    data.电气室温度1 = getRandom(27, 30);
-                    data.电气室温度2 = getRandom(25, 27);
-                    data.安防系统状态 = air.state1;
-                    data.氢气探测器状态 = air.state2;
-                    this.setState(data);
-                });
-            }
+            this._loadData();
         }, 2000);
     }
 
@@ -97,9 +85,37 @@ export default class Air extends BaseComponent {
     }
 
     /**
+     * 加载数据
+     *
+     * @memberof Air
+     */
+    _loadData() {
+        if (process.env.NODE_ENV === 'development') {
+            const data = {
+                电气室温度1: getRandom(20, 40),
+                电气室温度2: getRandom(20, 40),
+                安防系统状态: getRandom(0, 1),
+                氢气探测器状态: getRandom(0, 1)
+            };
+            this.setState(data);
+        }
+        else {
+            getAirData(air => {
+                const data = {};
+                data.电气室温度1 = getRandom(27, 30);
+                data.电气室温度2 = getRandom(25, 27);
+                data.安防系统状态 = air.state1;
+                data.氢气探测器状态 = air.state2;
+                this.setLoadingState(false);
+                this.setState(data);
+            });
+        }
+    }
+
+    /**
      * 登录按钮点击事件
      *
-     * @memberof Load
+     * @memberof Air
      */
     _onLoginButtonClick() {
         this.context.router.history.replace('/overview');

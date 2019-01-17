@@ -27,19 +27,11 @@ export default class BaseComponent extends React.Component {
      */
     children = {}
 
-    /**
-     * 状态
-     *
-     * @memberof BaseComponent
-     */
-    state = {
-        loading: false
-    }
-
     constructor(props) {
         super(props);
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
         this.initialize && this.initialize();
+        this.loading = false;
     }
 
     getChildContext() {
@@ -161,7 +153,7 @@ export default class BaseComponent extends React.Component {
      * @memberof BaseComponent
      */
     setLoadingState(isLoading) {
-        this.setState({ loading: isLoading });
+        this.loading = isLoading;
     }
 
     /**
@@ -174,6 +166,6 @@ export default class BaseComponent extends React.Component {
     }
 
     render() {
-        return this.state.loading ? <Spin /> : this._render();
+        return this.loading ? <Spin /> : this._render();
     }
 }

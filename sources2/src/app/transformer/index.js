@@ -51,50 +51,16 @@ export default class Transformer extends BaseComponent {
         showDialog6: false
     }
 
+    constructor(props) {
+        super(props);
+        this.setLoadingState(true);
+        this._loadData();
+    }
+
     componentDidMount() {
         super.componentDidMount();
         this.timer = setInterval(() => {
-            let data = {};
-            if (process.env.NODE_ENV === 'development') {
-                data = {
-                    风扇1: getRandom(0, 1) === 0,
-                    风扇2: getRandom(0, 1) === 0,
-                    温度1: getRandom(20, 50),
-                    温度2: getRandom(20, 50),
-                    变压器状态: getRandom(0, 1),
-                    总充电电量1: getRandom(1800, 2500),
-                    总放电电量1: getRandom(1800, 2500),
-                    总充电电量2: getRandom(1800, 2500),
-                    总放电电量2: getRandom(1800, 2500),
-                    充放电实时功率1: getRandom(500, 1000),
-                    充放电实时功率2: getRandom(500, 1000),
-                    充放电实时功率曲线1: null,
-                    充放电实时功率曲线2: null,
-                    合闸1: getRandom(0, 1),
-                    合闸2: getRandom(0, 1)
-                };
-                this.setState(data);
-            }
-            else {
-                getTransformerData(transformer => {
-                    data.风扇1 = transformer.fan1;
-                    data.风扇2 = transformer.fan2;
-                    data.温度1 = transformer.temperature1;
-                    data.温度2 = transformer.temperature2;
-                    data.变压器状态 = transformer.state;
-                    data.总充电电量1 = transformer.totalChargingElectricity1;
-                    data.总放电电量1 = transformer.totalDischargingElectricity1;
-                    data.总充电电量2 = transformer.totalChargingElectricity2;
-                    data.总放电电量2 = transformer.totalDischargingElectricity2;
-                    data.合闸1 = transformer.switch1;
-                    data.合闸2 = transformer.switch2;
-                    data.充放电实时功率1 = transformer.electricity1;
-                    data.充放电实时功率2 = transformer.electricity2;
-                    data.充放电实时功率曲线1 = transformer.electricityData1;
-                    data.充放电实时功率曲线2 = transformer.electricityData2;
-                    this.setState(data);
-                });
-            }
+            this._loadData();
         }, 2000);
     }
 
@@ -199,6 +165,56 @@ export default class Transformer extends BaseComponent {
                 {this.state.showDialog6 && this._onDialog6()}
             </Container>
         );
+    }
+
+    /**
+     * 加载数据
+     *
+     * @memberof Transformer
+     */
+    _loadData() {
+        if (process.env.NODE_ENV === 'development') {
+            const data = {
+                风扇1: getRandom(0, 1) === 0,
+                风扇2: getRandom(0, 1) === 0,
+                温度1: getRandom(20, 50),
+                温度2: getRandom(20, 50),
+                变压器状态: getRandom(0, 1),
+                总充电电量1: getRandom(1800, 2500),
+                总放电电量1: getRandom(1800, 2500),
+                总充电电量2: getRandom(1800, 2500),
+                总放电电量2: getRandom(1800, 2500),
+                充放电实时功率1: getRandom(500, 1000),
+                充放电实时功率2: getRandom(500, 1000),
+                充放电实时功率曲线1: null,
+                充放电实时功率曲线2: null,
+                合闸1: getRandom(0, 1),
+                合闸2: getRandom(0, 1)
+            };
+            this.setState(data);
+        }
+        else {
+            getTransformerData(transformer => {
+                const data = {};
+                data.风扇1 = transformer.fan1;
+                data.风扇2 = transformer.fan2;
+                data.温度1 = transformer.temperature1;
+                data.温度2 = transformer.temperature2;
+                data.变压器状态 = transformer.state;
+                data.总充电电量1 = transformer.totalChargingElectricity1;
+                data.总放电电量1 = transformer.totalDischargingElectricity1;
+                data.总充电电量2 = transformer.totalChargingElectricity2;
+                data.总放电电量2 = transformer.totalDischargingElectricity2;
+                data.合闸1 = transformer.switch1;
+                data.合闸2 = transformer.switch2;
+                data.充放电实时功率1 = transformer.electricity1;
+                data.充放电实时功率2 = transformer.electricity2;
+                data.充放电实时功率曲线1 = transformer.electricityData1;
+                data.充放电实时功率曲线2 = transformer.electricityData2;
+                this.setLoadingState(false);
+                this.setState(data);
+            });
+        }
     }
 
     /**
