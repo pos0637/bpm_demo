@@ -55,60 +55,16 @@ export default class Load extends BaseComponent {
         showDialog4: false
     }
 
+    constructor(props) {
+        super(props);
+        this.setLoadingState(true);
+        this._loadData();
+    }
+
     componentDidMount() {
         super.componentDidMount();
         this.timer = setInterval(() => {
-            let data = {};
-            if (process.env.NODE_ENV === 'development') {
-                data = {
-                    A相电压1: getRandom(200, 230),
-                    B相电压1: getRandom(200, 230),
-                    C相电压1: getRandom(200, 230),
-                    A相电流1: getRandom(30, 60),
-                    B相电流1: getRandom(30, 60),
-                    C相电流1: getRandom(30, 60),
-                    A相电压2: getRandom(200, 230),
-                    B相电压2: getRandom(200, 230),
-                    C相电压2: getRandom(200, 230),
-                    A相电流2: getRandom(30, 60),
-                    B相电流2: getRandom(30, 60),
-                    C相电流2: getRandom(30, 60),
-                    当日能耗: getRandom(1800, 2500),
-                    当月能耗: null,
-                    主楼公共区用电: getRandom(500, 1000),
-                    主楼耗能: getRandom(1800, 2500),
-                    配楼公共区用电: getRandom(500, 1000),
-                    配楼耗能: getRandom(1800, 2500),
-                    泵站用电: getRandom(500, 1000),
-                    泵站耗能: getRandom(1800, 2500),
-                    空调用电: getRandom(500, 1000),
-                    空调耗能: getRandom(1800, 2500)
-                };
-                this.setState(data);
-            }
-            else {
-                getLoadData(load => {
-                    data.A相电压1 = load.voltageA1;
-                    data.B相电压1 = load.voltageB1;
-                    data.C相电压1 = load.voltageC1;
-                    data.A相电流1 = load.currentA1;
-                    data.B相电流1 = load.currentB1;
-                    data.C相电流1 = load.currentC1;
-                    data.A相电压2 = load.voltageA2;
-                    data.B相电压2 = load.voltageB2;
-                    data.C相电压2 = load.voltageC2;
-                    data.A相电流2 = load.currentA2;
-                    data.B相电流2 = load.currentB2;
-                    data.C相电流2 = load.currentC2;
-                    data.当日能耗 = load.power;
-                    data.当月能耗 = load.powerData;
-                    data.主楼公共区用电 = load.power1;
-                    data.配楼公共区用电 = load.power2;
-                    data.泵站用电 = load.power3;
-                    data.空调用电 = load.power4;
-                    this.setState(data);
-                });
-            }
+            this._loadData();
         }, 2000);
     }
 
@@ -274,6 +230,64 @@ export default class Load extends BaseComponent {
     }
 
     /**
+     * 加载数据
+     *
+     * @memberof Load
+     */
+    _loadData() {
+        const data = {};
+        if (process.env.NODE_ENV === 'development') {
+            data.A相电压1 = getRandom(200, 230);
+            data.B相电压1 = getRandom(200, 230);
+            data.C相电压1 = getRandom(200, 230);
+            data.A相电流1 = getRandom(30, 60);
+            data.B相电流1 = getRandom(30, 60);
+            data.C相电流1 = getRandom(30, 60);
+            data.A相电压2 = getRandom(200, 230);
+            data.B相电压2 = getRandom(200, 230);
+            data.C相电压2 = getRandom(200, 230);
+            data.A相电流2 = getRandom(30, 60);
+            data.B相电流2 = getRandom(30, 60);
+            data.C相电流2 = getRandom(30, 60);
+            data.当日能耗 = getRandom(1800, 2500);
+            data.当月能耗 = null;
+            data.主楼公共区用电 = getRandom(500, 1000);
+            data.主楼耗能 = getRandom(1800, 2500);
+            data.配楼公共区用电 = getRandom(500, 1000);
+            data.配楼耗能 = getRandom(1800, 2500);
+            data.泵站用电 = getRandom(500, 1000);
+            data.泵站耗能 = getRandom(1800, 2500);
+            data.空调用电 = getRandom(500, 1000);
+            data.空调耗能 = getRandom(1800, 2500);
+        }
+        else {
+            getLoadData(load => {
+                data.A相电压1 = load.voltageA1;
+                data.B相电压1 = load.voltageB1;
+                data.C相电压1 = load.voltageC1;
+                data.A相电流1 = load.currentA1;
+                data.B相电流1 = load.currentB1;
+                data.C相电流1 = load.currentC1;
+                data.A相电压2 = load.voltageA2;
+                data.B相电压2 = load.voltageB2;
+                data.C相电压2 = load.voltageC2;
+                data.A相电流2 = load.currentA2;
+                data.B相电流2 = load.currentB2;
+                data.C相电流2 = load.currentC2;
+                data.当日能耗 = load.power;
+                data.当月能耗 = load.powerData;
+                data.主楼公共区用电 = load.power1;
+                data.配楼公共区用电 = load.power2;
+                data.泵站用电 = load.power3;
+                data.空调用电 = load.power4;
+            });
+
+            this.setState(data);
+            this.setLoadingState(false);
+        }
+    }
+
+    /**
      * 获取照明用电详情界面
      *
      * @returns 照明用电详情界面
@@ -365,7 +379,7 @@ export default class Load extends BaseComponent {
                     <Container left={2210} top={907} background={require("./images/tip2.png")}>
                         <Text left={2210} top={939} width={373} value={`${toFixed(this.state.当日能耗, 0)}`} suffix="kWh" font="SourceHanSansSC-Heavy" weight="bold" fontSize={94} suffixFontSize={62} align="center" />
                     </Container>
-                    <BarChart left={1202} top={1103} width={1417} height={422} color="rgba(68,175,244,0.8)" data={this.state.当月能耗} maxTicksLimitX={7} suggestedMin={330} suggestedMax={400} />                    
+                    <BarChart left={1202} top={1103} width={1417} height={422} color="rgba(68,175,244,0.8)" data={this.state.当月能耗} maxTicksLimitX={7} suggestedMin={330} suggestedMax={400} />
                 </Container>
             </Dialog>
         );

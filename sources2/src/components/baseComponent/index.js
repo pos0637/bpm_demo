@@ -1,6 +1,7 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import PropTypes from 'prop-types';
+import { Spin } from 'antd';
 
 /**
  * 基础组件
@@ -25,6 +26,15 @@ export default class BaseComponent extends React.Component {
      * @memberof BaseComponent
      */
     children = {}
+
+    /**
+     * 状态
+     *
+     * @memberof BaseComponent
+     */
+    state = {
+        loading: false
+    }
 
     constructor(props) {
         super(props);
@@ -145,6 +155,16 @@ export default class BaseComponent extends React.Component {
     }
 
     /**
+     * 设置加载状态
+     *
+     * @param {*} isLoading 加载状态
+     * @memberof BaseComponent
+     */
+    setLoadingState(isLoading) {
+        this.setState({ loading: isLoading });
+    }
+
+    /**
      * 渲染组件
      *
      * @memberof BaseComponent
@@ -154,6 +174,6 @@ export default class BaseComponent extends React.Component {
     }
 
     render() {
-        return this._render();
+        return this.state.loading ? <Spin /> : this._render();
     }
 }
