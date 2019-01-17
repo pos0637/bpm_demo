@@ -143,4 +143,17 @@ export default class BaseComponent extends React.Component {
     child(name) {
         return this.children[name];
     }
+
+    /**
+     * 渲染组件
+     *
+     * @memberof BaseComponent
+     */
+    _render() {
+        return null;
+    }
+
+    render() {
+        return this._render();
+    }
 }

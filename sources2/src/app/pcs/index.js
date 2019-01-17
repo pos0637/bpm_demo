@@ -123,7 +123,7 @@ export default class Pcs extends BaseComponent {
         super.componentWillUnmount();
     }
 
-    render() {
+    _render() {
         return (
             <Container width={3840} height={2160}>
                 <Image left={200} top={173} src={require("../../framework/images/logo.png")} />

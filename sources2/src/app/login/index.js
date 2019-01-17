@@ -17,7 +17,7 @@ export default class Login extends BaseComponent {
         router: PropTypes.object // 路由
     }
 
-    render() {
+    _render() {
         return (
             <Container width={3840} height={2160}>
                 <Image left={199} top={96} src={require("../../framework/images/logo.png")} />

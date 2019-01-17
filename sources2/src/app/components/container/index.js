@@ -29,7 +29,7 @@ export default class Container extends BaseComponent {
         onClick: null
     }
 
-    render() {
+    _render() {
         let background = null;
         if (this.props.background !== null) {
             background = <img className={style.background} src={this.props.background} alt="" />

@@ -34,7 +34,7 @@ export default class Input extends BaseComponent {
         color: 'rgb(137, 149, 165)'
     }
 
-    render() {
+    _render() {
         const { left, top } = this.getRelativePosition(this.props.left, this.props.top);
         const { width, height, type, name, value, font, fontSize, weight, color } = this.props;
 

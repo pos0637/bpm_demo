@@ -68,7 +68,7 @@ export default class Table extends BaseComponent {
         this._onTableChange(this.params, this.state.pagination);
     }
 
-    render() {
+    _render() {
         return (
             <AntdTable
                 columns={this._getColumns()}

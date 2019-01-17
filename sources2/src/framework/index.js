@@ -25,7 +25,7 @@ export default class Framework extends BaseComponent {
         back: false
     }
 
-    render() {
+    _render() {
         return (
             <div>
                 <img className={style.background} src={require("./images/bg.png")} alt="" />

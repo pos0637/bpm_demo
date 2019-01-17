@@ -11,7 +11,7 @@ export default class Iframe extends BaseComponent {
         url: null
     }
 
-    render() {
+    _render() {
         return (
             <iframe
                 src={this.props.url}

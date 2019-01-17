@@ -36,7 +36,7 @@ export default class Button extends BaseComponent {
         loading: false
     }
 
-    render() {
+    _render() {
         return (
             <AntdButton loading={this.state.loading} onClick={() => this._onClick()} {...this.getRestProps()}>{this.props.children}</AntdButton>
         );

@@ -48,7 +48,7 @@ export default class Text extends BaseComponent {
         align: 'left'
     }
 
-    render() {
+    _render() {
         let { value } = this.props;
         const { font, fontSize, weight, color } = this.props;
         if (this.props.fixed !== null) {

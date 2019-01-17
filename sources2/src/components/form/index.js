@@ -27,7 +27,7 @@ class _Form extends BaseComponent {
         loading: false
     }
 
-    render() {
+    _render() {
         const { form, ...props } = this.getRestProps();
 
         return (

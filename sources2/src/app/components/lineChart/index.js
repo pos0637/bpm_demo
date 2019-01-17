@@ -89,7 +89,7 @@ export default class LineChart extends BaseComponent {
         }
     }
 
-    render() {
+    _render() {
         let xLabels = null;
         let data = null;
         if (this.props.data !== null) {

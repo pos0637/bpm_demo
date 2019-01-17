@@ -25,7 +25,7 @@ export default class Image extends BaseComponent {
         onClick: null
     }
 
-    render() {
+    _render() {
         const { left, top } = this.getRelativePosition(this.props.left, this.props.top);
         const { bottom } = this.props;
 

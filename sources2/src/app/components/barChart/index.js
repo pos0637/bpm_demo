@@ -86,7 +86,7 @@ export default class BarChart extends BaseComponent {
         }
     }
 
-    render() {
+    _render() {
         let xLabels = null;
         let data = null;
         if (this.props.data !== null) {

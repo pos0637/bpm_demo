@@ -41,7 +41,7 @@ export default class Input extends BaseComponent {
         initialValue: undefined
     }
 
-    render() {
+    _render() {
         const { getFieldDecorator } = this.props.form;
 
         const formItemLayout = {

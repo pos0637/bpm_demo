@@ -135,7 +135,7 @@ export default class Overview extends BaseComponent {
         super.componentWillUnmount();
     }
 
-    render() {
+    _render() {
         let arrow = <div />;
         if (this.state.充电状态 === 0) {
             arrow = <Image left={372} top={1782} src={require("./images/charging_arrow.gif")} />;

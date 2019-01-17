@@ -56,7 +56,7 @@ export default class Select extends BaseComponent {
         this._onSearch();
     }
 
-    render() {
+    _render() {
         const { getFieldDecorator } = this.props.form;
 
         const formItemLayout = {

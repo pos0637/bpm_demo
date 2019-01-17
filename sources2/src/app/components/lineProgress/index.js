@@ -30,7 +30,7 @@ export default class Progress extends BaseComponent {
         trailColor: '#4A6284'
     }
 
-    render() {
+    _render() {
         const { left, top } = this.getRelativePosition(this.props.left, this.props.top);
         const { color, colorStart, colorEnd, trailColor } = this.props;
 

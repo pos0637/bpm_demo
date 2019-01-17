@@ -39,7 +39,7 @@ export default class Gauge extends BaseComponent {
         color: 'rgb(7, 229, 255)'
     }
 
-    render() {
+    _render() {
         const { left, top } = this.getRelativePosition(this.props.left, this.props.top);
         const { width, startAngle, endAngle, backgroundColor, progressColor, value, content, font, fontSize, weight, color } = this.props;
         const progressWidth = 20 * width / 300;

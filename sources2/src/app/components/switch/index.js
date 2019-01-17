@@ -19,7 +19,7 @@ export default class Switch extends BaseComponent {
         value: PropTypes.number.isRequired // 值
     }
 
-    render() {
+    _render() {
         const { left, top } = this.getRelativePosition(this.props.left, this.props.top);
         const src = this.props.value ? this.props.src1 : this.props.src2;
 
