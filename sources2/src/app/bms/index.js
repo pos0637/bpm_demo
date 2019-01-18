@@ -89,10 +89,10 @@ export default class Bms extends BaseComponent {
                     <Image left={281} top={1247} src={require("./images/img2.png")} className={style.move} />
                 </Container>
                 <Container left={1084} top={392} background={require("./images/box2.png")}>
-                    <Text left={1170} top={515} value="1#" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
-                    <Text left={1917} top={515} value="2#" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
-                    {this._getCells(1, this.state.batteries1, 1343, 528, 1178)}
-                    {this._getCells(2, this.state.batteries2, 2089, 528, 1924)}
+                    <Text left={1170} top={481} value="1#" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
+                    <Text left={1917} top={481} value="2#" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
+                    {this._getCells(1, this.state.batteries1, 1178, 528)}
+                    {this._getCells(2, this.state.batteries2, 1924, 528)}
 
                     <Text left={2685} top={528} value="SOC" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Text left={2685} top={591} value="剩余容量" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
@@ -112,10 +112,10 @@ export default class Bms extends BaseComponent {
                     <Text left={2909} top={991} value={`${toFixed(this.state.电池温度1, 1)}℃`} font="SourceHanSansSC-Heavy" fontSize={40} />
                 </Container>
                 <Container left={1084} top={1178} background={require("./images/box3.png")}>
-                    <Text left={1170} top={1301} value="1#" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
-                    <Text left={1917} top={1301} value="2#" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
-                    {this._getCells(3, this.state.batteries3, 1343, 1314, 1178)}
-                    {this._getCells(4, this.state.batteries4, 2089, 1314, 1924)}
+                    <Text left={1170} top={1267} value="1#" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
+                    <Text left={1917} top={1267} value="2#" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
+                    {this._getCells(3, this.state.batteries3, 1178, 1314)}
+                    {this._getCells(4, this.state.batteries4, 1924, 1314)}
 
                     <Text left={2685} top={1317} value="SOC" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Text left={2685} top={1380} value="剩余容量" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
@@ -215,35 +215,21 @@ export default class Bms extends BaseComponent {
      *
      * @param {*} batteryPackId 电池组索引
      * @param {*} batteries 电池数据
-     * @param {*} startX1 横坐标
-     * @param {*} startY1 纵坐标
-     * @param {*} startX2 横坐标
+     * @param {*} startX 横坐标
+     * @param {*} startY 纵坐标
      * @returns 单元格列表
      * @memberof Bms
      */
-    _getCells(batteryPackId, batteries, startX1, startY1, startX2) {
+    _getCells(batteryPackId, batteries, startX, startY) {
         const cells = [];
         const width = 33;
         const height = 34;
-        let y = startY1;
+        let y = startY;
         let id = 1;
 
-        for (let i = 0; i < 16; i += 1, id += 1) {
-            const left = startX1 + i * 33;
-            const batteryId = id;
-            const cell = (
-                <Container left={left} top={y} width={33} height={34} onClick={() => (batteryPackId <= 2) ? this._onCellClick1(batteryPackId, batteryId - 1) : this._onCellClick2(batteryPackId - 2, batteryId - 1)}>
-                    <Image left={left} top={y} src={this._getBatteryIcon(batteries, id - 1)} />
-                    <Text left={left} top={y + 7} width={width} value={pad(id, 3)} align="center" fontSize={18} />
-                </Container>
-            );
-            cells.push(cell);
-        }
-
-        for (let j = 0; j < 13; j += 1) {
-            y += height;
+        for (let j = 0; j < 15; j += 1, y += height) {            
             for (let i = 0; i < 21; i += 1, id += 1) {
-                const left = startX2 + i * 33;
+                const left = startX + i * 33;
                 const batteryId = id;
                 const cell = (
                     <Container left={left} top={y} width={33} height={34} onClick={() => (batteryPackId <= 2) ? this._onCellClick1(batteryPackId, batteryId - 1) : this._onCellClick2(batteryPackId - 2, batteryId - 1)}>
