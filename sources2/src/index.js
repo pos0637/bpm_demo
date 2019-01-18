@@ -1,7 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import LiveRoute from 'react-live-route';
-import { MemoryRouter, Switch } from 'react-router-dom'
+import { MemoryRouter, Switch, Route } from 'react-router-dom'
 import Application from '~/components/application';
 import Framework from '~/framework';
 import Overview from '~/app/overview';
@@ -24,15 +23,15 @@ const bms = () => <Application currentLocale='ZH-CN' locales={locales}><Framewor
 render((
     <MemoryRouter>
         <Switch>
-            <LiveRoute path='/' exact alwaysLive component={overview} />
-            <LiveRoute path='/overview' exact alwaysLive component={overview} />
-            <LiveRoute path='/login' exact alwaysLive component={login} />
-            <LiveRoute path='/load' exact alwaysLive component={load} />
-            <LiveRoute path='/pcs' exact alwaysLive component={pcs} />
-            <LiveRoute path='/air' exact alwaysLive component={air} />
-            <LiveRoute path='/transformer' exact alwaysLive component={transformer} />
-            <LiveRoute path='/bms' exact alwaysLive component={bms} />
-            <LiveRoute path='*' alwaysLive component={overview} />
+            <Route path='/' exact alwaysLive component={overview} />
+            <Route path='/overview' exact alwaysLive component={overview} />
+            <Route path='/login' exact alwaysLive component={login} />
+            <Route path='/load' exact alwaysLive component={load} />
+            <Route path='/pcs' exact alwaysLive component={pcs} />
+            <Route path='/air' exact alwaysLive component={air} />
+            <Route path='/transformer' exact alwaysLive component={transformer} />
+            <Route path='/bms' exact alwaysLive component={bms} />
+            <Route path='*' alwaysLive component={overview} />
         </Switch>
     </MemoryRouter>
 ), document.getElementById('root'));
