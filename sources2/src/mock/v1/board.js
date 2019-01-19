@@ -26,6 +26,22 @@ Mock.onGet(/api\/v1\/board\/overview[?.*]?/).reply(() =>
             "electricityData2": {
                 "xLabels": ['0:00', '3:00', '6:00', '9:00', '12:00', '15:00', '18:00', '21:00', '23:00'],
                 "data": [getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220)]
+            },
+            "loadPowerData1": {
+                "xLabels": ['0:00', '3:00', '6:00', '9:00', '12:00', '15:00', '18:00', '21:00', '23:00'],
+                "data": [getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220)]
+            },
+            "loadPowerData2": {
+                "xLabels": ['0:00', '3:00', '6:00', '9:00', '12:00', '15:00', '18:00', '21:00', '23:00'],
+                "data": [getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220)]
+            },
+            "transformerPowerData1": {
+                "xLabels": ['0:00', '3:00', '6:00', '9:00', '12:00', '15:00', '18:00', '21:00', '23:00'],
+                "data": [getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220)]
+            },
+            "transformerPowerData2": {
+                "xLabels": ['0:00', '3:00', '6:00', '9:00', '12:00', '15:00', '18:00', '21:00', '23:00'],
+                "data": [getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220), getRandom(0, 220)]
             }
         },
         "newToken": null

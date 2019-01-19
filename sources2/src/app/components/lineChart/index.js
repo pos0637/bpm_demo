@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Line } from 'react-chartjs-2';
 import BaseComponent from '~/components/baseComponent';
-import { getRandom } from '~/misc/random';
+import { getRandom, getRandomKey } from '~/misc/random';
 
 /**
  * 折线图组件
@@ -142,6 +142,7 @@ export default class LineChart extends BaseComponent {
         else {
             data.forEach(item => {
                 datasets.push({
+                    label: getRandomKey(),
                     fill: this.props.fill,
                     fillColor: item.color,
                     strokeColor: item.color,
