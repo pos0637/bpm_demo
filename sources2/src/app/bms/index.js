@@ -48,9 +48,9 @@ export default class Bms extends BaseComponent {
         currentBatteryId2: 0
     }
 
-    sohThreshold1 = 80
+    sohThreshold1 = 30
 
-    sohThreshold2 = 50
+    sohThreshold2 = 10
 
     normalIcon = require("./images/normal.png");
 

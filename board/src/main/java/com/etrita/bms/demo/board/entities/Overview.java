@@ -202,12 +202,9 @@ public class Overview {
         setChargingElectricity2(other2Reader.readFloat(4, 3, 1) - globalData.getLastChargingElectricity2());
         setDischargingElectricity2(other2Reader.readFloat(4, 3, 11) - globalData.getLastDischargingElectricity2());
 
-        electricityData1.push(pcsPower1);
-        electricityData2.push(pcsPower2);
-        transformerPowerData1.push(getTransformerPower1());
-        transformerPowerData2.push(getTransformerPower2());
-        loadPowerData1.push(getTransformerPower1() - pcsPower1);
-        loadPowerData2.push(getTransformerPower2() - pcsPower1);
+        electricityData1.push(pcsPower1 + pcsPower2);
+        transformerPowerData1.push(getTransformerPower1() + getTransformerPower2());
+        loadPowerData1.push(getTransformerPower1() - pcsPower1 + getTransformerPower2() - pcsPower2);
 
         setSaveCost1((float) ((2 * getTotalDischargingElectricity() - getTotalChargingElectricity()) * 0.028));
         setSaveCost2((float) (getSaveCost1() * 2.77));

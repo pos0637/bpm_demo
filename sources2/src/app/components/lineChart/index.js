@@ -20,8 +20,10 @@ export default class LineChart extends BaseComponent {
         min: PropTypes.number,
         max: PropTypes.number,
         color: PropTypes.string,
+        fill: PropTypes.bool, // 填充颜色
         xLabels: PropTypes.array,
         data: PropTypes.array,
+        multiData: PropTypes.array, // 多数据
         onClick: PropTypes.func, // 点击事件处理函数
         maxTicksLimitX: PropTypes.number, // 横轴最大标记个数
         suggestedMin: PropTypes.number, // 最小值
@@ -34,8 +36,10 @@ export default class LineChart extends BaseComponent {
         min: 0,
         max: 1,
         color: 'rgba(251,207,72,0.8)',
+        fill: true,
         xLabels: null,
         data: null,
+        multiData: null,
         onClick: null,
         maxTicksLimitX: null,
         suggestedMin: null,
@@ -101,6 +105,17 @@ export default class LineChart extends BaseComponent {
                 data = this.props.data.data;
             }
         }
+        else if (this.props.multiData !== null) {
+            if (this.props.multiData[0].data.xlabels) {
+                xLabels = this.props.multiData[0].data.xlabels;
+            }
+
+            data = [];
+            this.props.multiData.forEach(item => data.push({
+                color: item.color,
+                data: item.data.data
+            }));
+        }
 
         if (!xLabels || (xLabels.length === 0)) {
             xLabels = ['0:00', '3:00', '6:00', '9:00', '12:00', '15:00', '18:00', '21:00', '23:00'];
@@ -113,13 +128,29 @@ export default class LineChart extends BaseComponent {
             );
         }
 
-        const datasets = [{
-            fillColor: this.props.color,
-            strokeColor: this.props.color,
-            borderColor: this.props.color,
-            data: data,
-            backgroundColor: [this.props.color]
-        }];
+        const datasets = [];
+        if (this.props.multiData === null) {
+            datasets.push({
+                fill: this.props.fill,
+                fillColor: this.props.color,
+                strokeColor: this.props.color,
+                borderColor: this.props.color,
+                data: data,
+                backgroundColor: [this.props.color]
+            });
+        }
+        else {
+            data.forEach(item => {
+                datasets.push({
+                    fill: this.props.fill,
+                    fillColor: item.color,
+                    strokeColor: item.color,
+                    borderColor: item.color,
+                    data: item.data,
+                    backgroundColor: [item.color]
+                });
+            });
+        }
 
         const { left, top } = this.getRelativePosition(this.props.left, this.props.top);
         const { onClick } = this.props;
