@@ -253,6 +253,7 @@ export default class Bms extends BaseComponent {
      * @memberof Bms
      */
     _getBatteryIcon(batteries, id) {
+        /*
         let icon = this.normalIcon;
         if (batteries.length > id) {
             if (batteries[id].soh < this.sohThreshold1) {
@@ -265,6 +266,8 @@ export default class Bms extends BaseComponent {
         }
 
         return icon;
+        */
+       return this.normalIcon;
     }
 
     /**

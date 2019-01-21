@@ -106,16 +106,16 @@ export default class Pcs extends BaseComponent {
                 <Container left={943} top={393} background={require("./images/box3.png")}>
                     <Text left={1022} top={428} value="1#储能电站" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Switch left={1024} top={547} src1={require("./images/charging0.png")} src2={require("./images/charging1.png")} value={this.state.电站运行状态1 === 0} />
-                    <Text left={1223} top={575} value='充电' font="SourceHanSansSC-Medium" fontSize={40} color={this.state.电站运行状态1 === 0 ? 'rgb(210, 86, 107)' : 'rgb(65, 82, 98)'} />
+                    <Text left={1223} top={575} value={this.state.电站运行状态1 !== 2 ? '充电' : '待机'} font="SourceHanSansSC-Medium" fontSize={40} color={this.state.电站运行状态1 === 0 ? 'rgb(210, 86, 107)' : 'rgb(65, 82, 98)'} />
                     <Switch left={1474} top={547} src1={require("./images/discharging0.png")} src2={require("./images/discharging1.png")} value={this.state.电站运行状态1 === 1} />
-                    <Text left={1671} top={575} value='放电' font="SourceHanSansSC-Medium" fontSize={40} color={this.state.电站运行状态1 === 1 ? 'rgb(68, 205, 103)' : 'rgb(65, 82, 98)'} />
+                    <Text left={1671} top={575} value={this.state.电站运行状态1 !== 2 ? '放电' : '待机'} font="SourceHanSansSC-Medium" fontSize={40} color={this.state.电站运行状态1 === 1 ? 'rgb(68, 205, 103)' : 'rgb(65, 82, 98)'} />
                 </Container>
                 <Container left={1960} top={393} background={require("./images/box3.png")}>
                     <Text left={2037} top={428} value="2#储能电站" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Switch left={2029} top={547} src1={require("./images/charging0.png")} src2={require("./images/charging1.png")} value={this.state.电站运行状态2 === 0} />
-                    <Text left={2226} top={575} value='充电' font="SourceHanSansSC-Medium" fontSize={40} color={this.state.电站运行状态2 === 0 ? 'rgb(210, 86, 107)' : 'rgb(65, 82, 98)'} />
+                    <Text left={2226} top={575} value={this.state.电站运行状态2 !== 2 ? '充电' : '待机'} font="SourceHanSansSC-Medium" fontSize={40} color={this.state.电站运行状态2 === 0 ? 'rgb(210, 86, 107)' : 'rgb(65, 82, 98)'} />
                     <Switch left={2479} top={547} src1={require("./images/discharging0.png")} src2={require("./images/discharging1.png")} value={this.state.电站运行状态2 === 1} />
-                    <Text left={2676} top={575} value='放电' font="SourceHanSansSC-Medium" fontSize={40} color={this.state.电站运行状态2 === 1 ? 'rgb(68, 205, 103)' : 'rgb(65, 82, 98)'} />
+                    <Text left={2676} top={575} value={this.state.电站运行状态2 !== 2 ? '放电' : '待机'} font="SourceHanSansSC-Medium" fontSize={40} color={this.state.电站运行状态2 === 1 ? 'rgb(68, 205, 103)' : 'rgb(65, 82, 98)'} />
                 </Container>
 
                 <Container left={943} top={707} background={require("./images/box3.png")} onClick={() => this.setState({ showDialog1: true })}>

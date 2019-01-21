@@ -169,27 +169,28 @@ export default class Overview extends BaseComponent {
                 </Container>
 
                 <Container left={2843} top={319} background={require("./images/box5.png")}>
-                    <Text left={2910} top={358} value="电站节能总费用" font="SourceHanSansSC-Bold" fontSize={48} />
-                    <Image left={3432} top={454} src={require("./images/money.gif")} />
-                    <Text left={2910} top={500} value={`${toFixed(this.state.节能总费用, 0)}`} font="SourceHanSansSC-Heavy" fontSize={120} />
-                    <Text left={3315} top={533} value="元" font="SourceHanSansSC-Regular" fontSize={72} color="rgb(60, 211, 238)" />
+                    <Text left={2910} top={358} value="电站节约" font="SourceHanSansSC-Bold" fontSize={48} />
+                    <Image left={2863} top={480} src={require("./images/logo21.png")} />
+                    <Text left={2983} top={532} value={`节煤量${toFixed(this.state.节煤量, 0)}吨`} font="SourceHanSansSC-Medium" fontSize={40} />
+                    <Image left={3248} top={480} src={require("./images/logo22.png")} />
+                    <Text left={3368} top={532} value={`节碳量${toFixed(this.state.节碳量, 0)}吨`} font="SourceHanSansSC-Medium" fontSize={40} />
                 </Container>
 
                 <Container left={2023} top={698} background={require("./images/box6.png")}>
                     <Text left={2094} top={734} value="日充/放功率" font="SourceHanSansSC-Bold" fontSize={48} />
-                    <Text left={2094} top={876} value="充/放电功率" font="SourceHanSansSC-Regular" fontSize={32} />
+                    <Text left={2094} top={876} value="充/放电功率" font="SourceHanSansSC-Regular" fontSize={32} color="rgba(184,87,100,0.8)" />
                     <Container left={2353} top={862} background={require("./images/tip.png")}>
-                        <Text left={2353} top={876} width={158} value={`${toFixed(this.state.充放电功率1 + this.state.充放电功率2, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
+                        <Text left={2353} top={876} width={158} value={`${toFixed(this.state.充放电功率1 + this.state.充放电功率2, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" color="rgba(184,87,100,0.8)" />
                     </Container>
 
-                    <Text left={2619} top={876} value="变压器功率" font="SourceHanSansSC-Regular" fontSize={32} />
+                    <Text left={2619} top={876} value="变压器功率" font="SourceHanSansSC-Regular" fontSize={32} color="rgba(221,178,38,0.8)" />
                     <Container left={2879} top={862} background={require("./images/tip.png")}>
-                        <Text left={2879} top={876} width={158} value={`${toFixed(this.state.变压器功率1 + this.state.变压器功率2, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
+                        <Text left={2879} top={876} width={158} value={`${toFixed(this.state.变压器功率1 + this.state.变压器功率2, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" color="rgba(221,178,38,0.8)" />
                     </Container>
 
-                    <Text left={3140} top={876} value="需求功率" font="SourceHanSansSC-Regular" fontSize={32} />
+                    <Text left={3140} top={876} value="需求功率" font="SourceHanSansSC-Regular" fontSize={32} color="rgba(31,210,169,0.8)" />
                     <Container left={3399} top={862} background={require("./images/tip.png")}>
-                        <Text left={3399} top={876} width={158} value={`${toFixed(this.state.需求功率1 + this.state.需求功率2, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" />
+                        <Text left={3399} top={876} width={158} value={`${toFixed(this.state.需求功率1 + this.state.需求功率2, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" color="rgba(31,210,169,0.8)" />
                     </Container>
 
                     <LineChart left={2094} top={983} width={1460} height={420} color="rgba(184,87,100,0.8)" multiData={[{ color: 'rgba(184,87,100,0.8)', data: this.state.充放电功率曲线1 }, { color: 'rgba(221,178,38,0.8)', data: this.state.变压器功率曲线1 }, { color: 'rgba(31,210,169,0.8)', data: this.state.需求功率曲线1 }]} fill={false} maxTicksLimitX={11} suggestedMin={-250} suggestedMax={250} />
