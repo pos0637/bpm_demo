@@ -109,10 +109,10 @@ export default class Overview extends BaseComponent {
                     <Text left={1002} top={1390} value="光伏发电" font="SourceHanSansSC-Medium" fontSize={46.24} />
                     <Container left={279} top={519} background={require("./images/small_box1.png")}>
                         <Text left={351} top={554} value="电网" font="SourceHanSansSC-Medium" fontSize={46.24} />
-                        <Text left={351} top={645} value={`节煤量${toFixed(this.state.节煤量, 1)}吨`} font="SourceHanSansSC-Light" fontSize={27.69} />
-                        <Progress left={351} top={690} width={251} height={9} value={this.state.节煤量 / 1000 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)" />
-                        <Text left={351} top={720} value={`节碳量${toFixed(this.state.节碳量, 1)}吨`} font="SourceHanSansSC-Light" fontSize={27.69} />
-                        <Progress left={351} top={766} width={251} height={9} value={this.state.节碳量 / 1000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
+                        <Text left={351} top={645} value={`1#变压器功耗${toFixed(this.state.需求功率1, 1)}kW`} font="SourceHanSansSC-Light" fontSize={27.69} />
+                        <Progress left={351} top={690} width={251} height={9} value={this.state.需求功率1 / 1000 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)" />
+                        <Text left={351} top={720} value={`2#变压器功耗${toFixed(this.state.需求功率2, 1)}kW`} font="SourceHanSansSC-Light" fontSize={27.69} />
+                        <Progress left={351} top={766} width={251} height={9} value={this.state.需求功率2 / 1000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
                     </Container>
                     <Container left={279} top={948} background={require("./images/small_box1.png")}>
                         <Text left={351} top={983} value="需求" font="SourceHanSansSC-Medium" fontSize={46.24} />

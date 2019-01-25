@@ -1,5 +1,6 @@
 package com.etrita.bms.demo.board.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,6 +34,7 @@ public class UpdateableData {
      *
      * @return 是否有效
      */
+    @JsonIgnore
     public boolean isValid() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());

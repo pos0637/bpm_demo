@@ -170,9 +170,9 @@ export default class Load extends BaseComponent {
                             <Text left={1320} top={1426} width={203} value={`${toFixed(this.state.主楼公共区用电, 0)}`} suffix="kW" font="SourceHanSansSC-Bold" fontSize={45} suffixFontSize={30} align="center" />
                         </Container>
                         <Progress left={1320} top={1525} width={516} height={22} value={this.state.主楼公共区用电 / 2000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
-                        <CircleProgress left={2035} top={1407} width={133} value={this.state.主楼耗能 / 3000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)">
-                            <Text left={2035} top={1434} width={133} value={toFixed(this.state.主楼耗能, 0)} font="SourceHanSansSC-Bold" fontSize={32} align="center" />
-                            <Text left={2035} top={1474} width={133} value="kWh" font="SourceHanSansSC-Bold" fontSize={32} align="center" />
+                        <CircleProgress left={2035} top={1407} width={133} value={this.state.主楼公共区用电 / 3000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)">
+                            <Text left={2035} top={1434} width={133} value={toFixed(this.state.主楼公共区用电, 0)} font="SourceHanSansSC-Bold" fontSize={32} align="center" />
+                            <Text left={2035} top={1474} width={133} value="kW" font="SourceHanSansSC-Bold" fontSize={32} align="center" />
                         </CircleProgress>
                     </Container>
 
@@ -184,9 +184,9 @@ export default class Load extends BaseComponent {
                             <Text left={2697} top={1426} width={203} value={`${toFixed(this.state.配楼公共区用电, 0)}`} suffix="kW" font="SourceHanSansSC-Bold" fontSize={45} suffixFontSize={30} align="center" />
                         </Container>
                         <Progress left={2697} top={1525} width={516} height={22} value={this.state.配楼公共区用电 / 2000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
-                        <CircleProgress left={3410} top={1407} width={133} value={this.state.配楼耗能 / 3000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)">
-                            <Text left={3410} top={1434} width={133} value={toFixed(this.state.配楼耗能, 0)} font="SourceHanSansSC-Bold" fontSize={32} align="center" />
-                            <Text left={3410} top={1474} width={133} value="kWh" font="SourceHanSansSC-Bold" fontSize={32} align="center" />
+                        <CircleProgress left={3410} top={1407} width={133} value={this.state.配楼公共区用电 / 3000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)">
+                            <Text left={3410} top={1434} width={133} value={toFixed(this.state.配楼公共区用电, 0)} font="SourceHanSansSC-Bold" fontSize={32} align="center" />
+                            <Text left={3410} top={1474} width={133} value="kW" font="SourceHanSansSC-Bold" fontSize={32} align="center" />
                         </CircleProgress>
                     </Container>
 
@@ -198,9 +198,9 @@ export default class Load extends BaseComponent {
                             <Text left={1320} top={1707} width={203} value={`${toFixed(this.state.泵站用电, 0)}`} suffix="kW" font="SourceHanSansSC-Bold" fontSize={45} suffixFontSize={30} align="center" />
                         </Container>
                         <Progress left={1320} top={1806} width={516} height={22} value={this.state.泵站用电 / 2000 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)" />
-                        <CircleProgress left={2035} top={1688} width={133} value={this.state.泵站耗能 / 3000 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)">
-                            <Text left={2035} top={1715} width={133} value={toFixed(this.state.泵站耗能, 0)} font="SourceHanSansSC-Bold" fontSize={32} align="center" />
-                            <Text left={2035} top={1755} width={133} value="kWh" font="SourceHanSansSC-Bold" fontSize={32} align="center" />
+                        <CircleProgress left={2035} top={1688} width={133} value={this.state.泵站用电 / 3000 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)">
+                            <Text left={2035} top={1715} width={133} value={toFixed(this.state.泵站用电, 0)} font="SourceHanSansSC-Bold" fontSize={32} align="center" />
+                            <Text left={2035} top={1755} width={133} value="kW" font="SourceHanSansSC-Bold" fontSize={32} align="center" />
                         </CircleProgress>
                     </Container>
 
@@ -212,9 +212,9 @@ export default class Load extends BaseComponent {
                             <Text left={2697} top={1707} width={203} value={`${toFixed(this.state.空调用电, 0)}`} suffix="kW" font="SourceHanSansSC-Bold" fontSize={45} suffixFontSize={30} align="center" />
                         </Container>
                         <Progress left={2697} top={1806} width={516} height={22} value={this.state.空调用电 / 2000 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)" />
-                        <CircleProgress left={3410} top={1688} width={133} value={this.state.空调耗能 / 3000 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)">
-                            <Text left={3410} top={1715} width={133} value={toFixed(this.state.空调耗能, 0)} font="SourceHanSansSC-Bold" fontSize={32} align="center" />
-                            <Text left={3410} top={1755} width={133} value="kWh" font="SourceHanSansSC-Bold" fontSize={32} align="center" />
+                        <CircleProgress left={3410} top={1688} width={133} value={this.state.空调用电 / 3000 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)">
+                            <Text left={3410} top={1715} width={133} value={toFixed(this.state.空调用电, 0)} font="SourceHanSansSC-Bold" fontSize={32} align="center" />
+                            <Text left={3410} top={1755} width={133} value="kW" font="SourceHanSansSC-Bold" fontSize={32} align="center" />
                         </CircleProgress>
                     </Container>
                 </Container>
