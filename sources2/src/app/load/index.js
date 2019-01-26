@@ -162,38 +162,38 @@ export default class Load extends BaseComponent {
                 <Container left={1111} top={1172} background={require("./images/box3.png")}>
                     <Text left={1188} top={1207} value="负载" font="SourceHanSansSC-Medium" fontSize={48} />
 
-                    <Container left={1191} top={1334} width={1057} height={206} onClick={() => this.setState({ showDialog1: true })}>
+                    <Container left={1191} top={1334} width={1067} height={206} onClick={() => this.setState({ showDialog1: true })}>
                         <Text left={1191} top={1334} value="1#" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
-                        <Text left={1321} top={1334} value="主楼公共区用电" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
-                        <Text left={2012} top={1334} value="主楼耗能" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
+                        <Text left={1321} top={1334} value="配楼公共区用电" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
+                        <Text left={1981} top={1334} value="配楼照明功率" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                         <Container left={1320} top={1409} background={require("./images/tip4.png")}>
-                            <Text left={1320} top={1426} width={203} value={`${toFixed(this.state.主楼公共区用电, 0)}`} suffix="kW" font="SourceHanSansSC-Bold" fontSize={45} suffixFontSize={30} align="center" />
+                            <Text left={1320} top={1426} width={203} value={`${toFixed(this.state.配楼公共区用电, 0)}`} suffix="kW" font="SourceHanSansSC-Bold" fontSize={45} suffixFontSize={30} align="center" />
                         </Container>
-                        <Progress left={1320} top={1525} width={516} height={22} value={this.state.主楼公共区用电 / 2000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
-                        <CircleProgress left={2035} top={1407} width={133} value={this.state.主楼公共区用电 / 3000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)">
-                            <Text left={2035} top={1434} width={133} value={toFixed(this.state.主楼公共区用电, 0)} font="SourceHanSansSC-Bold" fontSize={32} align="center" />
+                        <Progress left={1320} top={1525} width={516} height={22} value={this.state.配楼公共区用电 / 2000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
+                        <CircleProgress left={2035} top={1407} width={133} value={this.state.配楼公共区用电 / 3000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)">
+                            <Text left={2035} top={1434} width={133} value={toFixed(this.state.配楼公共区用电, 0)} font="SourceHanSansSC-Bold" fontSize={32} align="center" />
                             <Text left={2035} top={1474} width={133} value="kW" font="SourceHanSansSC-Bold" fontSize={32} align="center" />
                         </CircleProgress>
                     </Container>
 
-                    <Container left={2566} top={1334} width={1057} height={206} onClick={() => this.setState({ showDialog1: true })}>
+                    <Container left={2566} top={1334} width={1067} height={206} onClick={() => this.setState({ showDialog1: true })}>
                         <Text left={2566} top={1334} value="2#" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
-                        <Text left={2698} top={1334} value="配楼公共区用电" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
-                        <Text left={3389} top={1334} value="配楼耗能" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
+                        <Text left={2698} top={1334} value="主楼公共区用电" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
+                        <Text left={3360} top={1334} value="主楼照明功率" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                         <Container left={2697} top={1409} background={require("./images/tip4.png")}>
-                            <Text left={2697} top={1426} width={203} value={`${toFixed(this.state.配楼公共区用电, 0)}`} suffix="kW" font="SourceHanSansSC-Bold" fontSize={45} suffixFontSize={30} align="center" />
+                            <Text left={2697} top={1426} width={203} value={`${toFixed(this.state.主楼公共区用电, 0)}`} suffix="kW" font="SourceHanSansSC-Bold" fontSize={45} suffixFontSize={30} align="center" />
                         </Container>
-                        <Progress left={2697} top={1525} width={516} height={22} value={this.state.配楼公共区用电 / 2000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
-                        <CircleProgress left={3410} top={1407} width={133} value={this.state.配楼公共区用电 / 3000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)">
-                            <Text left={3410} top={1434} width={133} value={toFixed(this.state.配楼公共区用电, 0)} font="SourceHanSansSC-Bold" fontSize={32} align="center" />
+                        <Progress left={2697} top={1525} width={516} height={22} value={this.state.主楼公共区用电 / 2000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
+                        <CircleProgress left={3410} top={1407} width={133} value={this.state.主楼公共区用电 / 3000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)">
+                            <Text left={3410} top={1434} width={133} value={toFixed(this.state.主楼公共区用电, 0)} font="SourceHanSansSC-Bold" fontSize={32} align="center" />
                             <Text left={3410} top={1474} width={133} value="kW" font="SourceHanSansSC-Bold" fontSize={32} align="center" />
                         </CircleProgress>
                     </Container>
 
-                    <Container left={1189} top={1615} width={1057} height={206} onClick={() => this.setState({ showDialog2: true })}>
+                    <Container left={1189} top={1615} width={1067} height={206} onClick={() => this.setState({ showDialog2: true })}>
                         <Text left={1189} top={1615} value="3#" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
-                        <Text left={1320} top={1615} value="泵站用电" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
-                        <Text left={2011} top={1615} value="泵站耗能" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
+                        <Text left={1320} top={1615} value="热力用电" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
+                        <Text left={2011} top={1615} value="热力泵功率" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                         <Container left={1320} top={1690} background={require("./images/tip4.png")}>
                             <Text left={1320} top={1707} width={203} value={`${toFixed(this.state.泵站用电, 0)}`} suffix="kW" font="SourceHanSansSC-Bold" fontSize={45} suffixFontSize={30} align="center" />
                         </Container>
@@ -204,10 +204,10 @@ export default class Load extends BaseComponent {
                         </CircleProgress>
                     </Container>
 
-                    <Container left={2544} top={1615} width={1057} height={206} onClick={() => this.setState({ showDialog2: true })}>
+                    <Container left={2544} top={1615} width={1067} height={206} onClick={() => this.setState({ showDialog2: true })}>
                         <Text left={2566} top={1615} value="4#" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
-                        <Text left={2699} top={1615} value="空调用电" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
-                        <Text left={3390} top={1615} value="空调耗能" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
+                        <Text left={2699} top={1615} value="制冷用电" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
+                        <Text left={3360} top={1615} value="制冷机组功率" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                         <Container left={2697} top={1690} background={require("./images/tip4.png")}>
                             <Text left={2697} top={1707} width={203} value={`${toFixed(this.state.空调用电, 0)}`} suffix="kW" font="SourceHanSansSC-Bold" fontSize={45} suffixFontSize={30} align="center" />
                         </Container>

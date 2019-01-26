@@ -56,7 +56,7 @@ export default class Air extends BaseComponent {
                 <Image left={3084} top={182} src={require("../../framework/images/back.png")} onClick={() => this.context.router.history.replace('/overview')} />
 
                 <Container left={200} top={393} background={require("./images/box1.png")}>
-                    <Text left={278} top={428} value="空调 &amp; 灭火器" font="SourceHanSansSC-Medium" fontSize={48} />
+                    <Text left={278} top={428} value="空调 &amp; 气体灭火系统" font="SourceHanSansSC-Medium" fontSize={48} />
                     <Image left={391} top={567} src={require("./images/img1.png")} className={style.move} />
                     <Image left={390} top={1220} src={require("./images/img2.png")} className={style.move} />
                 </Container>

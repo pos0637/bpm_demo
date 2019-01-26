@@ -31,7 +31,7 @@ export default class Image extends BaseComponent {
 
         return (
             <div {...this.props} style={{ position: 'absolute', left: `${left}px`, top: `${top}px`, bottom: `${bottom}px` }}>
-                <img src={this.props.src} alt="" onClick={this.props.onClick} />
+                <img src={this.props.src} alt="" onClick={(e) => { e.stopPropagation(); this.props.onClick && this.props.onClick(); }} />
             </div>
         );
     }

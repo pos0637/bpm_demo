@@ -42,17 +42,36 @@ export default class Input extends BaseComponent {
         value: this.props.value
     }
 
-    onAppend(keyCode) {
+    /**
+     * 获取内容
+     *
+     * @returns 内容
+     * @memberof Input
+     */
+    getValue() {
+        return this.state.value;
+    }
+
+    /**
+     * 添加内容
+     *
+     * @param {*} content
+     * @memberof Input
+     */
+    onAppend(content) {
         let value = this.state.value;
         if (value === null) {
             value = '';
         }
 
         this.setState({
-            value: value + keyCode
+            value: value + content
         });
     }
 
+    /**
+     * 删除内容
+     */
     onDelete() {
         let value = this.state.value;
         if (value === null) {

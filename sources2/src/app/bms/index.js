@@ -145,7 +145,7 @@ export default class Bms extends BaseComponent {
                     </CircleProgress>
                     <CircleProgress left={3322} top={1036} width={222} value={this.state.剩余容量} colorStart="rgb(244, 192, 57)" colorEnd="rgb(246, 140, 61)">
                         <Text left={3384} top={1113} value={`${toFixed(this.state.剩余容量, 0)}%`} font="SourceHanSansSC-Medium" fontSize={48} />
-                        <Text left={3412} top={1191} value="较高" font="SourceHanSansSC-Normal" fontSize={24} />
+                        <Text left={3412} top={1191} value="正常" font="SourceHanSansSC-Normal" fontSize={24} />
                     </CircleProgress>
                     <CircleProgress left={3322} top={1465} width={222} value={this.state.健康状态} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)">
                         <Image left={3401} top={1527} src={require("./images/icon2.png")} />
