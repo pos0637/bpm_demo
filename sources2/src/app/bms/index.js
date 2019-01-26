@@ -184,6 +184,7 @@ export default class Bms extends BaseComponent {
                 batteries3: [],
                 batteries4: []
             };
+            this.setLoadingState(false);
             this.setState(data);
         }
         else {

@@ -21,7 +21,9 @@ export default class Input extends BaseComponent {
         font: PropTypes.string, // 字体
         fontSize: PropTypes.number, // 字体大小
         weight: PropTypes.string, // 粗细
-        color: PropTypes.any // 颜色
+        color: PropTypes.any, // 颜色
+        placeholder: PropTypes.string, // 提示内容
+        onFocus: PropTypes.func // 焦点选中事件处理函数
     }
 
     static defaultProps = {
@@ -31,16 +33,44 @@ export default class Input extends BaseComponent {
         font: 'SourceHanSansSC-Normal',
         fontSize: 42,
         weight: 'normal',
-        color: 'rgb(137, 149, 165)'
+        color: 'rgb(137, 149, 165)',
+        placeholder: null,
+        onFocus: null
+    }
+
+    state = {
+        value: this.props.value
+    }
+
+    onAppend(keyCode) {
+        let value = this.state.value;
+        if (value === null) {
+            value = '';
+        }
+
+        this.setState({
+            value: value + keyCode
+        });
+    }
+
+    onDelete() {
+        let value = this.state.value;
+        if (value === null) {
+            value = '';
+        }
+
+        this.setState({
+            value: this.state.value.substring(0, this.state.value.length - 1)
+        });
     }
 
     _render() {
         const { left, top } = this.getRelativePosition(this.props.left, this.props.top);
-        const { width, height, type, name, value, font, fontSize, weight, color } = this.props;
+        const { width, height, type, name, font, fontSize, weight, color } = this.props;
 
         return (
             <div style={{ position: 'absolute', left: `${left}px`, top: `${top}px` }}>
-                <input type={type} name={name} value={value} style={{ fontFamily: font, fontSize: `${fontSize}px`, fontWeight: weight, color: color, lineHeight: 1, width: `${width}px`, height: `${height}px`, border: 0, backgroundColor: "transparent" }} />
+                <input type={type} name={name} value={this.state.value} style={{ fontFamily: font, fontSize: `${fontSize}px`, fontWeight: weight, color: color, lineHeight: 1, width: `${width}px`, height: `${height}px`, border: 0, backgroundColor: "transparent" }} placeholder={this.props.placeholder} onFocus={() => this.props.onFocus && this.props.onFocus(this)} />
             </div>
         );
     }

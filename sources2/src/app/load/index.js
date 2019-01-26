@@ -260,6 +260,7 @@ export default class Load extends BaseComponent {
                 空调用电: getRandom(500, 1000),
                 空调耗能: getRandom(1800, 2500)
             };
+            this.setLoadingState(false);
             this.setState(data);
         }
         else {

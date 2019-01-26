@@ -97,6 +97,7 @@ export default class Air extends BaseComponent {
                 安防系统状态: getRandom(0, 1),
                 氢气探测器状态: getRandom(0, 1)
             };
+            this.setLoadingState(false);
             this.setState(data);
         }
         else {

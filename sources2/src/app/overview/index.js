@@ -260,6 +260,7 @@ export default class Overview extends BaseComponent {
                 需求功率曲线1: null,
                 需求功率曲线2: null
             };
+            this.setLoadingState(false);
             this.setState(data);
         }
         else {

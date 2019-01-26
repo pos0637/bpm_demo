@@ -191,6 +191,7 @@ export default class Transformer extends BaseComponent {
                 合闸1: getRandom(0, 1),
                 合闸2: getRandom(0, 1)
             };
+            this.setLoadingState(false);
             this.setState(data);
         }
         else {

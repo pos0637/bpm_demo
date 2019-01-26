@@ -116,6 +116,16 @@ export default class BaseComponent extends React.Component {
     }
 
     /**
+     * 设置加载状态
+     *
+     * @param {*} isLoading 加载状态
+     * @memberof BaseComponent
+     */
+    setLoadingState(isLoading) {
+        this.loading = isLoading;
+    }
+
+    /**
      * 注册子组件
      *
      * @param {*} child 子组件
@@ -144,16 +154,6 @@ export default class BaseComponent extends React.Component {
      */
     child(name) {
         return this.children[name];
-    }
-
-    /**
-     * 设置加载状态
-     *
-     * @param {*} isLoading 加载状态
-     * @memberof BaseComponent
-     */
-    setLoadingState(isLoading) {
-        this.loading = isLoading;
     }
 
     /**

@@ -4,6 +4,7 @@ import BaseComponent from '~/components/baseComponent';
 import Input from '~/app/components/input';
 import Image from '~/app/components/image';
 import Container from '~/app/components/container';
+import Keyboard from '~/app/components/keyboard';
 
 /**
  * 登录视图
@@ -17,6 +18,17 @@ export default class Login extends BaseComponent {
         router: PropTypes.object // 路由
     }
 
+    state = {
+        inputNode: {
+            type: 'password',
+            dataset: {
+                type: 'input'
+            }
+        }
+    }
+
+    currentInput = null
+
     _render() {
         return (
             <Container width={3840} height={2160}>
@@ -27,11 +39,11 @@ export default class Login extends BaseComponent {
 
                 <Container left={1128} top={551} background={require("./images/box1.png")}>
                     <Image left={1558} top={707} src={require("./images/icon1.png")} />
-                    <Input left={1642} top={674} width={500} height={100} value="请输入用户账号" />
+                    <Input left={1642} top={674} width={500} height={100} placeholder="请输入用户账号" onFocus={(sender) => { this.currentInput = sender; }} />
                     <Image left={1564} top={858} src={require("./images/icon2.png")} />
-                    <Input left={1642} top={822} width={500} height={100} type="password" value="请输入密码" />
+                    <Input left={1642} top={822} width={500} height={100} type="password" placeholder="请输入密码" onFocus={(sender) => { this.currentInput = sender; }} />
                     <Image left={1447} top={1024} src={require("./images/login.png")} onClick={() => this._onLoginButtonClick()} />
-                    <Image left={1474} top={1309} src={require("./images/keyboard.png")} />
+                    <Keyboard left={1474} top={1309} onKeyPress={(keyCode) => this._onKeyPress(keyCode)} />
                 </Container>
             </Container>
         );
@@ -45,5 +57,20 @@ export default class Login extends BaseComponent {
     _onLoginButtonClick() {
         window.login = true;
         this.context.router.history.replace('/overview');
+    }
+
+    /**
+     * 按键事件处理函数
+     *
+     * @param {*} keyCode 按键
+     * @memberof Login
+     */
+    _onKeyPress(keyCode) {
+        if (keyCode === 'delete') {
+            this.currentInput && this.currentInput.onDelete();
+        }
+        else {
+            this.currentInput && this.currentInput.onAppend(keyCode);
+        }
     }
 }

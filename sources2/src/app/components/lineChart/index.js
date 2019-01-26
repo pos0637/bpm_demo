@@ -105,7 +105,7 @@ export default class LineChart extends BaseComponent {
                 data = this.props.data.data;
             }
         }
-        else if (this.props.multiData !== null) {
+        else if ((this.props.multiData !== null) && (!!this.props.multiData[0].data)) {
             if (this.props.multiData[0].data.xlabels) {
                 xLabels = this.props.multiData[0].data.xlabels;
             }

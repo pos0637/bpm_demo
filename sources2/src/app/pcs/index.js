@@ -233,6 +233,7 @@ export default class Pcs extends BaseComponent {
                 交流电压1: getRandom(30, 60),
                 交流电压2: getRandom(30, 60)
             };
+            this.setLoadingState(false);
             this.setState(data);
         }
         else {
