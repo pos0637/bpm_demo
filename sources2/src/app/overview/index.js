@@ -187,7 +187,7 @@ export default class Overview extends BaseComponent {
                         <Text left={2353} top={876} width={158} value={`${toFixed(this.state.充放电功率1 + this.state.充放电功率2, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" color="rgba(184,87,100,0.8)" />
                     </Container>
 
-                    <Text left={2619} top={876} value="变压器功率" font="SourceHanSansSC-Regular" fontSize={32} color="rgba(221,178,38,0.8)" />
+                    <Text left={2619} top={876} value="负载功率" font="SourceHanSansSC-Regular" fontSize={32} color="rgba(221,178,38,0.8)" />
                     <Container left={2879} top={862} background={require("./images/tip.png")}>
                         <Text left={2879} top={876} width={158} value={`${toFixed(this.state.变压器功率1 + this.state.变压器功率2, 0)}kW`} font="SourceHanSansSC-Bold" fontSize={41} align="center" color="rgba(221,178,38,0.8)" />
                     </Container>
