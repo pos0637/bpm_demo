@@ -79,8 +79,12 @@ export default class Bms extends BaseComponent {
     _render() {
         return (
             <Container width={3840} height={2160}>
+                {/* 
                 <Image left={200} top={173} src={require("../../framework/images/logo.png")} />
                 <Image left={902} top={184} src={require("../../framework/images/title.png")} />
+                */}
+                <Image left={3070} top={2026} src={require("../../framework/images/logo.png")} />
+                <Image left={200} top={184} src={require("../../framework/images/title.png")} />
                 <Image left={3084} top={182} src={require("../../framework/images/back.png")} onClick={() => this.context.router.history.replace('/overview')} />
 
                 <Container left={200} top={393} background={require("./images/box1.png")}>
@@ -228,7 +232,7 @@ export default class Bms extends BaseComponent {
         let y = startY;
         let id = 1;
 
-        for (let j = 0; j < 15; j += 1, y += height) {            
+        for (let j = 0; j < 15; j += 1, y += height) {
             for (let i = 0; i < 21; i += 1, id += 1) {
                 const left = startX + i * 33;
                 const batteryId = id;
@@ -268,7 +272,7 @@ export default class Bms extends BaseComponent {
 
         return icon;
         */
-       return this.normalIcon;
+        return this.normalIcon;
     }
 
     /**

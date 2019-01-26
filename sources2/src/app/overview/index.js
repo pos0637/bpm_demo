@@ -89,8 +89,12 @@ export default class Overview extends BaseComponent {
 
         return (
             <Container width={3840} height={2160}>
+                {/* 
                 <Image left={200} top={173} src={require("../../framework/images/logo.png")} />
                 <Image left={902} top={184} src={require("../../framework/images/title.png")} />
+                */}
+                <Image left={3070} top={2026} src={require("../../framework/images/logo.png")} />
+                <Image left={200} top={184} src={require("../../framework/images/title.png")} />
 
                 <Text left={2891} top={185} value="无故障运行" font="SourceHanSansSC-Light" fontSize={58.39} />
                 <Text left={3274} top={164} value={pad(this.state.无故障运行时间, 4)} font="SourceHanSansSC-Bold" fontSize={96.43} color="rgb(102, 224, 250)" />
