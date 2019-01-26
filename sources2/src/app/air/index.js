@@ -71,7 +71,7 @@ export default class Air extends BaseComponent {
                     <Gauge left={2371} top={602} width={300} value={this.state.电气室温度2 / 100 * 100} content={`${toFixed(this.state.电气室温度2, 0)}℃`} />
 
                     <Text left={1770} top={960} value="电气室温度" font="SourceHanSansSC-Medium" fontSize={48} />
-                    <Text left={2408} top={960} value="电气室温度" font="SourceHanSansSC-Medium" fontSize={48} />
+                    <Text left={2408} top={960} value="电池室温度" font="SourceHanSansSC-Medium" fontSize={48} />
                 </Container>
                 <Container left={1350} top={1162} background={require("./images/box3.png")}>
                     <Text left={1428} top={1197} value="安防系统状态" font="SourceHanSansSC-Medium" fontSize={48} />
