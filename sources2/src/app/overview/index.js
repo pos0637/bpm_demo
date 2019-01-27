@@ -54,7 +54,9 @@ export default class Overview extends BaseComponent {
         需求功率1: 960,
         需求功率2: 960,
         需求功率曲线1: null,
-        需求功率曲线2: null
+        需求功率曲线2: null,
+        充电功率1: 0,
+        充电功率2: 0
     }
 
     constructor(props) {
@@ -100,8 +102,8 @@ export default class Overview extends BaseComponent {
                 <Text left={3274} top={164} value={pad(this.state.无故障运行时间, 4)} font="SourceHanSansSC-Bold" fontSize={96.43} color="rgb(102, 224, 250)" />
                 <Text left={3545} top={188} value="天" font="SourceHanSansSC-Light" fontSize={58.39} />
 
-                <Container left={199} top={319} background={require("./images/box1.png")} onClick={() => this.context.router.history.replace('/login')}>
-                    <Text left={275} top={354} value="清洁能源微网系统" font="SourceHanSansSC-Bold" fontSize={48} />
+                <Container left={199} top={319} background={require("./images/box1.png")}>
+                    <Text left={275} top={354} value="智慧能源微网系统" font="SourceHanSansSC-Bold" fontSize={48} />
                     <Image left={726} top={566} src={require("./images/line.gif")} />
                     <Image left={616} top={891} src={require("./images/charging_station.png")} className={style.move} />
                     <Image left={712} top={519} src={require("./images/grid.png")} className={style.move} />
@@ -119,11 +121,11 @@ export default class Overview extends BaseComponent {
                         <Progress left={351} top={766} width={251} height={9} value={this.state.需求功率2 / 1000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
                     </Container>
                     <Container left={279} top={948} background={require("./images/small_box1.png")}>
-                        <Text left={351} top={983} value="需求" font="SourceHanSansSC-Medium" fontSize={46.24} />
-                        <Text left={351} top={1074} value={`1#功率需求${toFixed(this.state.需求功率1, 1)}kW`} font="SourceHanSansSC-Light" fontSize={27.69} />
-                        <Progress left={351} top={1120} width={251} height={9} value={this.state.需求功率1 / 1000 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)" />
-                        <Text left={351} top={1156} value={`2#功率需求${toFixed(this.state.需求功率2, 1)}kW`} font="SourceHanSansSC-Light" fontSize={27.69} />
-                        <Progress left={351} top={1195} width={251} height={9} value={this.state.需求功率2 / 1000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
+                        <Text left={351} top={983} value="充电桩" font="SourceHanSansSC-Medium" fontSize={46.24} />
+                        <Text left={351} top={1074} value={`1#充电功率${toFixed(this.state.充电功率1, 0)}kW`} font="SourceHanSansSC-Light" fontSize={27.69} />
+                        <Progress left={351} top={1120} width={251} height={9} value={this.state.充电功率1 / 1000 * 100} colorStart="rgb(49, 218, 225)" colorEnd="rgb(16, 181, 115)" />
+                        <Text left={351} top={1156} value={`2#充电功率${toFixed(this.state.充电功率2, 0)}kW`} font="SourceHanSansSC-Light" fontSize={27.69} />
+                        <Progress left={351} top={1195} width={251} height={9} value={this.state.充电功率2 / 1000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
                     </Container>
                     <Container left={1370} top={524} background={require("./images/small_box2.png")}>
                         <Text left={1743} top={567} value="储能" font="SourceHanSansSC-Medium" fontSize={46.24} />
@@ -139,6 +141,9 @@ export default class Overview extends BaseComponent {
                         <Text left={1564} top={1166} value={`2#母线${toFixed(this.state.母线2, 1)}KW`} font="SourceHanSansSC-Light" fontSize={27.69} align="right" width={250} />
                         <Progress left={1564} top={1213} width={251} height={9} value={this.state.母线2 / 1000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)" />
                     </Container>
+
+                    <Container left={204} top={1260} width={430} height={210} onClick={() => { window.login = false; }} />
+                    <Container left={1545} top={1260} width={430} height={210} onClick={() => !window.login && this.context.router.history.replace('/login')} />
                 </Container>
 
                 <Container left={199} top={1506} background={require("./images/box2.png")}>
