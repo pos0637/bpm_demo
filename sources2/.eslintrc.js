@@ -22,7 +22,7 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 0,
     'jsx-a11y/anchor-is-valid': 0,
     'jsx-a11y/iframe-has-title': 0,
-    'linebreak-style': ['error', 'windows'],
+    'linebreak-style': ['off', 'windows'],
     'react/jsx-indent': [2, 4],
     'react/jsx-indent-props': [2, 4],
     'react/no-access-state-in-setstate': 0,
