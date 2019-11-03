@@ -8,7 +8,7 @@ import Progress from '~/app/components/lineProgress';
 import Switch from '~/app/components/switch';
 import Switch2 from '~/app/components/switch2';
 import LineChart from '~/app/components/lineChart';
-import { toFixed, pad } from '~/misc/number';
+import { toFixed, toFixed2, pad } from '~/misc/number';
 import { getRandom } from '~/misc/random';
 import { getOverviewData } from '~/api/v1/board';
 import style from './index.scss';
@@ -180,9 +180,9 @@ export default class Overview extends BaseComponent {
                 <Container left={2843} top={319} background={require("./images/box5.png")}>
                     <Text left={2910} top={358} value="电站节约" font="SourceHanSansSC-Bold" fontSize={48} />
                     <Image left={2863} top={480} src={require("./images/logo21.png")} />
-                    <Text left={2983} top={532} value={`节煤量${toFixed(this.state.节煤量, 0)}吨`} font="SourceHanSansSC-Medium" fontSize={40} />
+                    <Text left={2983} top={532} value={`节煤量${toFixed2(this.state.节煤量, 0)}吨`} font="SourceHanSansSC-Medium" fontSize={40} />
                     <Image left={3248} top={480} src={require("./images/logo22.png")} />
-                    <Text left={3368} top={532} value={`节碳量${toFixed(this.state.节碳量, 0)}吨`} font="SourceHanSansSC-Medium" fontSize={40} />
+                    <Text left={3368} top={532} value={`节碳量${toFixed2(this.state.节碳量, 0)}吨`} font="SourceHanSansSC-Medium" fontSize={40} />
                 </Container>
 
                 <Container left={2023} top={698} background={require("./images/box6.png")}>
@@ -241,8 +241,8 @@ export default class Overview extends BaseComponent {
         if (process.env.NODE_ENV === 'development') {
             const data = {
                 无故障运行时间: getRandom(10, 100),
-                节煤量: getRandom(200, 700),
-                节碳量: getRandom(200, 700),
+                节煤量: getRandom(200, 7000),
+                节碳量: getRandom(200, 7000),
                 母线1: getRandom(200, 700),
                 母线2: getRandom(200, 700),
                 总充电量: getRandom(1000, 2000),

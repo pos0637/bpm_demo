@@ -38,9 +38,9 @@ export default class Login extends BaseComponent {
 
                 <Container left={1128} top={551} background={require("./images/box1.png")}>
                     <Image left={1558} top={707} src={require("./images/icon1.png")} />
-                    <Input left={1642} top={674} width={500} height={100} placeholder="请输入用户账号" ref={(ref) => { this.InputUserName = ref; }} onFocus={(sender) => { this.currentInput = sender; }} />
+                    <Input left={1642} top={674} width={500} height={100} readonly="readonly" placeholder="请输入用户账号" ref={(ref) => { this.InputUserName = ref; }} onFocus={(sender) => { this.currentInput = sender; }} />
                     <Image left={1564} top={858} src={require("./images/icon2.png")} />
-                    <Input left={1642} top={822} width={500} height={100} type="password" placeholder="请输入密码" ref={(ref) => { this.InputPassword = ref; }} onFocus={(sender) => { this.currentInput = sender; }} />
+                    <Input left={1642} top={822} width={500} height={100} type="password" readonly="readonly" placeholder="请输入密码" ref={(ref) => { this.InputPassword = ref; }} onFocus={(sender) => { this.currentInput = sender; }} />
                     <Image left={1447} top={1024} src={require("./images/login.png")} onClick={() => this._onLoginButtonClick()} />
                     <Keyboard left={1474} top={1309} onKeyPress={(keyCode) => this._onKeyPress(keyCode)} />
                 </Container>

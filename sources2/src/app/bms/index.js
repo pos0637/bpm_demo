@@ -111,7 +111,7 @@ export default class Bms extends BaseComponent {
                     <Text left={2686} top={857} value="电池电压" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Text left={2686} top={921} value="电池内阻" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Text left={2686} top={987} value="电池温度" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
-                    <Text left={2909} top={858} value={`${toFixed(this.state.电池电压1, 1)}V`} font="SourceHanSansSC-Heavy" fontSize={40} />
+                    <Text left={2909} top={858} value={`${toFixed(this.state.电池电压1, 2)}V`} font="SourceHanSansSC-Heavy" fontSize={40} />
                     <Text left={2909} top={921} value={`${toFixed(this.state.电池内阻1, 1)}μΩ`} font="SourceHanSansSC-Heavy" fontSize={40} />
                     <Text left={2909} top={991} value={`${toFixed(this.state.电池温度1, 1)}℃`} font="SourceHanSansSC-Heavy" fontSize={40} />
                 </Container>
@@ -134,7 +134,7 @@ export default class Bms extends BaseComponent {
                     <Text left={2686} top={1646} value="电池电压" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Text left={2686} top={1710} value="电池内阻" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                     <Text left={2686} top={1776} value="电池温度" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
-                    <Text left={2909} top={1647} value={`${toFixed(this.state.电池电压2, 1)}V`} font="SourceHanSansSC-Heavy" fontSize={40} />
+                    <Text left={2909} top={1647} value={`${toFixed(this.state.电池电压2, 2)}V`} font="SourceHanSansSC-Heavy" fontSize={40} />
                     <Text left={2909} top={1710} value={`${toFixed(this.state.电池内阻2, 1)}μΩ`} font="SourceHanSansSC-Heavy" fontSize={40} />
                     <Text left={2909} top={1780} value={`${toFixed(this.state.电池温度2, 1)}℃`} font="SourceHanSansSC-Heavy" fontSize={40} />
                 </Container>

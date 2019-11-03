@@ -16,6 +16,7 @@ export default class Input extends BaseComponent {
         width: PropTypes.number.isRequired, // 宽度
         height: PropTypes.number.isRequired, // 高度
         type: PropTypes.string, // 类型
+        readonly: PropTypes.string, // 只读
         name: PropTypes.string, // 名称
         value: PropTypes.string, // 值
         font: PropTypes.string, // 字体
@@ -34,6 +35,7 @@ export default class Input extends BaseComponent {
         fontSize: 42,
         weight: 'normal',
         color: 'rgb(137, 149, 165)',
+        placeholder: null,
         placeholder: null,
         onFocus: null
     }
@@ -89,7 +91,7 @@ export default class Input extends BaseComponent {
 
         return (
             <div style={{ position: 'absolute', left: `${left}px`, top: `${top}px` }}>
-                <input type={type} name={name} value={this.state.value} style={{ fontFamily: font, fontSize: `${fontSize}px`, fontWeight: weight, color: color, lineHeight: 1, width: `${width}px`, height: `${height}px`, border: 0, backgroundColor: "transparent" }} placeholder={this.props.placeholder} onFocus={() => this.props.onFocus && this.props.onFocus(this)} />
+                <input type={type} name={name} value={this.state.value} style={{ fontFamily: font, fontSize: `${fontSize}px`, fontWeight: weight, color: color, lineHeight: 1, width: `${width}px`, height: `${height}px`, border: 0, backgroundColor: "transparent" }} readonly={this.props.readonly} placeholder={this.props.placeholder} onFocus={() => this.props.onFocus && this.props.onFocus(this)} />
             </div>
         );
     }

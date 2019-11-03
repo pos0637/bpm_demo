@@ -14,6 +14,25 @@ export function toFixed(value, num) {
 }
 
 /**
+ * 数值四舍五入为指定小数位数的数字,若超过1000则使用单位K
+ *
+ * @export
+ * @param {*} value 数值
+ * @param {*} num 规定小数的位数
+ */
+export function toFixed2(value, num) {
+    if (typeof value !== 'number') {
+        return value;
+    } else {
+        if (value >= 1000.0) {
+            return (value / 1000.0).toFixed(num) + 'K';
+        } else {
+            return value.toFixed(num);
+        }
+    }
+}
+
+/**
  * 数值字符串前补0
  *
  * @export

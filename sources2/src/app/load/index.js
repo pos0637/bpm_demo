@@ -147,10 +147,10 @@ export default class Load extends BaseComponent {
                     </CircleProgress>
 
                     <Container left={2597} top={634} width={218} height={340} onClick={() => this.setState({ showDialog3: true })}>
-                        <Text left={2641} top={634} value="当日能耗" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
+                        <Text left={2641} top={634} value="实时功耗" font="SourceHanSansSC-Medium" fontSize={40} color="rgb(60, 211, 238)" />
                         <CircleProgress left={2617} top={756} width={218} value={this.state.当日能耗 / 3000 * 100} colorStart="rgb(244, 138, 62)" colorEnd="rgb(214, 80, 115)">
                             <Text left={2617} top={812} width={218} value={toFixed(this.state.当日能耗, 0)} font="SourceHanSansSC-Bold" fontSize={52} align="center" />
-                            <Text left={2617} top={862} width={218} value="kWh" font="SourceHanSansSC-Bold" fontSize={52} align="center" />
+                            <Text left={2617} top={862} width={218} value="kW" font="SourceHanSansSC-Bold" fontSize={52} align="center" />
                         </CircleProgress>
                     </Container>
 
