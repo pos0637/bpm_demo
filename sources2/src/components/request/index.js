@@ -3,7 +3,7 @@ import MockAdapter from 'axios-mock-adapter';
 import { getRandomKey } from '~/misc/random';
 
 const Request = axios.create({
-    baseURL: 'http://localhost:8080',
+    baseURL: 'http://256b1462e6.zicp.vip:44043',
     headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-cache', 'Pragma': 'no-cache', 'Expires': 0 }
 });
 

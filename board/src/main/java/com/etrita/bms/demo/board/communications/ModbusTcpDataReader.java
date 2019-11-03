@@ -50,6 +50,7 @@ public class ModbusTcpDataReader implements IDataReader, DisposableBean {
         params.setHost(host);
         params.setPort(port);
         master = new ModbusFactory().createTcpMaster(params, true);
+        master.setTimeout(5000);
     }
 
     @Override
