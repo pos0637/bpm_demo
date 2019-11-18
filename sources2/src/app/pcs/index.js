@@ -263,7 +263,7 @@ export default class Pcs extends BaseComponent {
                 data.直流电压2 = pcs.voltage21;
                 data.直流电流1 = pcs.current1;
                 data.直流电流2 = pcs.current2;
-                data.交流电压1 = pcs.voltage21;
+                data.交流电压1 = pcs.voltage12;
                 data.交流电压2 = pcs.voltage22;
                 this.setLoadingState(false);
                 this.setState(data);

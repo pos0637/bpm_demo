@@ -194,7 +194,7 @@ public class EmsDaemon implements Runnable, InitializingBean {
             }
 
             try {
-                bms.readModbusTcpData(bms1DataReader, bms1DataReader);
+                bms.readModbusTcpData(bms1DataReader, bms2DataReader);
             } catch (Exception e) {
                 Tracker.error(e);
                 try {
